@@ -20,7 +20,7 @@ export async function sources() {
     if ('en' in n && (typeof n.en === 'string' || Array.isArray(n.en))) { [].concat(n.en).forEach(add); return; }
     Object.values(n).forEach(walk);
   };
-  walk([C.LEARN, C.GLOSSARY, C.TEAM, C.BUILDERS, C.KINDS]);
+  walk([C.LEARN, C.GLOSSARY, C.TEAM, C.BUILDERS, C.KINDS, C.FEATURED, C.TAKE_PART]);
   for (const f of (await readdir('content/seed')).filter((f) => f.endsWith('.json'))) walk(JSON.parse(await readFile('content/seed/' + f, 'utf8')));
   return Object.fromEntries(out);
 }

@@ -18,7 +18,7 @@
  "156fd81d": "Optimum tarafından ölçülüp Hub’da yayımlandı",
  "4ddc9949": "Haftanın öne çıkanı",
  "0e0c8616": "Aç",
- "653de65a": "Diziyi oku",
+ "653de65a": "Gönderiyi oku",
  "e813fdf6": "Hub raporu, {0} ile {1} arası",
  "1a4cca4a": "Topluluğun yaptıkları",
  "49cf81d2": "Tüm projeleri gör",
@@ -311,5 +311,7 @@
  "2a4c32d4": "{0} oldu",
  "0cddc760": "Sayfayı aç",
  "a3527e47": "Sınıflar",
- "c1a58269": "Yapanlar"
+ "c1a58269": "Yapanlar",
+ "8724e1c6": "Haftanın seçimi",
+ "db4b10ae": "Optimum’u takip etmek eskiden on sekme demekti: X, Discord, blog, Hub, röportajlar. Süleyman hepsini gün boyu güncellenen tek bir sayfada topladı, İngilizce ve Türkçe; artık herkes bir dakikada gündeme yetişebiliyor."
 }

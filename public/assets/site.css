@@ -645,3 +645,17 @@ h1, h2, h3 { font-weight: 650; letter-spacing: -0.025em; }
 .cred-reg { padding-left: 8px; margin-left: 2px; border-left: 1.5px solid rgba(21, 22, 26, .35); font-weight: 650; letter-spacing: .01em; color: rgba(21, 22, 26, .78); }
 .cred-big .cred-brand .opt-wm { height: 19px; }
 .cred-big .cred-reg { font-size: 13px; }
+
+/* builder of the week */
+.feat { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); margin: 0 0 28px; border-radius: 20px; overflow: hidden; background: var(--glass); box-shadow: inset 0 0 0 1px var(--line-2), var(--shadow); }
+.feat-img { display: block; background: var(--surface-2); }
+.feat-img img { width: 100%; height: 100%; object-fit: cover; object-position: top left; aspect-ratio: 16 / 10; }
+.feat-text { padding: 28px 30px; display: flex; flex-direction: column; }
+.feat-kicker { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 10px; font: 650 13.5px var(--sans); color: var(--accent); }
+.feat h3 { font-size: clamp(26px, 3vw, 36px); letter-spacing: -0.03em; margin-bottom: 12px; }
+.feat-by { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: 0 0 14px; }
+.feat-x { font-size: 14px; color: var(--soft); }
+.feat-text > p:not([class]) { color: var(--muted); margin: 0 0 10px; }
+.feat-why { margin: 4px 0 0; padding: 12px 14px; border-radius: 12px; background: var(--pkt-soft); color: var(--ink); font-size: 15.5px; line-height: 1.55; }
+.feat .actions { margin-top: auto; padding-top: 18px; }
+@media (max-width: 860px) { .feat { grid-template-columns: 1fr; } .feat-text { padding: 22px 20px; } }

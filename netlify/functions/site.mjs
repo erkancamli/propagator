@@ -67,7 +67,7 @@ export async function handle(req, { store, now = Date.now(), preview = false }) 
     return html({ ...R.weeklyPage(lang, issue, { prev: list[i + 1], next: i > 0 ? list[i - 1] : null }), noindex: isPreview });
   }
   if (path === '/learn/') return html(R.learnPage(lang));
-  if (path === '/builders/') return html(R.buildersPage(lang, today));
+  if (path === '/builders/') return html(R.buildersPage(lang, today, await register(store)));
   if (path === '/people/') return html(R.peoplePage(lang, (await store.get('jobs/list', { type: 'json' }).catch(() => null)) || (await latestWeekly())?.jobs));
   if (path === '/about/') return html(R.aboutPage(lang));
   if ((m = path.match(/^\/subscribed\/(confirmed|left|bad)\/$/))) return html({ ...R.subscribedPage(lang, m[1]), noindex: true });
