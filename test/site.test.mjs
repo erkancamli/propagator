@@ -90,6 +90,14 @@ test('editor adds a role call by pasting the announcement; members and cards fol
   assert.match(page, /Named Optimized/); assert.match(page, /Named Refined/);
   assert.equal((await site(req('/m/new-person/'), { store })).status, 200);
   assert.equal((await site(req('/class/2026-11-24/'), { store })).status, 200);
+  // the paste page: no secret in the URL, the token goes in the form
+  r = await api(req('/api/admin/rolecall'), { store, env });
+  assert.equal(r.status, 200); assert.match(await r.text(), /type="password" name="token"/);
+  const form = (tok) => req('/api/admin/rolecall', { method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ text: 'Flash ⚡ [MUM],  — 01.12.2026 21:00\nCongratulations to:\n@Form Person\nYou have been upgraded to the @Refined role!', token: tok }).toString() });
+  assert.equal((await api(form('wrong'), { store, env })).status, 401);
+  r = await api(form(env.EDITOR_TOKEN), { store, env });
+  assert.equal(r.status, 303); assert.equal(r.headers.get('location'), '/class/2026-12-01/');
+  assert.equal((await site(req('/m/form-person/'), { store })).status, 200);
   r = await api(req('/api/admin/rolecall', { method: 'PUT', headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN }, body: JSON.stringify({ date: '2026-11-25', groups: [{ role: 'Wizard', names: ['x'] }] }) }), { store, env });
   assert.equal(r.status, 400, 'unknown roles are refused');
   const jpeg = new Uint8Array([255, 216, 255, 224, 0, 16]);

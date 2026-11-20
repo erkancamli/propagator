@@ -130,7 +130,7 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
   if (path === '/api/unsubscribe' && req.method === 'POST') return json({ ok: true }); // one click unsubscribe header; the GET above does the work
 
   if (!path.startsWith('/api/admin/')) return json({ error: 'not found' }, 404);
-  if (!isEditor && path !== '/api/admin/publish') return json({ error: 'unauthorized' }, 401); // the approval page handles its own auth
+  if (!isEditor && path !== '/api/admin/publish' && !(path === '/api/admin/rolecall' && req.method !== 'PUT')) return json({ error: 'unauthorized' }, 401); // the approval page handles its own auth
 
 
   if (path === '/api/admin/subscribers' && req.method === 'GET') {
@@ -187,6 +187,20 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
     if (buf.byteLength > 2e6 || !okType) return json({ error: 'a PNG (issues) or JPEG (member cards) under 2 MB is required' }, 400);
     await store.set('og/' + mo[1], buf);
     return json({ ok: true });
+  }
+  // the same, as a page: open /api/admin/rolecall, paste the announcement, enter the editor token
+  if (path === '/api/admin/rolecall' && (req.method === 'GET' || (req.method === 'POST' && (req.headers.get('content-type') || '').includes('form')))) {
+    const esc = (x) => String(x).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const page = (msg = '', status = 200) => new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Add a role call</title><style>body{font:16px/1.5 system-ui;max-width:640px;margin:6vh auto;padding:0 16px;background:#0a0b0e;color:#eef0f4}textarea,input{font:15px ui-monospace,monospace;width:100%;box-sizing:border-box;padding:12px;border-radius:10px;border:1px solid #2f333b;background:#13151a;color:#eef0f4;margin:0 0 12px}textarea{height:320px}button{font:600 16px system-ui;padding:12px 20px;border-radius:10px;border:0;background:#eef0f4;color:#0a0b0e;cursor:pointer}.m{color:#f0b360}</style><h1>Add a role call</h1><p>Copy Flash's post from #role-announcements, including the line with the name and date, and paste it here.</p>${msg ? `<p class="m">${esc(msg)}</p>` : ''}<form method="post" action="/api/admin/rolecall"><textarea name="text" required placeholder="Flash ⚡ [MUM],  — 24.11.2026 22:10&#10;New Week New Role Upgrades!&#10;Congratulations to:&#10;@Name"></textarea><label>Editor token<input type="password" name="token" autocomplete="current-password" required></label><button>Add to the register</button></form>`, { status, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store', 'referrer-policy': 'no-referrer', 'x-frame-options': 'DENY' } });
+    if (req.method === 'GET') return page();
+    const b = await body();
+    const ok = (Boolean(env.EDITOR_TOKEN) && safeEq(b?.token || '', env.EDITOR_TOKEN)) || (Boolean(env.ADMIN_TOKEN) && safeEq(b?.token || '', env.ADMIN_TOKEN));
+    if (!ok) return page('That token is not an editor token.', 401);
+    const call = parseAnnouncement(String(b.text || '').slice(0, 20000));
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(call.date || '') || !call.groups.length) return page('No date or names found. Include the line with the name and date, and the @names.', 400);
+    const list = ((await store.get('rolecalls/list', { type: 'json' }).catch(() => null)) || []).filter((c) => c.id !== call.id);
+    list.push(call); await store.setJSON('rolecalls/list', list); await purge();
+    return new Response(null, { status: 303, headers: { location: `/class/${call.id}/` } });
   }
   // a weekly role call: paste Flash's announcement as { text }, or send the parsed { date, by, groups } yourself
   if (path === '/api/admin/rolecall' && req.method === 'PUT') {
