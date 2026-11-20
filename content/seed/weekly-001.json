@@ -3,7 +3,10 @@
   "id": "001",
   "status": "published",
   "date": "2026-11-20",
-  "range": ["2026-10-20", "2026-11-20"],
+  "range": [
+    "2026-10-20",
+    "2026-11-20"
+  ],
   "title": {
     "en": "Month one on mainnet",
     "tr": "Ana ağda ilk ay"
@@ -25,74 +28,212 @@
   "stories": [
     {
       "tag": "launch",
-      "title": { "en": "mump2p is live on Ethereum mainnet", "tr": "mump2p Ethereum ana ağında yayında" },
+      "title": {
+        "en": "mump2p is live on Ethereum mainnet",
+        "tr": "mump2p Ethereum ana ağında yayında"
+      },
       "body": {
         "en": "Optimum switched on mump2p for Ethereum on 20 October 2026. At launch 16 node operators ran it, with about 22,000 validator keys and more than 1.4 million staked ETH behind them. Named operators include Blockdaemon, Everstake, P2P.org, Stakefish and Bitcoin Suisse. Signal, the part that delivers blocks faster, is free for any Ethereum validator.",
         "tr": "Optimum, 20 Ekim 2026'da Ethereum için mump2p'yi devreye aldı. Açılışta 16 düğüm operatörü kullanıyordu; arkalarında yaklaşık 22.000 doğrulayıcı anahtarı ve 1,4 milyonu aşkın stake edilmiş ETH vardı. İsmi geçen operatörler arasında Blockdaemon, Everstake, P2P.org, Stakefish ve Bitcoin Suisse var. Blokları daha hızlı ulaştıran Signal, her Ethereum doğrulayıcısı için ücretsiz."
       },
       "claim": "company",
       "sources": [
-        ["Optimum blog, 27 Oct 2026", "https://www.getoptimum.xyz/blog/3-4b-total-value-boosted-mump2p-is-live-on-ethereum-mainnet"],
-        ["Unchained, 20 Oct 2026", "https://unchainedcrypto.com/ether-fi-mandates-optimums-mump2p-for-all-its-node-operators/"]
+        [
+          "Optimum blog, 27 Oct 2026",
+          "https://www.getoptimum.xyz/blog/3-4b-total-value-boosted-mump2p-is-live-on-ethereum-mainnet"
+        ],
+        [
+          "Unchained, 20 Oct 2026",
+          "https://unchainedcrypto.com/ether-fi-mandates-optimums-mump2p-for-all-its-node-operators/"
+        ]
       ]
     },
     {
       "tag": "adoption",
-      "title": { "en": "ether.fi makes it mandatory for its operators", "tr": "ether.fi operatörleri için zorunlu hale getirdi" },
+      "title": {
+        "en": "ether.fi makes it mandatory for its operators",
+        "tr": "ether.fi operatörleri için zorunlu hale getirdi"
+      },
       "body": {
         "en": "On launch day ether.fi said all 12 of its node operators must run mump2p. Until then it was optional. Its co-founder Rok Kopp said the company only mandates new infrastructure when it is confident it raises the bar for stakers and the network.",
         "tr": "ether.fi açılış günü 12 düğüm operatörünün tamamının mump2p çalıştırması gerektiğini açıkladı. O güne kadar isteğe bağlıydı. Kurucu ortak Rok Kopp, şirketin yeni bir altyapıyı ancak stake edenler ve ağ için çıtayı yükselttiğinden emin olduğunda zorunlu tuttuğunu söyledi."
       },
       "claim": null,
-      "sources": [["Unchained, 20 Oct 2026", "https://unchainedcrypto.com/ether-fi-mandates-optimums-mump2p-for-all-its-node-operators/"]]
+      "sources": [
+        [
+          "Unchained, 20 Oct 2026",
+          "https://unchainedcrypto.com/ether-fi-mandates-optimums-mump2p-for-all-its-node-operators/"
+        ]
+      ]
     },
     {
       "tag": "adoption",
-      "title": { "en": "From about 3% to 7.8% of staked ETH in two weeks", "tr": "İki haftada stake edilmiş ETH'nin yaklaşık %3'ünden %7,8'ine" },
+      "title": {
+        "en": "From about 3% to 7.8% of staked ETH in two weeks",
+        "tr": "İki haftada stake edilmiş ETH'nin yaklaşık %3'ünden %7,8'ine"
+      },
       "body": {
         "en": "On 3 November Optimum said operators using mump2p controlled 7.8% of all staked ETH, up from just over 3% at launch. Optimum's Hub puts the stake behind its gateways at about 3.44 million ETH today, against 1.42 million on 21 October. The curve has been flat for the last week.",
         "tr": "Optimum 3 Kasım'da mump2p kullanan operatörlerin stake edilmiş ETH'nin %7,8'ini kontrol ettiğini açıkladı; açılışta bu oran %3'ün biraz üzerindeydi. Optimum Hub'a göre gateway'lerin arkasındaki stake bugün yaklaşık 3,44 milyon ETH; 21 Ekim'de 1,42 milyondu. Son bir haftada eğri yatay seyrediyor."
       },
       "claim": "company",
       "sources": [
-        ["TokenPost, 11 Nov 2026", "https://www.tokenpost.com/news/technology/53709"],
-        ["Optimum Hub, fleet stake", "https://hub.getoptimum.xyz"]
+        [
+          "TokenPost, 11 Nov 2026",
+          "https://www.tokenpost.com/news/technology/53709"
+        ],
+        [
+          "Optimum Hub, fleet stake",
+          "https://hub.getoptimum.xyz"
+        ]
       ]
     },
     {
       "tag": "research",
-      "title": { "en": "Outside tests: one clear gain, one inconclusive", "tr": "Dış testler: biri net kazanç, biri sonuçsuz" },
+      "title": {
+        "en": "DefiLlama Research looks at the economics",
+        "tr": "DefiLlama Research ekonomisine baktı"
+      },
+      "body": {
+        "en": "A DefiLlama Research spotlight published on 19 November follows the money from attesters to proposers. Citing Optimum's Impact Report, it says wrong head votes fell 34.3% on average across operators, and that in six MEV-Boost experiments blocks could go out about 160 ms later with no rise in orphaned blocks, which Optimum models as an 8.4% bid uplift. The underlying figures come from Optimum's own report.",
+        "tr": "DefiLlama Research'ün 19 Kasım'da yayımladığı inceleme, parayı doğrulayıcı oylarından blok önericilere kadar takip ediyor. Optimum'un Etki Raporu'na dayanarak, operatörler genelinde yanlış baş (head) oylarının ortalama %34,3 azaldığını ve altı MEV-Boost deneyinde blokların yetim blok artışı olmadan yaklaşık 160 ms daha geç gönderilebildiğini yazıyor; Optimum bunu %8,4'lük bir teklif artışı olarak modelliyor. Temel rakamlar Optimum'un kendi raporundan geliyor."
+      },
+      "claim": "company",
+      "sources": [
+        [
+          "DefiLlama Research, 19 Nov 2026",
+          "https://defillama.com/research/spotlight/optimum-mump2p-block-propagation"
+        ],
+        [
+          "DefiLlama Research on X",
+          "https://x.com/defillama_res/status/2123461618952483010"
+        ]
+      ]
+    },
+    {
+      "tag": "network",
+      "title": {
+        "en": "93% of blocks now arrive faster, up from 88% at launch",
+        "tr": "Blokların %93'ü artık daha hızlı geliyor, açılışta %88'di"
+      },
+      "body": {
+        "en": "On 17 November Optimum said mump2p holds a reliable latency advantage of more than 200 ms and that 93% of blocks arrive faster, up from 88% on launch day. This week's Hub report puts the share of slots seen first on mump2p at 92.5%. Co-founder Kent Lin added on 18 November that he expects 10% of Ethereum stake on mump2p by the end of the year.",
+        "tr": "Optimum 17 Kasım'da mump2p'nin 200 ms'yi aşan istikrarlı bir gecikme avantajı sağladığını ve blokların %93'ünün daha hızlı geldiğini açıkladı; açılış gününde bu oran %88'di. Bu haftaki Hub raporu mump2p'de önce görülen slotların oranını %92,5 olarak veriyor. Kurucu ortak Kent Lin de 18 Kasım'da yıl sonuna kadar Ethereum stake'inin %10'unun mump2p'de olmasını beklediğini yazdı."
+      },
+      "claim": "company",
+      "sources": [
+        [
+          "Optimum on X, 17 Nov",
+          "https://x.com/get_optimum/status/2122749837322154246"
+        ],
+        [
+          "Kent Lin on X, 18 Nov",
+          "https://x.com/kentlinyy/status/2123120974958907549"
+        ]
+      ]
+    },
+    {
+      "tag": "research",
+      "title": {
+        "en": "Outside tests: one clear gain, one inconclusive",
+        "tr": "Dış testler: biri net kazanç, biri sonuçsuz"
+      },
       "body": {
         "en": "A Lido evaluation on the Hoodi testnet (17 September to 15 October, 180,327 slots) measured a 95th percentile arrival of 1,207 ms at mump2p gateways against 1,614 ms at public reference nodes, a 407 ms difference. It compares two groups rather than paired deliveries, and testnet is not mainnet. An earlier independent StereumLabs test on 36 mainnet nodes, using an early gateway build and no attached validators, saw earlier arrivals on some clients but nothing statistically significant.",
         "tr": "Lido'nun Hoodi test ağındaki değerlendirmesi (17 Eylül ile 15 Ekim arası, 180.327 slot), 95. yüzdelikte varışı mump2p gateway'lerinde 1.207 ms, herkese açık referans düğümlerde 1.614 ms ölçtü; aradaki fark 407 ms. Bu ölçüm eşleştirilmiş teslimatları değil iki grubu karşılaştırıyor ve test ağı ana ağ değil. Daha önce StereumLabs'in erken bir gateway sürümüyle, doğrulayıcı bağlanmamış 36 ana ağ düğümünde yaptığı bağımsız test ise bazı istemcilerde erken varış gördü ama istatistiksel olarak anlamlı bir sonuç bulmadı."
       },
       "claim": "independent",
       "sources": [
-        ["TokenPost, 11 Nov 2026", "https://www.tokenpost.com/news/technology/53709"],
-        ["crypto.news, 10 Nov 2026", "https://crypto.news/ethereum-p2p-protocol-mump2p-faster-block-delivery/"]
+        [
+          "TokenPost, 11 Nov 2026",
+          "https://www.tokenpost.com/news/technology/53709"
+        ],
+        [
+          "crypto.news, 10 Nov 2026",
+          "https://crypto.news/ethereum-p2p-protocol-mump2p-faster-block-delivery/"
+        ]
       ]
     },
     {
       "tag": "context",
-      "title": { "en": "Vitalik names erasure coded networking as a useful upgrade", "tr": "Vitalik, silme kodlu ağ iletişimini faydalı bir iyileştirme olarak andı" },
+      "title": {
+        "en": "Vitalik names erasure coded networking as a useful upgrade",
+        "tr": "Vitalik, silme kodlu ağ iletişimini faydalı bir iyileştirme olarak andı"
+      },
       "body": {
         "en": "In a 9 November post about Ethereum's roadmap, Vitalik Buterin listed erasure coded peer to peer networking for large data objects as a useful improvement, with implementation complexity as the main tradeoff. He did not name Optimum, and his proposals are separate from mump2p, but it is the same family of ideas.",
         "tr": "Vitalik Buterin, 9 Kasım'da Ethereum yol haritası üzerine yazdığı bir yazıda büyük veri nesneleri için silme kodlu (erasure coded) eşten eşe ağ iletişimini faydalı bir iyileştirme olarak sıraladı; ana dezavantaj olarak uygulama karmaşıklığını gösterdi. Optimum'un adını anmadı ve önerileri mump2p'den ayrı, ama aynı fikir ailesinden geliyor."
       },
       "claim": null,
-      "sources": [["crypto.news, 10 Nov 2026", "https://crypto.news/ethereum-p2p-protocol-mump2p-faster-block-delivery/"]]
+      "sources": [
+        [
+          "crypto.news, 10 Nov 2026",
+          "https://crypto.news/ethereum-p2p-protocol-mump2p-faster-block-delivery/"
+        ]
+      ]
+    },
+    {
+      "tag": "community",
+      "title": {
+        "en": "In brief",
+        "tr": "Kısa kısa"
+      },
+      "body": {
+        "en": "Muriel Médard presented Optimum's latest paper on efficient, scalable P2P broadcasting at IEEE's Information Theory Workshop. Optimum is hiring a BD lead for the trading side of the business, aimed at latency sensitive traders. ETH Daily covered mump2p adoption in its 13 November edition. And a reminder from the team: Signal is free for every Ethereum node operator, solo stakers included.",
+        "tr": "Muriel Médard, Optimum'un verimli ve ölçeklenebilir P2P yayını üzerine son makalesini IEEE Bilgi Teorisi Çalıştayı'nda sundu. Optimum, işin alım satım tarafı için gecikmeye duyarlı yatırımcılara odaklanacak bir iş geliştirme lideri arıyor. ETH Daily, 13 Kasım sayısında mump2p'nin benimsenmesine yer verdi. Ekipten bir de hatırlatma: Signal, solo stake edenler dahil her Ethereum düğüm operatörü için ücretsiz."
+      },
+      "claim": null,
+      "sources": [
+        [
+          "Muriel Médard on X, 12 Nov",
+          "https://x.com/MurielMedard/status/2120960972756242583"
+        ],
+        [
+          "Optimum on X, hiring",
+          "https://x.com/get_optimum/status/2123495598490112418"
+        ],
+        [
+          "ETH Daily",
+          "https://ethdaily.io/bny-will-support-ethereum-staking"
+        ],
+        [
+          "Optimum on X, free for all",
+          "https://x.com/get_optimum/status/2123107564754018589"
+        ]
+      ]
     }
   ],
   "pulse": {
-    "window": ["2026-11-13", "2026-11-20"],
+    "window": [
+      "2026-11-13",
+      "2026-11-20"
+    ],
     "slots": 50248,
-    "spread": { "mump": 182.2, "lib": 391.9, "factor": 2.15 },
+    "spread": {
+      "mump": 182.2,
+      "lib": 391.9,
+      "factor": 2.15
+    },
     "lead": 234,
     "accel": 92.5,
-    "over4": { "mump": 33, "lib": 94, "factor": 2.8 },
-    "stake": { "now": 3440999, "weekAgo": 3439408, "launch": 1419082 },
-    "observers": { "gateways": 374, "xatu": 201 },
-    "discord": { "members": 41079, "online": 2726 }
+    "over4": {
+      "mump": 33,
+      "lib": 94,
+      "factor": 2.8
+    },
+    "stake": {
+      "now": 3440999,
+      "weekAgo": 3439408,
+      "launch": 1419082
+    },
+    "observers": {
+      "gateways": 374,
+      "xatu": 201
+    },
+    "discord": {
+      "members": 41079,
+      "online": 2726
+    }
   },
   "video": {
     "id": "_6DvMd5Kd5o",
@@ -120,9 +261,60 @@
     }
   },
   "voices": [
-    { "id": "2119720543163437453", "handle": "io_enthusiast", "name": "WeLoSu", "date": "2026-11-09", "avatar": "https://pbs.twimg.com/profile_images/2110116051665006592/8tTjcDz7_normal.jpg", "media": "https://pbs.twimg.com/amplify_video_thumb/2119719039392002048/img/FyinjG-bvLVsHBY5.jpg", "text": "Ethereum makes a block every 12 seconds. How fast does it actually reach the world?\n\nI turned that question into a Formula 1 race. 🏁\n\nMeet Optimum Pit Wall 🧵👇" },
-    { "id": "2122666232830927000", "handle": "kamrulbroz", "name": "Kamrul", "date": "2026-11-17", "avatar": "https://pbs.twimg.com/profile_images/2106114748735787009/cBXW8s4K_normal.jpg", "media": "https://pbs.twimg.com/amplify_video_thumb/2122657748915724288/img/uIun9cKrVA8Pxsgc.jpg", "text": "Building beyond 7.8% (optimum)\n\nwe talk a lot about making ethereum faster, but there another side to it.\n\nhow quickly data moves between validators matters too." },
-    { "id": "2115460361415758134", "handle": "get_optimum", "name": "Optimum", "date": "2026-10-28", "avatar": "https://pbs.twimg.com/profile_images/2041555783922675712/Y-FMRQHf_normal.jpg", "media": "https://pbs.twimg.com/media/HVueVsubkAEgcdj.jpg", "text": "Data acceleration looking good here." }
+    {
+      "id": "2122749837322154246",
+      "handle": "get_optimum",
+      "name": "Optimum",
+      "date": "2026-11-17",
+      "avatar": "https://pbs.twimg.com/profile_images/2041555783922675712/Y-FMRQHf_normal.jpg",
+      "media": "https://pbs.twimg.com/media/HXWFuTEacAA9gWc.jpg",
+      "text": "This is what high performance Ethereum block propagation looks like:\n\n- Reliable >200ms latency advantage\n- 93% of blocks arrive faster (up from 88% on launch day)\n- More favorable arrival distribution\n\nmump2p."
+    },
+    {
+      "id": "2123120974958907549",
+      "handle": "kentlinyy",
+      "name": "Kent Lin",
+      "date": "2026-11-18",
+      "avatar": "https://pbs.twimg.com/profile_images/1894443804247080960/x-T3Z5Bw_normal.jpg",
+      "media": "https://pbs.twimg.com/amplify_video_thumb/2123120653524221952/img/T3QNhfNabBq1Jqaj.jpg",
+      "text": "On the day we publicly launched @get_optimum mump2p I told @Grantblocmates we'd eventually see the majority of Ethereum stake running it.\n\nNearly a month in we're up to 7.8%, and I'm willing to bet we hit 10% by the end of the year. Bookmark it."
+    },
+    {
+      "id": "2123461618952483010",
+      "handle": "defillama_res",
+      "name": "DefiLlama Research",
+      "date": "2026-11-19",
+      "avatar": "https://pbs.twimg.com/profile_images/2054938227308453888/0xDO2E9S_normal.jpg",
+      "media": null,
+      "text": "Ethereum validators vote on the head of the chain four seconds into each slot, and a block that arrives late can cost them that vote's reward.\n\n@get_optimum's mump2p network is designed to get blocks to validators sooner and more consistently."
+    },
+    {
+      "id": "2120960972756242583",
+      "handle": "MurielMedard",
+      "name": "Muriel Medard",
+      "date": "2026-11-12",
+      "avatar": "https://pbs.twimg.com/profile_images/1887259642746511360/kKde0QgZ_normal.jpg",
+      "media": "https://pbs.twimg.com/media/HW8qwrLa4AAjevS.jpg",
+      "text": "Every year a couple hundred of the world's top information theorists gather for IEEE's IT Workshop. This year I presented our (@get_optimum) latest research paper on efficient and scalable P2P broadcasting."
+    },
+    {
+      "id": "2119720543163437453",
+      "handle": "io_enthusiast",
+      "name": "WeLoSu",
+      "date": "2026-11-09",
+      "avatar": "https://pbs.twimg.com/profile_images/2110116051665006592/8tTjcDz7_normal.jpg",
+      "media": "https://pbs.twimg.com/amplify_video_thumb/2119719039392002048/img/FyinjG-bvLVsHBY5.jpg",
+      "text": "Ethereum makes a block every 12 seconds. How fast does it actually reach the world?\n\nI turned that question into a Formula 1 race. 🏁\n\nMeet Optimum Pit Wall 🧵👇"
+    },
+    {
+      "id": "2122666232830927000",
+      "handle": "kamrulbroz",
+      "name": "Kamrul",
+      "date": "2026-11-17",
+      "avatar": "https://pbs.twimg.com/profile_images/2106114748735787009/cBXW8s4K_normal.jpg",
+      "media": "https://pbs.twimg.com/amplify_video_thumb/2122657748915724288/img/uIun9cKrVA8Pxsgc.jpg",
+      "text": "Building beyond 7.8% (optimum)\n\nwe talk a lot about making ethereum faster, but there another side to it.\n\nhow quickly data moves between validators matters too."
+    }
   ],
   "roles": {
     "items": [],
@@ -131,28 +323,90 @@
       "tr": "Rol listesi bir sonraki dağıtımla başlıyor. Flash Discord'da yeni Optimized ve Chronicler rollerini paylaştığında her isim burada yer alacak."
     }
   },
-  "builders": ["pitwall", "optimumlab", "runner", "signalbreach", "gossipsiege", "windtunnel"],
+  "builders": [
+    "pitwall",
+    "optimumlab",
+    "runner",
+    "signalbreach",
+    "gossipsiege",
+    "windtunnel"
+  ],
   "reads": [
-    ["$3.4B Total Value Boosted: mump2p is live on Ethereum mainnet", "Optimum blog", "2026-10-27", "https://www.getoptimum.xyz/blog/3-4b-total-value-boosted-mump2p-is-live-on-ethereum-mainnet"],
-    ["Optimum: rethinking the blockchain network layer", "Four Pillars", "", "https://research.4pillars.io/en/research/optimum-rethinking-the-blockchain-network-layer"],
-    ["Ethereum's new P2P protocol doubles block delivery speed, Optimum says", "crypto.news", "2026-11-10", "https://crypto.news/ethereum-p2p-protocol-mump2p-faster-block-delivery/"],
-    ["Ethereum staking giants bet on a faster network as adoption doubles", "Blockonomi", "2026-11-10", "https://blockonomi.com/ethereum-staking-giants-bet-on-a-faster-network-as-adoption-doubles"]
+    [
+      "Optimum and the economics of faster block propagation",
+      "DefiLlama Research",
+      "2026-11-19",
+      "https://defillama.com/research/spotlight/optimum-mump2p-block-propagation"
+    ],
+    [
+      "$3.4B Total Value Boosted: mump2p is live on Ethereum mainnet",
+      "Optimum blog",
+      "2026-10-27",
+      "https://www.getoptimum.xyz/blog/3-4b-total-value-boosted-mump2p-is-live-on-ethereum-mainnet"
+    ],
+    [
+      "Optimum: rethinking the blockchain network layer",
+      "Four Pillars",
+      "",
+      "https://research.4pillars.io/en/research/optimum-rethinking-the-blockchain-network-layer"
+    ],
+    [
+      "Ethereum's new P2P protocol doubles block delivery speed, Optimum says",
+      "crypto.news",
+      "2026-11-10",
+      "https://crypto.news/ethereum-p2p-protocol-mump2p-faster-block-delivery/"
+    ],
+    [
+      "Ethereum staking giants bet on a faster network as adoption doubles",
+      "Blockonomi",
+      "2026-11-10",
+      "https://blockonomi.com/ethereum-staking-giants-bet-on-a-faster-network-as-adoption-doubles"
+    ]
   ],
   "claims": [
     {
-      "claim": { "en": "Blocks arrive 2 to 4 times faster than with gossipsub", "tr": "Bloklar gossipsub'a göre 2 ile 4 kat daha hızlı geliyor" },
+      "claim": {
+        "en": "Blocks arrive 2 to 4 times faster than with gossipsub",
+        "tr": "Bloklar gossipsub'a göre 2 ile 4 kat daha hızlı geliyor"
+      },
       "status": "company",
-      "note": { "en": "Optimum's own mainnet figures. This week's Hub report: once a block appears, it reaches 95% of observers 2.15 times faster.", "tr": "Optimum'un kendi ana ağ verileri. Bu haftaki Hub raporu: bir blok ortaya çıktıktan sonra gözlemcilerin %95'ine 2,15 kat daha hızlı ulaşıyor." }
+      "note": {
+        "en": "Optimum's own mainnet figures. This week's Hub report: once a block appears, it reaches 95% of observers 2.15 times faster.",
+        "tr": "Optimum'un kendi ana ağ verileri. Bu haftaki Hub raporu: bir blok ortaya çıktıktan sonra gözlemcilerin %95'ine 2,15 kat daha hızlı ulaşıyor."
+      }
     },
     {
-      "claim": { "en": "Blocks arrive about 400 ms sooner", "tr": "Bloklar yaklaşık 400 ms daha erken geliyor" },
+      "claim": {
+        "en": "Wrong head votes fall about a third",
+        "tr": "Yanlış baş oyları yaklaşık üçte bir azalıyor"
+      },
+      "status": "company",
+      "note": {
+        "en": "34.3% average across operators, from Optimum's Impact Report as cited by DefiLlama Research.",
+        "tr": "Operatörler genelinde ortalama %34,3; DefiLlama Research'ün aktardığı Optimum Etki Raporu'ndan."
+      }
+    },
+    {
+      "claim": {
+        "en": "Blocks arrive about 400 ms sooner",
+        "tr": "Bloklar yaklaşık 400 ms daha erken geliyor"
+      },
       "status": "independent",
-      "note": { "en": "Lido on Hoodi testnet, p95, group comparison: 407 ms.", "tr": "Lido, Hoodi test ağı, p95, grup karşılaştırması: 407 ms." }
+      "note": {
+        "en": "Lido on Hoodi testnet, p95, group comparison: 407 ms.",
+        "tr": "Lido, Hoodi test ağı, p95, grup karşılaştırması: 407 ms."
+      }
     },
     {
-      "claim": { "en": "Faster on every client", "tr": "Her istemcide daha hızlı" },
+      "claim": {
+        "en": "Faster on every client",
+        "tr": "Her istemcide daha hızlı"
+      },
       "status": "mixed",
-      "note": { "en": "StereumLabs, 36 mainnet nodes, early build: some clients faster, none statistically significant.", "tr": "StereumLabs, 36 ana ağ düğümü, erken sürüm: bazı istemcilerde hızlanma var, hiçbiri istatistiksel olarak anlamlı değil." }
+      "note": {
+        "en": "StereumLabs, 36 mainnet nodes, early build: some clients faster, none statistically significant.",
+        "tr": "StereumLabs, 36 ana ağ düğümü, erken sürüm: bazı istemcilerde hızlanma var, hiçbiri istatistiksel olarak anlamlı değil."
+      }
     }
   ],
   "quote": {

@@ -75,3 +75,12 @@ test('submissions: link required, honeypot, rate limit, inbox', async () => {
   const inbox = await (await api(req('/api/admin/inbox', { headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN } }), { store, env })).json();
   assert.equal(inbox.items.length, 6);
 });
+
+test('paste box adds Discord text to the wire with line breaks kept', async () => {
+  const store = memStore();
+  const r = await api(req('/api/admin/paste', { method: 'POST', headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN, 'content-type': 'application/json' }, body: JSON.stringify({ kind: 'roles', text: 'Optimized\n@a @b\nChronicler\n@c' }) }), { store, env });
+  assert.equal(r.status, 200);
+  const wire = await (await api(req('/api/admin/wire?since=2000-01-01', { headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN } }), { store, env })).json();
+  assert.equal(wire.items[0].type, 'roles');
+  assert.equal(wire.items[0].data.text, 'Optimized\n@a @b\nChronicler\n@c');
+});

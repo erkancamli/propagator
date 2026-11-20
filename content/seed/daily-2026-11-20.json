@@ -4,10 +4,28 @@
   "status": "published",
   "date": "2026-11-20",
   "title": {
-    "en": "A steady week on the Hub, and a new community explainer making the rounds",
-    "tr": "Hub'da sakin bir hafta ve elden ele dolaşan yeni bir topluluk anlatımı"
+    "en": "DefiLlama Research weighs in, Optimum hires for trading, and the Hub stays steady",
+    "tr": "DefiLlama Research görüşünü yazdı, Optimum alım satım tarafı için işe alım yapıyor, Hub sakin"
   },
   "items": [
+    {
+      "tag": "research",
+      "text": {
+        "en": "DefiLlama Research published a spotlight on the economics of faster block propagation. Citing Optimum's Impact Report, it reports wrong head votes down 34.3% on average and a modeled 8.4% bid uplift for proposers. Company figures, independent write up.",
+        "tr": "DefiLlama Research daha hızlı blok yayılımının ekonomisi üzerine bir inceleme yayımladı. Optimum'un Etki Raporu'na dayanarak yanlış baş oylarında ortalama %34,3 düşüş ve blok önericiler için modellenmiş %8,4 teklif artışı aktarıyor. Rakamlar şirketin, yazı bağımsız."
+      },
+      "url": "https://defillama.com/research/spotlight/optimum-mump2p-block-propagation",
+      "source": "DefiLlama Research"
+    },
+    {
+      "tag": "community",
+      "text": {
+        "en": "Optimum is hiring a BD lead for the trading side of its business, someone who can connect it with latency sensitive traders.",
+        "tr": "Optimum, işinin alım satım tarafı için gecikmeye duyarlı yatırımcılarla bağ kurabilecek bir iş geliştirme lideri arıyor."
+      },
+      "url": "https://x.com/get_optimum/status/2123495598490112418",
+      "source": "X"
+    },
     {
       "tag": "network",
       "text": {
@@ -34,15 +52,6 @@
       },
       "url": "https://x.com/kamrulbroz/status/2122666232830927000",
       "source": "X"
-    },
-    {
-      "tag": "community",
-      "text": {
-        "en": "The Optimum Discord passes 41,000 members, with about 2,700 online at the time of writing.",
-        "tr": "Optimum Discord'u 41.000 üyeyi geçti; bu satırlar yazılırken yaklaşık 2.700 kişi çevrimiçiydi."
-      },
-      "url": "https://discord.gg/getoptimum",
-      "source": "Discord"
     }
   ]
 }

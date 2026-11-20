@@ -10,6 +10,7 @@
 //   GET  /api/admin/issues?kind=weekly   list including drafts                         (editor)
 //   GET  /api/admin/publish?kind=&id=&token=   confirmation page with a Publish button  (admin)
 //   POST /api/admin/publish              { kind, id } publishes a draft                (admin)
+//   GET|POST /api/admin/paste            paste box for Discord announcements and role lists (editor)
 import { getStore } from '@netlify/blobs';
 import { purgeCache } from '@netlify/functions';
 import crypto from 'node:crypto';
@@ -82,6 +83,22 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
     const b = await body(); const it = b && await store.get('inbox/' + clip(b.id, 40), { type: 'json' });
     if (!it) return json({ error: 'not found' }, 404);
     it.done = true; await store.setJSON('inbox/' + it.id, it); return json({ ok: true });
+  }
+  // Paste box for Discord announcements and role lists: the editor picks them up from the wire.
+  if (path === '/api/admin/paste' && req.method === 'GET') {
+    return new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Paste to the wire</title><style>body{font:16px system-ui;max-width:680px;margin:6vh auto;padding:0 16px;background:#16181a;color:#f0f2f4}textarea,select,input{width:100%;font:15px system-ui;padding:10px;border-radius:10px;border:1px solid #3a4146;background:#1e2124;color:#f0f2f4;box-sizing:border-box;margin:6px 0 14px}button{font:600 16px system-ui;padding:12px 20px;border-radius:10px;border:0;background:#b87cff;color:#16181a;cursor:pointer}</style><h1>Paste to the wire</h1><form method="post" action="/api/admin/paste?token=${encodeURIComponent(bearer)}"><label>What is it<select name="kind"><option value="discord">Discord announcement</option><option value="roles">Role distribution</option><option value="event">Event</option><option value="note">Other note</option></select></label><label>Text (paste as is)<textarea name="text" rows="14" required></textarea></label><label>Link (optional)<input name="url" type="url" placeholder="https://discord.com/channels/..."></label><button>Add to the wire</button></form>`, { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
+  }
+  if (path === '/api/admin/paste' && req.method === 'POST') {
+    const b = await body();
+    const text = String(b?.text || '').replace(/\r/g, '').replace(/[\u0000-\u0009\u000b-\u001f]/g, ' ').slice(0, 8000).trim();
+    if (!text) return json({ error: 'text is required' }, 400);
+    const kind = ['discord', 'roles', 'event', 'note'].includes(b.kind) ? b.kind : 'note';
+    const wire = (await store.get('wire/items', { type: 'json' }).catch(() => null)) || [];
+    const at = new Date(now).toISOString();
+    wire.unshift({ id: 'paste:' + now.toString(36), type: kind === 'discord' ? 'discord' : kind, source: 'Pasted by the admin', title: text.split('\n')[0].slice(0, 160), url: /^https?:\/\//.test(b.url || '') ? clip(b.url, 400) : null, at, seen: at, data: { text } });
+    await store.setJSON('wire/items', wire.slice(0, 600));
+    if ((req.headers.get('content-type') || '').includes('form')) return new Response('<!doctype html><meta charset="utf-8"><body style="font:16px system-ui;background:#16181a;color:#f0f2f4;padding:40px">Added to the wire. <a style="color:#c59bff" href="javascript:history.back()">Paste another</a>', { headers: { 'content-type': 'text/html; charset=utf-8' } });
+    return json({ ok: true });
   }
   if (path === '/api/admin/issues' && req.method === 'GET') {
     const kind = url.searchParams.get('kind') === 'daily' ? 'daily' : 'weekly';
