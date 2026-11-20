@@ -175,7 +175,6 @@
  "1ffc7784": "Giữ ghế NEC tại MIT EECS và là đồng phát minh RLNC. Huy chương IEEE Richard W. Hamming 2026.",
  "41c2d7ad": "Đồng sáng lập",
  "b0bcb6fc": "Mumbassador, người hỗ trợ cộng đồng trong Discord của Optimum",
- "521c9f63": "Phụ trách phân phát vai trò trong Discord của Optimum",
  "dc4327f0": "Nơi mọi người bắt đầu.",
  "429348b8": "Bước tiếp theo cho những ai gắn bó.",
  "7b998a1e": "Dành cho thành viên thường xuyên có mặt.",
@@ -280,7 +279,6 @@
  "76ab1e43": "Optimum phát hành gateway v1.3.5 ngày 16 tháng 11. Ghi chú phát hành cho biết v1.3.2 và v1.3.3 không còn được hỗ trợ vì có lỗ hổng bảo mật, và người dùng v1.3.4 nên nâng cấp vì CVE-2026-78661. Bản mới cũng từ chối các yêu cầu đồng thuận quá cỡ, ngăn beacon node hỏi gateway những cột dữ liệu mà nó không bao giờ cung cấp, và cho phép một peer đồng thuận đã cấu hình kết nối lại sau khi bị ngắt. Không cần thay đổi cấu hình.",
  "4ef41de2": "Đánh giá PERCH của Lido chạy trên testnet Hoodi từ 17 tháng 9 đến 15 tháng 10 với sáu nhà vận hành và 267 khóa đủ điều kiện. Qua 180.327 slot, thời điểm khối đến ở bách phân vị thứ 95 giảm từ 1.614 ms xuống 1.207 ms, tức sớm hơn 407 ms, và phiếu head sai giảm 45% so với tuần đối chứng hồi tháng 6. Bản tóm tắt của chính Lido lưu ý rằng Hoodi nhỏ và nhiều nhiễu, nên kết quả chỉ mang tính định hướng chứ không phải dự báo cho mainnet, và Lido chưa công bố quyết định. Trước đó, nghiên cứu của StereumLabs trên 36 full node mainnet với bản gateway đời đầu ghi nhận Lighthouse sớm hơn khoảng 120 ms, Prysm khoảng 60 ms, Teku không đổi và Nimbus chậm hơn, không có kết quả nào có ý nghĩa thống kê. Optimum phản hồi rằng tính năng tăng tốc toàn mạng đang bật trong thời gian nghiên cứu, khiến phép so sánh bị nhiễu.",
  "062231a9": "Trong bài viết ngày 9 tháng 11 về lộ trình Ethereum, Vitalik Buterin liệt kê mạng ngang hàng dùng mã xóa (erasure coded) cho các đối tượng dữ liệu lớn là một cải tiến hữu ích, với độ phức tạp triển khai là đánh đổi chính. Ông không nhắc đến Optimum. Cùng ngày, Muriel Médard đăng rằng đây chính là cải tiến mạng mà đội ngũ của bà đã xây dựng; các đề xuất của ông và mump2p là hai thứ riêng biệt, nhưng cùng một họ ý tưởng.",
- "aad0ca66": "Muriel Médard đã trình bày bài báo mới nhất của Optimum về truyền phát P2P hiệu quả, có khả năng mở rộng tại Hội thảo Lý thuyết Thông tin của IEEE. Optimum đang tuyển một trưởng bộ phận phát triển kinh doanh cho mảng giao dịch, hướng tới các nhà giao dịch nhạy cảm với độ trễ. ETH Daily đã đưa tin về mức độ áp dụng mump2p trong số ngày 13 tháng 11, và Fracton Ventures đăng một bài giải thích bằng tiếng Nhật ngày 11 tháng 11. Và lời nhắc từ đội ngũ: Signal miễn phí cho mọi nhà vận hành node Ethereum, kể cả người staking độc lập.",
  "105fdd13": "Khối di chuyển nhanh hơn trung bình 2,5 đến 3,5 lần",
  "5330d8c1": "Bài công bố ra mắt của Optimum, đo trên Hub của chính họ. Báo cáo Hub tuần này: khi một khối xuất hiện, nó đến 95% nút quan sát nhanh hơn 2,15 lần.",
  "a527ba9a": "Lido PERCH trên testnet Hoodi, p95, so sánh nhóm: 407 ms. Lido gọi kết quả là mang tính định hướng.",
@@ -292,5 +290,7 @@
  "788b4f03": "Bạn đã làm gì đó về Optimum? Gửi cho chúng tôi để được đưa vào trang giới thiệu dự án.",
  "b72f2034": "Bạn vẽ tranh hay làm nội dung giải thích? Vai trò Chronicler trong Discord của Optimum là dành cho bạn.",
  "9448a982": "Báo cho chúng tôi một sự kiện",
- "aaf145a4": "Ngày 17 tháng 11, Flash đã công bố đợt nâng vai trò tuần này trên Discord của Optimum: 13 thành viên được nâng từ Observer lên Refined. Sắp tới còn nhiều đợt nữa, các Observer cứ tiếp tục nhé."
+ "aaf145a4": "Ngày 17 tháng 11, Flash đã công bố đợt nâng vai trò tuần này trên Discord của Optimum: 13 thành viên được nâng từ Observer lên Refined. Sắp tới còn nhiều đợt nữa, các Observer cứ tiếp tục nhé.",
+ "a0003d19": "Quản lý cộng đồng và đầu mối liên hệ chính trên Discord của Optimum từ tháng 11; đồng thời phụ trách đợt phân vai trò hằng tuần.",
+ "9c1c51ae": "Muriel Médard đã trình bày bài báo mới nhất của Optimum về truyền phát P2P hiệu quả, có khả năng mở rộng tại Hội thảo Lý thuyết Thông tin của IEEE. Optimum đang tuyển một trưởng bộ phận phát triển kinh doanh cho mảng giao dịch, hướng tới các nhà giao dịch nhạy cảm với độ trễ. ETH Daily đã đưa tin về mức độ áp dụng mump2p trong số ngày 13 tháng 11, và Fracton Ventures đăng một bài giải thích bằng tiếng Nhật ngày 11 tháng 11. Và lời nhắc từ đội ngũ: Signal miễn phí cho mọi nhà vận hành node Ethereum, kể cả người staking độc lập. Trên Discord, blockchainjeff đã rời Optimum vào ngày 6 tháng 11 để theo đuổi những dự án khác; Flash giờ là quản lý cộng đồng và là đầu mối liên hệ chính."
 }

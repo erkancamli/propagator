@@ -200,7 +200,7 @@
         "tr": "Kısa kısa"
       },
       "body": {
-        "en": "Muriel Médard presented Optimum's latest paper on efficient, scalable P2P broadcasting at IEEE's Information Theory Workshop. Optimum is hiring a BD lead for the trading side of the business, aimed at latency sensitive traders. ETH Daily covered mump2p adoption in its 13 November edition, and Fracton Ventures published a Japanese explainer on 11 November. And a reminder from the team: Signal is free for every Ethereum node operator, solo stakers included."
+        "en": "Muriel Médard presented Optimum's latest paper on efficient, scalable P2P broadcasting at IEEE's Information Theory Workshop. Optimum is hiring a BD lead for the trading side of the business, aimed at latency sensitive traders. ETH Daily covered mump2p adoption in its 13 November edition, and Fracton Ventures published a Japanese explainer on 11 November. And a reminder from the team: Signal is free for every Ethereum node operator, solo stakers included. In the Discord, blockchainjeff left Optimum on 6 November to pursue other ventures; Flash is now community manager and the main point of contact."
       },
       "claim": null,
       "sources": [
@@ -223,6 +223,10 @@
         [
           "Fracton Ventures (WECANDAOIT) on X",
           "https://x.com/wecandaoit_jp/status/2120333561240969564"
+        ],
+        [
+          "blockchainjeff in the Optimum Discord, 5 Nov",
+          "https://discord.gg/getoptimum"
         ]
       ]
     }

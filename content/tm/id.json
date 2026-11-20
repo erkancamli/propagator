@@ -175,7 +175,6 @@
  "1ffc7784": "Pemegang NEC Chair di MIT EECS dan salah satu penemu RLNC. Penerima IEEE Richard W. Hamming Medal 2026.",
  "41c2d7ad": "Salah satu pendiri",
  "b0bcb6fc": "Mumbassador, pembantu komunitas di Discord Optimum",
- "521c9f63": "Mengurus pembagian peran di Discord Optimum",
  "dc4327f0": "Titik awal semua orang.",
  "429348b8": "Langkah berikutnya bagi yang betah bertahan.",
  "7b998a1e": "Untuk anggota yang rutin hadir.",
@@ -280,7 +279,6 @@
  "76ab1e43": "Optimum merilis gateway v1.3.5 pada 16 November. Catatan rilisnya menyebut v1.3.2 dan v1.3.3 tidak lagi didukung karena mengandung celah keamanan, dan pengguna v1.3.4 sebaiknya upgrade karena CVE-2026-78661. Rilis ini juga menolak permintaan konsensus yang kebesaran, mencegah beacon node meminta kolom data yang memang tidak pernah disediakan gateway, dan memungkinkan peer konsensus yang sudah dikonfigurasi tersambung kembali setelah terputus. Tidak perlu mengubah konfigurasi.",
  "4ef41de2": "Evaluasi PERCH dari Lido berjalan di testnet Hoodi pada 17 September sampai 15 Oktober dengan enam operator dan 267 kunci yang memenuhi syarat. Dari 180.327 slot, waktu tiba blok di persentil ke-95 turun dari 1.614 ms ke 1.207 ms, alias 407 ms lebih awal, dan suara head yang salah turun 45% dibanding pekan kontrol pada bulan Juni. Ringkasan Lido sendiri mengingatkan bahwa Hoodi kecil dan banyak noise, jadi hasilnya hanya menunjukkan arah, bukan perkiraan untuk mainnet, dan Lido belum mengumumkan keputusan. Sebelumnya, studi StereumLabs pada 36 full node mainnet dengan build gateway versi awal melihat Lighthouse sekitar 120 ms dan Prysm sekitar 60 ms lebih awal, Teku tidak berubah, dan Nimbus lebih lambat, tanpa hasil yang signifikan secara statistik. Optimum menanggapi bahwa akselerasi jaringan menyeluruh mereka sedang aktif selama studi itu, sehingga perbandingannya jadi kabur.",
  "062231a9": "Dalam tulisannya pada 9 November tentang roadmap Ethereum, Vitalik Buterin memasukkan jaringan peer-to-peer berbasis erasure coding untuk objek data berukuran besar sebagai perbaikan yang berguna, dengan kompleksitas implementasi sebagai trade-off utamanya. Ia tidak menyebut Optimum. Pada hari yang sama Muriel Médard menulis bahwa itulah perbaikan jaringan yang dibangun timnya; usulan Vitalik dan mump2p adalah dua hal terpisah, tapi berasal dari rumpun gagasan yang sama.",
- "aad0ca66": "Muriel Médard mempresentasikan makalah terbaru Optimum tentang penyiaran P2P yang efisien dan skalabel di Information Theory Workshop IEEE. Optimum sedang merekrut BD lead untuk lini trading, dengan sasaran trader yang sensitif terhadap latensi. ETH Daily mengulas adopsi mump2p di edisi 13 November, dan Fracton Ventures menerbitkan artikel penjelasan berbahasa Jepang pada 11 November. Dan pengingat dari tim: Signal gratis untuk semua operator node Ethereum, termasuk solo staker.",
  "105fdd13": "Blok bergerak rata-rata 2,5 sampai 3,5 kali lebih cepat",
  "5330d8c1": "Tulisan peluncuran Optimum, diukur di Hub mereka sendiri. Laporan Hub pekan ini: begitu sebuah blok muncul, blok itu sampai ke 95% node pengamat 2,15 kali lebih cepat.",
  "a527ba9a": "Lido PERCH di testnet Hoodi, p95, perbandingan kelompok: 407 ms. Lido menyebut hasilnya sebatas menunjukkan arah.",
@@ -292,5 +290,7 @@
  "788b4f03": "Bikin sesuatu tentang Optimum? Kirimkan, dan karyamu akan masuk etalase komunitas.",
  "b72f2034": "Suka bikin karya seni atau konten penjelasan? Peran Chronicler di Discord Optimum cocok untukmu.",
  "9448a982": "Kabari kami soal acara",
- "aaf145a4": "Flash mengumumkan kenaikan role minggu ini di Discord Optimum pada 17 November: 13 anggota naik dari Observer ke Refined. Kenaikan berikutnya masih akan datang, jadi para Observer, terus semangat."
+ "aaf145a4": "Flash mengumumkan kenaikan role minggu ini di Discord Optimum pada 17 November: 13 anggota naik dari Observer ke Refined. Kenaikan berikutnya masih akan datang, jadi para Observer, terus semangat.",
+ "a0003d19": "Manajer komunitas dan kontak utama di Discord Optimum sejak November; juga mengurus pembagian role mingguan.",
+ "9c1c51ae": "Muriel Médard mempresentasikan makalah terbaru Optimum tentang penyiaran P2P yang efisien dan skalabel di Information Theory Workshop IEEE. Optimum sedang merekrut BD lead untuk lini trading, dengan sasaran trader yang sensitif terhadap latensi. ETH Daily mengulas adopsi mump2p di edisi 13 November, dan Fracton Ventures menerbitkan artikel penjelasan berbahasa Jepang pada 11 November. Dan pengingat dari tim: Signal gratis untuk semua operator node Ethereum, termasuk solo staker. Di Discord, blockchainjeff meninggalkan Optimum pada 6 November untuk menekuni proyek lain; kini Flash menjadi manajer komunitas sekaligus kontak utama."
 }

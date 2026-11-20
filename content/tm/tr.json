@@ -141,7 +141,6 @@
  "1ffc7784": "MIT EECS'te NEC Kürsüsü sahibi ve RLNC'nin ortak mucidi. 2026 IEEE Richard W. Hamming Madalyası.",
  "41c2d7ad": "Kurucu ortak",
  "b0bcb6fc": "Mumbassador, Optimum Discord'unda topluluğa yardım eden kişi",
- "521c9f63": "Optimum Discord'unda rol dağıtımını yürütüyor",
  "dc4327f0": "Herkesin başladığı yer.",
  "429348b8": "Kalıcı olanlar için bir sonraki adım.",
  "7b998a1e": "Sürekli katkı veren üyeler için.",
@@ -280,7 +279,6 @@
  "76ab1e43": "Optimum, 16 Kasım'da gateway v1.3.5'i yayımladı. Sürüm notlarına göre v1.3.2 ve v1.3.3 güvenlik açıkları içerdiği için artık desteklenmiyor; v1.3.4 kullananlar da CVE-2026-78661 nedeniyle güncellemeli. Yeni sürüm ayrıca aşırı büyük konsensüs isteklerini reddediyor, beacon düğümlerinin gateway'den hiç sunmadığı veri sütunlarını istemesini engelliyor ve bağlantısı kopan tanımlı bir konsensüs eşinin yeniden bağlanabilmesini sağlıyor. Herhangi bir ayar değişikliği gerekmiyor.",
  "4ef41de2": "Lido'nun PERCH değerlendirmesi, 17 Eylül ile 15 Ekim arasında Hoodi test ağında altı operatör ve uygun 267 anahtarla yapıldı. 180.327 slotta 95. yüzdelikteki blok varış süresi 1.614 ms'den 1.207 ms'ye indi, yani 407 ms daha erken; yanlış baş oyları da Haziran'daki kontrol haftasına göre %45 azaldı. Lido'nun kendi özeti Hoodi'nin küçük ve gürültülü bir ağ olduğunu, sonuçların ana ağ için bir tahmin değil yalnızca bir yön gösterdiğini vurguluyor; Lido henüz bir karar açıklamadı. Daha önce StereumLabs'in erken bir gateway sürümüyle 36 ana ağ düğümünde yaptığı çalışmada Lighthouse yaklaşık 120 ms, Prysm yaklaşık 60 ms erken çıktı, Teku değişmedi, Nimbus yavaşladı ve hiçbir sonuç istatistiksel olarak anlamlı değildi. Optimum, o çalışma sırasında ağ genelindeki hızlandırmanın açık olduğunu ve bunun karşılaştırmayı bulanıklaştırdığını söyledi.",
  "062231a9": "Vitalik Buterin, 9 Kasım'da Ethereum yol haritası üzerine yazdığı bir yazıda büyük veri nesneleri için silme kodlu (erasure coded) eşten eşe ağ iletişimini faydalı bir iyileştirme olarak sıraladı; ana dezavantaj olarak uygulama karmaşıklığını gösterdi. Optimum'un adını anmadı. Muriel Médard aynı gün bunun ekibinin geliştirdiği ağ iyileştirmesi olduğunu paylaştı; Vitalik'in önerileri ile mump2p ayrı şeyler ama aynı fikir ailesinden geliyorlar.",
- "aad0ca66": "Muriel Médard, Optimum'un verimli ve ölçeklenebilir P2P yayını üzerine son makalesini IEEE Bilgi Teorisi Çalıştayı'nda sundu. Optimum, işin alım satım tarafı için gecikmeye duyarlı yatırımcılara odaklanacak bir iş geliştirme lideri arıyor. ETH Daily 13 Kasım sayısında mump2p'nin benimsenmesine yer verdi, Fracton Ventures da 11 Kasım'da Japonca bir anlatım yayımladı. Ekipten bir de hatırlatma: Signal, solo stake edenler dahil her Ethereum düğüm operatörü için ücretsiz.",
  "105fdd13": "Bloklar ortalama 2,5 ile 3,5 kat daha hızlı taşınıyor",
  "5330d8c1": "Optimum'un açılış yazısı, kendi Hub'ında ölçülmüş. Bu haftaki Hub raporu: bir blok ortaya çıktıktan sonra gözlemcilerin %95'ine 2,15 kat daha hızlı ulaşıyor.",
  "a527ba9a": "Lido PERCH, Hoodi test ağı, p95, grup karşılaştırması: 407 ms. Lido sonuçları yön gösterici olarak niteliyor.",
@@ -292,5 +290,7 @@
  "788b4f03": "Optimum hakkında bir şey mi yaptın? Gönder, projelerin vitrinine eklensin.",
  "b72f2034": "Sanat ya da anlatım içerikleri mi üretiyorsun? Optimum Discord'undaki Chronicler rolü tam sana göre.",
  "9448a982": "Bir etkinlik bildir",
- "aaf145a4": "Flash bu haftanın rol yükseltmelerini 17 Kasım’da Optimum Discord’unda duyurdu: 13 üye Observer’dan Refined’a yükseldi. Yenileri de yolda; Observer’lar, devam edin."
+ "aaf145a4": "Flash bu haftanın rol yükseltmelerini 17 Kasım’da Optimum Discord’unda duyurdu: 13 üye Observer’dan Refined’a yükseldi. Yenileri de yolda; Observer’lar, devam edin.",
+ "a0003d19": "Kasım’dan beri Optimum Discord’unun topluluk yöneticisi ve ana iletişim kişisi; haftalık rol dağıtımını da yürütüyor.",
+ "9c1c51ae": "Muriel Médard, Optimum'un verimli ve ölçeklenebilir P2P yayını üzerine son makalesini IEEE Bilgi Teorisi Çalıştayı'nda sundu. Optimum, işin alım satım tarafı için gecikmeye duyarlı yatırımcılara odaklanacak bir iş geliştirme lideri arıyor. ETH Daily 13 Kasım sayısında mump2p'nin benimsenmesine yer verdi, Fracton Ventures da 11 Kasım'da Japonca bir anlatım yayımladı. Ekipten bir de hatırlatma: Signal, solo stake edenler dahil her Ethereum düğüm operatörü için ücretsiz. Discord’da blockchainjeff 6 Kasım’da başka işlere yönelmek için Optimum’dan ayrıldı; topluluk yöneticisi ve ana iletişim kişisi artık Flash."
 }
