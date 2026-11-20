@@ -639,3 +639,9 @@ h1, h2, h3 { font-weight: 650; letter-spacing: -0.025em; }
 .rhero > * { min-width: 0; }
 .rhero h1 { overflow-wrap: break-word; hyphens: auto; }
 @media (max-width: 480px) { .rhero h1 { font-size: clamp(30px, 9vw, 40px); } .rstats { gap: 10px 22px; } .rstats dd { font-size: 24px; } }
+
+/* the Optimum wordmark on the credential: the card is the community's, the issuer stays propagator.news */
+.cred-brand .opt-wm { height: 15px; width: auto; color: #15161a; }
+.cred-reg { padding-left: 8px; margin-left: 2px; border-left: 1.5px solid rgba(21, 22, 26, .35); font-weight: 650; letter-spacing: .01em; color: rgba(21, 22, 26, .78); }
+.cred-big .cred-brand .opt-wm { height: 19px; }
+.cred-big .cred-reg { font-size: 13px; }
