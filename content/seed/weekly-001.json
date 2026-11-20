@@ -45,7 +45,18 @@
           "Unchained, 20 Oct 2026",
           "https://unchainedcrypto.com/ether-fi-mandates-optimums-mump2p-for-all-its-node-operators/"
         ]
-      ]
+      ],
+      "art": {
+        "type": "network",
+        "seed": "s1-launch",
+        "nodes": 30,
+        "stat": {
+          "n": 1.4,
+          "d": 1,
+          "unit": "M ETH",
+          "tight": true
+        }
+      }
     },
     {
       "tag": "adoption",
@@ -63,7 +74,13 @@
           "Unchained, 20 Oct 2026",
           "https://unchainedcrypto.com/ether-fi-mandates-optimums-mump2p-for-all-its-node-operators/"
         ]
-      ]
+      ],
+      "art": {
+        "type": "waffle",
+        "total": 12,
+        "filled": 12,
+        "cols": 6
+      }
     },
     {
       "tag": "adoption",
@@ -85,7 +102,29 @@
           "Optimum Hub, fleet stake",
           "https://hub.getoptimum.xyz"
         ]
-      ]
+      ],
+      "art": {
+        "type": "bars",
+        "items": [
+          {
+            "date": "2026-10-20",
+            "v": 3,
+            "show": {
+              "pct": 3
+            }
+          },
+          {
+            "date": "2026-11-03",
+            "v": 7.8,
+            "show": {
+              "pct": 7.8,
+              "d": 1
+            },
+            "hot": true
+          }
+        ],
+        "max": 10
+      }
     },
     {
       "tag": "research",
@@ -107,7 +146,27 @@
           "DefiLlama Research on X",
           "https://x.com/defillama_res/status/2123461618952483010"
         ]
-      ]
+      ],
+      "art": {
+        "type": "stats",
+        "items": [
+          {
+            "v": {
+              "pct": -34.3,
+              "d": 1
+            },
+            "dir": "down"
+          },
+          {
+            "v": {
+              "pct": 8.4,
+              "d": 1,
+              "sign": true
+            },
+            "dir": "up"
+          }
+        ]
+      }
     },
     {
       "tag": "network",
@@ -129,7 +188,16 @@
           "Kent Lin on X, 18 Nov",
           "https://x.com/kentlinyy/status/2123120974958907549"
         ]
-      ]
+      ],
+      "art": {
+        "type": "waffle",
+        "total": 100,
+        "filled": 93,
+        "cols": 10,
+        "big": {
+          "pct": 93
+        }
+      }
     },
     {
       "tag": "dev",
@@ -149,7 +217,29 @@
           "GitHub releases",
           "https://github.com/getoptimum/optimum-gateway/releases"
         ]
-      ]
+      ],
+      "art": {
+        "type": "versions",
+        "items": [
+          {
+            "v": "v1.3.2",
+            "s": "no"
+          },
+          {
+            "v": "v1.3.3",
+            "s": "no"
+          },
+          {
+            "v": "v1.3.4",
+            "s": "up"
+          },
+          {
+            "v": "v1.3.5",
+            "s": "current"
+          }
+        ],
+        "date": "2026-11-16"
+      }
     },
     {
       "tag": "research",
@@ -174,7 +264,34 @@
           "TokenPost, 11 Nov 2026",
           "https://www.tokenpost.com/news/technology/53709"
         ]
-      ]
+      ],
+      "art": {
+        "type": "bars",
+        "items": [
+          {
+            "label": "gossipsub",
+            "v": 1614,
+            "show": {
+              "n": 1614,
+              "unit": "ms"
+            }
+          },
+          {
+            "label": "mump2p",
+            "v": 1207,
+            "show": {
+              "n": 1207,
+              "unit": "ms"
+            },
+            "hot": true
+          }
+        ],
+        "max": 1800,
+        "delta": {
+          "n": -407,
+          "unit": "ms"
+        }
+      }
     },
     {
       "tag": "context",
@@ -191,7 +308,16 @@
           "crypto.news, 10 Nov 2026",
           "https://crypto.news/ethereum-p2p-protocol-mump2p-faster-block-delivery/"
         ]
-      ]
+      ],
+      "art": {
+        "type": "pieces",
+        "k": 4,
+        "n": 7,
+        "lost": [
+          1,
+          4
+        ]
+      }
     },
     {
       "tag": "community",
@@ -228,7 +354,12 @@
           "blockchainjeff in the Optimum Discord, 5 Nov",
           "https://discord.gg/getoptimum"
         ]
-      ]
+      ],
+      "art": {
+        "type": "network",
+        "seed": "s9-brief",
+        "nodes": 22
+      }
     }
   ],
   "pulse": {
@@ -551,5 +682,10 @@
     "rollup-1023",
     "blocmates-1020"
   ],
-  "og": true
+  "og": true,
+  "cover": {
+    "type": "network",
+    "seed": "cover-001",
+    "nodes": 64
+  }
 }
