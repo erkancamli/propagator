@@ -2,10 +2,12 @@
 import { getStore } from '@netlify/blobs';
 import { ASSETS } from '../../lib/manifest.mjs';
 import * as R from '../../lib/render.mjs';
-import { listIssues, getIssue, getPulse } from '../../lib/data.mjs';
+import { listIssues, getIssue } from '../../lib/data.mjs';
 import { LANGS, CODES } from '../../lib/i18n.mjs';
 
-const ROUTES = ['/', '/archive/', '/learn/', '/builders/', '/events/', '/videos/', '/people/', '/pulse/', '/about/', '/submit/'];
+const ROUTES = ['/', '/archive/', '/learn/', '/community/', '/people/', '/about/', '/submit/'];
+// pages that were folded into others when Propagator became a weekly magazine with a community page
+const MOVED = { '/weekly/': '/archive/', '/daily/': '/archive/', '/builders/': '/community/', '/events/': '/community/', '/videos/': '/learn/', '/pulse/': '/learn/' };
 
 const SECURITY = { 'x-content-type-options': 'nosniff', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-frame-options': 'SAMEORIGIN', 'permissions-policy': 'camera=(), microphone=(), geolocation=()', 'content-security-policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://i.ytimg.com https://pbs.twimg.com; frame-src https://www.youtube-nocookie.com; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'" };
 
@@ -30,50 +32,41 @@ export async function handle(req, { store, now = Date.now(), preview = false }) 
   }
   if (path === '/robots.txt') return text(`User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /preview/\n\nSitemap: ${R.SITE}/sitemap.xml\n`, 'text/plain; charset=utf-8');
   if (path === '/sitemap.xml') {
-    const [w, d] = await Promise.all([listIssues(store, 'weekly'), listIssues(store, 'daily')]);
-    const urls = [...ROUTES.filter((r) => r !== '/submit/').map((p) => [p, today]), ...w.map((x) => [`/weekly/${x.id}/`, x.date]), ...d.map((x) => [`/daily/${x.id}/`, x.date])];
+    const w = await listIssues(store, 'weekly');
+    const urls = [...ROUTES.filter((r) => r !== '/submit/').map((p) => [p, today]), ...w.map((x) => [`/weekly/${x.id}/`, x.date])];
     const alts = (p) => LANGS.map((l) => `<xhtml:link rel="alternate" hreflang="${l.hreflang || l.code}" href="${R.SITE}${R.href(l.code, p)}"/>`).join('') + `<xhtml:link rel="alternate" hreflang="x-default" href="${R.SITE}${p}"/>`;
     const row = (p, mod) => LANGS.map((l) => `<url><loc>${R.SITE}${R.href(l.code, p)}</loc><lastmod>${mod}</lastmod>${alts(p)}</url>`).join('');
     return text(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.map(([p, m]) => row(p, m)).join('\n')}\n</urlset>\n`, 'application/xml; charset=utf-8');
   }
   if (path === '/feed.xml') {
-    const [w, d] = await Promise.all([listIssues(store, 'weekly'), listIssues(store, 'daily')]);
-    return text(R.feed(lang, [...w, ...d].sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, 40)), 'application/rss+xml; charset=utf-8');
+    return text(R.feed(lang, (await listIssues(store, 'weekly')).slice(0, 40)), 'application/rss+xml; charset=utf-8');
   }
 
+  const latestWeekly = async () => { const w = await listIssues(store, 'weekly'); return w[0] && getIssue(store, 'weekly', w[0].id); };
   if (path === '/') {
-    const [w, d, pulse] = await Promise.all([listIssues(store, 'weekly'), listIssues(store, 'daily'), getPulse(store)]);
-    const weekly = w[0] && await getIssue(store, 'weekly', w[0].id);
-    const daily = d[0] && await getIssue(store, 'daily', d[0].id);
+    const weekly = await latestWeekly();
     if (!weekly) return html(R.notFound(lang), 404);
-    return html(R.home(lang, { weekly, daily, pulse, assets: ASSETS, today }));
+    return html(R.home(lang, { weekly, today }));
   }
   let m;
-  // the two old list pages live on as sections of the archive
-  if ((m = path.match(/^\/(weekly|daily)\/$/))) return new Response(null, { status: 301, headers: { location: R.href(lang, '/archive/') + '#' + m[1], 'cache-control': 'public, max-age=3600' } });
-  if (path === '/archive/') { const [w, d] = await Promise.all([listIssues(store, 'weekly'), listIssues(store, 'daily')]); return html(R.archivePage(lang, w, d)); }
+  const moved = MOVED[path] || (/^\/daily\/[\w-]{1,20}\/$/.test(path) ? '/archive/' : null);
+  if (moved) return new Response(null, { status: 301, headers: { location: R.href(lang, moved), 'cache-control': 'public, max-age=3600' } });
+  if (path === '/archive/') return html(R.archivePage(lang, await listIssues(store, 'weekly')));
   // drafts are reachable only under /preview/ with the editor's token, and never indexed
-  if ((m = path.match(/^\/(preview\/)?(weekly|daily)\/([\w-]{1,20})\/$/))) {
-    const isPreview = Boolean(m[1]), kind = m[2], id = m[3];
-    const issue = await getIssue(store, kind, id);
+  if ((m = path.match(/^\/(preview\/)?weekly\/([\w-]{1,20})\/$/))) {
+    const isPreview = Boolean(m[1]), id = m[2];
+    const issue = await getIssue(store, 'weekly', id);
     if (!issue || (issue.status !== 'published' && !(isPreview && preview))) return html(R.notFound(lang), 404);
-    if (kind === 'daily') return html({ ...R.dailyPage(lang, issue), noindex: isPreview });
     const list = await listIssues(store, 'weekly');
     const i = list.findIndex((x) => x.id === id);
     return html({ ...R.weeklyPage(lang, issue, { prev: list[i + 1], next: i > 0 ? list[i - 1] : null }), noindex: isPreview });
   }
   if (path === '/learn/') return html(R.learnPage(lang));
-  if (path === '/people/') return html(R.peoplePage(lang, (await store.get('jobs/list', { type: 'json' }).catch(() => null)) || (await getIssue(store, 'weekly', (await listIssues(store, 'weekly'))[0]?.id || ''))?.jobs));
-  if (path === '/builders/') return html(R.buildersPage(lang, today));
+  if (path === '/community/') return html(R.communityPage(lang, today, await latestWeekly()));
+  if (path === '/people/') return html(R.peoplePage(lang, (await store.get('jobs/list', { type: 'json' }).catch(() => null)) || (await latestWeekly())?.jobs));
   if (path === '/about/') return html(R.aboutPage(lang));
-  if (path === '/events/') return html(R.eventsPage(lang, today));
-  if (path === '/videos/') return html(R.videosPage(lang, await store.get('yt/list', { type: 'json' }).catch(() => null)));
   if ((m = path.match(/^\/subscribed\/(confirmed|left|bad)\/$/))) return html({ ...R.subscribedPage(lang, m[1]), noindex: true });
   if (path === '/submit/') return html(R.submitPage(lang));
-  if (path === '/pulse/') {
-    const pulse = await getPulse(store);
-    return html(R.pulsePage(lang, pulse, pulse?.series?.filter((x) => x.day >= '2026-06-25')));
-  }
   return html(R.notFound(lang), 404);
 }
 

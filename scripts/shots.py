@@ -9,6 +9,7 @@ SITES = {
   'runner': 'https://optimumrunner.netlify.app',
   'gossipsiege': 'https://gossipsiege.xyz',
   'windtunnel': 'https://optimum-wind-tunnel.netlify.app',
+  'optimumpulse': 'https://optimum-pulse.netlify.app',
 }
 want = sys.argv[1:] or list(SITES)
 with sync_playwright() as p:

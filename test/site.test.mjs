@@ -14,7 +14,7 @@ const pulse = { at: new Date().toISOString(), window: ['2026-11-13', '2026-11-20
 
 test('every page renders in every language', async () => {
   const store = memStore(); await store.setJSON('pulse/latest', pulse);
-  for (const p of ['/', '/archive/', '/weekly/001/', '/daily/2026-11-20/', '/learn/', '/people/', '/builders/', '/pulse/', '/about/', '/submit/', '/events/', '/videos/']) {
+  for (const p of ['/', '/archive/', '/weekly/001/', '/learn/', '/community/', '/people/', '/about/', '/submit/']) {
     for (const pre of ['', '/tr', '/vi', '/id', '/ru', '/uk', '/ko', '/hi', '/zh', '/ja']) {
       const r = await site(req(pre + p), { store });
       assert.equal(r.status, 200, pre + p);
@@ -32,14 +32,22 @@ test('every page renders in every language', async () => {
   assert.match(await (await site(req('/sitemap.xml'), { store })).text(), /weekly\/001/);
 });
 
-test('old list pages move to the archive', async () => {
+test('pages folded into the magazine redirect to where their content lives now', async () => {
   const store = memStore();
-  for (const [p, to] of [['/weekly/', '/archive/#weekly'], ['/tr/daily/', '/tr/archive/#daily']]) {
+  for (const [p, to] of [['/weekly/', '/archive/'], ['/tr/daily/', '/tr/archive/'], ['/daily/2026-11-20/', '/archive/'], ['/builders/', '/community/'], ['/ja/events/', '/ja/community/'], ['/videos/', '/learn/'], ['/pulse/', '/learn/']]) {
     const r = await site(req(p), { store });
-    assert.equal(r.status, 301); assert.equal(r.headers.get('location'), to);
+    assert.equal(r.status, 301, p); assert.equal(r.headers.get('location'), to, p);
   }
   const html = await (await site(req('/archive/'), { store })).text();
-  assert.match(html, /Month one on mainnet/); assert.match(html, /\d+ stories/); assert.match(html, /aria-current="page">Archive/);
+  assert.match(html, /Month one on mainnet/); assert.match(html, /\d+ stories/); assert.match(html, /aria-current="page">Issues/);
+  const nav = html.match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
+  assert.equal((nav.match(/<a /g) || []).length, 4, 'four menu items');
+  const community = await (await site(req('/community/'), { store })).text();
+  for (const s of ['Optimum Pulse', 'Block Arena', 'Role call', 'How to take part', 'The Discord role ladder', 'Flash']) assert.ok(community.includes(s), s);
+  const home = await (await site(req('/'), { store })).text();
+  assert.ok(!/class="race"|class="metrics/.test(home), 'no live dashboard on the front page');
+  const sitemap = await (await site(req('/sitemap.xml'), { store })).text();
+  assert.ok(!/\/(daily|pulse|videos|events|builders)\//.test(sitemap), 'retired pages are not in the sitemap');
 });
 
 test('seed issues are valid', () => {
@@ -80,14 +88,6 @@ test('approval link asks for the admin token in a form, never needs it in the UR
   assert.equal(r.headers.get('location'), '/weekly/003/');
   r = await site(req('/weekly/003/'), { store });
   assert.equal(r.status, 200);
-});
-
-test('editor can publish a daily brief directly', async () => {
-  const store = memStore();
-  const d = { ...SEED.daily[0], id: '2026-11-21', date: '2026-11-21' };
-  const r = await api(req('/api/admin/issue', { method: 'PUT', headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN }, body: JSON.stringify(d) }), { store, env });
-  assert.equal((await r.json()).status, 'published');
-  assert.equal((await site(req('/daily/2026-11-21/'), { store })).status, 200);
 });
 
 test('auth and validation', async () => {

@@ -431,3 +431,17 @@ section[id], article[id], div[id] { scroll-margin-top: 80px; }
 .issue .subscribe { grid-template-columns: 1fr; }
 @media (max-width: 800px) { .subscribe { grid-template-columns: 1fr; padding: 22px 20px; } }
 @media (max-width: 420px) { .sub-form { grid-template-columns: 1fr; } }
+
+/* front page: the latest issue as a magazine cover */
+.hero-cover { padding-bottom: 8px; }
+.cover-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 28px; align-items: start; margin: 18px 0 8px; }
+.cover-grid .tldr { margin-top: 0; max-width: none; }
+.cover-toc h2 { font-size: 15px; font-weight: 600; color: var(--accent); margin: 0 0 6px; }
+.cover-toc ol { list-style: none; margin: 0; padding: 0; counter-reset: st; }
+.cover-toc li { counter-increment: st; border-top: 1px solid var(--line); }
+.cover-toc li:last-child { border-bottom: 1px solid var(--line); }
+.cover-toc a { display: grid; grid-template-columns: 2.4em 1fr; gap: 10px; align-items: baseline; padding: 11px 0; text-decoration: none; color: var(--ink); }
+.cover-toc a::before { content: counter(st, decimal-leading-zero); font: 500 13px/1 var(--mono, ui-monospace, monospace); color: var(--soft); font-variant-numeric: tabular-nums; }
+.cover-toc a span:last-child { font-weight: 600; line-height: 1.35; }
+.cover-toc a:hover span:last-child { text-decoration: underline; }
+@media (max-width: 900px) { .cover-grid { grid-template-columns: 1fr; } }
