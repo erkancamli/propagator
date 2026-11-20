@@ -3,11 +3,12 @@ import { getStore } from '@netlify/blobs';
 import { ASSETS } from '../../lib/manifest.mjs';
 import * as R from '../../lib/render.mjs';
 import { listIssues, getIssue } from '../../lib/data.mjs';
+import { register } from '../../lib/register.mjs';
 import { LANGS, CODES } from '../../lib/i18n.mjs';
 
-const ROUTES = ['/', '/archive/', '/learn/', '/community/', '/people/', '/about/', '/submit/'];
+const ROUTES = ['/', '/members/', '/classes/', '/builders/', '/archive/', '/learn/', '/people/', '/about/', '/submit/'];
 // pages that were folded into others when Propagator became a weekly magazine with a community page
-const MOVED = { '/weekly/': '/archive/', '/daily/': '/archive/', '/builders/': '/community/', '/events/': '/community/', '/videos/': '/learn/', '/pulse/': '/learn/' };
+const MOVED = { '/weekly/': '/archive/', '/daily/': '/archive/', '/community/': '/builders/', '/events/': '/builders/', '/videos/': '/learn/', '/pulse/': '/learn/' };
 
 const SECURITY = { 'x-content-type-options': 'nosniff', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-frame-options': 'SAMEORIGIN', 'permissions-policy': 'camera=(), microphone=(), geolocation=()', 'content-security-policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://i.ytimg.com https://pbs.twimg.com; frame-src https://www.youtube-nocookie.com; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'" };
 
@@ -15,7 +16,7 @@ export async function handle(req, { store, now = Date.now(), preview = false }) 
   const url = new URL(req.url);
   let path = url.pathname;
   // folder style URLs everywhere: /learn -> /learn/
-  if (!path.endsWith('/') && !/\.(xml|txt|png)$/.test(path)) return Response.redirect(new URL(path + '/' + url.search, url), 301);
+  if (!path.endsWith('/') && !/\.(xml|txt|png|jpg)$/.test(path)) return Response.redirect(new URL(path + '/' + url.search, url), 301);
   let lang = 'en', m0;
   const pre = path.match(/^\/([a-z]{2,3})(\/.*)$/);
   if (pre && pre[1] !== 'en' && CODES.includes(pre[1])) { lang = pre[1]; path = pre[2]; }
@@ -26,16 +27,17 @@ export async function handle(req, { store, now = Date.now(), preview = false }) 
   const text = (body, type) => new Response(body, { headers: { 'content-type': type, 'cache-control': 'public, max-age=0, must-revalidate', 'netlify-cdn-cache-control': 'public, s-maxage=600, stale-while-revalidate=86400', 'netlify-cache-tag': 'pages' } });
 
   // share images uploaded by the editor for issues that live in the store (seed images are static files)
-  if ((m0 = path.match(/^\/og\/((?:weekly|daily)-[\w-]{1,20}-[a-z]{2,3})\.png$/))) {
-    const buf = await store.get('og/' + m0[1] + '.png', { type: 'arrayBuffer' }).catch(() => null);
-    return buf ? new Response(buf, { headers: { 'content-type': 'image/png', 'cache-control': 'public, max-age=86400' } }) : new Response('not found', { status: 404 });
+  if ((m0 = path.match(/^\/og\/((?:weekly|daily)-[\w-]{1,20}-[a-z]{2,3}\.png|m-[\w-]{1,60}\.jpg)$/))) {
+    const buf = await store.get('og/' + m0[1], { type: 'arrayBuffer' }).catch(() => null);
+    return buf ? new Response(buf, { headers: { 'content-type': m0[1].endsWith('.jpg') ? 'image/jpeg' : 'image/png', 'cache-control': 'public, max-age=86400' } }) : new Response('not found', { status: 404 });
   }
   if (path === '/robots.txt') return text(`User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /preview/\n\nSitemap: ${R.SITE}/sitemap.xml\n`, 'text/plain; charset=utf-8');
   if (path === '/sitemap.xml') {
-    const w = await listIssues(store, 'weekly');
-    const urls = [...ROUTES.filter((r) => r !== '/submit/').map((p) => [p, today]), ...w.map((x) => [`/weekly/${x.id}/`, x.date])];
+    const [w, reg] = await Promise.all([listIssues(store, 'weekly'), register(store)]);
+    const urls = [...ROUTES.filter((r) => r !== '/submit/').map((p) => [p, today]), ...w.map((x) => [`/weekly/${x.id}/`, x.date]), ...reg.calls.map((c) => [`/class/${c.id}/`, c.date]), ...reg.members.map((m) => [`/m/${m.slug}/`, m.since])];
     const alts = (p) => LANGS.map((l) => `<xhtml:link rel="alternate" hreflang="${l.hreflang || l.code}" href="${R.SITE}${R.href(l.code, p)}"/>`).join('') + `<xhtml:link rel="alternate" hreflang="x-default" href="${R.SITE}${p}"/>`;
-    const row = (p, mod) => LANGS.map((l) => `<url><loc>${R.SITE}${R.href(l.code, p)}</loc><lastmod>${mod}</lastmod>${alts(p)}</url>`).join('');
+    // member and class pages are many; they are listed in every language without the alternate block to keep the file small
+    const row = (p, mod) => LANGS.map((l) => `<url><loc>${R.SITE}${R.href(l.code, p)}</loc><lastmod>${mod}</lastmod>${/^\/(m|class)\//.test(p) ? '' : alts(p)}</url>`).join('');
     return text(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.map(([p, m]) => row(p, m)).join('\n')}\n</urlset>\n`, 'application/xml; charset=utf-8');
   }
   if (path === '/feed.xml') {
@@ -44,10 +46,13 @@ export async function handle(req, { store, now = Date.now(), preview = false }) 
 
   const latestWeekly = async () => { const w = await listIssues(store, 'weekly'); return w[0] && getIssue(store, 'weekly', w[0].id); };
   if (path === '/') {
-    const weekly = await latestWeekly();
-    if (!weekly) return html(R.notFound(lang), 404);
-    return html(R.home(lang, { weekly, today }));
+    const [reg, weekly] = await Promise.all([register(store), latestWeekly()]);
+    return html(R.registerHome(lang, reg, { weekly, today }));
   }
+  if (path === '/members/') return html(R.membersPage(lang, await register(store)));
+  if (path === '/classes/') return html(R.classesPage(lang, await register(store)));
+  if ((m0 = path.match(/^\/m\/([\w-]{1,60})\/$/))) { const reg = await register(store); const mem = reg.bySlug.get(m0[1]); return mem ? html(R.memberPage(lang, reg, mem)) : html(R.notFound(lang), 404); }
+  if ((m0 = path.match(/^\/class\/([\w-]{1,40})\/$/))) { const reg = await register(store); return reg.calls.some((c) => c.id === m0[1]) ? html(R.classPage(lang, reg, m0[1])) : html(R.notFound(lang), 404); }
   let m;
   const moved = MOVED[path] || (/^\/daily\/[\w-]{1,20}\/$/.test(path) ? '/archive/' : null);
   if (moved) return new Response(null, { status: 301, headers: { location: R.href(lang, moved), 'cache-control': 'public, max-age=3600' } });
@@ -62,7 +67,7 @@ export async function handle(req, { store, now = Date.now(), preview = false }) 
     return html({ ...R.weeklyPage(lang, issue, { prev: list[i + 1], next: i > 0 ? list[i - 1] : null }), noindex: isPreview });
   }
   if (path === '/learn/') return html(R.learnPage(lang));
-  if (path === '/community/') return html(R.communityPage(lang, today, await latestWeekly()));
+  if (path === '/builders/') return html(R.buildersPage(lang, today));
   if (path === '/people/') return html(R.peoplePage(lang, (await store.get('jobs/list', { type: 'json' }).catch(() => null)) || (await latestWeekly())?.jobs));
   if (path === '/about/') return html(R.aboutPage(lang));
   if ((m = path.match(/^\/subscribed\/(confirmed|left|bad)\/$/))) return html({ ...R.subscribedPage(lang, m[1]), noindex: true });

@@ -3,10 +3,10 @@
   var root = document.documentElement;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // theme: follows the system until the reader picks one
+  // theme: dark unless the reader picks light
   var themeBtn = document.querySelector('.theme');
   if (themeBtn) themeBtn.addEventListener('click', function () {
-    var dark = root.getAttribute('data-theme') ? root.getAttribute('data-theme') === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var dark = root.getAttribute('data-theme') !== 'light';
     var next = dark ? 'light' : 'dark';
     root.setAttribute('data-theme', next);
     try { localStorage.setItem('pg-theme', next); } catch (e) {}
@@ -78,6 +78,25 @@
       var box = document.createElement('div'); box.className = 'yt'; box.appendChild(f); b.replaceWith(box);
     });
   });
+
+  // member directory: search by name and filter by role, from the box on the front page too (?q=)
+  var dq = document.querySelector('[data-dir-q]');
+  if (dq) {
+    var rows = [].slice.call(document.querySelectorAll('.dir li')), empty = document.querySelector('.dir-empty'), role = '';
+    var fold = function (s) { return s.normalize('NFKC').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, ''); };
+    rows.forEach(function (li) { li._n = fold(li.dataset.n || ''); });
+    var apply = function () {
+      var q = fold(dq.value.trim()), shown = 0;
+      rows.forEach(function (li) { var ok = (!q || li._n.indexOf(q) !== -1) && (!role || li.dataset.role === role); li.hidden = !ok; if (ok) shown++; });
+      if (empty) empty.hidden = shown > 0;
+    };
+    try { var q0 = new URLSearchParams(location.search).get('q'); if (q0) dq.value = q0; } catch (e) {}
+    dq.addEventListener('input', apply);
+    document.querySelectorAll('.dir-tools .chip').forEach(function (c, i, all) {
+      c.addEventListener('click', function () { all.forEach(function (x) { x.setAttribute('aria-pressed', String(x === c)); }); role = c.dataset.role; apply(); });
+    });
+    apply();
+  }
 
   // builders filter
   var chips = document.querySelectorAll('.filters .chip');

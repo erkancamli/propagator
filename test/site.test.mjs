@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { handle as site } from '../netlify/functions/site.mjs';
 import { handle as api, validateIssue } from '../netlify/functions/api.mjs';
 import { SEED } from '../lib/seed.mjs';
+import { register, parseAnnouncement } from '../lib/register.mjs';
+import { readFile } from 'node:fs/promises';
 
 function memStore() {
   const m = new Map();
@@ -14,7 +16,7 @@ const pulse = { at: new Date().toISOString(), window: ['2026-11-13', '2026-11-20
 
 test('every page renders in every language', async () => {
   const store = memStore(); await store.setJSON('pulse/latest', pulse);
-  for (const p of ['/', '/archive/', '/weekly/001/', '/learn/', '/community/', '/people/', '/about/', '/submit/']) {
+  for (const p of ['/', '/members/', '/classes/', '/builders/', '/m/ecamli/', '/m/hanumd/', '/class/2026-11-09/', '/archive/', '/weekly/001/', '/learn/', '/people/', '/about/', '/submit/']) {
     for (const pre of ['', '/tr', '/vi', '/id', '/ru', '/uk', '/ko', '/hi', '/zh', '/ja']) {
       const r = await site(req(pre + p), { store });
       assert.equal(r.status, 200, pre + p);
@@ -32,22 +34,69 @@ test('every page renders in every language', async () => {
   assert.match(await (await site(req('/sitemap.xml'), { store })).text(), /weekly\/001/);
 });
 
-test('pages folded into the magazine redirect to where their content lives now', async () => {
+test('retired pages redirect to where their content lives now', async () => {
   const store = memStore();
-  for (const [p, to] of [['/weekly/', '/archive/'], ['/tr/daily/', '/tr/archive/'], ['/daily/2026-11-20/', '/archive/'], ['/builders/', '/community/'], ['/ja/events/', '/ja/community/'], ['/videos/', '/learn/'], ['/pulse/', '/learn/']]) {
+  for (const [p, to] of [['/weekly/', '/archive/'], ['/tr/daily/', '/tr/archive/'], ['/daily/2026-11-20/', '/archive/'], ['/community/', '/builders/'], ['/ja/events/', '/ja/builders/'], ['/videos/', '/learn/'], ['/pulse/', '/learn/']]) {
     const r = await site(req(p), { store });
     assert.equal(r.status, 301, p); assert.equal(r.headers.get('location'), to, p);
   }
   const html = await (await site(req('/archive/'), { store })).text();
   assert.match(html, /Month one on mainnet/); assert.match(html, /\d+ stories/); assert.match(html, /aria-current="page">Issues/);
   const nav = html.match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
-  assert.equal((nav.match(/<a /g) || []).length, 4, 'four menu items');
-  const community = await (await site(req('/community/'), { store })).text();
-  for (const s of ['Optimum Pulse', 'Block Arena', 'Role call', 'How to take part', 'The Discord role ladder', 'Flash']) assert.ok(community.includes(s), s);
-  const home = await (await site(req('/'), { store })).text();
-  assert.ok(!/class="race"|class="metrics/.test(home), 'no live dashboard on the front page');
+  assert.equal((nav.match(/<a /g) || []).length, 5, 'five menu items');
+  const builders = await (await site(req('/builders/'), { store })).text();
+  for (const s of ['Optimum Pulse', 'Block Arena', 'How to take part']) assert.ok(builders.includes(s), s);
   const sitemap = await (await site(req('/sitemap.xml'), { store })).text();
-  assert.ok(!/\/(daily|pulse|videos|events|builders)\//.test(sitemap), 'retired pages are not in the sitemap');
+  assert.ok(!/\/(daily|pulse|videos|events|community)\//.test(sitemap), 'retired pages are not in the sitemap');
+  assert.ok(sitemap.includes('/m/ecamli/') && sitemap.includes('/class/2026-11-17/'), 'member and class pages are in the sitemap');
+});
+
+test('register: 37 role calls from the Discord archive, people matched across weeks', async () => {
+  const reg = await register(null);
+  assert.equal(reg.stats.calls, 37); assert.equal(reg.stats.upgrades, 476); assert.equal(reg.stats.members, 467);
+  assert.deepEqual([reg.byRole.Optimized, reg.byRole.Chronicler], [2, 5]);
+  const h = reg.bySlug.get('hanumd');
+  assert.deepEqual(h.events.map((e) => e.role), ['Refined', 'Optimized'], 'a promotion lands on one page');
+  assert.ok(reg.bySlug.get('hassan') && reg.bySlug.get('hassan-2'), 'two namesakes named Refined stay two people');
+  assert.equal(reg.firsts.Chronicler.slug, 'marina'); assert.equal(reg.firsts.Optimized.slug, 'em3rald');
+  const nos = reg.members.map((m) => m.no).sort((a, b) => a - b);
+  assert.deepEqual(nos, Array.from({ length: 467 }, (_, i) => i + 1), 'register numbers are 1..n without gaps');
+});
+
+test('the announcement parser reads every archived post exactly like the seed', async () => {
+  const txt = await readFile(new URL('./fixtures/role-announcements.txt', import.meta.url), 'utf8');
+  const posts = txt.split(/\n(?=[^\n]+,?\s+—\s+\d{1,2}\.\d{2}\.\d{4} \d{1,2}:\d{2}\n)/);
+  assert.equal(posts.length, 37);
+  for (const p of posts) {
+    const r = parseAnnouncement(p);
+    const seed = SEED.rolecalls.find((c) => c.id === r.date);
+    assert.ok(seed, r.date);
+    assert.deepEqual([r.groups, r.note || null, r.by], [seed.groups, seed.note || null, seed.by], r.date);
+  }
+});
+
+test('editor adds a role call by pasting the announcement; members and cards follow', async () => {
+  const store = memStore();
+  const text = 'Flash ⚡ [MUM],  — 24.11.2026 22:10\nNew Week New Role Upgrades!\nThis week, we’re proud to introduce our next @Optimized\n\n@ecamli congrats!!!\n\nCongratulations to:\n\n@New Person \n@Yuvi \n\nYou have been upgraded to the @Refined role!';
+  let r = await api(req('/api/admin/rolecall', { method: 'PUT', body: JSON.stringify({ text }) }), { store, env });
+  assert.equal(r.status, 401, 'needs a token');
+  r = await api(req('/api/admin/rolecall', { method: 'PUT', headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN }, body: JSON.stringify({ text }) }), { store, env });
+  assert.equal(r.status, 200);
+  const out = await r.json();
+  assert.equal(out.call.date, '2026-11-24');
+  assert.deepEqual(out.call.groups.map((g) => [g.role, g.names]), [['Optimized', ['ecamli']], ['Refined', ['New Person', 'Yuvi']]]);
+  assert.deepEqual(out.members.filter((m) => m.new).map((m) => m.slug), ['new-person']);
+  const page = await (await site(req('/m/ecamli/'), { store })).text();
+  assert.match(page, /Named Optimized/); assert.match(page, /Named Refined/);
+  assert.equal((await site(req('/m/new-person/'), { store })).status, 200);
+  assert.equal((await site(req('/class/2026-11-24/'), { store })).status, 200);
+  r = await api(req('/api/admin/rolecall', { method: 'PUT', headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN }, body: JSON.stringify({ date: '2026-11-25', groups: [{ role: 'Wizard', names: ['x'] }] }) }), { store, env });
+  assert.equal(r.status, 400, 'unknown roles are refused');
+  const jpeg = new Uint8Array([255, 216, 255, 224, 0, 16]);
+  r = await api(req('/api/admin/og/m-new-person.jpg', { method: 'PUT', headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN }, body: jpeg }), { store, env });
+  assert.equal(r.status, 200);
+  r = await site(req('/og/m-new-person.jpg'), { store });
+  assert.equal(r.status, 200); assert.equal(r.headers.get('content-type'), 'image/jpeg');
 });
 
 test('seed issues are valid', () => {

@@ -28,9 +28,9 @@ function card(issue, lang, fontsCss) {
 .art .a-bg{fill:#1d1c19}.art .a-edge{stroke:#2f2d29;stroke-width:1.6;fill:none}.art .a-hot{stroke:#b87cff;stroke-width:2.6;fill:none;stroke-linecap:round}.art .a-node{fill:#3e3b36}.art .a-node-hot{fill:#b87cff;stroke:#1d1c19;stroke-width:3}.art .a-piece{fill:#b87cff}
 .fade{position:absolute;inset:0;background:linear-gradient(90deg,#1d1c19 46%,rgba(29,28,25,.55) 70%,rgba(29,28,25,0))}
 .text{position:absolute;left:64px;top:52px;bottom:56px;width:760px;display:flex;flex-direction:column;justify-content:space-between}
-.flag{font:600 64px/1 'Propagator Serif',serif;letter-spacing:-.035em}
+.flag{font:600 64px/1 Geist,sans-serif;letter-spacing:-.035em}
 .folio{display:flex;gap:28px;margin-top:14px;padding-top:12px;border-top:3px solid #ecebe6;font:500 22px Geist,sans-serif;color:#c4c0b6;width:560px}.folio b{color:#c59bff;font-weight:600}
-h1:lang(ja){word-break:auto-phrase}h1{margin:0;font:600 ${size}px/1.04 'Propagator Serif',${SERIF[lang] || 'serif'};letter-spacing:${cjk ? '0' : '-0.025em'};max-width:760px}</style></head>
+h1:lang(ja){word-break:auto-phrase}h1{margin:0;font:600 ${size}px/1.04 Geist,${SERIF[lang] || 'serif'};letter-spacing:${cjk ? '0' : '-0.025em'};max-width:760px}</style></head>
 <body>${cover}<div class="fade"></div><div class="text"><div><div class="flag">Propagator</div><div class="folio"><b>${esc(T.issue(no(lang, issue.id)))}</b><span>${esc(fmtDate(lang, issue.date))}</span></div></div><h1>${esc(title)}</h1></div></body></html>`;
 }
 

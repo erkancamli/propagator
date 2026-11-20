@@ -19,6 +19,7 @@ import { purgeCache } from '@netlify/functions';
 import crypto from 'node:crypto';
 import { getPulse, putIssue, getIssue, listIssues } from '../../lib/data.mjs';
 import { sendConfirm, sendWeekly, mailReady } from '../../lib/mail.mjs';
+import { register, parseAnnouncement, ROLE } from '../../lib/register.mjs';
 import { CODES } from '../../lib/i18n.mjs';
 import { TM } from '../../lib/tm.mjs';
 import { key as tmKey } from '../../lib/t.mjs';
@@ -180,11 +181,29 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
     return json({ ok: true });
   }
   let mo;
-  if ((mo = path.match(/^\/api\/admin\/og\/((?:weekly|daily)-[\w-]{1,20}-[a-z]{2,3}\.png)$/)) && req.method === 'PUT') {
-    const buf = await req.arrayBuffer();
-    if (buf.byteLength > 2e6 || new Uint8Array(buf.slice(0, 4)).join() !== '137,80,78,71') return json({ error: 'a PNG under 2 MB is required' }, 400);
+  if ((mo = path.match(/^\/api\/admin\/og\/((?:weekly|daily)-[\w-]{1,20}-[a-z]{2,3}\.png|m-[\w-]{1,60}\.jpg)$/)) && req.method === 'PUT') {
+    const buf = await req.arrayBuffer(), head = new Uint8Array(buf.slice(0, 4)).join();
+    const okType = mo[1].endsWith('.png') ? head === '137,80,78,71' : head.startsWith('255,216,255');
+    if (buf.byteLength > 2e6 || !okType) return json({ error: 'a PNG (issues) or JPEG (member cards) under 2 MB is required' }, 400);
     await store.set('og/' + mo[1], buf);
     return json({ ok: true });
+  }
+  // a weekly role call: paste Flash's announcement as { text }, or send the parsed { date, by, groups } yourself
+  if (path === '/api/admin/rolecall' && req.method === 'PUT') {
+    const b = await body();
+    const call = b?.text ? parseAnnouncement(String(b.text).slice(0, 20000), { date: b.date, by: b.by }) : b;
+    const errs = [];
+    if (!call || !/^\d{4}-\d{2}-\d{2}$/.test(call.date || '')) errs.push('date must be YYYY-MM-DD (or paste the Discord header line with the date)');
+    if (!Array.isArray(call?.groups) || !call.groups.length || call.groups.some((g) => !ROLE[g.role] || !Array.isArray(g.names) || !g.names.length || g.names.some((n) => typeof n !== 'string' || !n.trim() || n.length > 80))) errs.push('groups must be [{ role, names[] }] with known roles and non empty names');
+    if (errs.length) return json({ error: 'invalid role call', details: errs }, 400);
+    call.id = call.date; call.by = call.by || 'Flash';
+    call.src = call.src || [`${call.by} in #role-announcements, Optimum Discord, ${call.date}`, 'https://discord.gg/getoptimum'];
+    const before = new Set((await register(store)).members.map((m) => m.slug));
+    const list = ((await store.get('rolecalls/list', { type: 'json' }).catch(() => null)) || []).filter((c) => c.id !== call.id);
+    list.push(call); await store.setJSON('rolecalls/list', list); await purge();
+    const after = await register(store);
+    const changed = call.groups.flatMap((g) => g.names).map((n) => after.members.find((m) => m.names.includes(n))).filter(Boolean);
+    return json({ ok: true, call, members: changed.map((m) => ({ slug: m.slug, name: m.name, role: m.role, new: !before.has(m.slug) })), cards: changed.map((m) => `/api/admin/og/m-${m.slug}.jpg`) });
   }
   if (path === '/api/admin/issues' && req.method === 'GET') {
     const kind = url.searchParams.get('kind') === 'daily' ? 'daily' : 'weekly';
