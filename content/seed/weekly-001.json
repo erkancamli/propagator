@@ -341,11 +341,68 @@
     }
   ],
   "roles": {
-    "items": [],
+    "items": [
+      {
+        "name": "Bruno jr Talent",
+        "role": "Refined"
+      },
+      {
+        "name": "Hositam",
+        "role": "Refined"
+      },
+      {
+        "name": "yatko.k110",
+        "role": "Refined"
+      },
+      {
+        "name": "Ikar",
+        "role": "Refined"
+      },
+      {
+        "name": "調用者.Techies",
+        "role": "Refined"
+      },
+      {
+        "name": "Soros",
+        "role": "Refined"
+      },
+      {
+        "name": "mary",
+        "role": "Refined"
+      },
+      {
+        "name": "TOBS(REX)",
+        "role": "Refined"
+      },
+      {
+        "name": "Crypto chef",
+        "role": "Refined"
+      },
+      {
+        "name": "Quý Tử ᴠɴ",
+        "role": "Refined"
+      },
+      {
+        "name": "MITHUNOP//MUM",
+        "role": "Refined"
+      },
+      {
+        "name": "Rizwan",
+        "role": "Refined"
+      },
+      {
+        "name": "Yuvi",
+        "role": "Refined"
+      }
+    ],
     "note": {
-      "en": "Role call starts with the next distribution. When Flash posts the new Optimized and Chronicler roles in Discord, every name lands here.",
-      "tr": "Rol listesi bir sonraki dağıtımla başlıyor. Flash Discord'da yeni Optimized ve Chronicler rollerini paylaştığında her isim burada yer alacak."
-    }
+      "en": "Flash posted this week’s upgrades in the Optimum Discord on 17 November: 13 members move up from Observer to Refined. More are on the way, so Observers, keep going.",
+      "tr": "Flash bu haftanın rol yükseltmelerini 17 Kasım’da Optimum Discord’unda duyurdu: 13 üye Observer’dan Refined’a yükseldi. Yenileri de yolda; Observer’lar, devam edin."
+    },
+    "src": [
+      "Flash in the Optimum Discord, 17 Nov 2026",
+      "https://discord.gg/getoptimum"
+    ]
   },
   "builders": [
     "pitwall",

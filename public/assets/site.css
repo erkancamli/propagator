@@ -201,7 +201,10 @@ main { max-width: var(--max); margin: 0 auto; padding: 0 var(--gut) 64px; }
 .ladder-mini li { font-size: 13px; font-weight: 600; padding: 4px 10px; border-radius: 99px; background: var(--bg); color: var(--muted); }
 .ladder-mini li:nth-last-child(-n+2) { color: var(--accent); background: var(--pkt-soft); }
 .r-group + .r-group { margin-top: 14px; }
-.r-group h4 { font-size: 15px; color: var(--accent); margin-bottom: 4px; }
+.r-group h3 { font-size: 15px; color: var(--accent); margin-bottom: 10px; }
+.r-count { font-weight: 500; color: var(--muted); font-variant-numeric: tabular-nums; }
+.r-names { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 0 0 14px; padding: 0; }
+.r-names li { white-space: nowrap; padding: 3px 10px; border-radius: 999px; background: var(--bg); box-shadow: 0 0 0 1px var(--line); font-size: 14px; }
 .claims { border-top: 1px solid var(--line); }
 .c-row { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
 .c-claim { font-weight: 600; margin: 0; }
@@ -363,6 +366,7 @@ section[id], article[id], div[id] { scroll-margin-top: 80px; }
 @media (max-width: 520px) { .langs summary span { display: none; } }
 
 /* scripts other than Latin and Cyrillic: system fonts, natural spacing */
+:lang(ja) { word-break: auto-phrase; overflow-wrap: anywhere; }
 :lang(ja) body, :lang(ja) .btn, :lang(ja) .chip { font-family: 'Geist', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic UI', 'Yu Gothic', 'Noto Sans JP', 'Meiryo', sans-serif; }
 :lang(ko) body, :lang(ko) .btn, :lang(ko) .chip { font-family: 'Geist', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; word-break: keep-all; }
 :lang(zh) body, :lang(zh) .btn, :lang(zh) .chip { font-family: 'Geist', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; }
