@@ -129,7 +129,7 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
   if (path === '/api/unsubscribe' && req.method === 'POST') return json({ ok: true }); // one click unsubscribe header; the GET above does the work
 
   if (!path.startsWith('/api/admin/')) return json({ error: 'not found' }, 404);
-  if (!isEditor) return json({ error: 'unauthorized' }, 401);
+  if (!isEditor && path !== '/api/admin/publish') return json({ error: 'unauthorized' }, 401); // the approval page handles its own auth
 
 
   if (path === '/api/admin/subscribers' && req.method === 'GET') {
@@ -205,23 +205,31 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
     return json({ ok: true, status: issue.status, missingLanguages: missingLanguages(issue), preview: `${site}/preview/${issue.kind}/${issue.id}/?token=${encodeURIComponent(bearer)}`, publish: issue.status === 'draft' ? `${site}/api/admin/publish?kind=${issue.kind}&id=${issue.id}` : null });
   }
   if (path === '/api/admin/publish') {
-    if (!isAdmin) return json({ error: 'only the admin can publish' }, 403);
-    const kind = (req.method === 'GET' ? url.searchParams.get('kind') : null), id0 = req.method === 'GET' ? url.searchParams.get('id') : null;
+    // The approval link carries no secret: opened without the admin token, the page asks for it and sends it in the form body, never in the URL.
+    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const page = (inner, status = 200) => new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Publish</title><style>body{font:16px/1.5 system-ui;max-width:560px;margin:10vh auto;padding:0 16px;background:#16181a;color:#f0f2f4}a{color:#d3dbe2}input{font:16px system-ui;width:100%;box-sizing:border-box;padding:12px;border-radius:10px;border:1px solid #3a4046;background:#0f1113;color:#f0f2f4;margin:0 0 12px}button{font:600 16px system-ui;padding:12px 20px;border-radius:10px;border:0;background:#b87cff;color:#16181a;cursor:pointer}.err{color:#ff9c8a}</style>${inner}`, { status, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store', 'referrer-policy': 'no-referrer', 'x-frame-options': 'DENY' } });
+    const form = (kind, id, err = '') => `<h1>Publish ${esc(kind)} ${esc(id)}</h1>${err ? `<p class="err">${esc(err)}</p>` : ''}<form method="post" action="/api/admin/publish"><input type="hidden" name="kind" value="${esc(kind)}"><input type="hidden" name="id" value="${esc(id)}"><label>Admin token<input type="password" name="token" autocomplete="current-password" required></label><button>Publish now</button></form>`;
     if (req.method === 'GET') {
-      const issue = await getIssue(store, kind, id0 || '');
+      const kind = url.searchParams.get('kind') === 'daily' ? 'daily' : 'weekly', id0 = clip(url.searchParams.get('id') || '', 20);
+      if (!isAdmin) return page(form(kind, id0));
+      const issue = await getIssue(store, kind, id0);
       if (!issue) return new Response('Issue not found', { status: 404 });
-      const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-      return new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Publish</title><style>body{font:16px system-ui;max-width:560px;margin:10vh auto;padding:0 16px;background:#16181a;color:#f0f2f4}a{color:#d3dbe2}button{font:600 16px system-ui;padding:12px 20px;border-radius:10px;border:0;background:#b87cff;color:#16181a;cursor:pointer}</style><h1>${esc(issue.title.en)}</h1><p>${esc(kind)} ${esc(issue.id)}, status <b>${esc(issue.status)}</b></p><p><a href="/preview/${esc(kind)}/${esc(issue.id)}/?token=${encodeURIComponent(bearer)}">Read the preview</a> · <a href="/tr/preview/${esc(kind)}/${esc(issue.id)}/?token=${encodeURIComponent(bearer)}">Türkçe önizleme</a></p><form method="post" action="/api/admin/publish?token=${encodeURIComponent(bearer)}"><input type="hidden" name="kind" value="${esc(kind)}"><input type="hidden" name="id" value="${esc(issue.id)}"><button>Publish now</button></form>`, { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
+      return page(`<h1>${esc(issue.title.en)}</h1><p>${esc(kind)} ${esc(issue.id)}, status <b>${esc(issue.status)}</b></p><p><a href="/preview/${esc(kind)}/${esc(issue.id)}/?token=${encodeURIComponent(bearer)}">Read the preview</a> · <a href="/tr/preview/${esc(kind)}/${esc(issue.id)}/?token=${encodeURIComponent(bearer)}">Türkçe önizleme</a></p><form method="post" action="/api/admin/publish"><input type="hidden" name="kind" value="${esc(kind)}"><input type="hidden" name="id" value="${esc(issue.id)}"><input type="hidden" name="token" value="${esc(bearer)}"><button>Publish now</button></form>`);
     }
     if (req.method === 'POST') {
-      const b = await body(); const issue = b && await getIssue(store, b.kind, clip(b.id, 20));
+      const b = await body();
+      const isForm = (req.headers.get('content-type') || '').includes('form');
+      const admin = isAdmin || (Boolean(env.ADMIN_TOKEN) && typeof b?.token === 'string' && safeEq(b.token, env.ADMIN_TOKEN));
+      if (!admin) return isForm ? page(form(b?.kind === 'daily' ? 'daily' : 'weekly', clip(b?.id || '', 20), 'That token is not the admin token.'), 401) : json({ error: 'only the admin can publish' }, 403);
+      const issue = b && await getIssue(store, b.kind, clip(b.id, 20));
       if (!issue) return json({ error: 'not found' }, 404);
       issue.status = 'published'; issue.publishedAt = new Date(now).toISOString();
       await putIssue(store, issue); await purge();
       if (issue.kind === 'weekly' && !issue.mailedAt) { try { const r = await sendWeekly(env, store, issue); if (r.sent) { issue.mailedAt = new Date(now).toISOString(); issue.mailedTo = r.sent; await putIssue(store, issue); } } catch (e) { console.log('weekly mail failed', String(e)); } }
-      if ((req.headers.get('content-type') || '').includes('form')) return new Response(null, { status: 303, headers: { location: `/${issue.kind}/${issue.id}/` } });
+      if (isForm) return new Response(null, { status: 303, headers: { location: `/${issue.kind}/${issue.id}/` } });
       return json({ ok: true });
     }
+    return json({ error: 'method not allowed' }, 405);
   }
   return json({ error: 'not found' }, 404);
 }

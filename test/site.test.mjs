@@ -52,6 +52,26 @@ test('editor drafts weekly, only admin publishes; drafts stay hidden', async () 
   assert.match(home, /Issue 002/);
 });
 
+test('approval link asks for the admin token in a form, never needs it in the URL', async () => {
+  const store = memStore();
+  const w = { ...SEED.weekly[0], id: '003', date: '2026-12-04', title: { en: 'Secret draft title' } };
+  await api(req('/api/admin/issue', { method: 'PUT', headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN }, body: JSON.stringify(w) }), { store, env });
+  let r = await api(req('/api/admin/publish?kind=weekly&id=003'), { store, env });
+  assert.equal(r.status, 200);
+  let html = await r.text();
+  assert.match(html, /type="password" name="token"/);
+  assert.ok(!html.includes('Secret draft title'), 'no draft content before auth');
+  const form = (token) => req('/api/admin/publish', { method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ kind: 'weekly', id: '003', token }).toString() });
+  r = await api(form(env.EDITOR_TOKEN), { store, env });
+  assert.equal(r.status, 401);
+  assert.equal((await site(req('/weekly/003/'), { store })).status, 404, 'wrong token publishes nothing');
+  r = await api(form(env.ADMIN_TOKEN), { store, env });
+  assert.equal(r.status, 303);
+  assert.equal(r.headers.get('location'), '/weekly/003/');
+  r = await site(req('/weekly/003/'), { store });
+  assert.equal(r.status, 200);
+});
+
 test('editor can publish a daily brief directly', async () => {
   const store = memStore();
   const d = { ...SEED.daily[0], id: '2026-11-21', date: '2026-11-21' };
