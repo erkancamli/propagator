@@ -23,13 +23,13 @@ function card(issue, lang, fontsCss) {
   const size = cjk ? Math.max(48, Math.min(70, Math.floor(730 / Math.min(title.length, 14)))) : title.length > 48 ? 64 : title.length > 30 ? 76 : 88;
   const cover = art(lang, issue.cover || { type: 'network', seed: 'cover-' + issue.id, nodes: 60 }, { w: 640, h: 630 });
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>${fontsCss}
-*{box-sizing:border-box}body{margin:0;width:1200px;height:630px;background:#15171a;color:#f0f2f4;font-family:Geist,sans-serif;position:relative;overflow:hidden}
-.art{position:absolute;right:0;top:0;width:640px;height:630px;--a-bg:#15171a;--a-line:#2f353a;--a-violet:#b87cff}
-.art .a-bg{fill:#15171a}.art .a-edge{stroke:#2f353a;stroke-width:1.6;fill:none}.art .a-hot{stroke:#b87cff;stroke-width:2.6;fill:none;stroke-linecap:round}.art .a-node{fill:#3a4249}.art .a-node-hot{fill:#b87cff;stroke:#15171a;stroke-width:3}.art .a-piece{fill:#b87cff}
-.fade{position:absolute;inset:0;background:linear-gradient(90deg,#15171a 46%,rgba(21,23,26,.55) 70%,rgba(21,23,26,0))}
+*{box-sizing:border-box}body{margin:0;width:1200px;height:630px;background:#1d1c19;color:#ecebe6;font-family:Geist,sans-serif;position:relative;overflow:hidden}
+.art{position:absolute;right:0;top:0;width:640px;height:630px;--a-bg:#1d1c19;--a-line:#2f2d29;--a-violet:#b87cff}
+.art .a-bg{fill:#1d1c19}.art .a-edge{stroke:#2f2d29;stroke-width:1.6;fill:none}.art .a-hot{stroke:#b87cff;stroke-width:2.6;fill:none;stroke-linecap:round}.art .a-node{fill:#3e3b36}.art .a-node-hot{fill:#b87cff;stroke:#1d1c19;stroke-width:3}.art .a-piece{fill:#b87cff}
+.fade{position:absolute;inset:0;background:linear-gradient(90deg,#1d1c19 46%,rgba(29,28,25,.55) 70%,rgba(29,28,25,0))}
 .text{position:absolute;left:64px;top:52px;bottom:56px;width:760px;display:flex;flex-direction:column;justify-content:space-between}
 .flag{font:600 64px/1 'Propagator Serif',serif;letter-spacing:-.035em}
-.folio{display:flex;gap:28px;margin-top:14px;padding-top:12px;border-top:3px solid #f0f2f4;font:500 22px Geist,sans-serif;color:#bcc0c3;width:560px}.folio b{color:#c59bff;font-weight:600}
+.folio{display:flex;gap:28px;margin-top:14px;padding-top:12px;border-top:3px solid #ecebe6;font:500 22px Geist,sans-serif;color:#c4c0b6;width:560px}.folio b{color:#c59bff;font-weight:600}
 h1:lang(ja){word-break:auto-phrase}h1{margin:0;font:600 ${size}px/1.04 'Propagator Serif',${SERIF[lang] || 'serif'};letter-spacing:${cjk ? '0' : '-0.025em'};max-width:760px}</style></head>
 <body>${cover}<div class="fade"></div><div class="text"><div><div class="flag">Propagator</div><div class="folio"><b>${esc(T.issue(no(lang, issue.id)))}</b><span>${esc(fmtDate(lang, issue.date))}</span></div></div><h1>${esc(title)}</h1></div></body></html>`;
 }
