@@ -14,10 +14,12 @@ const pulse = { at: new Date().toISOString(), window: ['2026-11-13', '2026-11-20
 
 test('every page renders in every language', async () => {
   const store = memStore(); await store.setJSON('pulse/latest', pulse);
-  for (const p of ['/', '/weekly/', '/weekly/001/', '/daily/', '/daily/2026-11-20/', '/learn/', '/people/', '/builders/', '/pulse/', '/about/', '/submit/']) {
+  for (const p of ['/', '/weekly/', '/weekly/001/', '/daily/', '/daily/2026-11-20/', '/learn/', '/people/', '/builders/', '/pulse/', '/about/', '/submit/', '/events/', '/videos/']) {
     for (const pre of ['', '/tr', '/vi', '/id', '/ru', '/uk', '/ko', '/hi', '/zh', '/ja']) {
       const r = await site(req(pre + p), { store });
       assert.equal(r.status, 200, pre + p);
+      assert.match(r.headers.get('content-security-policy') || '', /script-src 'self'/, 'CSP on ' + pre + p);
+      assert.equal(r.headers.get('x-frame-options'), 'SAMEORIGIN');
       const html = await r.text();
       assert.match(html, /<html lang="[a-zA-Z-]+">/);
       assert.ok(!html.includes('undefined'), 'no undefined on ' + pre + p);
