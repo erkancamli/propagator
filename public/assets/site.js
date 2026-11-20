@@ -148,7 +148,7 @@
   }
 
   // result of the Discord sign in on a member page: show the message once, then drop it from the address
-  var cm = document.querySelector('.claim-msg');
+  var cm = document.querySelector('.own-msg');
   if (cm) {
     try {
       var r = new URLSearchParams(location.search).get('claim');

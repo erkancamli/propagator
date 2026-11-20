@@ -662,11 +662,11 @@ h1, h2, h3 { font-weight: 650; letter-spacing: -0.025em; }
 
 /* member photos and the Discord claim on a member page */
 .av-img { object-fit: cover; padding: 0; background: var(--line); }
-.claim { margin: 22px 0 0; padding: 16px 18px; border-radius: 16px; background: var(--glass); box-shadow: inset 0 0 0 1px var(--line); max-width: 560px; }
-.claim p { margin: 0; }
-.claim-hint, .claim-line { font-size: 15px; line-height: 1.5; color: var(--muted); }
-.claim .btn { margin-top: 12px; }
-.claim-msg { margin-top: 12px !important; font-size: 15px; font-weight: 550; }
-.claim-msg.good { color: var(--ok); }
-.claim-msg.bad { color: var(--warn); }
+.own { margin: 22px 0 0; padding: 16px 18px; border-radius: 16px; background: var(--glass); box-shadow: inset 0 0 0 1px var(--line); max-width: 560px; }
+.own p { margin: 0; }
+.own-hint, .own-line { font-size: 15px; line-height: 1.5; color: var(--muted); }
+.own .btn { margin-top: 12px; white-space: nowrap; }
+.own-msg { margin-top: 12px !important; font-size: 15px; font-weight: 550; }
+.own-msg.good { color: var(--ok); }
+.own-msg.bad { color: var(--warn); }
 .btn-sm { padding: 9px 16px; font-size: 15px; }
