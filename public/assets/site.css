@@ -263,6 +263,13 @@ main { max-width: var(--max); margin: 0 auto; padding: 0 var(--gut) 64px; }
 .a-date { color: var(--soft); font-size: 15px; }
 .a-title { font-weight: 600; font-size: 18px; }
 @media (max-width: 600px) { .archive a { grid-template-columns: 1fr; gap: 2px; } }
+.arc-weekly { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 14px; max-width: 860px; }
+.arc-weekly a { display: grid; gap: 6px; padding: 20px 22px; border-radius: var(--radius); background: var(--surface); box-shadow: 0 0 0 1px var(--line); text-decoration: none; }
+.arc-weekly a:hover { box-shadow: 0 0 0 1px var(--line-2); }
+.arc-weekly a:hover .a-title { text-decoration: underline; }
+.arc-weekly .a-title { font-size: clamp(20px, 2.4vw, 26px); line-height: 1.2; }
+.a-dek { color: var(--muted); max-width: 64ch; }
+.a-n { color: var(--soft); font-size: 14px; font-variant-numeric: tabular-nums; }
 .empty { color: var(--muted); }
 
 /* learn */

@@ -5,7 +5,7 @@ import * as R from '../../lib/render.mjs';
 import { listIssues, getIssue, getPulse } from '../../lib/data.mjs';
 import { LANGS, CODES } from '../../lib/i18n.mjs';
 
-const ROUTES = ['/', '/weekly/', '/daily/', '/learn/', '/builders/', '/events/', '/videos/', '/people/', '/pulse/', '/about/', '/submit/'];
+const ROUTES = ['/', '/archive/', '/learn/', '/builders/', '/events/', '/videos/', '/people/', '/pulse/', '/about/', '/submit/'];
 
 const SECURITY = { 'x-content-type-options': 'nosniff', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-frame-options': 'SAMEORIGIN', 'permissions-policy': 'camera=(), microphone=(), geolocation=()', 'content-security-policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://i.ytimg.com https://pbs.twimg.com; frame-src https://www.youtube-nocookie.com; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'" };
 
@@ -49,7 +49,9 @@ export async function handle(req, { store, now = Date.now(), preview = false }) 
     return html(R.home(lang, { weekly, daily, pulse, assets: ASSETS, today }));
   }
   let m;
-  if ((m = path.match(/^\/(weekly|daily)\/$/))) return html(R.archive(lang, m[1], await listIssues(store, m[1])));
+  // the two old list pages live on as sections of the archive
+  if ((m = path.match(/^\/(weekly|daily)\/$/))) return new Response(null, { status: 301, headers: { location: R.href(lang, '/archive/') + '#' + m[1], 'cache-control': 'public, max-age=3600' } });
+  if (path === '/archive/') { const [w, d] = await Promise.all([listIssues(store, 'weekly'), listIssues(store, 'daily')]); return html(R.archivePage(lang, w, d)); }
   // drafts are reachable only under /preview/ with the editor's token, and never indexed
   if ((m = path.match(/^\/(preview\/)?(weekly|daily)\/([\w-]{1,20})\/$/))) {
     const isPreview = Boolean(m[1]), kind = m[2], id = m[3];

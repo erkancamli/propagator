@@ -14,7 +14,7 @@ const pulse = { at: new Date().toISOString(), window: ['2026-11-13', '2026-11-20
 
 test('every page renders in every language', async () => {
   const store = memStore(); await store.setJSON('pulse/latest', pulse);
-  for (const p of ['/', '/weekly/', '/weekly/001/', '/daily/', '/daily/2026-11-20/', '/learn/', '/people/', '/builders/', '/pulse/', '/about/', '/submit/', '/events/', '/videos/']) {
+  for (const p of ['/', '/archive/', '/weekly/001/', '/daily/2026-11-20/', '/learn/', '/people/', '/builders/', '/pulse/', '/about/', '/submit/', '/events/', '/videos/']) {
     for (const pre of ['', '/tr', '/vi', '/id', '/ru', '/uk', '/ko', '/hi', '/zh', '/ja']) {
       const r = await site(req(pre + p), { store });
       assert.equal(r.status, 200, pre + p);
@@ -30,6 +30,16 @@ test('every page renders in every language', async () => {
   assert.equal((await site(req('/nope/'), { store })).status, 404);
   assert.equal((await site(req('/learn'), { store })).status, 301);
   assert.match(await (await site(req('/sitemap.xml'), { store })).text(), /weekly\/001/);
+});
+
+test('old list pages move to the archive', async () => {
+  const store = memStore();
+  for (const [p, to] of [['/weekly/', '/archive/#weekly'], ['/tr/daily/', '/tr/archive/#daily']]) {
+    const r = await site(req(p), { store });
+    assert.equal(r.status, 301); assert.equal(r.headers.get('location'), to);
+  }
+  const html = await (await site(req('/archive/'), { store })).text();
+  assert.match(html, /Month one on mainnet/); assert.match(html, /\d+ stories/); assert.match(html, /aria-current="page">Archive/);
 });
 
 test('seed issues are valid', () => {
