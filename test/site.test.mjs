@@ -12,16 +12,17 @@ const env = { ADMIN_TOKEN: 'a'.repeat(32), EDITOR_TOKEN: 'e'.repeat(32) };
 const req = (path, init = {}) => new Request('http://x' + path, init);
 const pulse = { at: new Date().toISOString(), window: ['2026-11-13', '2026-11-20'], slots: 1, spread: { mump: 100, lib: 200, factor: 2 }, lead: 50, accel: 90, over4: { mump: 1, lib: 2, factor: 2 }, stake: { now: 3e6, weekAgo: 2e6, launch: 1e6 }, discord: null, series: [{ day: '2026-10-01', eth: 1 }, { day: '2026-11-20', eth: 2 }] };
 
-test('every page renders in both languages', async () => {
+test('every page renders in every language', async () => {
   const store = memStore(); await store.setJSON('pulse/latest', pulse);
   for (const p of ['/', '/weekly/', '/weekly/001/', '/daily/', '/daily/2026-11-20/', '/learn/', '/people/', '/builders/', '/pulse/', '/about/', '/submit/']) {
-    for (const pre of ['', '/tr']) {
+    for (const pre of ['', '/tr', '/vi', '/id', '/ru', '/uk', '/ko', '/hi', '/zh', '/ja']) {
       const r = await site(req(pre + p), { store });
       assert.equal(r.status, 200, pre + p);
       const html = await r.text();
-      assert.match(html, /<html lang="(en|tr)">/);
+      assert.match(html, /<html lang="[a-zA-Z-]+">/);
       assert.ok(!html.includes('undefined'), 'no undefined on ' + pre + p);
-      assert.ok(!/—|–/.test(html.replace(/<svg[\s\S]*?<\/svg>/g, '')), 'no long dashes on ' + pre + p);
+      // Russian and Ukrainian grammar needs the dash; everywhere else the house style has none
+      if (!['/ru', '/uk'].includes(pre)) assert.ok(!/\u2014|\u2013/.test(html.replace(/<svg[\s\S]*?<\/svg>/g, '')), 'no long dashes on ' + pre + p);
     }
   }
   assert.equal((await site(req('/nope/'), { store })).status, 404);
@@ -83,4 +84,17 @@ test('paste box adds Discord text to the wire with line breaks kept', async () =
   const wire = await (await api(req('/api/admin/wire?since=2000-01-01', { headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN } }), { store, env })).json();
   assert.equal(wire.items[0].type, 'roles');
   assert.equal(wire.items[0].data.text, 'Optimized\n@a @b\nChronicler\n@c');
+});
+
+import { TM } from '../lib/tm.mjs';
+import { sources } from '../scripts/i18n.mjs';
+test('every language translates every text and keeps its placeholders', async () => {
+  const src = await sources();
+  for (const [lang, tm] of Object.entries(TM)) {
+    for (const [k, en] of Object.entries(src)) {
+      assert.ok(k in tm, `${lang} misses ${k}: ${en.slice(0, 60)}`);
+      const want = (en.match(/\{\d\}/g) || []).sort().join(), got = (tm[k].match(/\{\d\}/g) || []).sort().join();
+      assert.equal(got, want, `${lang} ${k} placeholders`);
+    }
+  }
 });

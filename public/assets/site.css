@@ -35,7 +35,7 @@ main { max-width: var(--max); margin: 0 auto; padding: 0 var(--gut) 64px; }
 .brand-name { font-weight: 700; font-size: 19px; letter-spacing: -0.03em; }
 .brand-tag { font-size: 13px; color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .nav { display: flex; gap: 2px; margin-left: auto; }
-.nav a { text-decoration: none; font-size: 15px; color: var(--muted); padding: 6px 10px; border-radius: 8px; }
+.nav a { white-space: nowrap; text-decoration: none; font-size: 15px; color: var(--muted); padding: 6px 10px; border-radius: 8px; }
 .nav a:hover { color: var(--ink); background: var(--surface); }
 .nav a[aria-current="page"] { color: var(--ink); background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
 .tools { display: flex; align-items: center; gap: 6px; }
@@ -349,3 +349,27 @@ main { max-width: var(--max); margin: 0 auto; padding: 0 var(--gut) 64px; }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
 html { scroll-behavior: smooth; }
 section[id], article[id], div[id] { scroll-margin-top: 80px; }
+
+/* language menu */
+.langs { position: relative; }
+.langs summary { list-style: none; display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); padding: 6px 10px; border-radius: 8px; cursor: pointer; white-space: nowrap; }
+.langs summary::-webkit-details-marker { display: none; }
+.langs summary:hover, .langs[open] summary { color: var(--ink); background: var(--surface); }
+.langs summary svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.4; flex: none; }
+.langs ul { position: absolute; right: 0; top: calc(100% + 6px); z-index: 20; list-style: none; margin: 0; padding: 6px; min-width: 200px; background: var(--surface); border-radius: 12px; box-shadow: 0 0 0 1px var(--line), 0 16px 40px -16px rgba(22, 24, 26, .35); }
+.langs li a { display: block; padding: 8px 12px; border-radius: 8px; text-decoration: none; font-size: 15px; }
+.langs li a:hover { background: var(--bg); }
+.langs li a[aria-current="true"] { color: var(--accent); font-weight: 600; }
+@media (max-width: 520px) { .langs summary span { display: none; } }
+
+/* scripts other than Latin and Cyrillic: system fonts, natural spacing */
+:lang(ja) body, :lang(ja) .btn, :lang(ja) .chip { font-family: 'Geist', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic UI', 'Yu Gothic', 'Noto Sans JP', 'Meiryo', sans-serif; }
+:lang(ko) body, :lang(ko) .btn, :lang(ko) .chip { font-family: 'Geist', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; word-break: keep-all; }
+:lang(zh) body, :lang(zh) .btn, :lang(zh) .chip { font-family: 'Geist', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; }
+:lang(hi) body, :lang(hi) .btn, :lang(hi) .chip { font-family: 'Geist', 'Noto Sans Devanagari', 'Kohinoor Devanagari', 'Nirmala UI', 'Mangal', sans-serif; }
+:lang(ja) h1, :lang(ja) h2, :lang(ja) h3, :lang(ko) h1, :lang(ko) h2, :lang(ko) h3, :lang(zh) h1, :lang(zh) h2, :lang(zh) h3, :lang(hi) h1, :lang(hi) h2, :lang(hi) h3 { letter-spacing: 0; }
+:lang(ja) .hero h1, :lang(ko) .hero h1, :lang(zh) .hero h1 { font-size: clamp(36px, 6.4vw, 80px); line-height: 1.15; max-width: 16em; }
+:lang(hi) .hero h1 { font-size: clamp(36px, 6.4vw, 80px); line-height: 1.25; max-width: 16em; }
+:lang(hi) body { line-height: 1.75; }
+:lang(ja) .prose p, :lang(zh) .prose p, :lang(ko) .prose p { line-height: 1.85; }
+:lang(ru) .hero h1, :lang(uk) .hero h1, :lang(vi) .hero h1, :lang(id) .hero h1 { max-width: 16ch; }

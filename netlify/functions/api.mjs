@@ -61,7 +61,7 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
     if (now - rate.t > 3600e3) { rate.n = 0; rate.t = now; }
     if (rate.n >= 6) return json({ error: 'too many messages, try again in an hour' }, 429);
     rate.n++; await store.setJSON(ipKey, rate);
-    const item = { id: now.toString(36) + crypto.randomBytes(3).toString('hex'), at: new Date(now).toISOString(), kind: KINDS.includes(b.kind) ? b.kind : 'other', url: link.href, name: clip(b.name, 80), note: clip(b.note, 800), lang: b.lang === 'tr' ? 'tr' : 'en', done: false };
+    const item = { id: now.toString(36) + crypto.randomBytes(3).toString('hex'), at: new Date(now).toISOString(), kind: KINDS.includes(b.kind) ? b.kind : 'other', url: link.href, name: clip(b.name, 80), note: clip(b.note, 800), lang: /^[a-z]{2,3}$/.test(b.lang || '') ? b.lang : 'en', done: false };
     await store.setJSON('inbox/' + item.id, item);
     return json({ ok: true });
   }

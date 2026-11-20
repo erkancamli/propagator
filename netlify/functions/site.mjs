@@ -3,6 +3,7 @@ import { getStore } from '@netlify/blobs';
 import { ASSETS } from '../../lib/manifest.mjs';
 import * as R from '../../lib/render.mjs';
 import { listIssues, getIssue, getPulse } from '../../lib/data.mjs';
+import { LANGS, CODES } from '../../lib/i18n.mjs';
 
 const ROUTES = ['/', '/weekly/', '/daily/', '/learn/', '/builders/', '/people/', '/pulse/', '/about/', '/submit/'];
 
@@ -12,7 +13,8 @@ export async function handle(req, { store, now = Date.now(), preview = false }) 
   // folder style URLs everywhere: /learn -> /learn/
   if (!path.endsWith('/') && !/\.(xml|txt)$/.test(path)) return Response.redirect(new URL(path + '/' + url.search, url), 301);
   let lang = 'en';
-  if (path === '/tr/' || path.startsWith('/tr/')) { lang = 'tr'; path = path.slice(3) || '/'; }
+  const pre = path.match(/^\/([a-z]{2,3})(\/.*)$/);
+  if (pre && pre[1] !== 'en' && CODES.includes(pre[1])) { lang = pre[1]; path = pre[2]; }
   const today = new Date(now).toISOString().slice(0, 10);
   const html = (page, status = 200, cache = 'public, max-age=0, must-revalidate') => new Response(R.layout({ lang, path, assets: ASSETS, ...page }), {
     status, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': cache, 'netlify-cdn-cache-control': status === 200 && !page.noindex ? 'public, s-maxage=300, stale-while-revalidate=86400' : 'no-store', 'netlify-cache-tag': 'pages' },
@@ -23,7 +25,8 @@ export async function handle(req, { store, now = Date.now(), preview = false }) 
   if (path === '/sitemap.xml') {
     const [w, d] = await Promise.all([listIssues(store, 'weekly'), listIssues(store, 'daily')]);
     const urls = [...ROUTES.filter((r) => r !== '/submit/').map((p) => [p, today]), ...w.map((x) => [`/weekly/${x.id}/`, x.date]), ...d.map((x) => [`/daily/${x.id}/`, x.date])];
-    const row = (p, mod) => ['en', 'tr'].map((l) => `<url><loc>${R.SITE}${R.href(l, p)}</loc><lastmod>${mod}</lastmod><xhtml:link rel="alternate" hreflang="en" href="${R.SITE}${p}"/><xhtml:link rel="alternate" hreflang="tr" href="${R.SITE}${R.href('tr', p)}"/><xhtml:link rel="alternate" hreflang="x-default" href="${R.SITE}${p}"/></url>`).join('');
+    const alts = (p) => LANGS.map((l) => `<xhtml:link rel="alternate" hreflang="${l.hreflang || l.code}" href="${R.SITE}${R.href(l.code, p)}"/>`).join('') + `<xhtml:link rel="alternate" hreflang="x-default" href="${R.SITE}${p}"/>`;
+    const row = (p, mod) => LANGS.map((l) => `<url><loc>${R.SITE}${R.href(l.code, p)}</loc><lastmod>${mod}</lastmod>${alts(p)}</url>`).join('');
     return text(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.map(([p, m]) => row(p, m)).join('\n')}\n</urlset>\n`, 'application/xml; charset=utf-8');
   }
   if (path === '/feed.xml') {
@@ -66,7 +69,7 @@ export default async (req) => {
   const store = getStore({ name: 'propagator', consistency: 'strong' });
   const url = new URL(req.url);
   const token = url.searchParams.get('token') || '';
-  const preview = /^(\/tr)?\/preview\//.test(url.pathname) && Boolean(process.env.EDITOR_TOKEN) && [process.env.EDITOR_TOKEN, process.env.ADMIN_TOKEN].includes(token);
+  const preview = /^(\/[a-z]{2,3})?\/preview\//.test(url.pathname) && Boolean(process.env.EDITOR_TOKEN) && [process.env.EDITOR_TOKEN, process.env.ADMIN_TOKEN].includes(token);
   return handle(req, { store, preview });
 };
 
