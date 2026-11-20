@@ -1,0 +1,25 @@
+# Screenshots for the builders showcase: python3 scripts/shots.py [id ...]
+import sys, io
+from playwright.sync_api import sync_playwright
+from PIL import Image
+SITES = {
+  'pitwall': 'https://optimum-pitwall.netlify.app',
+  'optimumlab': 'https://optimumlab.netlify.app',
+  'runner': 'https://optimumrunner.netlify.app',
+  'gossipsiege': 'https://gossipsiege.xyz',
+  'windtunnel': 'https://optimum-wind-tunnel.netlify.app',
+}
+want = sys.argv[1:] or list(SITES)
+with sync_playwright() as p:
+    b = p.chromium.launch()
+    for k in want:
+        pg = b.new_page(viewport={'width': 1200, 'height': 750}, device_scale_factor=1)
+        try:
+            pg.goto(SITES[k], wait_until='networkidle', timeout=45000)
+        except Exception as e:
+            print('slow', k, e)
+        pg.wait_for_timeout(int(__import__('os').environ.get('WAIT','3500')))
+        png = pg.screenshot()
+        Image.open(io.BytesIO(png)).convert('RGB').save(f'public/assets/shots/{k}.webp', 'WEBP', quality=82)
+        print('shot', k)
+    b.close()

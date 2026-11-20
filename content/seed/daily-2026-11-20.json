@@ -1,0 +1,48 @@
+{
+  "kind": "daily",
+  "id": "2026-11-20",
+  "status": "published",
+  "date": "2026-11-20",
+  "title": {
+    "en": "A steady week on the Hub, and a new community explainer making the rounds",
+    "tr": "Hub'da sakin bir hafta ve elden ele dolaşan yeni bir topluluk anlatımı"
+  },
+  "items": [
+    {
+      "tag": "network",
+      "text": {
+        "en": "The Hub's weekly report (13 to 20 November, 50,248 slots) has blocks reaching 95% of observers in 182 ms on mump2p against 392 ms on gossipsub, and 92.5% of slots seen first on mump2p. Company measured.",
+        "tr": "Hub'ın haftalık raporu (13 ile 20 Kasım arası, 50.248 slot): bloklar gözlemcilerin %95'ine mump2p'de 182 ms'de, gossipsub'da 392 ms'de ulaşıyor; slotların %92,5'i önce mump2p'de görülmüş. Şirket ölçümü."
+      },
+      "url": "https://hub.getoptimum.xyz",
+      "source": "Optimum Hub"
+    },
+    {
+      "tag": "adoption",
+      "text": {
+        "en": "Stake behind mump2p gateways is about 3.44 million ETH, up only 1,591 ETH on the week. Growth has paused after the jump from 1.42 million at launch.",
+        "tr": "mump2p gateway'lerinin arkasındaki stake yaklaşık 3,44 milyon ETH; hafta boyunca yalnızca 1.591 ETH arttı. Açılıştaki 1,42 milyondan sonraki sıçramanın ardından büyüme durakladı."
+      },
+      "url": "https://hub.getoptimum.xyz",
+      "source": "Optimum Hub"
+    },
+    {
+      "tag": "community",
+      "text": {
+        "en": "Kamrul's 'Building beyond 7.8%' video thread explains why moving data between validators matters as much as making Ethereum itself faster.",
+        "tr": "Kamrul'un 'Building beyond 7.8%' video dizisi, verinin doğrulayıcılar arasında taşınmasının Ethereum'un kendisini hızlandırmak kadar neden önemli olduğunu anlatıyor."
+      },
+      "url": "https://x.com/kamrulbroz/status/2122666232830927000",
+      "source": "X"
+    },
+    {
+      "tag": "community",
+      "text": {
+        "en": "The Optimum Discord passes 41,000 members, with about 2,700 online at the time of writing.",
+        "tr": "Optimum Discord'u 41.000 üyeyi geçti; bu satırlar yazılırken yaklaşık 2.700 kişi çevrimiçiydi."
+      },
+      "url": "https://discord.gg/getoptimum",
+      "source": "Discord"
+    }
+  ]
+}
