@@ -103,6 +103,21 @@
       .finally(function () { btn.disabled = false; });
   });
 
+  // email subscription
+  document.querySelectorAll('form.sub-form').forEach(function (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var msg = f.querySelector('.form-msg'), btn = f.querySelector('button[type="submit"]');
+      var data = Object.fromEntries(new FormData(f).entries());
+      btn.disabled = true;
+      fetch('/api/subscribe', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (r) { msg.textContent = r.ok ? (r.j.confirm ? f.dataset.ok : f.dataset.queued) : f.dataset.err; if (r.ok) f.reset(); })
+        .catch(function () { msg.textContent = f.dataset.err; })
+        .finally(function () { btn.disabled = false; });
+    });
+  });
+
   // table of contents follows the reader
   var toc = document.querySelectorAll('.toc a[href^="#"]');
   if (toc.length && 'IntersectionObserver' in window) {

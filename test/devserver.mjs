@@ -7,7 +7,8 @@ import { handle as api } from '../netlify/functions/api.mjs';
 export function fileStore(dir = '.data') {
   const f = (k) => `${dir}/${encodeURIComponent(k)}.json`;
   return {
-    async get(k) { try { return JSON.parse(await readFile(f(k), 'utf8')); } catch { return null; } },
+    async get(k, o = {}) { try { const b = await readFile(f(k)); return o.type === 'arrayBuffer' ? b.buffer.slice(b.byteOffset, b.byteOffset + b.length) : JSON.parse(b.toString('utf8')); } catch { return null; } },
+    async set(k, v) { await mkdir(dir, { recursive: true }); await writeFile(f(k), Buffer.from(v)); },
     async setJSON(k, v) { await mkdir(dir, { recursive: true }); await writeFile(f(k), JSON.stringify(v)); },
     async list({ prefix = '' } = {}) { try { return { blobs: (await readdir(dir)).map((n) => decodeURIComponent(n.replace(/\.json$/, ''))).filter((k) => k.startsWith(prefix)).map((key) => ({ key })) }; } catch { return { blobs: [] }; } },
   };

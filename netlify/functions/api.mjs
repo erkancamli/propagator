@@ -11,26 +11,50 @@
 //   GET  /api/admin/publish?kind=&id=&token=   confirmation page with a Publish button  (admin)
 //   POST /api/admin/publish              { kind, id } publishes a draft                (admin)
 //   GET|POST /api/admin/paste            paste box for Discord announcements and role lists (editor)
+//   POST /api/subscribe                  { email, lang, consent } double opt in; GET /api/subscribe/confirm?t=, GET /api/unsubscribe?t=
+//   GET  /api/admin/subscribers          counts by language and status; ?format=csv exports (admin)
+//   POST /api/admin/subscribers/confirm-pending   re-sends confirmation emails to pending addresses (admin)
 import { getStore } from '@netlify/blobs';
 import { purgeCache } from '@netlify/functions';
 import crypto from 'node:crypto';
 import { getPulse, putIssue, getIssue, listIssues } from '../../lib/data.mjs';
+import { sendConfirm, sendWeekly, mailReady } from '../../lib/mail.mjs';
+import { CODES } from '../../lib/i18n.mjs';
+import { TM } from '../../lib/tm.mjs';
+import { key as tmKey } from '../../lib/t.mjs';
 
 const json = (body, status = 200, extra = {}) => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store', ...extra } });
 const safeEq = (a, b) => { const x = Buffer.from(String(a)), y = Buffer.from(String(b)); return x.length === y.length && crypto.timingSafeEqual(x, y); };
 const KINDS = ['project', 'content', 'event', 'correction', 'other'];
 const clip = (v, n) => String(v ?? '').replace(/[\u0000-\u001f]/g, ' ').trim().slice(0, n);
 const isDay = (d) => /^\d{4}-\d{2}-\d{2}$/.test(d) && !Number.isNaN(Date.parse(d));
-const bi = (o) => o && typeof o.en === 'string' && typeof o.tr === 'string';
+const bi = (o) => o && typeof o.en === 'string' && o.en.trim().length > 0;
+
+// Which languages are missing for which texts: a text counts as translated when it carries that language inline
+// or the translation memory knows its English. The editor is expected to send every language inline.
+export function missingLanguages(x) {
+  const miss = {};
+  const walk = (n, path) => {
+    if (!n || typeof n !== 'object') return;
+    if (Array.isArray(n)) return n.forEach((v, i) => walk(v, path + '[' + i + ']'));
+    if (typeof n.en === 'string' || Array.isArray(n.en)) {
+      for (const l of CODES) if (l !== 'en' && n[l] == null && [].concat(n.en).some((e) => !TM[l]?.[tmKey(e)])) (miss[l] ||= []).push(path);
+      return;
+    }
+    for (const [k, v] of Object.entries(n)) walk(v, path ? path + '.' + k : k);
+  };
+  walk(x, '');
+  return miss;
+}
 
 export function validateIssue(x) {
   const errs = [];
   if (!x || !['weekly', 'daily'].includes(x.kind)) errs.push('kind must be weekly or daily');
   if (!/^[\w-]{1,20}$/.test(x?.id || '')) errs.push('id');
   if (!isDay(x?.date || '')) errs.push('date');
-  if (!bi(x?.title)) errs.push('title needs en and tr');
-  if (x?.kind === 'daily' && (!Array.isArray(x.items) || !x.items.length || !x.items.every((i) => bi(i.text)))) errs.push('daily items need text.en and text.tr');
-  if (x?.kind === 'weekly' && (!bi(x.dek) || !Array.isArray(x.stories) || !x.stories.every((s) => bi(s.title) && bi(s.body)))) errs.push('weekly needs dek and stories with en and tr');
+  if (!bi(x?.title)) errs.push('title needs en');
+  if (x?.kind === 'daily' && (!Array.isArray(x.items) || !x.items.length || !x.items.every((i) => bi(i.text)))) errs.push('daily items need text.en');
+  if (x?.kind === 'weekly' && (!bi(x.dek) || !Array.isArray(x.stories) || !x.stories.every((s) => bi(s.title) && bi(s.body)))) errs.push('weekly needs dek and stories with en');
   if (JSON.stringify(x || {}).length > 200000) errs.push('too large');
   return errs;
 }
@@ -66,8 +90,63 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
     return json({ ok: true });
   }
 
+
+  // ---- email subscriptions (double opt in) ----
+  const subKey = (email) => 'sub/' + crypto.createHash('sha256').update(email).digest('hex').slice(0, 32);
+  const langPath = (l) => (l && l !== 'en' ? '/' + l : '');
+  if (path === '/api/subscribe' && req.method === 'POST') {
+    const b = await body();
+    if (!b) return json({ error: 'bad request' }, 400);
+    if (b.website) return json({ ok: true, queued: true });
+    const email = clip(b.email, 200).toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return json({ error: 'a valid email is required' }, 400);
+    if (!(b.consent === true || b.consent === 'yes' || b.consent === 'on')) return json({ error: 'consent is required' }, 400);
+    const ipKey = 'rate/sub/' + crypto.createHash('sha256').update(ip + (env.RATE_SALT || 'p')).digest('hex').slice(0, 24);
+    const rate = (await store.get(ipKey, { type: 'json' }).catch(() => null)) || { n: 0, t: now };
+    if (now - rate.t > 3600e3) { rate.n = 0; rate.t = now; }
+    if (rate.n >= 5) return json({ error: 'too many attempts, try again in an hour' }, 429);
+    rate.n++; await store.setJSON(ipKey, rate);
+    const key = subKey(email);
+    const prev = await store.get(key, { type: 'json' }).catch(() => null);
+    const lang = CODES.includes(b.lang) ? b.lang : 'en';
+    const sub = prev?.status === 'active' ? { ...prev, lang } : { email, lang, status: 'pending', token: crypto.randomBytes(18).toString('base64url'), at: new Date(now).toISOString(), consent: new Date(now).toISOString() };
+    await store.setJSON(key, sub);
+    await store.setJSON('subtok/' + sub.token, { key });
+    if (sub.status === 'active') return json({ ok: true, already: true });
+    if (mailReady(env)) { try { await sendConfirm(env, sub); return json({ ok: true, confirm: true }); } catch (e) { console.log('confirm mail failed', String(e)); } }
+    return json({ ok: true, queued: true });
+  }
+  if ((path === '/api/subscribe/confirm' || path === '/api/unsubscribe') && req.method === 'GET') {
+    const t = url.searchParams.get('t') || '';
+    let hit = null;
+    if (/^[\w-]{16,64}$/.test(t)) { const ref = await store.get('subtok/' + t, { type: 'json' }).catch(() => null); const s = ref && await store.get(ref.key, { type: 'json' }); if (s && safeEq(s.token, t)) hit = [ref.key, s]; }
+    if (!hit) return new Response(null, { status: 303, headers: { location: '/subscribed/bad/' } });
+    const [k, s] = hit;
+    s.status = path === '/api/unsubscribe' ? 'left' : 'active'; s[s.status + 'At'] = new Date(now).toISOString();
+    await store.setJSON(k, s);
+    return new Response(null, { status: 303, headers: { location: `${langPath(s.lang)}/subscribed/${s.status === 'active' ? 'confirmed' : 'left'}/` } });
+  }
+  if (path === '/api/unsubscribe' && req.method === 'POST') return json({ ok: true }); // one click unsubscribe header; the GET above does the work
+
   if (!path.startsWith('/api/admin/')) return json({ error: 'not found' }, 404);
   if (!isEditor) return json({ error: 'unauthorized' }, 401);
+
+
+  if (path === '/api/admin/subscribers' && req.method === 'GET') {
+    if (!isAdmin) return json({ error: 'only the admin can see subscribers' }, 403);
+    const { blobs } = await store.list({ prefix: 'sub/' });
+    const subs = (await Promise.all(blobs.map((b) => store.get(b.key, { type: 'json' })))).filter(Boolean);
+    if (url.searchParams.get('format') === 'csv') return new Response('email,lang,status,since\n' + subs.map((s) => [s.email, s.lang, s.status, s.at].join(',')).join('\n'), { headers: { 'content-type': 'text/csv; charset=utf-8', 'cache-control': 'no-store' } });
+    const count = {}; for (const s of subs) { count[s.status] ||= {}; count[s.status][s.lang] = (count[s.status][s.lang] || 0) + 1; }
+    return json({ total: subs.length, mail: mailReady(env), count });
+  }
+  if (path === '/api/admin/subscribers/confirm-pending' && req.method === 'POST') {
+    if (!isAdmin) return json({ error: 'only the admin can do this' }, 403);
+    if (!mailReady(env)) return json({ error: 'set RESEND_API_KEY and MAIL_FROM first' }, 409);
+    const { blobs } = await store.list({ prefix: 'sub/' });
+    let n = 0; for (const b of blobs) { const s = await store.get(b.key, { type: 'json' }); if (s?.status === 'pending') { await sendConfirm(env, s); n++; } }
+    return json({ ok: true, sent: n });
+  }
 
   if (path === '/api/admin/wire' && req.method === 'GET') {
     const since = url.searchParams.get('since') || new Date(now - 2 * 86400e3).toISOString();
@@ -100,6 +179,13 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
     if ((req.headers.get('content-type') || '').includes('form')) return new Response('<!doctype html><meta charset="utf-8"><body style="font:16px system-ui;background:#16181a;color:#f0f2f4;padding:40px">Added to the wire. <a style="color:#c59bff" href="javascript:history.back()">Paste another</a>', { headers: { 'content-type': 'text/html; charset=utf-8' } });
     return json({ ok: true });
   }
+  let mo;
+  if ((mo = path.match(/^\/api\/admin\/og\/((?:weekly|daily)-[\w-]{1,20}-[a-z]{2,3}\.png)$/)) && req.method === 'PUT') {
+    const buf = await req.arrayBuffer();
+    if (buf.byteLength > 2e6 || new Uint8Array(buf.slice(0, 4)).join() !== '137,80,78,71') return json({ error: 'a PNG under 2 MB is required' }, 400);
+    await store.set('og/' + mo[1], buf);
+    return json({ ok: true });
+  }
   if (path === '/api/admin/issues' && req.method === 'GET') {
     const kind = url.searchParams.get('kind') === 'daily' ? 'daily' : 'weekly';
     return json({ items: await listIssues(store, kind, { drafts: true }) });
@@ -116,7 +202,7 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
     await putIssue(store, issue);
     if (issue.status === 'published') await purge();
     const site = env.URL || 'https://propagator.news';
-    return json({ ok: true, status: issue.status, preview: `${site}/preview/${issue.kind}/${issue.id}/?token=${encodeURIComponent(bearer)}`, publish: issue.status === 'draft' ? `${site}/api/admin/publish?kind=${issue.kind}&id=${issue.id}` : null });
+    return json({ ok: true, status: issue.status, missingLanguages: missingLanguages(issue), preview: `${site}/preview/${issue.kind}/${issue.id}/?token=${encodeURIComponent(bearer)}`, publish: issue.status === 'draft' ? `${site}/api/admin/publish?kind=${issue.kind}&id=${issue.id}` : null });
   }
   if (path === '/api/admin/publish') {
     if (!isAdmin) return json({ error: 'only the admin can publish' }, 403);
@@ -132,6 +218,7 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
       if (!issue) return json({ error: 'not found' }, 404);
       issue.status = 'published'; issue.publishedAt = new Date(now).toISOString();
       await putIssue(store, issue); await purge();
+      if (issue.kind === 'weekly' && !issue.mailedAt) { try { const r = await sendWeekly(env, store, issue); if (r.sent) { issue.mailedAt = new Date(now).toISOString(); issue.mailedTo = r.sent; await putIssue(store, issue); } } catch (e) { console.log('weekly mail failed', String(e)); } }
       if ((req.headers.get('content-type') || '').includes('form')) return new Response(null, { status: 303, headers: { location: `/${issue.kind}/${issue.id}/` } });
       return json({ ok: true });
     }

@@ -15,8 +15,10 @@ const tag = (s, name) => (s.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name
 const decode = (s) => s.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;|&#x27;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 
 export const collectors = {
-  async youtube() {
+  async youtube(prev, env, store) {
     const xml = await get('https://www.youtube.com/feeds/videos.xml?channel_id=UCZwrSiUZzX5QMgSimeW5xgA');
+    const list = [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].map(([, e]) => ({ id: tag(e, 'yt:videoId'), date: tag(e, 'published').slice(0, 10), title: decode(tag(e, 'title')) })).filter((v) => v.id);
+    if (store && list.length) await store.setJSON('yt/list', list);
     return [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].slice(0, 15).map(([, e]) => ({ id: 'yt:' + tag(e, 'yt:videoId'), type: 'video', source: 'YouTube', title: decode(tag(e, 'title')), url: `https://www.youtube.com/watch?v=${tag(e, 'yt:videoId')}`, at: tag(e, 'published'), data: { videoId: tag(e, 'yt:videoId'), views: +(e.match(/views="(\d+)"/) || [])[1] || null } }));
   },
   async blog() {
@@ -24,11 +26,13 @@ export const collectors = {
     const slugs = [...new Set([...html.matchAll(/href="(\/blog\/[a-z0-9-]+)"/g)].map((m) => m[1]))].slice(0, 30);
     return slugs.map((p) => ({ id: 'blog:' + p, type: 'blog', source: 'Optimum blog', title: decode(p.split('/').pop().replace(/-+/g, ' ')), url: 'https://www.getoptimum.xyz' + p, at: null }));
   },
-  async github() {
-    const repos = await get('https://api.github.com/orgs/getoptimum/repos?sort=pushed&per_page=30', { type: 'json', headers: { accept: 'application/vnd.github+json' } });
+  async github(prev, env) {
+    // anonymous GitHub API calls share a small hourly limit per IP; a read-only token (GITHUB_TOKEN) avoids it
+    const gh = { accept: 'application/vnd.github+json', ...(env?.GITHUB_TOKEN ? { authorization: 'Bearer ' + env.GITHUB_TOKEN } : {}) };
+    const repos = await get('https://api.github.com/orgs/getoptimum/repos?sort=pushed&per_page=30', { type: 'json', headers: gh });
     const out = repos.map((r) => ({ id: 'repo:' + r.full_name, type: 'repo', source: 'GitHub', title: r.full_name, url: r.html_url, at: r.created_at, data: { description: r.description, pushed: r.pushed_at, stars: r.stargazers_count } }));
     const recent = repos.filter((r) => Date.now() - Date.parse(r.pushed_at) < 3 * 86400e3).slice(0, 6);
-    const rel = await Promise.allSettled(recent.map((r) => get(`https://api.github.com/repos/${r.full_name}/releases?per_page=3`, { type: 'json' })));
+    const rel = await Promise.allSettled(recent.map((r) => get(`https://api.github.com/repos/${r.full_name}/releases?per_page=3`, { type: 'json', headers: gh })));
     rel.forEach((x, i) => { if (x.status === 'fulfilled') for (const v of x.value) out.push({ id: 'rel:' + recent[i].full_name + '@' + v.tag_name, type: 'release', source: 'GitHub', title: `${recent[i].name} ${v.tag_name}${v.name && v.name !== v.tag_name ? ': ' + v.name : ''}`, url: v.html_url, at: v.published_at, data: { body: (v.body || '').slice(0, 1500) } }); });
     return out;
   },
@@ -38,6 +42,12 @@ export const collectors = {
     const before = prev?.docsMap || {};
     const changed = Object.keys(before).length ? Object.entries(now).filter(([u, m]) => !(u in before) || (m && m !== before[u])) : [];
     return { items: changed.map(([u, m]) => ({ id: 'docs:' + u + '@' + (m || 'new'), type: 'docs', source: 'Optimum docs', title: u.replace('https://docs.getoptimum.xyz', ''), url: u, at: m || null, data: { isNew: !(u in before) } })), state: { docsMap: now } };
+  },
+  async jobs(prev, env, store) {
+    const d = await get('https://api.ashbyhq.com/posting-api/job-board/optimum', { type: 'json' });
+    const jobs = (d.jobs || []).map((j) => ({ title: j.title, where: [j.location, j.employmentType].filter(Boolean).join(', '), date: (j.publishedAt || '').slice(0, 10), url: j.jobUrl }));
+    if (store) await store.setJSON('jobs/list', jobs);
+    return jobs.map((j) => ({ id: 'job:' + j.url, type: 'job', source: 'Optimum careers', title: j.title, url: j.url, at: j.date || null, data: j }));
   },
   async news() {
     const q = encodeURIComponent('"mump2p" OR "getoptimum" OR "Optimum" "RLNC" OR "Muriel Médard" Optimum');
@@ -81,7 +91,7 @@ export async function runWire({ store, env = {}, now = Date.now() }) {
   const found = [];
   await Promise.all(Object.entries(collectors).map(async ([name, fn]) => {
     try {
-      const r = await fn(state, env);
+      const r = await fn(state, env, store);
       const items = Array.isArray(r) ? r : r.items;
       if (!Array.isArray(r)) Object.assign(state, r.state);
       found.push(...items); status.ok.push(name);

@@ -6,7 +6,7 @@ import { SEED } from '../lib/seed.mjs';
 
 function memStore() {
   const m = new Map();
-  return { async get(k) { return m.has(k) ? JSON.parse(m.get(k)) : null; }, async setJSON(k, v) { m.set(k, JSON.stringify(v)); }, async list({ prefix = '' } = {}) { return { blobs: [...m.keys()].filter((k) => k.startsWith(prefix)).map((key) => ({ key })) }; } };
+  return { async get(k, o = {}) { if (!m.has(k)) return null; const v = m.get(k); return o.type === 'arrayBuffer' ? v : JSON.parse(v); }, async setJSON(k, v) { m.set(k, JSON.stringify(v)); }, async set(k, v) { m.set(k, v); }, async list({ prefix = '' } = {}) { return { blobs: [...m.keys()].filter((k) => k.startsWith(prefix)).map((key) => ({ key })) }; } };
 }
 const env = { ADMIN_TOKEN: 'a'.repeat(32), EDITOR_TOKEN: 'e'.repeat(32) };
 const req = (path, init = {}) => new Request('http://x' + path, init);

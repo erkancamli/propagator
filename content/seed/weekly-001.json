@@ -33,13 +33,12 @@
         "tr": "mump2p Ethereum ana ağında yayında"
       },
       "body": {
-        "en": "Optimum switched on mump2p for Ethereum on 20 October 2026. At launch 16 node operators ran it, with about 22,000 validator keys and more than 1.4 million staked ETH behind them. Named operators include Blockdaemon, Everstake, P2P.org, Stakefish and Bitcoin Suisse. Signal, the part that delivers blocks faster, is free for any Ethereum validator.",
-        "tr": "Optimum, 20 Ekim 2026'da Ethereum için mump2p'yi devreye aldı. Açılışta 16 düğüm operatörü kullanıyordu; arkalarında yaklaşık 22.000 doğrulayıcı anahtarı ve 1,4 milyonu aşkın stake edilmiş ETH vardı. İsmi geçen operatörler arasında Blockdaemon, Everstake, P2P.org, Stakefish ve Bitcoin Suisse var. Blokları daha hızlı ulaştıran Signal, her Ethereum doğrulayıcısı için ücretsiz."
+        "en": "Optimum switched on mump2p for Ethereum on 20 October 2026. At launch 16 node operators ran it, with about 22,000 validator keys and more than 1.4 million staked ETH behind them. Named operators include Blockdaemon, Everstake, P2P.org, Stakefish and Bitcoin Suisse. Optimum's launch post put the speedup at 2.5 to 3.5 times on average, measured on its own Hub. Signal, the part that delivers blocks faster, is free for any Ethereum validator."
       },
       "claim": "company",
       "sources": [
         [
-          "Optimum blog, 27 Oct 2026",
+          "Optimum blog, 20 Oct 2026",
           "https://www.getoptimum.xyz/blog/3-4b-total-value-boosted-mump2p-is-live-on-ethereum-mainnet"
         ],
         [
@@ -133,24 +132,47 @@
       ]
     },
     {
+      "tag": "dev",
+      "title": {
+        "en": "Gateway v1.3.5: operators on v1.3.2 or v1.3.3 should upgrade"
+      },
+      "body": {
+        "en": "Optimum released gateway v1.3.5 on 16 November. The release notes say v1.3.2 and v1.3.3 are no longer supported because they contained security vulnerabilities, and v1.3.4 users should upgrade for CVE-2026-78661. The release also rejects oversized consensus requests, stops beacon nodes from asking the gateway for data columns it never serves, and lets a configured consensus peer reconnect after a disconnect. No configuration change is needed."
+      },
+      "claim": null,
+      "sources": [
+        [
+          "Gateway release notes",
+          "https://getoptimum.github.io/optimum-gateway/versions/latest/release-notes"
+        ],
+        [
+          "GitHub releases",
+          "https://github.com/getoptimum/optimum-gateway/releases"
+        ]
+      ]
+    },
+    {
       "tag": "research",
       "title": {
         "en": "Outside tests: one clear gain, one inconclusive",
         "tr": "Dış testler: biri net kazanç, biri sonuçsuz"
       },
       "body": {
-        "en": "A Lido evaluation on the Hoodi testnet (17 September to 15 October, 180,327 slots) measured a 95th percentile arrival of 1,207 ms at mump2p gateways against 1,614 ms at public reference nodes, a 407 ms difference. It compares two groups rather than paired deliveries, and testnet is not mainnet. An earlier independent StereumLabs test on 36 mainnet nodes, using an early gateway build and no attached validators, saw earlier arrivals on some clients but nothing statistically significant.",
-        "tr": "Lido'nun Hoodi test ağındaki değerlendirmesi (17 Eylül ile 15 Ekim arası, 180.327 slot), 95. yüzdelikte varışı mump2p gateway'lerinde 1.207 ms, herkese açık referans düğümlerde 1.614 ms ölçtü; aradaki fark 407 ms. Bu ölçüm eşleştirilmiş teslimatları değil iki grubu karşılaştırıyor ve test ağı ana ağ değil. Daha önce StereumLabs'in erken bir gateway sürümüyle, doğrulayıcı bağlanmamış 36 ana ağ düğümünde yaptığı bağımsız test ise bazı istemcilerde erken varış gördü ama istatistiksel olarak anlamlı bir sonuç bulmadı."
+        "en": "Lido's PERCH evaluation ran on the Hoodi testnet from 17 September to 15 October with six operators and 267 qualifying keys. Over 180,327 slots, the 95th percentile block arrival fell from 1,614 ms to 1,207 ms, 407 ms sooner, and wrong head votes fell 45% against a June control week. Lido's own summary warns that Hoodi is small and noisy, so the results are directional rather than a mainnet forecast, and Lido has not yet announced a decision. Earlier, a StereumLabs study of 36 mainnet full nodes with an early gateway build saw Lighthouse about 120 ms and Prysm about 60 ms earlier, Teku flat and Nimbus slower, with nothing statistically significant. Optimum replied that its network-wide acceleration was on during that study, which blurred the comparison."
       },
       "claim": "independent",
       "sources": [
         [
-          "TokenPost, 11 Nov 2026",
-          "https://www.tokenpost.com/news/technology/53709"
+          "Lido research forum, PERCH thread",
+          "https://research.lido.fi/t/perch-request-for-node-operators-to-run-and-test-optimum-mump2p/11786"
         ],
         [
           "crypto.news, 10 Nov 2026",
           "https://crypto.news/ethereum-p2p-protocol-mump2p-faster-block-delivery/"
+        ],
+        [
+          "TokenPost, 11 Nov 2026",
+          "https://www.tokenpost.com/news/technology/53709"
         ]
       ]
     },
@@ -161,8 +183,7 @@
         "tr": "Vitalik, silme kodlu ağ iletişimini faydalı bir iyileştirme olarak andı"
       },
       "body": {
-        "en": "In a 9 November post about Ethereum's roadmap, Vitalik Buterin listed erasure coded peer to peer networking for large data objects as a useful improvement, with implementation complexity as the main tradeoff. He did not name Optimum, and his proposals are separate from mump2p, but it is the same family of ideas.",
-        "tr": "Vitalik Buterin, 9 Kasım'da Ethereum yol haritası üzerine yazdığı bir yazıda büyük veri nesneleri için silme kodlu (erasure coded) eşten eşe ağ iletişimini faydalı bir iyileştirme olarak sıraladı; ana dezavantaj olarak uygulama karmaşıklığını gösterdi. Optimum'un adını anmadı ve önerileri mump2p'den ayrı, ama aynı fikir ailesinden geliyor."
+        "en": "In a 9 November post about Ethereum's roadmap, Vitalik Buterin listed erasure coded peer to peer networking for large data objects as a useful improvement, with implementation complexity as the main tradeoff. He did not name Optimum. The same day Muriel Médard posted that this is the networking improvement her team has built; his proposals and mump2p are separate, but they come from the same family of ideas."
       },
       "claim": null,
       "sources": [
@@ -179,8 +200,7 @@
         "tr": "Kısa kısa"
       },
       "body": {
-        "en": "Muriel Médard presented Optimum's latest paper on efficient, scalable P2P broadcasting at IEEE's Information Theory Workshop. Optimum is hiring a BD lead for the trading side of the business, aimed at latency sensitive traders. ETH Daily covered mump2p adoption in its 13 November edition. And a reminder from the team: Signal is free for every Ethereum node operator, solo stakers included.",
-        "tr": "Muriel Médard, Optimum'un verimli ve ölçeklenebilir P2P yayını üzerine son makalesini IEEE Bilgi Teorisi Çalıştayı'nda sundu. Optimum, işin alım satım tarafı için gecikmeye duyarlı yatırımcılara odaklanacak bir iş geliştirme lideri arıyor. ETH Daily, 13 Kasım sayısında mump2p'nin benimsenmesine yer verdi. Ekipten bir de hatırlatma: Signal, solo stake edenler dahil her Ethereum düğüm operatörü için ücretsiz."
+        "en": "Muriel Médard presented Optimum's latest paper on efficient, scalable P2P broadcasting at IEEE's Information Theory Workshop. Optimum is hiring a BD lead for the trading side of the business, aimed at latency sensitive traders. ETH Daily covered mump2p adoption in its 13 November edition, and Fracton Ventures published a Japanese explainer on 11 November. And a reminder from the team: Signal is free for every Ethereum node operator, solo stakers included."
       },
       "claim": null,
       "sources": [
@@ -199,6 +219,10 @@
         [
           "Optimum on X, free for all",
           "https://x.com/get_optimum/status/2123107564754018589"
+        ],
+        [
+          "Fracton Ventures (WECANDAOIT) on X",
+          "https://x.com/wecandaoit_jp/status/2120333561240969564"
         ]
       ]
     }
@@ -341,7 +365,7 @@
     [
       "$3.4B Total Value Boosted: mump2p is live on Ethereum mainnet",
       "Optimum blog",
-      "2026-10-27",
+      "2026-10-20",
       "https://www.getoptimum.xyz/blog/3-4b-total-value-boosted-mump2p-is-live-on-ethereum-mainnet"
     ],
     [
@@ -361,18 +385,22 @@
       "Blockonomi",
       "2026-11-10",
       "https://blockonomi.com/ethereum-staking-giants-bet-on-a-faster-network-as-adoption-doubles"
+    ],
+    [
+      "Optimum and the Hoodi PERCH evaluation",
+      "Lido research forum",
+      "2026-10-23",
+      "https://research.lido.fi/t/perch-request-for-node-operators-to-run-and-test-optimum-mump2p/11786"
     ]
   ],
   "claims": [
     {
       "claim": {
-        "en": "Blocks arrive 2 to 4 times faster than with gossipsub",
-        "tr": "Bloklar gossipsub'a göre 2 ile 4 kat daha hızlı geliyor"
+        "en": "Blocks move 2.5 to 3.5 times faster on average"
       },
       "status": "company",
       "note": {
-        "en": "Optimum's own mainnet figures. This week's Hub report: once a block appears, it reaches 95% of observers 2.15 times faster.",
-        "tr": "Optimum'un kendi ana ağ verileri. Bu haftaki Hub raporu: bir blok ortaya çıktıktan sonra gözlemcilerin %95'ine 2,15 kat daha hızlı ulaşıyor."
+        "en": "Optimum's launch post, measured on its own Hub. This week's Hub report: once a block appears, it reaches 95% of observers 2.15 times faster."
       }
     },
     {
@@ -393,8 +421,7 @@
       },
       "status": "independent",
       "note": {
-        "en": "Lido on Hoodi testnet, p95, group comparison: 407 ms.",
-        "tr": "Lido, Hoodi test ağı, p95, grup karşılaştırması: 407 ms."
+        "en": "Lido PERCH on the Hoodi testnet, p95, group comparison: 407 ms. Lido calls the results directional."
       }
     },
     {
@@ -404,8 +431,7 @@
       },
       "status": "mixed",
       "note": {
-        "en": "StereumLabs, 36 mainnet nodes, early build: some clients faster, none statistically significant.",
-        "tr": "StereumLabs, 36 ana ağ düğümü, erken sürüm: bazı istemcilerde hızlanma var, hiçbiri istatistiksel olarak anlamlı değil."
+        "en": "StereumLabs, 36 mainnet nodes, early build: Lighthouse and Prysm faster, Teku flat, Nimbus slower, nothing statistically significant. Optimum says its network-wide acceleration blurred the comparison."
       }
     }
   ],
@@ -413,5 +439,56 @@
     "text": "We use Random Linear Network Coding, which is a provably optimum coding scheme for broadcasting data.",
     "who": "Muriel Médard, 9 Nov 2026",
     "url": "https://blockonomi.com/ethereum-staking-giants-bet-on-a-faster-network-as-adoption-doubles"
-  }
+  },
+  "tldr": {
+    "en": [
+      "mump2p has run on Ethereum mainnet for a month. Optimum's Hub puts about 3.44 million ETH behind its gateways, more than double launch day, though growth paused this week.",
+      "Optimum's own numbers show blocks reaching 95% of observers 2.15 times faster. Lido's testnet evaluation agrees on direction; a smaller mainnet study found nothing significant.",
+      "Operators on gateway v1.3.2 or v1.3.3 should upgrade to v1.3.5."
+    ]
+  },
+  "takePart": [
+    {
+      "text": {
+        "en": "Run Signal on your validators. It is free and Optimum says one engineer can set it up in under an hour."
+      },
+      "url": "https://console.getoptimum.xyz/login"
+    },
+    {
+      "text": {
+        "en": "Built something about Optimum? Send it in and it joins the builders showcase."
+      },
+      "url": "/submit/"
+    },
+    {
+      "text": {
+        "en": "Make art or explainers? The Chronicler role in the Optimum Discord is for you."
+      },
+      "url": "https://discord.gg/getoptimum"
+    }
+  ],
+  "jobs": [
+    {
+      "title": "Business Development Lead (Trading)",
+      "where": "Remote, full time",
+      "date": "2026-11-17",
+      "url": "https://jobs.ashbyhq.com/optimum/adbb27a2-554e-47a6-a330-d0ac534adc62"
+    }
+  ],
+  "world": [
+    {
+      "lang": "ja",
+      "title": "Optimum と mump2p の解説記事",
+      "who": "Fracton Ventures (WECANDAOIT)",
+      "date": "2026-11-11",
+      "url": "https://x.com/wecandaoit_jp/status/2120333561240969564"
+    }
+  ],
+  "events": [
+    "devcon8-hub",
+    "tbc26",
+    "rollup-1023",
+    "blocmates-1020"
+  ],
+  "og": true
 }

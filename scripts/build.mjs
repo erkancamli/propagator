@@ -7,8 +7,10 @@ await rm('dist', { recursive: true, force: true });
 await mkdir('dist/assets', { recursive: true });
 await cp('public', 'dist', { recursive: true });
 const assets = {};
+// self hosted fonts (SIL Open Font License) are inlined at the top of the stylesheet
+await writeFile('dist/assets/site.css', (await readFile('public/assets/fonts.css', 'utf8')) + (await readFile('public/assets/site.css', 'utf8')));
 for (const [key, src, ext] of [['css', 'assets/site.css', 'css'], ['js', 'assets/site.js', 'js'], ['theme', 'assets/theme.js', 'js'], ['og', 'og.png', 'png']]) {
-  const buf = await readFile('public/' + src);
+  const buf = await readFile((key === 'css' ? 'dist/' : 'public/') + src);
   const name = src.replace(/\.[a-z]+$/, `-${hash(buf)}.${ext}`);
   await writeFile('dist/' + name, buf);
   assets[key] = name;

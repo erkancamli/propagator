@@ -5,14 +5,14 @@ import * as R from '../../lib/render.mjs';
 import { listIssues, getIssue, getPulse } from '../../lib/data.mjs';
 import { LANGS, CODES } from '../../lib/i18n.mjs';
 
-const ROUTES = ['/', '/weekly/', '/daily/', '/learn/', '/builders/', '/people/', '/pulse/', '/about/', '/submit/'];
+const ROUTES = ['/', '/weekly/', '/daily/', '/learn/', '/builders/', '/events/', '/videos/', '/people/', '/pulse/', '/about/', '/submit/'];
 
 export async function handle(req, { store, now = Date.now(), preview = false }) {
   const url = new URL(req.url);
   let path = url.pathname;
   // folder style URLs everywhere: /learn -> /learn/
-  if (!path.endsWith('/') && !/\.(xml|txt)$/.test(path)) return Response.redirect(new URL(path + '/' + url.search, url), 301);
-  let lang = 'en';
+  if (!path.endsWith('/') && !/\.(xml|txt|png)$/.test(path)) return Response.redirect(new URL(path + '/' + url.search, url), 301);
+  let lang = 'en', m0;
   const pre = path.match(/^\/([a-z]{2,3})(\/.*)$/);
   if (pre && pre[1] !== 'en' && CODES.includes(pre[1])) { lang = pre[1]; path = pre[2]; }
   const today = new Date(now).toISOString().slice(0, 10);
@@ -21,6 +21,11 @@ export async function handle(req, { store, now = Date.now(), preview = false }) 
   });
   const text = (body, type) => new Response(body, { headers: { 'content-type': type, 'cache-control': 'public, max-age=0, must-revalidate', 'netlify-cdn-cache-control': 'public, s-maxage=600, stale-while-revalidate=86400', 'netlify-cache-tag': 'pages' } });
 
+  // share images uploaded by the editor for issues that live in the store (seed images are static files)
+  if ((m0 = path.match(/^\/og\/((?:weekly|daily)-[\w-]{1,20}-[a-z]{2,3})\.png$/))) {
+    const buf = await store.get('og/' + m0[1] + '.png', { type: 'arrayBuffer' }).catch(() => null);
+    return buf ? new Response(buf, { headers: { 'content-type': 'image/png', 'cache-control': 'public, max-age=86400' } }) : new Response('not found', { status: 404 });
+  }
   if (path === '/robots.txt') return text(`User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /preview/\n\nSitemap: ${R.SITE}/sitemap.xml\n`, 'text/plain; charset=utf-8');
   if (path === '/sitemap.xml') {
     const [w, d] = await Promise.all([listIssues(store, 'weekly'), listIssues(store, 'daily')]);
@@ -54,9 +59,12 @@ export async function handle(req, { store, now = Date.now(), preview = false }) 
     return html({ ...R.weeklyPage(lang, issue, { prev: list[i + 1], next: i > 0 ? list[i - 1] : null }), noindex: isPreview });
   }
   if (path === '/learn/') return html(R.learnPage(lang));
-  if (path === '/people/') return html(R.peoplePage(lang));
+  if (path === '/people/') return html(R.peoplePage(lang, (await store.get('jobs/list', { type: 'json' }).catch(() => null)) || (await getIssue(store, 'weekly', (await listIssues(store, 'weekly'))[0]?.id || ''))?.jobs));
   if (path === '/builders/') return html(R.buildersPage(lang, today));
   if (path === '/about/') return html(R.aboutPage(lang));
+  if (path === '/events/') return html(R.eventsPage(lang, today));
+  if (path === '/videos/') return html(R.videosPage(lang, await store.get('yt/list', { type: 'json' }).catch(() => null)));
+  if ((m = path.match(/^\/subscribed\/(confirmed|left|bad)\/$/))) return html({ ...R.subscribedPage(lang, m[1]), noindex: true });
   if (path === '/submit/') return html(R.submitPage(lang));
   if (path === '/pulse/') {
     const pulse = await getPulse(store);

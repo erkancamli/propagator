@@ -1,6 +1,6 @@
 /* Propagator. Palette from Optimum's own slate scale; violet marks the mump2p path and nothing else loud. */
 :root {
-  --bg: #f0f2f4; --surface: #ffffff; --ink: #16181a; --muted: #474e55; --soft: #6a757f; --line: #d3dbe2; --line-2: #bcc0c3;
+  --bg: #f0f2f4; --surface: #ffffff; --ink: #16181a; --muted: #474e55; --soft: #5c6670; --line: #d3dbe2; --line-2: #bcc0c3;
   --accent: #6b2fc4; --pkt: #a463f2; --pkt-soft: rgba(164, 99, 242, .14); --gossip: #8d9ca9; --ok: #1f7a4d; --warn: #a15c07;
   --radius: 14px; --radius-s: 8px; --max: 1200px; --gut: 24px;
   --sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; --mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -373,3 +373,50 @@ section[id], article[id], div[id] { scroll-margin-top: 80px; }
 :lang(hi) body { line-height: 1.75; }
 :lang(ja) .prose p, :lang(zh) .prose p, :lang(ko) .prose p { line-height: 1.85; }
 :lang(ru) .hero h1, :lang(uk) .hero h1, :lang(vi) .hero h1, :lang(id) .hero h1 { max-width: 16ch; }
+
+/* in 30 seconds */
+.tldr { margin-top: 26px; padding: 18px 22px; border-radius: var(--radius); background: var(--surface); box-shadow: 0 0 0 1px var(--line); max-width: 760px; }
+.tldr .kicker { margin-bottom: 6px; }
+.tldr ul { margin: 0; padding-left: 20px; }
+.tldr li { margin: 6px 0; line-height: 1.55; }
+.tldr li::marker { color: var(--pkt); }
+
+/* events */
+.events { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.event { display: grid; grid-template-columns: 220px 1fr; gap: 6px 28px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.ev-when { display: flex; flex-direction: column; margin: 0; }
+.ev-when b { font-weight: 650; }
+.ev-when span { font-size: 14px; color: var(--soft); }
+.event h3 { font-size: 19px; margin-bottom: 6px; }
+.event h3 a { text-decoration: none; }
+.event h3 a:hover { text-decoration: underline; }
+.event p { margin: 0 0 8px; color: var(--muted); max-width: 66ch; }
+@media (max-width: 640px) { .event { grid-template-columns: 1fr; } }
+
+/* videos */
+.yt-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px 20px; }
+.yt-item a { display: flex; flex-direction: column; gap: 4px; text-decoration: none; }
+.yt-item img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; background: var(--surface); box-shadow: 0 0 0 1px var(--line); margin-bottom: 6px; }
+.yt-t { font-weight: 600; line-height: 1.35; }
+.yt-item a:hover .yt-t { text-decoration: underline; text-underline-offset: 3px; }
+.yt-d { font-size: 14px; color: var(--soft); }
+
+/* steps */
+.steps { margin: 0; padding-left: 22px; }
+.steps li { padding: 6px 0; }
+.steps li::marker { color: var(--accent); font-weight: 600; }
+
+/* subscribe */
+.subscribe { display: grid; grid-template-columns: 1fr 1.1fr; gap: 20px 40px; align-items: center; margin: 56px 0 0; padding: 28px 30px; border-radius: 20px; background: var(--surface); box-shadow: 0 0 0 1px var(--line); }
+.subscribe h2 { font-size: 24px; margin-bottom: 6px; }
+.subscribe > div p { color: var(--muted); margin: 0; }
+.sub-form { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+.sub-email input { width: 100%; font: 400 16px var(--sans); color: var(--ink); background: var(--bg); border: 1px solid var(--line-2); border-radius: 11px; padding: 11px 12px; }
+.sub-email input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+.sub-consent { grid-column: 1 / -1; display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: var(--muted); }
+.sub-consent input { margin-top: 4px; accent-color: var(--accent); }
+.sub-form .form-msg { grid-column: 1 / -1; font-size: 15px; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.issue .subscribe { grid-template-columns: 1fr; }
+@media (max-width: 800px) { .subscribe { grid-template-columns: 1fr; padding: 22px 20px; } }
+@media (max-width: 420px) { .sub-form { grid-template-columns: 1fr; } }
