@@ -5,6 +5,7 @@ import * as R from '../../lib/render.mjs';
 import { listIssues, getIssue } from '../../lib/data.mjs';
 import { register } from '../../lib/register.mjs';
 import { LANGS, CODES } from '../../lib/i18n.mjs';
+import { discordReady } from '../../lib/claim.mjs';
 
 const ROUTES = ['/', '/members/', '/classes/', '/builders/', '/archive/', '/learn/', '/people/', '/about/', '/submit/'];
 // pages that were folded into others when Propagator became a weekly magazine with a community page
@@ -12,7 +13,7 @@ const MOVED = { '/weekly/': '/archive/', '/daily/': '/archive/', '/community/': 
 
 const SECURITY = { 'x-content-type-options': 'nosniff', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-frame-options': 'SAMEORIGIN', 'permissions-policy': 'camera=(), microphone=(), geolocation=()', 'content-security-policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://i.ytimg.com https://pbs.twimg.com; frame-src https://www.youtube-nocookie.com; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'" };
 
-export async function handle(req, { store, now = Date.now(), preview = false }) {
+export async function handle(req, { store, now = Date.now(), preview = false, env = {} }) {
   const url = new URL(req.url);
   let path = url.pathname;
   // folder style URLs everywhere: /learn -> /learn/
@@ -30,6 +31,11 @@ export async function handle(req, { store, now = Date.now(), preview = false }) 
   if ((m0 = path.match(/^\/og\/((?:weekly|daily)-[\w-]{1,20}-[a-z]{2,3}\.png|m-[\w-]{1,60}\.jpg)$/))) {
     const buf = await store.get('og/' + m0[1], { type: 'arrayBuffer' }).catch(() => null);
     return buf ? new Response(buf, { headers: { 'content-type': m0[1].endsWith('.jpg') ? 'image/jpeg' : 'image/png', 'cache-control': 'public, max-age=86400' } }) : new Response('not found', { status: 404 });
+  }
+  // pictures members added to their own card with Discord (lib/claim.mjs); the ?v= in the link changes with each one
+  if ((m0 = path.match(/^\/avatar\/([\w-]{1,60})\.png$/))) {
+    const buf = await store.get('avatar/' + m0[1], { type: 'arrayBuffer' }).catch(() => null);
+    return buf ? new Response(buf, { headers: { 'content-type': 'image/png', 'cache-control': 'public, max-age=31536000, immutable', 'x-content-type-options': 'nosniff' } }) : new Response('not found', { status: 404, headers: { 'cache-control': 'no-store' } });
   }
   if (path === '/robots.txt') return text(`User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /preview/\n\nSitemap: ${R.SITE}/sitemap.xml\n`, 'text/plain; charset=utf-8');
   if (path === '/sitemap.xml') {
@@ -51,7 +57,7 @@ export async function handle(req, { store, now = Date.now(), preview = false }) 
   }
   if (path === '/members/') return html(R.membersPage(lang, await register(store)));
   if (path === '/classes/') return html(R.classesPage(lang, await register(store)));
-  if ((m0 = path.match(/^\/m\/([\w-]{1,60})\/$/))) { const reg = await register(store); const mem = reg.bySlug.get(m0[1]); return mem ? html(R.memberPage(lang, reg, mem)) : html(R.notFound(lang), 404); }
+  if ((m0 = path.match(/^\/m\/([\w-]{1,60})\/$/))) { const reg = await register(store); const mem = reg.bySlug.get(m0[1]); return mem ? html(R.memberPage(lang, reg, mem, { discord: discordReady(env) })) : html(R.notFound(lang), 404); }
   if ((m0 = path.match(/^\/class\/([\w-]{1,40})\/$/))) { const reg = await register(store); return reg.calls.some((c) => c.id === m0[1]) ? html(R.classPage(lang, reg, m0[1])) : html(R.notFound(lang), 404); }
   let m;
   const moved = MOVED[path] || (/^\/daily\/[\w-]{1,20}\/$/.test(path) ? '/archive/' : null);
@@ -80,7 +86,7 @@ export default async (req) => {
   const url = new URL(req.url);
   const token = url.searchParams.get('token') || '';
   const preview = /^(\/[a-z]{2,3})?\/preview\//.test(url.pathname) && Boolean(process.env.EDITOR_TOKEN) && [process.env.EDITOR_TOKEN, process.env.ADMIN_TOKEN].includes(token);
-  return handle(req, { store, preview });
+  return handle(req, { store, preview, env: process.env });
 };
 
 export const config = { path: '/*', preferStatic: true };

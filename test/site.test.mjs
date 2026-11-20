@@ -8,7 +8,7 @@ import { readFile } from 'node:fs/promises';
 
 function memStore() {
   const m = new Map();
-  return { async get(k, o = {}) { if (!m.has(k)) return null; const v = m.get(k); return o.type === 'arrayBuffer' ? v : JSON.parse(v); }, async setJSON(k, v) { m.set(k, JSON.stringify(v)); }, async set(k, v) { m.set(k, v); }, async list({ prefix = '' } = {}) { return { blobs: [...m.keys()].filter((k) => k.startsWith(prefix)).map((key) => ({ key })) }; } };
+  return { async get(k, o = {}) { if (!m.has(k)) return null; const v = m.get(k); return o.type === 'arrayBuffer' ? v : JSON.parse(v); }, async setJSON(k, v) { m.set(k, JSON.stringify(v)); }, async set(k, v) { m.set(k, v); }, async delete(k) { m.delete(k); }, async list({ prefix = '' } = {}) { return { blobs: [...m.keys()].filter((k) => k.startsWith(prefix)).map((key) => ({ key })) }; } };
 }
 const env = { ADMIN_TOKEN: 'a'.repeat(32), EDITOR_TOKEN: 'e'.repeat(32) };
 const req = (path, init = {}) => new Request('http://x' + path, init);
@@ -186,4 +186,57 @@ test('every language translates every text and keeps its placeholders', async ()
       assert.equal(got, want, `${lang} ${k} placeholders`);
     }
   }
+});
+
+test('members add their Discord picture themselves; name must match; they can remove it', async () => {
+  const store = memStore();
+  const denv = { ...env, DISCORD_CLIENT_ID: '123', DISCORD_CLIENT_SECRET: 's'.repeat(32), RATE_SALT: 'salt' };
+  const png = new Uint8Array([137, 80, 78, 71, 13, 10, 26, 10, 1, 2, 3]).buffer;
+  let nick = 'ecamli', userId = '42', inGuild = true; const seen = [];
+  const fetchImpl = async (u, init = {}) => {
+    seen.push(String(u));
+    if (u.endsWith('/oauth2/token')) return Response.json({ access_token: 'tok' });
+    if (u.endsWith('/oauth2/token/revoke')) return new Response('');
+    if (u.endsWith('/users/@me')) return Response.json({ id: userId, username: 'someone', global_name: null, avatar: 'abc' });
+    if (u.includes('/guilds/')) return inGuild ? Response.json({ nick, avatar: null }) : new Response('', { status: 404 });
+    if (u.startsWith('https://cdn.discordapp.com/avatars/')) return new Response(png);
+    return new Response('', { status: 404 });
+  };
+  const o = { store, env: denv, fetchImpl, now: Date.UTC(2026, 10, 20) };
+  // without the Discord settings the page shows no button
+  assert.ok(!(await (await site(req('/m/ecamli/'), { store })).text()).includes('discord/start'));
+  assert.match(await (await site(req('/m/ecamli/'), { store, env: denv })).text(), /api\/discord\/start\?m=ecamli/);
+  const go = async (slug, extra = '', cookieOverride) => {
+    const s1 = await api(req(`/api/discord/start?m=${slug}&lang=tr${extra}`), o);
+    assert.equal(s1.status, 302);
+    const loc = new URL(s1.headers.get('location'));
+    assert.equal(loc.origin, 'https://discord.com'); assert.equal(loc.searchParams.get('scope'), 'identify guilds.members.read');
+    const cookie = cookieOverride ?? s1.headers.get('set-cookie').split(';')[0];
+    const r = await api(req(`/api/discord/callback?code=c&state=${encodeURIComponent(loc.searchParams.get('state'))}`, { headers: { cookie } }), o);
+    assert.equal(r.status, 303);
+    return r.headers.get('location');
+  };
+  assert.equal((await api(req('/api/discord/start?m=nobody-here'), o)).status, 404);
+  // a forged or replayed callback without the browser cookie changes nothing
+  assert.match(await go('ecamli', '', 'pclaim=xyz'), /claim=error/);
+  nick = 'Marina'; assert.equal(await go('ecamli'), '/tr/m/ecamli/?claim=nomatch');
+  nick = 'ecamli'; inGuild = false; assert.match(await go('ecamli'), /claim=notmember/);
+  inGuild = true; assert.match(await go('ecamli'), /claim=ok/);
+  assert.ok(seen.some((u) => u.includes('/avatars/42/abc.png')));
+  const claims = await (await api(req('/api/claims'), o)).json();
+  assert.equal(claims.ecamli.photo, true); assert.ok(!JSON.stringify(await store.get('claims/index', { type: 'json' })).includes('"42"'), 'Discord ID is not stored');
+  const page = await (await site(req('/m/ecamli/'), { store, env: denv })).text();
+  assert.match(page, /<img class="av av-img" src="\/avatar\/ecamli\.png\?v=/);
+  const pic = await site(req('/avatar/ecamli.png'), { store });
+  assert.equal(pic.headers.get('content-type'), 'image/png');
+  // the same account cannot take a second card, and another account cannot take this one
+  nick = 'Marina'; assert.match(await go('marina'), /claim=other/);
+  userId = '43'; nick = 'ecamli'; assert.match(await go('ecamli'), /claim=taken/);
+  // someone else cannot remove it; the owner can
+  assert.match(await go('ecamli', '&remove=1'), /claim=removed/);
+  assert.ok((await api(req('/api/claims'), o).then((r) => r.json())).ecamli);
+  userId = '42'; assert.match(await go('ecamli', '&remove=1'), /claim=removed/);
+  assert.equal((await api(req('/api/claims'), o).then((r) => r.json())).ecamli, undefined);
+  assert.equal((await site(req('/avatar/ecamli.png'), { store })).status, 404);
+  assert.ok(!(await (await site(req('/m/ecamli/'), { store, env: denv })).text()).includes('av-img'));
 });

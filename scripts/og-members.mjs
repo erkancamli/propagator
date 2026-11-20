@@ -3,6 +3,9 @@
 // Without slugs it renders every member into public/og/m-<slug>.jpg. Run `npm run build` first (it needs dist/assets).
 // For members added later through the admin API, the weekly task renders their cards and uploads them with
 // PUT /api/admin/og/m-<slug>.jpg.
+//   node scripts/og-members.mjs --claimed [outDir]
+// draws the cards whose owners added their Discord picture (read from the live site) as m-<slug>-p<version>.jpg;
+// with EDITOR_TOKEN set it uploads each one, and the member page switches its share image to it.
 import { readFile, readdir, writeFile, mkdir, rm } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { register } from '../lib/register.mjs';
@@ -11,7 +14,9 @@ import { UI } from '../lib/t.mjs';
 const { chromium } = createRequire(import.meta.url)('playwright');
 
 const ROOT = new URL('../', import.meta.url).pathname;
-const [outDir = 'public/og', ...only] = process.argv.slice(2);
+const argv = process.argv.slice(2), claimed = argv[0] === '--claimed';
+const [outDir = claimed ? '.og-claimed' : 'public/og', ...only] = claimed ? argv.slice(1) : argv;
+const LIVE = 'https://propagator.news';
 const css = (await readdir(ROOT + 'dist/assets')).find((f) => /^site-\w+\.css$/.test(f));
 const style = (await readFile(ROOT + 'dist/assets/' + css, 'utf8')).replaceAll('url(/assets/fonts/', 'url(file://' + ROOT + 'public/assets/fonts/');
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -29,7 +34,12 @@ body{margin:0;width:1200px;height:630px;overflow:hidden;background:radial-gradie
 <p class="purl">propagator.news/m/${esc(m.slug)}</p></div></body></html>`;
 
 const reg = await register(null);
-const list = only.length ? reg.members.filter((m) => only.includes(m.slug)) : reg.members;
+let list = only.length ? reg.members.filter((m) => only.includes(m.slug)) : reg.members;
+const file = (m) => (m.v ? `m-${m.slug}-p${m.v}.jpg` : `m-${m.slug}.jpg`);
+if (claimed) {
+  const c = await (await fetch(LIVE + '/api/claims')).json();
+  list = list.filter((m) => c[m.slug]?.photo && !c[m.slug].og?.endsWith(`-p${c[m.slug].v}.jpg`)).map((m) => ({ ...m, v: c[m.slug].v, photo: `${LIVE}/avatar/${m.slug}.png?v=${c[m.slug].v}` }));
+}
 await mkdir(outDir, { recursive: true });
 const tmp = ROOT + '.og-member.html';
 const browser = await chromium.launch();
@@ -39,7 +49,12 @@ for (const m of list) {
   await writeFile(tmp, page(m, reg));
   await p.goto('file://' + tmp, { waitUntil: 'load' });
   await p.evaluate(() => document.fonts.ready);
-  await p.screenshot({ path: `${outDir}/m-${m.slug}.jpg`, type: 'jpeg', quality: 86 });
+  await p.waitForLoadState('networkidle');
+  await p.screenshot({ path: `${outDir}/${file(m)}`, type: 'jpeg', quality: 86 });
+  if (claimed && process.env.EDITOR_TOKEN) {
+    const r = await fetch(`${LIVE}/api/admin/og/${file(m)}`, { method: 'PUT', headers: { authorization: 'Bearer ' + process.env.EDITOR_TOKEN, 'content-type': 'image/jpeg' }, body: await readFile(`${outDir}/${file(m)}`) });
+    console.log(file(m), r.status);
+  }
   if (++n % 50 === 0) console.log(n);
 }
 await browser.close();

@@ -2,3 +2,4 @@ node_modules/
 dist/
 .netlify/
 .data/
+.og-claimed/

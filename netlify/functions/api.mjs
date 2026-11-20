@@ -14,12 +14,17 @@
 //   POST /api/subscribe                  { email, lang, consent } double opt in; GET /api/subscribe/confirm?t=, GET /api/unsubscribe?t=
 //   GET  /api/admin/subscribers          counts by language and status; ?format=csv exports (admin)
 //   POST /api/admin/subscribers/confirm-pending   re-sends confirmation emails to pending addresses (admin)
+// Members (Discord sign in, see lib/claim.mjs):
+//   GET  /api/discord/start?m=<slug>&lang=&remove=1   sends the member to Discord to claim (or release) a card
+//   GET  /api/discord/callback                        Discord returns here; back to the card with ?claim=<result>
+//   GET  /api/claims                                  claimed cards: { slug: { v, photo, og } }
 import { getStore } from '@netlify/blobs';
 import { purgeCache } from '@netlify/functions';
 import crypto from 'node:crypto';
 import { getPulse, putIssue, getIssue, listIssues } from '../../lib/data.mjs';
 import { sendConfirm, sendWeekly, mailReady } from '../../lib/mail.mjs';
 import { register, parseAnnouncement, ROLE } from '../../lib/register.mjs';
+import { discordReady, makeState, readState, idHash, getClaims, nameMatches, authorizeUrl, discordProfile, fetchAvatar } from '../../lib/claim.mjs';
 import { CODES } from '../../lib/i18n.mjs';
 import { TM } from '../../lib/tm.mjs';
 import { key as tmKey } from '../../lib/t.mjs';
@@ -60,7 +65,7 @@ export function validateIssue(x) {
   return errs;
 }
 
-export async function handle(req, { store, env, ip = '', now = Date.now(), purge = async () => {} }) {
+export async function handle(req, { store, env, ip = '', now = Date.now(), purge = async () => {}, fetchImpl = globalThis.fetch }) {
   const url = new URL(req.url);
   const path = url.pathname.replace(/\/+$/, '');
   const bearer = (req.headers.get('authorization') || '').replace(/^Bearer\s+/i, '') || url.searchParams.get('token') || '';
@@ -129,6 +134,48 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
   }
   if (path === '/api/unsubscribe' && req.method === 'POST') return json({ ok: true }); // one click unsubscribe header; the GET above does the work
 
+  // ---- members claim their card with Discord ----
+  if (path === '/api/claims' && req.method === 'GET') {
+    const c = await getClaims(store);
+    return json(Object.fromEntries(Object.entries(c).map(([k, v]) => [k, { v: v.v, photo: Boolean(v.photo), og: v.og || null }])), 200, { 'cache-control': 'public, max-age=60' });
+  }
+  if ((path === '/api/discord/start' || path === '/api/discord/callback') && req.method === 'GET') {
+    const lp = (l) => (l && l !== 'en' && CODES.includes(l) ? '/' + l : '');
+    const back = (d, result) => new Response(null, { status: 303, headers: { location: `${lp(d?.lang)}/m/${d?.m || ''}/?claim=${result}`, 'cache-control': 'no-store', 'set-cookie': 'pclaim=; Path=/api/discord; Max-Age=0; HttpOnly; Secure; SameSite=Lax' } });
+    if (!discordReady(env)) return json({ error: 'Discord sign in is not set up' }, 503);
+    const redirect = env.DISCORD_REDIRECT || url.origin + '/api/discord/callback';
+    if (path === '/api/discord/start') {
+      const m = clip(url.searchParams.get('m'), 70), lang = clip(url.searchParams.get('lang'), 3);
+      const reg = await register(store);
+      if (!reg.bySlug.has(m)) return json({ error: 'no such card' }, 404);
+      const n = crypto.randomBytes(12).toString('base64url');
+      const state = makeState(env, { m, lang: CODES.includes(lang) ? lang : 'en', remove: url.searchParams.get('remove') === '1', n }, now);
+      return new Response(null, { status: 302, headers: { location: authorizeUrl(env, redirect, state), 'cache-control': 'no-store', 'set-cookie': `pclaim=${n}; Path=/api/discord; Max-Age=600; HttpOnly; Secure; SameSite=Lax` } });
+    }
+    const d = readState(env, url.searchParams.get('state'), now);
+    const cookie = (req.headers.get('cookie') || '').match(/(?:^|;\s*)pclaim=([\w-]+)/)?.[1];
+    if (!d || !cookie || !safeEq(cookie, d.n)) return d ? back(d, 'error') : new Response(null, { status: 303, headers: { location: '/members/' } });
+    if (url.searchParams.get('error') || !url.searchParams.get('code')) return back(d, 'denied');
+    let prof; try { prof = await discordProfile(env, url.searchParams.get('code'), redirect, fetchImpl); } catch (e) { console.log('discord', String(e)); return back(d, 'error'); }
+    const h = idHash(env, prof.user.id);
+    const claims = await getClaims(store);
+    if (d.remove) {
+      if (claims[d.m]?.h === h) { const old = claims[d.m]; delete claims[d.m]; await store.setJSON('claims/index', claims); await store.delete?.('avatar/' + d.m); if (old.og) await store.delete?.('og/' + old.og.replace(/^\/og\//, '')); await purge(); }
+      return back(d, 'removed');
+    }
+    if (!prof.member) return back(d, 'notmember');
+    const reg = await register(store), m = reg.bySlug.get(d.m);
+    if (!m) return back(d, 'error');
+    if (!nameMatches(m, [prof.member.nick, prof.user.global_name, prof.user.username])) return back(d, 'nomatch');
+    if (claims[d.m] && claims[d.m].h !== h) return back(d, 'taken');
+    if (Object.entries(claims).some(([k, v]) => k !== d.m && v.h === h)) return back(d, 'other');
+    const pic = await fetchAvatar(prof.user, prof.member, fetchImpl).catch(() => null);
+    if (pic) await store.set('avatar/' + d.m, pic); else await store.delete?.('avatar/' + d.m);
+    claims[d.m] = { h, v: now.toString(36), photo: Boolean(pic), at: new Date(now).toISOString() };
+    await store.setJSON('claims/index', claims); await purge();
+    return back(d, pic ? 'ok' : 'nophoto');
+  }
+
   if (!path.startsWith('/api/admin/')) return json({ error: 'not found' }, 404);
   if (!isEditor && path !== '/api/admin/publish' && !(path === '/api/admin/rolecall' && req.method !== 'PUT')) return json({ error: 'unauthorized' }, 401); // the approval page handles its own auth
 
@@ -186,6 +233,8 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
     const okType = mo[1].endsWith('.png') ? head === '137,80,78,71' : head.startsWith('255,216,255');
     if (buf.byteLength > 2e6 || !okType) return json({ error: 'a PNG (issues) or JPEG (member cards) under 2 MB is required' }, 400);
     await store.set('og/' + mo[1], buf);
+    const pc = mo[1].match(/^m-([\w-]+)-p([a-z0-9]+)\.jpg$/);
+    if (pc) { const claims = await getClaims(store), c = claims[pc[1]]; if (c && c.v === pc[2]) { c.og = '/og/' + mo[1]; await store.setJSON('claims/index', claims); await purge(); } }
     return json({ ok: true });
   }
   // the same, as a page: open /api/admin/rolecall, paste the announcement, enter the editor token

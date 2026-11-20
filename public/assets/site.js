@@ -146,4 +146,16 @@
     }, { rootMargin: '-20% 0px -70% 0px' });
     Object.keys(map).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
   }
+
+  // result of the Discord sign in on a member page: show the message once, then drop it from the address
+  var cm = document.querySelector('.claim-msg');
+  if (cm) {
+    try {
+      var r = new URLSearchParams(location.search).get('claim');
+      if (r && /^[a-z]+$/.test(r) && cm.dataset[r]) {
+        cm.textContent = cm.dataset[r]; cm.hidden = false; cm.classList.add(r === 'ok' || r === 'removed' || r === 'nophoto' ? 'good' : 'bad');
+        history.replaceState(null, '', location.pathname + location.hash);
+      }
+    } catch (e) {}
+  }
 })();
