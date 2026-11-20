@@ -15,7 +15,9 @@
 //   GET  /api/admin/subscribers          counts by language and status; ?format=csv exports (admin)
 //   POST /api/admin/subscribers/confirm-pending   re-sends confirmation emails to pending addresses (admin)
 // Members (Discord sign in, see lib/claim.mjs):
-//   GET  /api/discord/start?m=<slug>&lang=&remove=1   sends the member to Discord to claim (or release) a card
+//   GET  /api/discord/start?m=<slug>&lang=&remove=1|upload=1   sends the member to Discord to claim (or release) a card;
+//                                        upload=1 proves ownership and then lets them upload a picture of their own
+//   POST /api/own/photo                  the owner's own picture (JPEG, PNG or WebP); needs the cookie set after sign in
 //   GET  /api/discord/callback                        Discord returns here; back to the card with ?claim=<result>
 //   GET  /api/claims                                  claimed cards: { slug: { v, photo, og } }
 import { getStore } from '@netlify/blobs';
@@ -24,7 +26,7 @@ import crypto from 'node:crypto';
 import { getPulse, putIssue, getIssue, listIssues } from '../../lib/data.mjs';
 import { sendConfirm, sendWeekly, mailReady } from '../../lib/mail.mjs';
 import { register, parseAnnouncement, ROLE } from '../../lib/register.mjs';
-import { discordReady, makeState, readState, idHash, getClaims, nameMatches, authorizeUrl, discordProfile, fetchAvatar } from '../../lib/claim.mjs';
+import { discordReady, makeState, readState, idHash, getClaims, nameMatches, authorizeUrl, discordProfile, fetchAvatar, imageType } from '../../lib/claim.mjs';
 import { CODES } from '../../lib/i18n.mjs';
 import { TM } from '../../lib/tm.mjs';
 import { key as tmKey } from '../../lib/t.mjs';
@@ -149,7 +151,7 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
       const reg = await register(store);
       if (!reg.bySlug.has(m)) return json({ error: 'no such card' }, 404);
       const n = crypto.randomBytes(12).toString('base64url');
-      const state = makeState(env, { m, lang: CODES.includes(lang) ? lang : 'en', remove: url.searchParams.get('remove') === '1', n }, now);
+      const state = makeState(env, { m, lang: CODES.includes(lang) ? lang : 'en', remove: url.searchParams.get('remove') === '1', upload: url.searchParams.get('upload') === '1', n }, now);
       return new Response(null, { status: 302, headers: { location: authorizeUrl(env, redirect, state), 'cache-control': 'no-store', 'set-cookie': `pclaim=${n}; Path=/api/discord; Max-Age=600; HttpOnly; Secure; SameSite=Lax` } });
     }
     const d = readState(env, url.searchParams.get('state'), now);
@@ -169,11 +171,36 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
     if (!nameMatches(m, [prof.member.nick, prof.user.global_name, prof.user.username])) return back(d, 'nomatch');
     if (claims[d.m] && claims[d.m].h !== h) return back(d, 'taken');
     if (Object.entries(claims).some(([k, v]) => k !== d.m && v.h === h)) return back(d, 'other');
+    if (d.upload) {
+      // ownership proven; keep any picture already there and let the owner upload one for the next 30 minutes
+      if (!claims[d.m]) { claims[d.m] = { h, v: now.toString(36), photo: false, at: new Date(now).toISOString() }; await store.setJSON('claims/index', claims); }
+      const r = back(d, 'upload');
+      r.headers.append('set-cookie', `pown=${makeState(env, { m: d.m, h, lang: d.lang }, now + 1200e3)}; Path=/api/own; Max-Age=1800; HttpOnly; Secure; SameSite=Lax`);
+      return r;
+    }
     const pic = await fetchAvatar(prof.user, prof.member, fetchImpl).catch(() => null);
     if (pic) await store.set('avatar/' + d.m, pic); else await store.delete?.('avatar/' + d.m);
-    claims[d.m] = { h, v: now.toString(36), photo: Boolean(pic), at: new Date(now).toISOString() };
+    claims[d.m] = { h, v: now.toString(36), photo: Boolean(pic), at: claims[d.m]?.at || new Date(now).toISOString() };
     await store.setJSON('claims/index', claims); await purge();
     return back(d, pic ? 'ok' : 'nophoto');
+  }
+
+  if (path === '/api/own/photo' && req.method === 'POST') {
+    const page = (req.headers.get('accept') || '').includes('text/html'); // a plain form post, without the page script
+    const reply = (b, st) => (page ? new Response(null, { status: 303, headers: { location: b.to || '/members/', 'cache-control': 'no-store' } }) : json(b, st));
+    const cookie = (req.headers.get('cookie') || '').match(/(?:^|;\s*)pown=([\w.-]+)/)?.[1];
+    const d = discordReady(env) && readState(env, cookie, now);
+    if (!d) return reply({ error: 'expired' }, 401);
+    const claims = await getClaims(store);
+    const back = (r) => `${d.lang && d.lang !== 'en' ? '/' + d.lang : ''}/m/${d.m}/?claim=${r}`;
+    if (claims[d.m]?.h !== d.h) return reply({ error: 'expired', to: back('expired') }, 401);
+    let file; try { file = (await req.formData()).get('photo'); } catch { file = null; }
+    const buf = file && typeof file.arrayBuffer === 'function' ? await file.arrayBuffer() : null;
+    if (!buf || buf.byteLength > 5e6 || !imageType(buf)) return reply({ error: 'badfile', to: back('badfile') }, 400);
+    await store.set('avatar/' + d.m, buf);
+    claims[d.m] = { ...claims[d.m], v: now.toString(36), photo: true, own: true }; delete claims[d.m].og;
+    await store.setJSON('claims/index', claims); await purge();
+    return reply({ ok: true, to: back('uploaded') });
   }
 
   if (!path.startsWith('/api/admin/')) return json({ error: 'not found' }, 404);

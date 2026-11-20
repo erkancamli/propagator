@@ -226,7 +226,7 @@ test('members add their Discord picture themselves; name must match; they can re
   const claims = await (await api(req('/api/claims'), o)).json();
   assert.equal(claims.ecamli.photo, true); assert.ok(!JSON.stringify(await store.get('claims/index', { type: 'json' })).includes('"42"'), 'Discord ID is not stored');
   const page = await (await site(req('/m/ecamli/'), { store, env: denv })).text();
-  assert.match(page, /<img class="av av-img" src="\/avatar\/ecamli\.png\?v=/);
+  assert.match(page, /class="cred-pic"><img src="\/avatar\/ecamli\.png\?v=/);
   const pic = await site(req('/avatar/ecamli.png'), { store });
   assert.equal(pic.headers.get('content-type'), 'image/png');
   // the same account cannot take a second card, and another account cannot take this one
@@ -238,5 +238,25 @@ test('members add their Discord picture themselves; name must match; they can re
   userId = '42'; assert.match(await go('ecamli', '&remove=1'), /claim=removed/);
   assert.equal((await api(req('/api/claims'), o).then((r) => r.json())).ecamli, undefined);
   assert.equal((await site(req('/avatar/ecamli.png'), { store })).status, 404);
-  assert.ok(!(await (await site(req('/m/ecamli/'), { store, env: denv })).text()).includes('av-img'));
+  assert.ok(!(await (await site(req('/m/ecamli/'), { store, env: denv })).text()).includes("cred-pic"));
+
+  // their own picture: Discord proves the card is theirs, then a short lived cookie allows one upload
+  const s1 = await api(req('/api/discord/start?m=ecamli&upload=1'), o);
+  const loc = new URL(s1.headers.get('location'));
+  const cb = await api(req(`/api/discord/callback?code=c&state=${encodeURIComponent(loc.searchParams.get('state'))}`, { headers: { cookie: s1.headers.get('set-cookie').split(';')[0] } }), o);
+  assert.equal(cb.headers.get('location'), '/m/ecamli/?claim=upload');
+  const own = cb.headers.get('set-cookie').match(/pown=[\w.-]+/)[0];
+  const up = (cookie, bytes) => { const fd = new FormData(); fd.append('photo', new Blob([bytes]), 'p.jpg'); return api(req('/api/own/photo', { method: 'POST', body: fd, headers: cookie ? { cookie } : {} }), o); };
+  const jpg = new Uint8Array([255, 216, 255, 224, 0, 16, 74, 70, 73, 70]);
+  assert.equal((await up('', jpg)).status, 401);
+  assert.equal((await up(own, new TextEncoder().encode('<svg onload=alert(1)>'))).status, 400);
+  const ok = await (await up(own, jpg)).json();
+  assert.equal(ok.to, '/m/ecamli/?claim=uploaded');
+  const pic2 = await site(req('/avatar/ecamli.png'), { store });
+  assert.equal(pic2.headers.get('content-type'), 'image/jpeg');
+  const page2 = await (await site(req('/m/ecamli/'), { store, env: denv })).text();
+  assert.match(page2, /cred-pic/); assert.match(page2, /upload=1/);
+  // a cookie for this card is useless once the card is released
+  userId = '42'; await go('ecamli', '&remove=1');
+  assert.equal((await up(own, jpg)).status, 401);
 });

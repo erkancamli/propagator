@@ -148,14 +148,35 @@
   }
 
   // result of the Discord sign in on a member page: show the message once, then drop it from the address
-  var cm = document.querySelector('.own-msg');
+  var cm = document.querySelector('.own-msg'), pick = document.querySelector('.own-pick');
+  var say = function (r) { if (!cm || !cm.dataset[r]) return; cm.textContent = cm.dataset[r]; cm.hidden = false; cm.className = 'own-msg ' + (/^(ok|removed|nophoto|upload|uploaded)$/.test(r) ? 'good' : 'bad'); };
   if (cm) {
     try {
       var r = new URLSearchParams(location.search).get('claim');
       if (r && /^[a-z]+$/.test(r) && cm.dataset[r]) {
-        cm.textContent = cm.dataset[r]; cm.hidden = false; cm.classList.add(r === 'ok' || r === 'removed' || r === 'nophoto' ? 'good' : 'bad');
+        say(r);
+        if (r === 'upload' && pick) { pick.hidden = false; pick.querySelector('input').focus(); }
         history.replaceState(null, '', location.pathname + location.hash);
       }
     } catch (e) {}
   }
+  // the owner's own picture: scaled down in the browser to at most 640 px, sent as JPEG
+  if (pick) pick.addEventListener('submit', function (ev) {
+    var f = pick.querySelector('input').files[0];
+    if (!f || !window.fetch || !window.createImageBitmap) return; // plain form post still works
+    ev.preventDefault();
+    var btn = pick.querySelector('button'); btn.disabled = true;
+    createImageBitmap(f).then(function (img) {
+      var k = Math.min(1, 640 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+      c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      return new Promise(function (ok) { c.toBlob(ok, 'image/jpeg', 0.9); });
+    }).then(function (blob) {
+      var fd = new FormData(); fd.append('photo', blob, 'photo.jpg');
+      return fetch(pick.action, { method: 'POST', body: fd, credentials: 'same-origin' });
+    }).then(function (res) { return res.json(); }).then(function (j) {
+      if (j.ok) { location.href = j.to; return; }
+      say(j.error === 'expired' ? 'expired' : 'badfile'); btn.disabled = false;
+    }).catch(function () { say('badfile'); btn.disabled = false; });
+  });
 })();

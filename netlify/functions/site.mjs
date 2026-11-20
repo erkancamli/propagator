@@ -5,7 +5,7 @@ import * as R from '../../lib/render.mjs';
 import { listIssues, getIssue } from '../../lib/data.mjs';
 import { register } from '../../lib/register.mjs';
 import { LANGS, CODES } from '../../lib/i18n.mjs';
-import { discordReady } from '../../lib/claim.mjs';
+import { discordReady, imageType } from '../../lib/claim.mjs';
 
 const ROUTES = ['/', '/members/', '/classes/', '/builders/', '/archive/', '/learn/', '/people/', '/about/', '/submit/'];
 // pages that were folded into others when Propagator became a weekly magazine with a community page
@@ -35,7 +35,7 @@ export async function handle(req, { store, now = Date.now(), preview = false, en
   // pictures members added to their own card with Discord (lib/claim.mjs); the ?v= in the link changes with each one
   if ((m0 = path.match(/^\/avatar\/([\w-]{1,60})\.png$/))) {
     const buf = await store.get('avatar/' + m0[1], { type: 'arrayBuffer' }).catch(() => null);
-    return buf ? new Response(buf, { headers: { 'content-type': 'image/png', 'cache-control': 'public, max-age=31536000, immutable', 'x-content-type-options': 'nosniff' } }) : new Response('not found', { status: 404, headers: { 'cache-control': 'no-store' } });
+    return buf && imageType(buf) ? new Response(buf, { headers: { 'content-type': imageType(buf), 'cache-control': 'public, max-age=31536000, immutable', 'x-content-type-options': 'nosniff', 'content-security-policy': "default-src 'none'" } }) : new Response('not found', { status: 404, headers: { 'cache-control': 'no-store' } });
   }
   if (path === '/robots.txt') return text(`User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /preview/\n\nSitemap: ${R.SITE}/sitemap.xml\n`, 'text/plain; charset=utf-8');
   if (path === '/sitemap.xml') {
