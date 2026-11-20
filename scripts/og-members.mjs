@@ -6,7 +6,7 @@
 import { readFile, readdir, writeFile, mkdir, rm } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { register } from '../lib/register.mjs';
-import { credential } from '../lib/render.mjs';
+import { credential, OPTIMUM_WORDMARK } from '../lib/render.mjs';
 import { UI } from '../lib/t.mjs';
 const { chromium } = createRequire(import.meta.url)('playwright');
 
@@ -21,10 +21,10 @@ const page = (m, reg) => `<!doctype html><html lang="en"><head><meta charset="ut
 body{margin:0;width:1200px;height:630px;overflow:hidden;background:radial-gradient(900px 520px at 30% 50%,rgba(184,124,255,.20),transparent 65%),#0a0b0e;display:grid;grid-template-columns:600px 1fr;align-items:center;font-family:Geist,sans-serif;color:#eef0f4}
 .card{display:grid;place-items:center}.card .cred{width:500px}.card .cred-name{font-size:30px;max-width:330px}.card .cred-in{padding:24px 26px}
 .side{padding-right:64px}.side h1{font-size:${m.name.length > 16 ? 50 : 62}px;line-height:1.04;letter-spacing:-.035em;margin:18px 0 14px;overflow-wrap:anywhere}
-.side p{margin:0;font-size:24px;color:#a8afba}.side .rb{font-size:18px;padding:6px 14px}.brand{display:flex;align-items:center;gap:10px;font:700 24px Geist;letter-spacing:-.02em}.brand .pmark{width:30px;height:30px;fill:#eef0f4}.brand .pmark .pmark-b{fill:#b87cff}
+.side p{margin:0;font-size:24px;color:#a8afba}.side .rb{font-size:18px;padding:6px 14px}.brand{display:flex;align-items:center;gap:12px;font:650 24px Geist;letter-spacing:-.01em;color:#eef0f4}.brand .opt-wm{height:24px;width:auto;color:#eef0f4}.brand span{padding-left:12px;border-left:2px solid rgba(238,240,244,.35)}
 .purl{margin-top:30px !important;font:500 20px 'Geist Mono',monospace;color:#808894}</style></head><body>
 <div class="card">${credential('en', m, { big: true })}</div>
-<div class="side"><div class="brand"><svg class="pmark" viewBox="0 0 32 32"><rect x="2" y="4" width="9" height="9" rx="2"/><rect x="2" y="19" width="9" height="9" rx="2" opacity=".55"/><rect x="13" y="11.5" width="9" height="9" rx="2" opacity=".8"/><rect x="21" y="9" width="9" height="14" rx="2.5" class="pmark-b"/></svg>${esc(R.name)}</div>
+<div class="side"><div class="brand">${OPTIMUM_WORDMARK}<span>Register</span></div>
 <h1>${esc(m.name)}</h1><p><span class="rb rb-${m.role.toLowerCase().replace(/[^a-z]/g, '')}">${esc(m.role)}</span>&nbsp; ${esc(R.since(new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(m.since + 'T12:00:00Z'))))}</p>
 <p class="purl">propagator.news/m/${esc(m.slug)}</p></div></body></html>`;
 
