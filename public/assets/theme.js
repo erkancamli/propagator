@@ -1,1 +1,1 @@
-(function () { try { if (localStorage.getItem('pg-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {} })();
+(function () { try { var t = localStorage.getItem('pg-theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {} })();
