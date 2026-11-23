@@ -305,4 +305,56 @@
 
   // the section menu on small screens closes once a section is chosen
   document.querySelectorAll('.toc-m a').forEach(function (a) { a.addEventListener('click', function () { a.closest('details').open = false; }); });
+
+  // home search: names appear as you type; arrows move, Enter opens the highlighted member or the full results
+  var hq = document.querySelector('#q[role=combobox]');
+  if (hq && window.fetch) (function () {
+    var box = document.getElementById('q-list'), form = hq.form, data = null, items = [], active = -1;
+    var fold = function (s) { return s.normalize('NFKC').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, ''); };
+    var load = function () { if (!data) data = fetch('/api/members').then(function (r) { return r.json(); }).then(function (list) { list.forEach(function (m) { m.f = fold(m.a); m.k = fold(m.n).replace(/^[^\p{L}\p{N}]+/u, ''); }); return list; }).catch(function () { data = null; return []; }); return data; };
+    var close = function () { box.hidden = true; hq.setAttribute('aria-expanded', 'false'); hq.removeAttribute('aria-activedescendant'); active = -1; };
+    var mark = function (i) {
+      active = i;
+      items.forEach(function (el, k) { el.setAttribute('aria-selected', String(k === i)); });
+      if (i >= 0) { hq.setAttribute('aria-activedescendant', items[i].id); items[i].scrollIntoView({ block: 'nearest' }); } else hq.removeAttribute('aria-activedescendant');
+    };
+    var render = function () {
+      var q = fold(hq.value.trim());
+      if (!q) { close(); return; }
+      load().then(function (list) {
+        if (fold(hq.value.trim()) !== q) return;
+        var hits = list.filter(function (m) { return m.f.indexOf(q) !== -1; });
+        // names that start with the query first, then the rest
+        hits.sort(function (a, b) { return (b.k.indexOf(q) === 0) - (a.k.indexOf(q) === 0) || a.k.localeCompare(b.k); });
+        box.innerHTML = '';
+        hits.slice(0, 6).forEach(function (m, i) {
+          var li = document.createElement('li'); li.id = 'q-opt-' + i; li.setAttribute('role', 'option');
+          var a = document.createElement('a'); a.href = box.dataset.base + m.s + '/'; a.tabIndex = -1;
+          var av = document.createElement(m.p ? 'img' : 'span'); av.className = 'q-av q-' + m.r.toLowerCase();
+          if (m.p) { av.src = m.p; av.alt = ''; } else av.textContent = (m.n.normalize('NFKC').match(/[\p{L}\p{N}]/u) || ['?'])[0].toUpperCase();
+          var nm = document.createElement('span'); nm.className = 'q-n'; nm.textContent = m.n;
+          var meta = document.createElement('span'); meta.className = 'q-m'; meta.lang = 'en'; meta.textContent = m.r + '  No. ' + String(m.no).padStart(3, '0');
+          a.append(av, nm, meta); li.appendChild(a); box.appendChild(li);
+        });
+        var foot = document.createElement('li'); foot.className = 'q-foot'; foot.setAttribute('role', 'option'); foot.id = 'q-opt-more';
+        if (hits.length) { var all = document.createElement('a'); all.href = form.action + '?q=' + encodeURIComponent(hq.value.trim()); all.tabIndex = -1; all.textContent = box.dataset.more.replace('{0}', new Intl.NumberFormat(document.documentElement.lang).format(hits.length)); foot.appendChild(all); }
+        else { foot.textContent = box.dataset.none; foot.setAttribute('aria-disabled', 'true'); }
+        box.appendChild(foot);
+        items = [].slice.call(box.querySelectorAll('[role=option]')).filter(function (el) { return el.querySelector('a'); });
+        box.hidden = false; hq.setAttribute('aria-expanded', 'true'); mark(-1);
+      });
+    };
+    hq.addEventListener('focus', load, { once: true });
+    hq.addEventListener('input', render);
+    hq.addEventListener('keydown', function (e) {
+      if (box.hidden) return;
+      if (e.key === 'ArrowDown') { e.preventDefault(); mark(Math.min(items.length - 1, active + 1)); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); mark(Math.max(-1, active - 1)); }
+      else if (e.key === 'Escape') { close(); }
+      else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); location.href = items[active].querySelector('a').href; }
+    });
+    box.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    document.addEventListener('click', function (e) { if (!form.contains(e.target)) close(); });
+    hq.addEventListener('blur', function () { setTimeout(close, 150); });
+  })();
 })();

@@ -20,6 +20,7 @@
 //   POST /api/own/photo                  the owner's own picture (JPEG, PNG or WebP); needs the cookie set after sign in
 //   GET  /api/discord/callback                        Discord returns here; back to the card with ?claim=<result>
 //   GET  /api/claims                                  claimed cards: { slug: { v, photo, og } }
+//   GET  /api/members                                 every member in brief, for search as you type
 import { getStore } from '@netlify/blobs';
 import { purgeCache } from '@netlify/functions';
 import crypto from 'node:crypto';
@@ -137,6 +138,11 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
   if (path === '/api/unsubscribe' && req.method === 'POST') return json({ ok: true }); // one click unsubscribe header; the GET above does the work
 
   // ---- members claim their card with Discord ----
+  // the directory in brief, for search as you type: slug, display name, every spelling, role, register number, picture
+  if (path === '/api/members' && req.method === 'GET') {
+    const reg = await register(store);
+    return json(reg.members.map((m) => ({ s: m.slug, n: m.name, a: m.names.join(' '), r: m.role, no: m.no, p: m.photo || undefined })), 200, { 'cache-control': 'public, max-age=300', 'netlify-cache-tag': 'pages' });
+  }
   if (path === '/api/claims' && req.method === 'GET') {
     const c = await getClaims(store);
     return json(Object.fromEntries(Object.entries(c).map(([k, v]) => [k, { v: v.v, photo: Boolean(v.photo), og: v.og || null }])), 200, { 'cache-control': 'public, max-age=60' });
