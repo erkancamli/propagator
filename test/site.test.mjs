@@ -276,3 +276,13 @@ test('a different community project is featured every week, never the editor\'s 
     seen.push(f.id);
   }
 });
+
+test('every community project has its fields and screenshots, and every weekly pick is a listed project', async () => {
+  const { BUILDERS, FEATURED } = await import('../lib/content.mjs');
+  const { existsSync } = await import('node:fs');
+  for (const b of BUILDERS) {
+    assert.ok(b.id && b.name && b.by && /^https:\/\//.test(b.url) && b.what?.en && b.kind, b.id);
+    for (const f of [b.id, b.id + '-600']) assert.ok(existsSync(new URL(`../public/assets/shots/${f}.webp`, import.meta.url)), 'screenshot ' + f);
+  }
+  for (const f of FEATURED) assert.ok(BUILDERS.some((b) => b.id === f.id) && f.from && f.why?.en, 'weekly pick ' + f.id);
+});
