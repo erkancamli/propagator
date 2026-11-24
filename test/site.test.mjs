@@ -260,3 +260,19 @@ test('members add their Discord picture themselves; name must match; they can re
   userId = '42'; await go('ecamli', '&remove=1');
   assert.equal((await up(own, jpg)).status, 401);
 });
+
+test('a different community project is featured every week, never the editor\'s own once the plan runs out', async () => {
+  const { featuredFor, BUILDERS, FEATURED } = await import('../lib/content.mjs');
+  assert.equal(featuredFor('2026-11-22', BUILDERS).id, 'optimumpulse');
+  assert.equal(featuredFor('2026-11-23', BUILDERS).id, 'opticard');
+  assert.equal(featuredFor('2026-11-29', BUILDERS).id, 'opticard');
+  assert.equal(featuredFor('2026-11-30', BUILDERS).id, 'infinityrun');
+  const last = FEATURED[FEATURED.length - 1].from, seen = [];
+  for (let w = 0; w < 30; w++) {
+    const d = new Date(Date.parse(last + 'T12:00:00Z') + w * 7 * 864e5).toISOString().slice(0, 10);
+    const f = featuredFor(d, BUILDERS);
+    assert.ok(f && !BUILDERS.find((b) => b.id === f.id).own, d);
+    if (seen.length) assert.notEqual(f.id, seen[seen.length - 1], 'changes every week ' + d);
+    seen.push(f.id);
+  }
+});
