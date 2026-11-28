@@ -1027,7 +1027,8 @@ h1, h2, h3 { font-weight: 650; letter-spacing: -0.025em; }
 .cred-badges span { font: 600 10px/1 var(--sans); letter-spacing: .02em; padding: 4px 7px; border-radius: 999px; background: rgba(20, 21, 24, .1); color: inherit; }
 .cred-big .cred-badges span { font-size: 12px; padding: 5px 9px; }
 .mbadges { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.mbadges li { display: flex; flex-direction: column; gap: 2px; padding: 8px 12px; border-radius: 12px; box-shadow: 0 0 0 1px var(--line); background: var(--surface); }
+.mbadges a { display: flex; flex-direction: column; gap: 2px; padding: 8px 12px; border-radius: 12px; box-shadow: 0 0 0 1px var(--line); background: var(--surface); text-decoration: none; color: var(--ink); }
+.mbadges a:hover { box-shadow: 0 0 0 1px var(--accent); }
 .mbadges b { font-size: 14px; }
 .mbadges span { font-size: 13px; color: var(--muted); }
 
@@ -1043,8 +1044,23 @@ h1, h2, h3 { font-weight: 650; letter-spacing: -0.025em; }
 .more li a:hover { background: var(--bg); }
 @media (min-width: 861px) and (max-width: 1080px) { .more summary { padding: 6px 7px; font-size: 14.5px; } }
 @media (max-width: 860px) { .more { display: none; } .nav-x { display: inline-block; } .js .top.menu-open .nav .nav-x { display: block; } }
-.badge-list { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
-.badge-list li a, .badge-list li span { display: inline-block; padding: 5px 11px; border-radius: 999px; font-size: 14px; box-shadow: inset 0 0 0 1px var(--line); background: var(--surface); }
-.badge-list li a { color: var(--ink); text-decoration: none; box-shadow: inset 0 0 0 1px var(--accent); }
-.badge-list li a:hover { background: var(--bg); }
-.badge-list li span { color: var(--muted); }
+.lords { margin-top: 8px; }
+.lords-h { font: 600 15px/1.3 var(--sans); color: var(--muted); margin: 28px 0 12px; }
+.lord-cards { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.lord-cards a { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: var(--surface); box-shadow: 0 0 0 1px var(--line); text-decoration: none; color: var(--ink); transition: box-shadow .15s, transform .15s; }
+.lord-cards a:hover { box-shadow: 0 0 0 1px var(--accent), 0 10px 24px -18px rgba(22, 24, 26, .45); transform: translateY(-1px); }
+.lord-cards a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.lc-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.lc-text b { font-size: 15px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lc-text > span { display: flex; align-items: center; gap: 8px; }
+.lc-text i { font: normal 12px var(--mono); color: var(--muted); }
+.lords-note { margin: -4px 0 12px; font-size: 14px; color: var(--muted); max-width: 66ch; }
+.lord-roll { list-style: none; padding: 16px 18px; margin: 0; columns: 4 160px; column-gap: 24px; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--line); }
+.lord-roll li { font-size: 14.5px; line-height: 1.9; color: var(--ink-2, var(--ink)); break-inside: avoid; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { .lord-cards a { transition: none; } .lord-cards a:hover { transform: none; } }
+@media (max-width: 600px) {
+  .lord-cards { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .lord-cards a { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px; }
+  .lc-text b { font-size: 14px; max-width: 100%; }
+  .lord-roll { columns: 2; padding: 12px 14px; }
+}

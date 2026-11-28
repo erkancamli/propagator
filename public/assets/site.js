@@ -106,7 +106,7 @@
     var apply = function (keep) {
       var q = fold(dq.value.trim()), shown = 0;
       rows.sort(sorters[sortSel.value] || sorters.new).forEach(function (li) {
-        var ok = (!q || li._n.indexOf(q) !== -1) && (!role || li.dataset.role === role);
+        var ok = (!q || li._n.indexOf(q) !== -1) && (!role || li.dataset.role === role || (' ' + (li.dataset.b || '') + ' ').indexOf(' ' + role + ' ') !== -1);
         li.hidden = !ok; if (ok) shown++; list.appendChild(li);
       });
       empty.hidden = shown > 0;
