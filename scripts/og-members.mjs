@@ -31,11 +31,12 @@ body{margin:0;width:1200px;height:630px;overflow:hidden;background:radial-gradie
 .purl{margin-top:30px !important;font:500 20px 'Geist Mono',monospace;color:#808894}</style></head><body>
 <div class="card">${credential('en', ogMember(m), { big: true })}</div>
 <div class="side"><div class="brand">${OPTIMUM_WORDMARK}<span>Register</span></div>
-<h1>${esc(ogMember(m).name)}</h1><p><span class="rb rb-${m.role.toLowerCase().replace(/[^a-z]/g, '')}">${esc(m.role)}</span>&nbsp; ${esc(R.since(new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(m.since + 'T12:00:00Z'))))}</p>
+<h1>${esc(ogMember(m).name)}</h1><p><span class="rb rb-${m.holder ? 'treasure' : m.role.toLowerCase().replace(/[^a-z]/g, '')}">${esc(m.role)}</span>&nbsp; ${esc(m.holder ? R.holderLine : R.since(new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(m.since + 'T12:00:00Z'))))}</p>
 <p class="purl">propagator.news/m/${esc(m.slug)}</p></div></body></html>`;
 
 const reg = await register(null);
-let list = only.length ? reg.members.filter((m) => only.includes(m.slug)) : reg.members;
+const everyone = [...reg.members, ...(reg.holders || [])];
+let list = only.length ? everyone.filter((m) => only.includes(m.slug)) : everyone;
 const file = (m) => (m.v ? `m-${m.slug}-p${m.v}.jpg` : `m-${m.slug}.jpg`);
 if (claimed) {
   const c = await (await fetch(LIVE + '/api/claims')).json();

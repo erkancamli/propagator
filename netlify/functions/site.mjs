@@ -40,7 +40,7 @@ export async function handle(req, { store, now = Date.now(), preview = false, en
   if (path === '/robots.txt') return text(`User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /preview/\n\nSitemap: ${R.SITE}/sitemap.xml\n`, 'text/plain; charset=utf-8');
   if (path === '/sitemap.xml') {
     const [w, reg] = await Promise.all([listIssues(store, 'weekly'), register(store)]);
-    const urls = [...ROUTES.filter((r) => r !== '/submit/').map((p) => [p, today]), ...w.map((x) => [`/weekly/${x.id}/`, x.date]), ...reg.calls.map((c) => [`/class/${c.id}/`, c.date]), ...reg.members.map((m) => [`/m/${m.slug}/`, m.since])];
+    const urls = [...ROUTES.filter((r) => r !== '/submit/').map((p) => [p, today]), ...w.map((x) => [`/weekly/${x.id}/`, x.date]), ...reg.calls.map((c) => [`/class/${c.id}/`, c.date]), ...reg.members.map((m) => [`/m/${m.slug}/`, m.since]), ...(reg.holders || []).map((m) => [`/m/${m.slug}/`, m.since])];
     const alts = (p) => LANGS.map((l) => `<xhtml:link rel="alternate" hreflang="${l.hreflang || l.code}" href="${R.SITE}${R.href(l.code, p)}"/>`).join('') + `<xhtml:link rel="alternate" hreflang="x-default" href="${R.SITE}${p}"/>`;
     // member and class pages are many; they are listed in every language without the alternate block to keep the file small
     const row = (p, mod) => LANGS.map((l) => `<url><loc>${R.SITE}${R.href(l.code, p)}</loc><lastmod>${mod}</lastmod>${/^\/(m|class)\//.test(p) ? '' : alts(p)}</url>`).join('');
