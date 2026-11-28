@@ -41,10 +41,11 @@ test('retired pages redirect to where their content lives now', async () => {
     assert.equal(r.status, 301, p); assert.equal(r.headers.get('location'), to, p);
   }
   const html = await (await site(req('/archive/'), { store })).text();
-  assert.match(html, /Month one on mainnet/); assert.match(html, /\d+ stories/); assert.match(html, /aria-current="page">Newsletter/);
-  const nav = html.match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
-  assert.equal((nav.replace(/<details class="more">[\s\S]*?<\/details>/, '').match(/<a (?!class="nav-x")/g) || []).length, 6, 'six menu items');
-  assert.match(nav, /<details class="more">/, 'a More menu for the footer pages');
+  assert.match(html, /Month one on mainnet/); assert.match(html, /\d+ stories/); assert.match(html, /aria-current="page"[^>]*><svg[\s\S]*?<\/svg><span>Newsletter<\/span>/);
+  const nav = html.match(/<nav class="side-nav">[\s\S]*?<\/nav>/)[0];
+  assert.equal((nav.match(/<a /g) || []).length, 8, 'eight items in the side menu');
+  assert.match(html, /<div class="side-foot">[\s\S]*\/submit\/[\s\S]*\/about\/[\s\S]*feed\.xml/, 'submit, about and RSS at the foot of the menu');
+  assert.match(html, /<dialog class="find"/, 'search everywhere');
   const builders = await (await site(req('/builders/'), { store })).text();
   for (const s of ['Optimum Pulse', 'Block Arena', 'How to take part']) assert.ok(builders.includes(s), s);
   const sitemap = await (await site(req('/sitemap.xml'), { store })).text();
