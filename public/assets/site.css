@@ -976,4 +976,4 @@ h1, h2, h3 { font-weight: 650; letter-spacing: -0.025em; }
 @media (max-width: 860px) { .stat-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: var(--s-4); } .stat-tiles div:nth-child(4) { padding-left: 0; border-left: 0; } .stat-two { grid-template-columns: 1fr; } .stat-list { columns: 1; } }
 .stat-list a { display: flex; align-items: center; gap: 12px; }
 .stat-list a > span:not(.av):not(.rb) { flex: 1; min-width: 0; }
-.stat-list .rb { flex: none; width: auto; margin-left: auto; }
+.hall-list.stat-list a > span.rb { flex: none; display: inline-flex; width: auto; margin-left: auto; }
