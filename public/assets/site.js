@@ -462,6 +462,13 @@
     list.addEventListener('mousemove', function (e) { var li = e.target.closest('[role=option]'); if (li) { var i = items.indexOf(li); if (i !== active) mark(i); } });
   })();
 
+  // ---- GIFs: filter by maker ----
+  var gchips = document.querySelectorAll('.chip[data-g]');
+  gchips.forEach(function (c) { c.addEventListener('click', function () {
+    gchips.forEach(function (x) { x.setAttribute('aria-pressed', String(x === c)); });
+    document.querySelectorAll('.gifs li').forEach(function (li) { li.hidden = Boolean(c.dataset.g) && li.dataset.by !== c.dataset.g; });
+  }); });
+
   // ---- the gateway checklist: ticks stay in this browser ----
   document.querySelectorAll('.gw-check input[data-k]').forEach(function (c) {
     try { c.checked = localStorage.getItem('pg-' + c.dataset.k) === '1'; } catch (e) {}

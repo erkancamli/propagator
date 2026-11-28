@@ -8,11 +8,11 @@ import { LANGS, CODES } from '../../lib/i18n.mjs';
 import { discordReady, imageType } from '../../lib/claim.mjs';
 import crypto from 'node:crypto';
 
-const ROUTES = ['/', '/members/', '/classes/', '/builders/', '/stats/', '/archive/', '/learn/', '/gateway/', '/people/', '/about/', '/submit/'];
+const ROUTES = ['/', '/members/', '/classes/', '/builders/', '/stats/', '/archive/', '/learn/', '/gateway/', '/gifs/', '/people/', '/about/', '/submit/'];
 // pages that were folded into others when Propagator became a weekly magazine with a community page
 const MOVED = { '/weekly/': '/archive/', '/daily/': '/archive/', '/community/': '/builders/', '/events/': '/builders/', '/videos/': '/learn/', '/pulse/': '/learn/' };
 
-const SECURITY = { 'x-content-type-options': 'nosniff', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-frame-options': 'SAMEORIGIN', 'permissions-policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()', 'cross-origin-opener-policy': 'same-origin', 'strict-transport-security': 'max-age=63072000; includeSubDomains', 'content-security-policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://i.ytimg.com https://pbs.twimg.com; frame-src https://www.youtube-nocookie.com; connect-src 'self'; object-src 'none'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" };
+const SECURITY = { 'x-content-type-options': 'nosniff', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-frame-options': 'SAMEORIGIN', 'permissions-policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()', 'cross-origin-opener-policy': 'same-origin', 'strict-transport-security': 'max-age=63072000; includeSubDomains', 'content-security-policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://i.ytimg.com https://pbs.twimg.com https://media1.tenor.com; frame-src https://www.youtube-nocookie.com; connect-src 'self'; object-src 'none'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" };
 const sameSecret = (a, b) => { const x = Buffer.from(String(a)), y = Buffer.from(String(b)); return x.length === y.length && x.length > 0 && crypto.timingSafeEqual(x, y); };
 
 export async function handle(req, { store, now = Date.now(), preview = false, env = {} }) {
@@ -78,6 +78,7 @@ export async function handle(req, { store, now = Date.now(), preview = false, en
   }
   if (path === '/learn/') return html(R.learnPage(lang));
   if (path === '/gateway/') return html(R.gatewayPage(lang));
+  if (path === '/gifs/') return html(R.gifsPage(lang));
   if (path === '/builders/') return html(R.buildersPage(lang, today, await register(store)));
   if (path === '/people/') return html(R.peoplePage(lang, (await store.get('jobs/list', { type: 'json' }).catch(() => null)) || (await latestWeekly())?.jobs));
   if (path === '/about/') return html(R.aboutPage(lang));
