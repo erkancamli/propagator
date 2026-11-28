@@ -1,0 +1,274 @@
+{
+ "kind": "weekly",
+ "id": "2025-03",
+ "back": true,
+ "status": "published",
+ "date": "2025-03-31",
+ "range": [
+  "2025-02-28",
+  "2025-03-31"
+ ],
+ "title": {
+  "en": "Optimum says hello"
+ },
+ "dek": {
+  "en": "An angel round from fellow founders, a keynote at ETHDenver, the first X Spaces and a Discord server that opens on 27 March."
+ },
+ "note": {
+  "en": [
+   "Optimum went public on the last day of February with a list of backers that read like a conference lineup: founders of Polygon, Wormhole, Aztec, Espresso and Pyth among them. A month later it had a keynote behind it, three X Spaces and a Discord server waiting for its first members.",
+   "Nothing shipped this month, and the private testnet promised for March did not appear. What did appear was the vocabulary Optimum still uses today: gossip, coded packets, validators who get paid for speed."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "On 28 February Optimum announced an angel round backed by founders and executives from Polygon, Wormhole, Bitget, Jump Crypto, Solana and others. The amount was not disclosed.",
+   "Muriel Médard gave the keynote Decentralized Memory for the World Computer at ETHDenver on 1 March, and Optimum started a run of X Spaces and explainer threads.",
+   "The Optimum Discord server was created on 27 March. The private testnet announced for March slipped; its partners were only named in June."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "launch",
+   "title": {
+    "en": "A builders round to start"
+   },
+   "body": {
+    "en": "On 28 February Optimum announced what it called its Builders Round: angel money from people who run crypto projects themselves. The release names Polychain CTO Abhijeet Mahagaonkar, DeFiance founder Arthur Cheong, Bitget CEO Gracy Chen, Wormhole co-founder Robinson Burkey, Polygon co-founder Sandeep Nailwal, Jump Crypto partner Saurabh Sharma and Solana product head Tal Tchwella, plus co-founders of Aethir, Aztec, Espresso, Magna, Pyth, Taiko, Zama and ZkCloud. The amount was not disclosed. Optimum described two products, Optimum P2P and a decentralized memory called deRAM, and said a private testnet for chains and validators would go live in March."
+   },
+   "sources": [
+    [
+     "DL News, press release, 28 Feb 2025",
+     "https://www.dlnews.com/external/optimum-secures-angel-round-to-launch-high-performance-web3-memory-built-on-15-years-of-mit-research/"
+    ],
+    [
+     "Kent Lin on X, 28 Feb 2025",
+     "https://x.com/kentlinyy/status/1895557002983850459"
+    ],
+    [
+     "Ben Fisch (Espresso) on X",
+     "https://x.com/benafisch/status/1895541320627961968"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "network",
+    "seed": "b2503-angels",
+    "nodes": 24
+   }
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "A keynote at ETHDenver"
+   },
+   "body": {
+    "en": "The first public stage came a day later. On 1 March Muriel Médard gave the talk Decentralized Memory for the World Computer on the Regeneratooor main stage at ETHDenver. Her argument, repeated all year, was that blockchains are computers missing two parts: a memory and a bus to move data between machines. Optimum marked the week with two firsts of its own: its first ETHDenver and its first thousand followers on X."
+   },
+   "sources": [
+    [
+     "Optimum on X, 1 Mar 2025",
+     "https://x.com/get_optimum/status/1895959660160827848"
+    ],
+    [
+     "Optimum on X, 2 Mar 2025",
+     "https://x.com/get_optimum/status/1896277193682190833"
+    ]
+   ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "Three X Spaces in a month"
+   },
+   "body": {
+    "en": "Optimum started talking in public through X Spaces. The first, on 4 March, brought Gauntlet founder Tarun Chitra together with Muriel Médard and Kent Lin; Chitra wrote that random linear coding would go mainstream soon. Sommelier co-founder Zaki Manian joined on 12 March to talk about data propagation. A third Space with Wormhole co-founder Robinson Burkey, set for 26 March, was postponed on the day."
+   },
+   "sources": [
+    [
+     "Optimum on X, first Space recording",
+     "https://x.com/get_optimum/status/1897742481531584743"
+    ],
+    [
+     "Optimum on X, Space with Zaki Manian",
+     "https://x.com/get_optimum/status/1899457436748329414"
+    ],
+    [
+     "Optimum on X, Space postponed",
+     "https://x.com/get_optimum/status/1904887955417604208"
+    ]
+   ]
+  },
+  {
+   "tag": "research",
+   "title": {
+    "en": "Gossip, explained in threads"
+   },
+   "body": {
+    "en": "Before any product, Optimum explained the problem. A thread on 11 March compared a blockchain to a giant group chat in which every node passes your transaction to its neighbours. On 14 March a second thread looked at it from the validator side: proposers and attesters are paid for doing their part quickly, so slow propagation costs them money. On 20 March a third walked through random linear network coding in three steps, encoding, transmission and decoding, and noted that a receiver needs only enough coded packets, not every one."
+   },
+   "sources": [
+    [
+     "Optimum on X, 11 Mar 2025",
+     "https://x.com/get_optimum/status/1899555663602418018"
+    ],
+    [
+     "Optimum on X, 14 Mar 2025",
+     "https://x.com/get_optimum/status/1900622008377110899"
+    ],
+    [
+     "Optimum on X, 20 Mar 2025",
+     "https://x.com/get_optimum/status/1902782497773252937"
+    ]
+   ],
+   "art": {
+    "type": "pieces",
+    "k": 4,
+    "n": 7,
+    "lost": [
+     2,
+     5
+    ]
+   }
+  },
+  {
+   "tag": "media",
+   "title": {
+    "en": "Cointelegraph profiles Muriel Médard"
+   },
+   "body": {
+    "en": "On 15 March Cointelegraph published a profile of Médard and her work on network coding, framed around why scaling keeps failing and what coding theory could change. It was the first piece of independent press about Optimum beyond the round announcement, and Optimum shared it the same day."
+   },
+   "sources": [
+    [
+     "Cointelegraph",
+     "https://cointelegraph.com/news/scale-fail-rlnc-technology-web3-adoption-mit-professor"
+    ],
+    [
+     "Optimum on X, 15 Mar 2025",
+     "https://x.com/get_optimum/status/1901022153589301758"
+    ]
+   ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "A Discord server and a team to run it"
+   },
+   "body": {
+    "en": "On 17 March Eli Laipson posted that he was building Optimum’s marketing team and hiring a social media lead, a community lead and moderators. The Discord server behind today’s community was created on 27 March, and the next day Optimum posted that the adventure was starting. The account also greeted Chinese and Japanese speaking followers in their own languages in early March, a first sign of how international the community would become."
+   },
+   "sources": [
+    [
+     "Eli Laipson on X, 17 Mar 2025",
+     "https://x.com/EliLaipson/status/1901621556884689315"
+    ],
+    [
+     "Optimum on X, 28 Mar 2025",
+     "https://x.com/get_optimum/status/1905606021831417927"
+    ],
+    [
+     "Optimum on X, Chinese greeting",
+     "https://x.com/get_optimum/status/1896133691614867519"
+    ]
+   ]
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2025-03",
+  "nodes": 40
+ },
+ "claims": [
+  {
+   "claim": {
+    "en": "Private testnet goes live in March"
+   },
+   "status": "company",
+   "note": {
+    "en": "Said in the 28 February release and by Kent Lin. The testnet partners were only announced on 24 June 2025."
+   }
+  },
+  {
+   "claim": {
+    "en": "RLNC is already used in 5G, IoT and satellite links"
+   },
+   "status": "company",
+   "note": {
+    "en": "From the 28 February release; no deployments are named."
+   }
+  }
+ ],
+ "eventItems": [
+  {
+   "id": "ethdenver25",
+   "start": "2025-03-01",
+   "city": "Denver",
+   "name": "ETHDenver 2025",
+   "url": "https://x.com/get_optimum/status/1895913077255913918",
+   "kind": "conference",
+   "what": {
+    "en": "Muriel Médard’s keynote Decentralized Memory for the World Computer on the Regeneratooor main stage."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1895959660160827848"
+    ]
+   ]
+  },
+  {
+   "id": "das25",
+   "start": "2025-03-18",
+   "city": "New York",
+   "name": "Blockworks Digital Asset Summit",
+   "url": "https://x.com/get_optimum/status/1901705607935402351",
+   "kind": "conference",
+   "what": {
+    "en": "Kent Lin and strategy analyst Chandler Otterbein were in New York for the week to meet people."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1901705607935402351"
+    ]
+   ],
+   "end": "2025-03-20"
+  }
+ ],
+ "world": [
+  {
+   "lang": "zh",
+   "title": "Optimum 完成天使轮融资",
+   "who": "DeThings, shared by Optimum",
+   "date": "2025-03-02",
+   "url": "https://x.com/get_optimum/status/1896133691614867519"
+  },
+  {
+   "lang": "ja",
+   "title": "Optimum がエンジェルラウンドを完了",
+   "who": "PANews, shared by Optimum",
+   "date": "2025-03-02",
+   "url": "https://x.com/get_optimum/status/1896009526756901005"
+  }
+ ],
+ "reads": [
+  [
+   "Scale fails: RLNC technology and Web3 adoption",
+   "Cointelegraph",
+   "2025-03-15",
+   "https://cointelegraph.com/news/scale-fail-rlnc-technology-web3-adoption-mit-professor"
+  ],
+  [
+   "Optimum secures angel round",
+   "Chainwire via DL News",
+   "2025-02-28",
+   "https://www.dlnews.com/external/optimum-secures-angel-round-to-launch-high-performance-web3-memory-built-on-15-years-of-mit-research/"
+  ]
+ ],
+ "quote": {
+  "text": "Random Linear Coding goes mainstream soon",
+  "who": "Tarun Chitra, 3 March 2025",
+  "url": "https://x.com/tarunchitra/status/1896594092534165979"
+ }
+}

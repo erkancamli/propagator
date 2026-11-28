@@ -1,0 +1,552 @@
+{
+ "kind": "weekly",
+ "id": "2026-06",
+ "back": true,
+ "status": "published",
+ "date": "2026-06-30",
+ "range": [
+  "2026-06-01",
+  "2026-06-30"
+ ],
+ "title": {
+  "en": "Pricing the fast lane"
+ },
+ "dek": {
+  "en": "A paper on how to price speed, Tarun Chitra on blockspace futures, a Wall Street evening in New York, Puffer joins the tests, and five role calls."
+ },
+ "note": {
+  "en": [
+   "June answered a question the community had been asking since Flexnodes: if speed is worth money, who pays, and how much? Optimum’s answer was a paper. Every chain has a base lane, its normal way of moving data, and Optimum sells a fast lane on top, priced by the coded pieces a node buys to decode in time.",
+   "It took the idea to New York, where it co-hosted an evening on the new Wall Street being built on Ethereum, and to Tarun Chitra, who suggested the fast lane could one day become a futures market for blockspace."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "Optimum published Speed is Money, research on pricing low latency: a base lane every chain has, and an RLNC fast lane priced per coded piece. Tarun Chitra discussed it for 50 minutes on YouTube.",
+   "Top of the Block in New York on 4 June brought 1kx, BitMine, Auros and Blockdaemon together before ETHConf. Puffer Finance joined as a mump2p testing partner.",
+   "Five role calls named 65 Refined members, the most of any month so far."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "research",
+   "title": {
+    "en": "Speed is money"
+   },
+   "body": {
+    "en": "On 9 June Optimum summarised its new research on pricing latency, published on arXiv. Latency matters economically when information is only useful before a deadline. Every chain has a base lane, whether uncoded gossip, Reed Solomon or Raptor codes; Optimum’s fast lane adds RLNC pieces that raise the chance of decoding in time. The value is the gain in that probability, for example from 90% to near certainty, and the price is set per piece. Optimum said reliable on time delivery is what gives the fast lane its value."
+   },
+   "sources": [
+    [
+     "Optimum on X, 9 Jun 2026",
+     "https://x.com/get_optimum/status/2064400688655028247"
+    ],
+    [
+     "arXiv 2603.20426",
+     "https://arxiv.org/abs/2603.20426"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "bars",
+    "items": [
+     {
+      "label": "Base lane",
+      "v": 90,
+      "show": {
+       "pct": 90
+      }
+     },
+     {
+      "label": "Fast lane",
+      "v": 99,
+      "show": {
+       "pct": 99
+      },
+      "hot": true
+     }
+    ],
+    "max": 110
+   }
+  },
+  {
+   "tag": "media",
+   "title": {
+    "en": "Tarun Chitra on blockspace futures"
+   },
+   "body": {
+    "en": "On 2 June Optimum posted a 50 minute conversation with Gauntlet founder Tarun Chitra, who had joined its very first X Space in March 2025. Chitra looked at blockchains as repeated auctions and said that if Optimum’s Latency Marketplace works, it could give rise to futures markets for blockspace. Médard also spoke with David Lin about AI, quantum computing and blockchains on 3 June, and gave a talk on the math of post quantum security on 16 June."
+   },
+   "sources": [
+    [
+     "Speed is Money with Tarun Chitra on YouTube",
+     "https://www.youtube.com/watch?v=IcAzcJ1hjpQ"
+    ],
+    [
+     "Optimum on X, Chitra",
+     "https://x.com/get_optimum/status/2061852309160878566"
+    ],
+    [
+     "Optimum on X, David Lin",
+     "https://x.com/get_optimum/status/2062271976207761839"
+    ]
+   ]
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "Top of the Block in New York"
+   },
+   "body": {
+    "en": "On 4 June Optimum hosted Top of the Block, a pre ETHConf evening in New York with 1kx, BitMine, Auros and Blockdaemon about the institutional finance moving onto Ethereum. Kent Lin, Eli Laipson and Chandler Otterbein represented Optimum at ETHConf the following week, and on 9 June Optimum co-hosted a happy hour with OKX and Auros on agentic trading. Optimum’s line for the week: the market is the entire global financial system."
+   },
+   "sources": [
+    [
+     "Optimum on X, Top of the Block",
+     "https://x.com/get_optimum/status/2062209477202596312"
+    ],
+    [
+     "Optimum on X, recap",
+     "https://x.com/get_optimum/status/2064783002090258926"
+    ],
+    [
+     "Optimum on X, ETHConf",
+     "https://x.com/get_optimum/status/2062951486234194392"
+    ]
+   ]
+  },
+  {
+   "tag": "adoption",
+   "title": {
+    "en": "Puffer joins the tests"
+   },
+   "body": {
+    "en": "On 17 June Puffer Finance became a mump2p testing partner. Asked a few days earlier whether a big name was coming, Optimum said only that onboarding was in progress with several key partners. On 22 June it published an interactive model, backtested on thousands of slots, estimating how much extra revenue a validator would earn with mump2p’s speed advantage. With 3 million ETH waiting to enter staking, Optimum argued, demand from institutions was real."
+   },
+   "sources": [
+    [
+     "Optimum on X, Puffer",
+     "https://x.com/get_optimum/status/2067301826421297190"
+    ],
+    [
+     "Optimum on X, revenue model",
+     "https://x.com/get_optimum/status/2069143539725062589"
+    ],
+    [
+     "Optimum on X, entry queue",
+     "https://x.com/get_optimum/status/2065138596500447555"
+    ]
+   ],
+   "claim": "company"
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "Five role calls, 65 names"
+   },
+   "body": {
+    "en": "Flash posted a role call every week of June, on 1, 8, 15, 23 and 29 June, naming 65 new Refined members in all, the most in any month since the role calls began. Each of them is listed below."
+   },
+   "sources": [
+    [
+     "Optimum Discord, #role-announcements",
+     "https://discord.gg/getoptimum"
+    ],
+    [
+     "The role calls on Propagator",
+     "/classes/"
+    ]
+   ],
+   "art": {
+    "type": "bars",
+    "items": [
+     {
+      "date": "2026-06-01",
+      "v": 11,
+      "show": {
+       "n": 11
+      }
+     },
+     {
+      "date": "2026-06-08",
+      "v": 13,
+      "show": {
+       "n": 13
+      }
+     },
+     {
+      "date": "2026-06-15",
+      "v": 14,
+      "show": {
+       "n": 14
+      }
+     },
+     {
+      "date": "2026-06-23",
+      "v": 12,
+      "show": {
+       "n": 12
+      }
+     },
+     {
+      "date": "2026-06-29",
+      "v": 15,
+      "show": {
+       "n": 15
+      },
+      "hot": true
+     }
+    ],
+    "max": 17
+   }
+  },
+  {
+   "tag": "dev",
+   "title": {
+    "en": "A new product lead, and a data scientist wanted"
+   },
+   "body": {
+    "en": "On 5 June Optimum welcomed Lewej Whitelow, who leads protocol development and releases on the product side. On 30 June it opened a senior data scientist role working across networking infrastructure, decentralized systems and empirical blockchain research. A thread on 8 June looked ahead to Glamsterdam, Ethereum’s next upgrade, and what enshrined proposer builder separation means for slot timing."
+   },
+   "sources": [
+    [
+     "Optimum on X, Lewej Whitelow",
+     "https://x.com/get_optimum/status/2062932620447821860"
+    ],
+    [
+     "Optimum on X, data scientist",
+     "https://x.com/get_optimum/status/2072005164815598079"
+    ],
+    [
+     "Optimum on X, Glamsterdam",
+     "https://x.com/get_optimum/status/2064025567708799410"
+    ]
+   ]
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2026-06",
+  "nodes": 40
+ },
+ "claims": [
+  {
+   "claim": {
+    "en": "Validators running mump2p earn measurably more"
+   },
+   "status": "company",
+   "note": {
+    "en": "Optimum’s interactive model, backtested on its own data, 22 June 2026."
+   }
+  }
+ ],
+ "video": {
+  "id": "IcAzcJ1hjpQ",
+  "title": "Speed is Money: Pricing Innovation Under Latency Constraints, with Tarun Chitra",
+  "date": "2026-06-02",
+  "why": {
+   "en": "The economics of Optimum explained by someone from outside it."
+  }
+ },
+ "roles": {
+  "items": [
+   {
+    "name": "Richardddss",
+    "role": "Refined"
+   },
+   {
+    "name": "Heisenberg",
+    "role": "Refined"
+   },
+   {
+    "name": "tomasamoan",
+    "role": "Refined"
+   },
+   {
+    "name": "Cloud Labs",
+    "role": "Refined"
+   },
+   {
+    "name": "moctx",
+    "role": "Refined"
+   },
+   {
+    "name": "𝗣𝗼𝗽𝗽𝗲𝘆𝗬𝗮",
+    "role": "Refined"
+   },
+   {
+    "name": "Waytoff",
+    "role": "Refined"
+   },
+   {
+    "name": "alburtsev",
+    "role": "Refined"
+   },
+   {
+    "name": "Darya",
+    "role": "Refined"
+   },
+   {
+    "name": "32wqedsadqw",
+    "role": "Refined"
+   },
+   {
+    "name": "helga",
+    "role": "Refined"
+   },
+   {
+    "name": "Ryu",
+    "role": "Refined"
+   },
+   {
+    "name": "ZEPHY | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Günahkar Casper",
+    "role": "Refined"
+   },
+   {
+    "name": "𝑴𝒖𝒃𝒂𝒓𝒂𝒌 𝑨𝒍𝒊",
+    "role": "Refined"
+   },
+   {
+    "name": "Saeu (새우)",
+    "role": "Refined"
+   },
+   {
+    "name": "𝗩𝗶𝘀𝗶𝗼𝗻𝗮𝗿",
+    "role": "Refined"
+   },
+   {
+    "name": "kadji",
+    "role": "Refined"
+   },
+   {
+    "name": "𝗠𝗦 𝗗𝗛𝗢𝗡𝗜",
+    "role": "Refined"
+   },
+   {
+    "name": "LarOs",
+    "role": "Refined"
+   },
+   {
+    "name": "𝙪𝙢𝙥𝙞𝙖",
+    "role": "Refined"
+   },
+   {
+    "name": "Sonne",
+    "role": "Refined"
+   },
+   {
+    "name": "Serhat",
+    "role": "Refined"
+   },
+   {
+    "name": "Sunny",
+    "role": "Refined"
+   },
+   {
+    "name": "𝐑𝐀𝐉𝐀_𝐅𝐗",
+    "role": "Refined"
+   },
+   {
+    "name": "harverCat",
+    "role": "Refined"
+   },
+   {
+    "name": "Arian",
+    "role": "Refined"
+   },
+   {
+    "name": "rucaschad",
+    "role": "Refined"
+   },
+   {
+    "name": "pigeon99 [산짐승 감사팀 팀원]",
+    "role": "Refined"
+   },
+   {
+    "name": "Sviatoslav ⨀",
+    "role": "Refined"
+   },
+   {
+    "name": "!𝐍𝐞𝐰𝐊𝐨𝐮𝐬𝐡𝐢𝐤",
+    "role": "Refined"
+   },
+   {
+    "name": "Nino",
+    "role": "Refined"
+   },
+   {
+    "name": "Dangerpips ⚠️",
+    "role": "Refined"
+   },
+   {
+    "name": "𝙊𝙕𝙀𝘿",
+    "role": "Refined"
+   },
+   {
+    "name": "Mafiya | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "CRX_MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "ecelannister.eth",
+    "role": "Refined"
+   },
+   {
+    "name": "𝓐𝓁𝒾𝓈𝒽𝓀𝒶 💫",
+    "role": "Refined"
+   },
+   {
+    "name": "Shuvo",
+    "role": "Refined"
+   },
+   {
+    "name": "Jason",
+    "role": "Refined"
+   },
+   {
+    "name": "alexTradd",
+    "role": "Refined"
+   },
+   {
+    "name": "Jeamy",
+    "role": "Refined"
+   },
+   {
+    "name": "Richard12",
+    "role": "Refined"
+   },
+   {
+    "name": "PixelRey MuM",
+    "role": "Refined"
+   },
+   {
+    "name": "ambiymum",
+    "role": "Refined"
+   },
+   {
+    "name": "Kadriweee",
+    "role": "Refined"
+   },
+   {
+    "name": "Rz | SpeedMUM",
+    "role": "Refined"
+   },
+   {
+    "name": "baised.♾",
+    "role": "Refined"
+   },
+   {
+    "name": "HASSAN | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Testnetnodes",
+    "role": "Refined"
+   },
+   {
+    "name": "Labubu",
+    "role": "Refined"
+   },
+   {
+    "name": "BiliBili",
+    "role": "Refined"
+   },
+   {
+    "name": "Acacia",
+    "role": "Refined"
+   },
+   {
+    "name": "Yuura",
+    "role": "Refined"
+   },
+   {
+    "name": "𝙂𝙤𝙡𝙙𝙚𝙣 𝘽𝙤𝙮 ⭐",
+    "role": "Refined"
+   },
+   {
+    "name": "Altasha mum",
+    "role": "Refined"
+   },
+   {
+    "name": "Paradise | Mum",
+    "role": "Refined"
+   },
+   {
+    "name": "Chán Đời (Nói chung là chán...)",
+    "role": "Refined"
+   },
+   {
+    "name": "Susmi",
+    "role": "Refined"
+   },
+   {
+    "name": "Cold Play 😌",
+    "role": "Refined"
+   },
+   {
+    "name": "MeowMum",
+    "role": "Refined"
+   },
+   {
+    "name": "danghuyenVN | Mum",
+    "role": "Refined"
+   },
+   {
+    "name": "moi",
+    "role": "Refined"
+   },
+   {
+    "name": "buraq_c",
+    "role": "Refined"
+   },
+   {
+    "name": "Nero",
+    "role": "Refined"
+   }
+  ],
+  "note": {
+   "en": "5 role calls in June, posted on 1, 8, 15, 23 and 29 June by Flash in #role-announcements. Every member named has a page on the register."
+  },
+  "src": [
+   "Optimum Discord, #role-announcements",
+   "https://discord.gg/getoptimum"
+  ]
+ },
+ "builders": [
+  "runner"
+ ],
+ "eventItems": [
+  {
+   "id": "totb26",
+   "start": "2026-06-04",
+   "city": "New York",
+   "name": "Top of the Block",
+   "url": "https://x.com/get_optimum/status/2062209477202596312",
+   "kind": "meetup",
+   "what": {
+    "en": "A pre ETHConf evening with 1kx, BitMine, Auros and Blockdaemon."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/2064783002090258926"
+    ]
+   ]
+  }
+ ],
+ "reads": [
+  [
+   "Speed is Money: pricing latency",
+   "arXiv",
+   "2026-06-09",
+   "https://arxiv.org/abs/2603.20426"
+  ]
+ ]
+}

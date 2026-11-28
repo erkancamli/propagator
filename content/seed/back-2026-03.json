@@ -1,0 +1,491 @@
+{
+ "kind": "weekly",
+ "id": "2026-03",
+ "back": true,
+ "status": "published",
+ "date": "2026-03-31",
+ "range": [
+  "2026-03-01",
+  "2026-03-31"
+ ],
+ "title": {
+  "en": "The first role calls"
+ },
+ "dek": {
+  "en": "Members start being named in #role-announcements, Optimum ships a game that races mump2p, gathers coding researchers at MIT, and puts a number on what speed is worth."
+ },
+ "note": {
+  "en": [
+   "This register begins here. On 6 March BlockchainJeff posted the first role call in #role-announcements: six members promoted to Refined. Three more followed by the end of the month, and from the fourth on, Flash took over the weekly post.",
+   "The company had a big month too. It shipped a small game that dares you to beat mump2p, held the DeCo workshop at MIT, and published its first estimate of what faster propagation is worth in staking revenue: about 0.6 to 0.7% more for every 50 ms of usable slot time."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "Four role calls named 45 members Refined: on 6, 17 and 23 March by BlockchainJeff, and on 30 March by Flash. The 23 March list credited the Mumbassadors with the selection.",
+   "Growth manager abbas_tfu built Are you faster than mump2p?, an aim trainer whose targets appear at mump2p’s block speed. DeCo brought coding researchers to MIT on 23 and 24 March.",
+   "A study by Optimum’s researchers estimated about 0.6 to 0.7% more validator revenue per 50 ms of extra slot time, and 13 to 16% higher MEV bids for 50 to 150 ms."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "community",
+   "title": {
+    "en": "The first role calls"
+   },
+   "body": {
+    "en": "On 6 March BlockchainJeff posted the first role call in #role-announcements, naming six members Refined. Eleven followed on 17 March and eighteen on 23 March, a list described as selected by the Mumbassadors for activity, support and overall contribution. On 30 March Flash posted ten more, and has posted the role calls ever since. Every one of the 45 names is listed below and has a page on this register."
+   },
+   "sources": [
+    [
+     "Optimum Discord, #role-announcements",
+     "https://discord.gg/getoptimum"
+    ],
+    [
+     "The role calls on Propagator",
+     "/classes/"
+    ]
+   ],
+   "art": {
+    "type": "bars",
+    "items": [
+     {
+      "date": "2026-03-06",
+      "v": 6,
+      "show": {
+       "n": 6
+      }
+     },
+     {
+      "date": "2026-03-17",
+      "v": 11,
+      "show": {
+       "n": 11
+      }
+     },
+     {
+      "date": "2026-03-23",
+      "v": 18,
+      "show": {
+       "n": 18
+      },
+      "hot": true
+     },
+     {
+      "date": "2026-03-30",
+      "v": 10,
+      "show": {
+       "n": 10
+      }
+     }
+    ],
+    "max": 20
+   }
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "Are you faster than mump2p?"
+   },
+   "body": {
+    "en": "On 5 March Optimum released a browser game built by its growth manager abbas_tfu: an aim trainer at game.gmum.cc whose targets appear at the same speed mump2p delivers blocks across Ethereum. Players posted scores, and a day later Optimum admitted the launch had been a humbling experience. It was the first game from the team itself, half a year after the community’s Opti Runner."
+   },
+   "sources": [
+    [
+     "Optimum on X, 5 Mar 2026",
+     "https://x.com/get_optimum/status/2029640649797189911"
+    ],
+    [
+     "Optimum on X, humbling",
+     "https://x.com/get_optimum/status/2030007212983427398"
+    ],
+    [
+     "The game",
+     "https://game.gmum.cc"
+    ]
+   ]
+  },
+  {
+   "tag": "research",
+   "title": {
+    "en": "What 50 milliseconds are worth"
+   },
+   "body": {
+    "en": "On 26 March Moritz Grundei, Slobodan Sudaric-Hefner, Sajida Zouarhi and Muriel Médard published an estimate of how faster propagation pays. From Xatu and Rated data, each extra 50 ms of usable slot time matched about 0.6 to 0.7% more average revenue for the largest operators. A week of relay data suggested 50 to 150 ms more time would lift average MEV bids by 13 to 16%, and head vote accuracy could rise from about 98.6% to between 98.8 and 99.1%. The authors note the figures are correlations, not a controlled test."
+   },
+   "sources": [
+    [
+     "Optimum blog, 26 Mar 2026",
+     "https://www.getoptimum.xyz/blog/optimizing-a-100b-market-effects-of-latency-reduction-on-eth-staking-revenue"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "stats",
+    "items": [
+     {
+      "v": {
+       "pct": 0.65,
+       "d": 2,
+       "sign": true
+      },
+      "dir": "up"
+     },
+     {
+      "v": {
+       "pct": 14.5,
+       "d": 1,
+       "sign": true
+      },
+      "dir": "up"
+     }
+    ]
+   }
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "DeCo at MIT"
+   },
+   "body": {
+    "en": "On 23 and 24 March Optimum held DeCo, its first workshop on decentralized coding, at MIT, after Médard hosted a prep session the Sunday before. Speakers included Lara Dolecek of UCLA, Sreeram Kannan of EigenCloud, Guillermo Angeris of Bain Capital Crypto, Viveck Cadambe of Georgia Tech and Aditi Partap of Stanford, alongside Optimum’s own researchers. Optimum had opened it to 30 to 50 builders, researchers and academics."
+   },
+   "sources": [
+    [
+     "Optimum on X, DeCo wrap",
+     "https://x.com/get_optimum/status/2036581039800459317"
+    ],
+    [
+     "Optimum on X, speakers",
+     "https://x.com/get_optimum/status/2039043766020096345"
+    ],
+    [
+     "Optimum on X, agenda",
+     "https://x.com/get_optimum/status/2028871284604702813"
+    ]
+   ]
+  },
+  {
+   "tag": "media",
+   "title": {
+    "en": "A month of interviews"
+   },
+   "body": {
+    "en": "Kent Lin spoke to Blockwind on 3 March, Médard laid out Optimum’s chain acceleration thesis on the BlockHash podcast on 5 March, and CryptoCoinShow published a follow up article on 9 March. On 25 March Médard joined The Rollup’s livestream from the Digital Asset Summit in New York, and Optimum offered to help the largest new staking operation improve its validators. On YouTube Médard and Moritz Grundei compared Reed Solomon with RLNC in a 39 minute session."
+   },
+   "sources": [
+    [
+     "BlockHash podcast, episode 685",
+     "https://brapodd.se/podd/blockhash/avsnitt/ep-685-optimum-crypto-needs-optimization-feat-muriel-medard"
+    ],
+    [
+     "Optimum on X, Kent Lin on Blockwind",
+     "https://x.com/get_optimum/status/2028914754253996469"
+    ],
+    [
+     "Optimum on X, The Rollup",
+     "https://x.com/get_optimum/status/2036865996640968845"
+    ]
+   ]
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "Back to Cannes"
+   },
+   "body": {
+    "en": "On 16 March Optimum announced its EthCC plans: co-sponsoring the Blockspace Forum on 31 March, an event about how transactions move from user to block, and a talk by chief product officer Sajida Zouarhi on the cost of tail latency in Ethereum’s proposer builder pipeline, which she gave on 2 April."
+   },
+   "sources": [
+    [
+     "Optimum on X, EthCC plans",
+     "https://x.com/get_optimum/status/2033611412766138607"
+    ],
+    [
+     "Optimum on X, talk",
+     "https://x.com/get_optimum/status/2037638152224162302"
+    ]
+   ]
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2026-03",
+  "nodes": 40
+ },
+ "claims": [
+  {
+   "claim": {
+    "en": "Each extra 50 ms of usable slot time adds about 0.6 to 0.7% to validator revenue"
+   },
+   "status": "company",
+   "note": {
+    "en": "Optimum’s study of 26 March 2026, from historical correlations, for the largest operators."
+   }
+  },
+  {
+   "claim": {
+    "en": "50 to 150 ms more time lifts average MEV bids by 13 to 16%"
+   },
+   "status": "company",
+   "note": {
+    "en": "One week of relay bid data, 12 to 19 March 2026; heavy tailed, so averages are sensitive to outliers."
+   }
+  }
+ ],
+ "video": {
+  "id": "M1RCYMWJguo",
+  "title": "RLNC vs Reed-Solomon: Optimal Blockchain Data Coding Explained",
+  "date": "2026-03-25",
+  "why": {
+   "en": "Médard and Moritz Grundei on why the choice of code decides how a network scales."
+  }
+ },
+ "roles": {
+  "items": [
+   {
+    "name": "MAHARSHI | BOOSTED ARC",
+    "role": "Refined"
+   },
+   {
+    "name": "VALENTINE || MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "MAJ : THE UNDERRATED",
+    "role": "Refined"
+   },
+   {
+    "name": "winn.xx",
+    "role": "Refined"
+   },
+   {
+    "name": "Okenwa",
+    "role": "Refined"
+   },
+   {
+    "name": "K A I S A R",
+    "role": "Refined"
+   },
+   {
+    "name": "~0xVicky",
+    "role": "Refined"
+   },
+   {
+    "name": "d3dly",
+    "role": "Refined"
+   },
+   {
+    "name": "MBT",
+    "role": "Refined"
+   },
+   {
+    "name": "Numaa",
+    "role": "Refined"
+   },
+   {
+    "name": "! S H A HE D | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "KAMRUL",
+    "role": "Refined"
+   },
+   {
+    "name": "Rifat | Mum",
+    "role": "Refined"
+   },
+   {
+    "name": "Shah.eth | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Aemar",
+    "role": "Refined"
+   },
+   {
+    "name": "BlockWeb ♾",
+    "role": "Refined"
+   },
+   {
+    "name": "Web3 Creek 🏛",
+    "role": "Refined"
+   },
+   {
+    "name": "Biva | mum",
+    "role": "Refined"
+   },
+   {
+    "name": "Success og",
+    "role": "Refined"
+   },
+   {
+    "name": "𝗧𝗲𝗲 ♡ ♾",
+    "role": "Refined"
+   },
+   {
+    "name": "Anshika",
+    "role": "Refined"
+   },
+   {
+    "name": "Amelia",
+    "role": "Refined"
+   },
+   {
+    "name": "𝗝𝗢𝗛𝗔𝗡 || MUM BOT  ||",
+    "role": "Refined"
+   },
+   {
+    "name": "Wittydude1 | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "TINNA  ✨",
+    "role": "Refined"
+   },
+   {
+    "name": "Presh404",
+    "role": "Refined"
+   },
+   {
+    "name": "Cutie Quinn🧨",
+    "role": "Refined"
+   },
+   {
+    "name": "CS",
+    "role": "Refined"
+   },
+   {
+    "name": "s1qed",
+    "role": "Refined"
+   },
+   {
+    "name": "0xLegenda",
+    "role": "Refined"
+   },
+   {
+    "name": "crypto_achill",
+    "role": "Refined"
+   },
+   {
+    "name": "Upson",
+    "role": "Refined"
+   },
+   {
+    "name": "bobyhamster",
+    "role": "Refined"
+   },
+   {
+    "name": "Skybo",
+    "role": "Refined"
+   },
+   {
+    "name": "Boengas 86",
+    "role": "Refined"
+   },
+   {
+    "name": "Shah.eth | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "𝐃𝐎𝐑𝐀",
+    "role": "Refined"
+   },
+   {
+    "name": "BUKS",
+    "role": "Refined"
+   },
+   {
+    "name": "Em3rald | Mum",
+    "role": "Refined"
+   },
+   {
+    "name": "Andriy 🇺🇦",
+    "role": "Refined"
+   },
+   {
+    "name": "Ikechukwu",
+    "role": "Refined"
+   },
+   {
+    "name": "Emma",
+    "role": "Refined"
+   },
+   {
+    "name": "SharkChili🔱",
+    "role": "Refined"
+   },
+   {
+    "name": "Ace",
+    "role": "Refined"
+   },
+   {
+    "name": "junior4040 (❖,❖) 🪁",
+    "role": "Refined"
+   }
+  ],
+  "note": {
+   "en": "4 role calls in March, posted on 6, 17, 23 and 30 March by Flash and blockchainjeff in #role-announcements. Every member named has a page on the register."
+  },
+  "src": [
+   "Optimum Discord, #role-announcements",
+   "https://discord.gg/getoptimum"
+  ]
+ },
+ "builders": [
+  "runner"
+ ],
+ "eventItems": [
+  {
+   "id": "deco26",
+   "start": "2026-03-23",
+   "city": "Cambridge, MA",
+   "name": "DeCo: Decentralized Coding Workshop",
+   "url": "https://x.com/get_optimum/status/2032507870705758365",
+   "kind": "workshop",
+   "what": {
+    "en": "Researchers and builders on coding theory for decentralized systems, at MIT."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/2036581039800459317"
+    ]
+   ],
+   "end": "2026-03-24"
+  },
+  {
+   "id": "blockspace26",
+   "start": "2026-03-31",
+   "city": "Cannes",
+   "name": "Blockspace Forum at EthCC",
+   "url": "https://x.com/get_optimum/status/2033611412766138607",
+   "kind": "conference",
+   "what": {
+    "en": "Co-sponsored by Optimum, on the transaction supply chain."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/2037203991382417889"
+    ]
+   ]
+  }
+ ],
+ "reads": [
+  [
+   "Optimizing a $100B market: latency reduction and ETH staking revenue",
+   "Optimum blog",
+   "2026-03-26",
+   "https://www.getoptimum.xyz/blog/optimizing-a-100b-market-effects-of-latency-reduction-on-eth-staking-revenue"
+  ]
+ ],
+ "takePart": [
+  {
+   "text": {
+    "en": "Named in a role call? Your card is ready. Add your picture and share it."
+   },
+   "url": "/members/"
+  }
+ ]
+}

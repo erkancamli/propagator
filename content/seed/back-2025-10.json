@@ -1,0 +1,265 @@
+{
+ "kind": "weekly",
+ "id": "2025-10",
+ "back": true,
+ "status": "published",
+ "date": "2025-10-31",
+ "range": [
+  "2025-10-01",
+  "2025-10-31"
+ ],
+ "title": {
+  "en": "Stress test"
+ },
+ "dek": {
+  "en": "A liquidation crash shows what congestion looks like, Optimum explains how it measured six times, four more operators join, and Hackmos puts mump2p in hackers’ hands."
+ },
+ "note": {
+  "en": [
+   "On 10 October the market gave Optimum an unplanned demonstration. Liquidations piled into Ethereum, the mempool backed up, and fees for a simple transfer reached about 40 dollars. Optimum used the day to explain why the networking layer matters most when everyone needs it at once.",
+   "The rest of the month was about method. A behind the scenes post explained exactly how the six times figure was measured, a hackathon asked outsiders to measure it themselves, and Muriel Médard took a paper and a live demo to an academic networking conference."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "Optimum’s Black Friday Fallout thread traced the 10 October crash on Ethereum: a mempool backlog of about 94,000 transactions per minute and gas above 400 gwei.",
+   "Behind the Metrics explained the 6 times Hoodi figure: 30 gateways, Prometheus timestamps, and an ethPandaOps baseline. Simply Staking, Gateway, HashKey Cloud and Stakely joined the testnet.",
+   "Hackmos bounties at Cosmoverse asked teams to measure mump2p against Gossipsub, and Médard presented a paper and demo at CNSM 2025."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "context",
+   "title": {
+    "en": "Black Friday fallout"
+   },
+   "body": {
+    "en": "Markets crashed on 10 October and onchain activity spiked. In a thread on 15 October Optimum laid out what it saw on Ethereum: no downtime, but the mempool backlog reached about 94,000 transactions per minute, about 18% above normal, gas for a simple transfer topped 400 gwei, about 40 dollars, and some users reported more than 500 dollars for DeFi transactions. On Arbitrum a team member saw fees above 100 dollars. Optimum’s point was that these spikes are when the networking layer’s limits show."
+   },
+   "sources": [
+    [
+     "Optimum on X, 15 Oct 2025",
+     "https://x.com/get_optimum/status/1978499630829847014"
+    ],
+    [
+     "Etherscan pending transactions",
+     "https://etherscan.io/chart/pendingtx"
+    ]
+   ],
+   "art": {
+    "type": "stats",
+    "items": [
+     {
+      "v": {
+       "n": 94000
+      },
+      "dir": "up"
+     },
+     {
+      "v": {
+       "n": 400,
+       "unit": "gwei"
+      },
+      "dir": "up"
+     }
+    ]
+   }
+  },
+  {
+   "tag": "research",
+   "title": {
+    "en": "Behind the metrics"
+   },
+   "body": {
+    "en": "On 16 October developer relations lead Swarnabha Sinha published how the 6 times Hoodi result was measured. Thirty gateways across the US, Europe and Asia sat between Lighthouse, Prysm or Teku clients and the network; each block was timestamped on arrival over both paths and fed into Prometheus histograms. The baseline of about 1 second for Gossipsub came from ethPandaOps’ monitoring rather than the gateways themselves. The post did not give a sample size beyond a 24 hour chart or describe clock synchronisation, details an independent tester would want."
+   },
+   "sources": [
+    [
+     "Optimum blog, 16 Oct 2025",
+     "https://www.getoptimum.xyz/blog/behind-the-metrics-mump2ps-6x-latency-win-on-ethereum-hoodi-testnet"
+    ],
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1978869851331437003"
+    ]
+   ],
+   "claim": "company"
+  },
+  {
+   "tag": "adoption",
+   "title": {
+    "en": "Four more operators"
+   },
+   "body": {
+    "en": "The testnet added Simply Staking, founded in 2013, on 16 October, Gateway, which runs nodes in eight regions, on 21 October, HashKey Cloud, staking on more than 80 chains since 2018, on 24 October, and Stakely, with operations on 34 chains and about 50,000 delegators, on 29 October. On 16 October Oisin Kyne of Obol also joined an X Space on why distributed validators and mump2p suit the staking market."
+   },
+   "sources": [
+    [
+     "Optimum on X, Simply Staking",
+     "https://x.com/get_optimum/status/1978896006830760201"
+    ],
+    [
+     "Optimum on X, HashKey Cloud",
+     "https://x.com/get_optimum/status/1981760676344336496"
+    ],
+    [
+     "Optimum on X, Stakely",
+     "https://x.com/get_optimum/status/1983572190566953357"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "waffle",
+    "total": 4,
+    "filled": 4,
+    "cols": 4
+   }
+  },
+  {
+   "tag": "dev",
+   "title": {
+    "en": "Hackmos: measure it yourself"
+   },
+   "body": {
+    "en": "Optimum set bounties at Hackmos, the hackathon around Cosmoverse, with three tracks, an online introduction on 22 October, virtual entries on DoraHacks and an in person event on 30 October. It was not a typical hackathon, Optimum said: participants would experiment with mump2p to quantify its gains over Gossipsub, which is the kind of outside measurement the claims needed."
+   },
+   "sources": [
+    [
+     "Optimum on X, bounties",
+     "https://x.com/get_optimum/status/1977771204514546099"
+    ],
+    [
+     "Optimum on X, live",
+     "https://x.com/get_optimum/status/1981396034178936968"
+    ],
+    [
+     "DoraHacks, Hackmos 2025",
+     "https://dorahacks.io/hackathon/hackmos-2025/detail"
+    ]
+   ]
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "A keynote, a paper and a demo at CNSM"
+   },
+   "body": {
+    "en": "Optimum took its work back to academia. At CNSM 2025, the International Conference on Network and Service Management, Médard gave a keynote, presented a research paper and ran a live mump2p demo. Earlier in the month the team was at Token2049 in Singapore with a Proof of Drinks evening co-hosted with Everstake on 1 October."
+   },
+   "sources": [
+    [
+     "Optimum on X, CNSM",
+     "https://x.com/get_optimum/status/1980982551985668595"
+    ],
+    [
+     "Paper on IFIP digital library",
+     "https://dl.ifip.org/db/conf/cnsm/cnsm2025/1571191484.pdf"
+    ],
+    [
+     "Optimum on X, Token2049",
+     "https://x.com/get_optimum/status/1968663561548558736"
+    ]
+   ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "A Halloween contest"
+   },
+   "body": {
+    "en": "On 30 October Optimum asked the community for Optimum themed Halloween videos made with AI tools such as Veo 3 or Sora 2, with treats for the ten best, under the slogan Decentralize to Scare. It also published a short explainer, The Real Transaction Lifecycle, following a transaction from a phone to a block."
+   },
+   "sources": [
+    [
+     "Optimum on X, Halloween contest",
+     "https://x.com/get_optimum/status/1983992898594205958"
+    ],
+    [
+     "The Real Transaction Lifecycle",
+     "https://www.youtube.com/watch?v=K_TYCGxfhr0"
+    ]
+   ]
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2025-10",
+  "nodes": 40
+ },
+ "claims": [
+  {
+   "claim": {
+    "en": "mump2p is 6 times faster than Gossipsub on Hoodi"
+   },
+   "status": "company",
+   "note": {
+    "en": "Method published on 16 October 2025. The baseline comes from ethPandaOps, not from the same gateways."
+   }
+  },
+  {
+   "claim": {
+    "en": "Mempool backlog of 94,000 transactions per minute on 10 October"
+   },
+   "status": "company",
+   "note": {
+    "en": "Optimum’s reading of Etherscan and Dune data, 15 October 2025."
+   }
+  }
+ ],
+ "video": {
+  "id": "K_TYCGxfhr0",
+  "title": "The Real Transaction Lifecycle: From Your Device to the Blockchain",
+  "date": "2025-10-22",
+  "why": {
+   "en": "Seven minutes that place propagation in the life of an ordinary transaction."
+  }
+ },
+ "builders": [
+  "runner"
+ ],
+ "eventItems": [
+  {
+   "id": "hackmos25",
+   "start": "2025-10-30",
+   "city": "Online and IRL",
+   "name": "Hackmos at Cosmoverse",
+   "url": "https://dorahacks.io/hackathon/hackmos-2025/detail",
+   "kind": "workshop",
+   "what": {
+    "en": "Three Optimum bounty tracks to measure mump2p against Gossipsub."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1979174335094100067"
+    ]
+   ]
+  },
+  {
+   "id": "cnsm25",
+   "start": "2025-10-27",
+   "city": "Bologna",
+   "name": "CNSM 2025",
+   "url": "https://cnsm-conf.org/2025/",
+   "kind": "conference",
+   "what": {
+    "en": "Médard’s keynote, paper and live mump2p demo."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1980982551985668595"
+    ]
+   ],
+   "end": "2025-10-31"
+  }
+ ],
+ "reads": [
+  [
+   "Behind the Metrics: mump2p’s 6x latency win on Hoodi",
+   "Optimum blog",
+   "2025-10-16",
+   "https://www.getoptimum.xyz/blog/behind-the-metrics-mump2ps-6x-latency-win-on-ethereum-hoodi-testnet"
+  ]
+ ]
+}

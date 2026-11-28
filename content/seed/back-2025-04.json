@@ -1,0 +1,274 @@
+{
+ "kind": "weekly",
+ "id": "2025-04",
+ "back": true,
+ "status": "published",
+ "date": "2025-04-30",
+ "range": [
+  "2025-04-01",
+  "2025-04-30"
+ ],
+ "title": {
+  "en": "Eleven million dollars and a front door"
+ },
+ "dek": {
+  "en": "1kx leads an $11M seed round, the Discord opens to the public, and Optimum starts explaining itself as the memory layer the world computer forgot."
+ },
+ "note": {
+  "en": [
+   "April was the month Optimum stopped being a name on a slide. In one week it announced an $11 million seed round, opened its Discord, put up its website and documentation, and held its biggest X Space yet.",
+   "The pitch was still broad: decentralized memory for any chain, with Optimum P2P as the first product. Validators and Ethereum would come into focus later. For now the message was that blockchains are computers missing their RAM."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "On 15 April Optimum announced an $11 million seed round led by 1kx, with CMT Digital, Finality Capital, Robot Ventures, GSR, Chorus One and others.",
+   "The Discord opened to the public on 14 April. Optimum said a week later it had more than 100,000 members, and called its first community call for 2 May.",
+   "Muriel Médard wrote in CoinDesk that Web3 has a memory problem, and she and Kent Lin went back to the Harvard Blockchain Conference, where Optimum started a year earlier."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "launch",
+   "title": {
+    "en": "A seed round led by 1kx"
+   },
+   "body": {
+    "en": "On 15 April Optimum announced an $11 million seed round led by 1kx, to build what it called the first high performance memory infrastructure for any blockchain. CoinDesk, Blockworks and The Defiant covered it the same day. Backers posting their support included CMT Digital, Finality Capital, GSR, Chorus One, CMS Holdings, Caladan, SNZ, MH Ventures and Triton, and CMT published its investment thesis on the networking layer a day later. Optimum also put out its first blog post and a five minute introduction video."
+   },
+   "sources": [
+    [
+     "CoinDesk, 15 Apr 2025",
+     "https://www.coindesk.com/tech/2025/04/15/mit-incubated-optimum-raises-usd11m-seed-round-to-build-web3-s-missing-memory-layer"
+    ],
+    [
+     "Blockworks",
+     "https://blockworks.co/news/optimum-ram-web3-protocol-memory-decentralized"
+    ],
+    [
+     "Optimum blog, 15 Apr 2025",
+     "https://www.getoptimum.xyz/blog/introducing-optimum-building-the-missing-memory-layer-for-web3"
+    ],
+    [
+     "CMT Digital thesis on X",
+     "https://x.com/Aryonchain/status/1912498798690959670"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "stats",
+    "items": [
+     {
+      "v": {
+       "n": 11,
+       "unit": "M USD"
+      },
+      "dir": "up"
+     }
+    ]
+   }
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "The Discord opens its doors"
+   },
+   "body": {
+    "en": "The invite link went up on 14 April with a warning that it would expire in three hours. In its weekly recap on 19 April Optimum listed the seed round, the Discord launch, a new website with documentation and its largest X Space, and said the server already had more than 100,000 members. That figure is Optimum’s own and counts joins, not active members. On 28 April it called the first community call for 2 May in the Discord, open to holders of the OG role."
+   },
+   "sources": [
+    [
+     "Optimum on X, 14 Apr 2025",
+     "https://x.com/get_optimum/status/1911885935996010569"
+    ],
+    [
+     "Optimum on X, weekly recap",
+     "https://x.com/get_optimum/status/1913616079907328382"
+    ],
+    [
+     "Optimum on X, first community call",
+     "https://x.com/get_optimum/status/1916884340912668682"
+    ]
+   ],
+   "claim": "company"
+  },
+  {
+   "tag": "media",
+   "title": {
+    "en": "Web3 has a memory problem"
+   },
+   "body": {
+    "en": "On 1 April CoinDesk published an opinion piece by Muriel Médard arguing that Web3 lacks a real memory layer: gossip protocols, full replication and mempools are best effort patches, not a design. Optimum followed with a thread comparing today’s data handling to a pile of laundry next to a tidy closet, and described Optimum P2P as a memory bus and deRAM as decentralized memory built on random linear network coding."
+   },
+   "sources": [
+    [
+     "CoinDesk on X, 1 Apr 2025",
+     "https://x.com/CoinDesk/status/1907129327302418452"
+    ],
+    [
+     "Optimum on X, 1 Apr 2025",
+     "https://x.com/get_optimum/status/1907159579026411834"
+    ],
+    [
+     "Optimum on X, 3 Apr 2025",
+     "https://x.com/get_optimum/status/1907849962265981206"
+    ]
+   ]
+  },
+  {
+   "tag": "research",
+   "title": {
+    "en": "RLNC in plain words"
+   },
+   "body": {
+    "en": "A thread on 1 April explained random linear network coding as turning data into a math puzzle before sending it: the sender mixes packets with random equations, nodes along the way remix them, and the receiver solves the puzzle once it has collected enough pieces. The thread said independent Ethereum Foundation research had shown proof of concept gains of up to 20 times in bandwidth with RLNC. On 21 April Médard explained the idea in under five minutes on video, and on 30 April the blog published Battle of the Codes, comparing RLNC with Reed Solomon and fountain codes."
+   },
+   "sources": [
+    [
+     "Optimum on X, RLNC thread",
+     "https://x.com/get_optimum/status/1907053276740399553"
+    ],
+    [
+     "Optimum on X, five minute video",
+     "https://x.com/get_optimum/status/1914357584829812884"
+    ],
+    [
+     "Optimum blog, Battle of the Codes",
+     "https://www.getoptimum.xyz/blog/battle-of-the-codes-rlnc-vs-reed-solomon-fountain-codes"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "pieces",
+    "k": 4,
+    "n": 6,
+    "lost": [
+     1
+    ]
+   }
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "Back where it started"
+   },
+   "body": {
+    "en": "Optimum traced its origins to the Harvard Blockchain Conference a year earlier, and on 26 April both co-founders were back on its programme. Kent Lin sat on a decentralized infrastructure panel and Médard presented on Web3’s memory problem, describing a blockchain as a computer that lacks a memory unit and a bus. Optimum also announced that Médard would speak at Consensus in Toronto on 16 May."
+   },
+   "sources": [
+    [
+     "Optimum on X, HBC preview",
+     "https://x.com/get_optimum/status/1915566033060172233"
+    ],
+    [
+     "Optimum on X, HBC recap",
+     "https://x.com/get_optimum/status/1916978112321229057"
+    ],
+    [
+     "Optimum on X, Consensus talk",
+     "https://x.com/get_optimum/status/1917202329008554160"
+    ]
+   ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "Spaces with investors and a validator"
+   },
+   "body": {
+    "en": "Two more X Spaces filled the month. On 17 April Wei Dai of 1kx joined the co-founders to talk about why chains need memory infrastructure; a community member wrote up a summary on Mirror. On 24 April Aryon of CMT Digital and Masha of Everstake gave an investor’s and a validator’s view in Making Blockchains Feel Fast Again. Everstake would later become one of the first testnet partners."
+   },
+   "sources": [
+    [
+     "Optimum on X, Space with Wei Dai",
+     "https://x.com/get_optimum/status/1912570447700586983"
+    ],
+    [
+     "Space summary on Mirror",
+     "https://mirror.xyz/jackmusk.eth/EoDnxj0RMKKgbK33c_kBLdxC8uAHNfR3bRCg4YzhOGs"
+    ],
+    [
+     "Optimum on X, Space with CMT and Everstake",
+     "https://x.com/get_optimum/status/1914740487262757307"
+    ]
+   ]
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2025-04",
+  "nodes": 40
+ },
+ "claims": [
+  {
+   "claim": {
+    "en": "More than 100,000 Discord members in the first week"
+   },
+   "status": "company",
+   "note": {
+    "en": "Optimum’s recap of 19 April. It counts joins; how many stayed active is not stated."
+   }
+  },
+  {
+   "claim": {
+    "en": "RLNC proofs of concept improve Ethereum bandwidth up to 20 times"
+   },
+   "status": "company",
+   "note": {
+    "en": "Attributed by Optimum to Ethereum Foundation research; the post does not link the study."
+   }
+  }
+ ],
+ "video": {
+  "id": "nLfegqPLY3o",
+  "title": "Discover Optimum: Turbocharged Data Propagation for Any Blockchain",
+  "date": "2025-04-15",
+  "why": {
+   "en": "Published with the seed round. Five minutes on what Optimum set out to build, before the focus narrowed to Ethereum validators."
+  }
+ },
+ "eventItems": [
+  {
+   "id": "hbc25",
+   "start": "2025-04-26",
+   "city": "Cambridge, MA",
+   "name": "Harvard Blockchain Conference",
+   "url": "https://x.com/get_optimum/status/1915566033060172233",
+   "kind": "conference",
+   "what": {
+    "en": "Kent Lin on the decentralized infrastructure panel and Muriel Médard on Web3’s memory problem."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1916978112321229057"
+    ]
+   ]
+  }
+ ],
+ "reads": [
+  [
+   "MIT incubated Optimum raises $11M seed round",
+   "CoinDesk",
+   "2025-04-15",
+   "https://www.coindesk.com/tech/2025/04/15/mit-incubated-optimum-raises-usd11m-seed-round-to-build-web3-s-missing-memory-layer"
+  ],
+  [
+   "Optimum aims to deliver Web3’s missing memory layer",
+   "Blockworks",
+   "2025-04-15",
+   "https://blockworks.co/news/optimum-ram-web3-protocol-memory-decentralized"
+  ],
+  [
+   "Kent Lin on RLNC, the memory layer and scalability",
+   "Presto Research",
+   "2025-04-16",
+   "https://www.prestolabs.io/research/kent-optimum-rlnc-memory-layer-and-scalability"
+  ]
+ ],
+ "quote": {
+  "text": "Every time something in crypto amazes me, it always its origin in and around information theory.",
+  "who": "Tarun Chitra, 15 April 2025",
+  "url": "https://x.com/tarunchitra/status/1912189740251558170"
+ }
+}

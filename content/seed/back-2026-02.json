@@ -1,0 +1,222 @@
+{
+ "kind": "weekly",
+ "id": "2026-02",
+ "back": true,
+ "status": "published",
+ "date": "2026-02-28",
+ "range": [
+  "2026-02-01",
+  "2026-02-28"
+ ],
+ "title": {
+  "en": "Coded in Hong Kong, keynotes in Denver"
+ },
+ "dek": {
+  "en": "CODED at Consensus Hong Kong, two Médard talks at ETHDenver, a chief economist joins, and Optimum sees AI agents running Flexnodes."
+ },
+ "note": {
+  "en": [
+   "February had two stages. In Hong Kong Optimum hosted CODED, its own side event, at the AWS office during Consensus. In Denver Muriel Médard gave a keynote with a short lesson in queueing theory, showed mump2p running on the Hoodi testnet and presented research on coding for data availability sampling.",
+   "Behind the travel the company was building its business side. It hired a chief economist and opened a role to lead the Flexnode rollout, while its posts started pairing two ideas: AI agents will need machine speed chains, and agents could earn by running Flexnodes."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "CODED, a side event on chain performance co-hosted with AWS, took place at the AWS Hong Kong office on 11 February during Consensus Hong Kong.",
+   "At ETHDenver Médard gave a keynote, demoed mump2p on 40 or more Hoodi nodes and presented research on RLNC for data availability sampling.",
+   "Slobodan Sudaric-Hefner joined as chief economist on 12 February, and Optimum opened a technical ecosystem lead role for the Flexnode rollout."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "event",
+   "title": {
+    "en": "CODED at Consensus Hong Kong"
+   },
+   "body": {
+    "en": "On 11 February Optimum hosted CODED, a side event on chain performance and scaling, at the AWS office in Hong Kong during Consensus Hong Kong, with venture firms, market makers and other infrastructure builders. On 16 February it thanked its partners and AWS for hosting. CODED became Optimum’s recurring format: the name came back in Seoul in April and in September."
+   },
+   "sources": [
+    [
+     "Optimum on X, CODED",
+     "https://x.com/get_optimum/status/2018788190967202122"
+    ],
+    [
+     "CODED on Luma",
+     "https://luma.com/ac3n8c5a"
+    ],
+    [
+     "Optimum on X, thank you",
+     "https://x.com/get_optimum/status/2023453531722969542"
+    ]
+   ]
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "ETHDenver: queueing theory and a live network"
+   },
+   "body": {
+    "en": "Médard gave two presentations at ETHDenver. Optimum’s recap of 25 February listed a talk on decentralized networking at a CapSummit side event in a brewery, a keynote on the future of Ethereum scaling that included the Pollaczek Khinchine formula from queueing theory, a look at mump2p propagating blocks on the Hoodi testnet, and research on RLNC making data availability sampling more efficient."
+   },
+   "sources": [
+    [
+     "Optimum on X, ETHDenver recap",
+     "https://x.com/get_optimum/status/2026658982639890599"
+    ],
+    [
+     "Optimum on X, talks announced",
+     "https://x.com/get_optimum/status/2022378637492920600"
+    ]
+   ]
+  },
+  {
+   "tag": "dev",
+   "title": {
+    "en": "Inside the Optimum Network"
+   },
+   "body": {
+    "en": "On 10 February Médard and chief product officer Sajida Zouarhi walked through Optimum’s data acceleration network in a 24 minute video: what Flexnodes do, who can operate one and how operators are paid. It included a live view of mump2p running between more than 40 geographically diverse nodes on Hoodi. Short follow ups on 12 and 24 February showed how adding Flexnodes speeds a network up and how slashing would work."
+   },
+   "sources": [
+    [
+     "Optimum on X, Flexnode thread",
+     "https://x.com/get_optimum/status/2021266397226238377"
+    ],
+    [
+     "Flexnodes explained on YouTube",
+     "https://www.youtube.com/watch?v=mCCcJcAzXY0"
+    ],
+    [
+     "Optimum on X, live network",
+     "https://x.com/get_optimum/status/2021266673484038409"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "network",
+    "seed": "b2602-hoodi",
+    "nodes": 40
+   }
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "A chief economist and a Flexnode lead"
+   },
+   "body": {
+    "en": "On 12 February Optimum introduced Slobodan Sudaric-Hefner as chief economist, with more than ten years in economic research and market design. On 17 February it opened a technical ecosystem lead role combining solutions architecture and developer relations to lead the Flexnode rollout and operator onboarding. The chief economist would later co-author Optimum’s research on staking revenue."
+   },
+   "sources": [
+    [
+     "Optimum on X, chief economist",
+     "https://x.com/get_optimum/status/2022047532659184100"
+    ],
+    [
+     "Optimum on X, job opening",
+     "https://x.com/get_optimum/status/2023802226893090826"
+    ]
+   ]
+  },
+  {
+   "tag": "context",
+   "title": {
+    "en": "Agents at machine speed"
+   },
+   "body": {
+    "en": "Optimum spent part of the month on AI agents. On 19 February it predicted a headline for the year, an AI agent funding itself by running a Flexnode with its spare bandwidth, and on 26 February it collected examples of agents trading, rebalancing DeFi positions and paying for their own compute, arguing that an agentic economy needs machine speed chains. It also replied to Justin Drake on Reed Solomon and RLNC, calling Reed Solomon a 1960s code not designed for decentralized networks."
+   },
+   "sources": [
+    [
+     "Optimum on X, agents and Flexnodes",
+     "https://x.com/get_optimum/status/2024531283507019879"
+    ],
+    [
+     "Optimum on X, agents thread",
+     "https://x.com/get_optimum/status/2027017565365833744"
+    ],
+    [
+     "Optimum on X, reply on Reed Solomon",
+     "https://x.com/get_optimum/status/2026021401921278018"
+    ]
+   ],
+   "claim": "company"
+  },
+  {
+   "tag": "research",
+   "title": {
+    "en": "Post quantum by coding"
+   },
+   "body": {
+    "en": "In a reply on 13 February Optimum described a longer term plan: today propagation relies on the underlying security of the network, but it intends to use network coding to protect not only keys but all data against quantum attacks. The idea grew into talks and videos on post quantum security through the spring."
+   },
+   "sources": [
+    [
+     "Optimum on X, 13 Feb 2026",
+     "https://x.com/get_optimum/status/2022353177665036543"
+    ]
+   ]
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2026-02",
+  "nodes": 40
+ },
+ "video": {
+  "id": "mCCcJcAzXY0",
+  "title": "Flexnodes Explained: Decentralizing Blockchain Performance with Muriel Médard and Sajida Zouarhi",
+  "date": "2026-02-10",
+  "why": {
+   "en": "The fullest public explanation of how Flexnodes would be run and paid."
+  }
+ },
+ "builders": [
+  "runner"
+ ],
+ "eventItems": [
+  {
+   "id": "coded-hk",
+   "start": "2026-02-11",
+   "city": "Hong Kong",
+   "name": "CODED at Consensus Hong Kong",
+   "url": "https://luma.com/ac3n8c5a",
+   "kind": "meetup",
+   "what": {
+    "en": "Optimum’s side event on chain performance, at the AWS office."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/2020906737927422406"
+    ]
+   ]
+  },
+  {
+   "id": "ethdenver26",
+   "start": "2026-02-17",
+   "city": "Denver",
+   "name": "ETHDenver 2026",
+   "url": "https://x.com/get_optimum/status/2022378637492920600",
+   "kind": "conference",
+   "what": {
+    "en": "A Médard keynote, a CapSummit talk and a live mump2p demo."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/2026658982639890599"
+    ]
+   ],
+   "end": "2026-02-21"
+  }
+ ],
+ "reads": [
+  [
+   "Flexnodes: A Global Network of Data Accelerators",
+   "Optimum blog",
+   "2026-01-20",
+   "https://www.getoptimum.xyz/blog/flexnodes-a-global-network-of-data-accelerators"
+  ]
+ ]
+}

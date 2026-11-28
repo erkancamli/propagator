@@ -1,0 +1,312 @@
+{
+ "kind": "weekly",
+ "id": "2025-09",
+ "back": true,
+ "status": "published",
+ "date": "2025-09-30",
+ "range": [
+  "2025-09-01",
+  "2025-09-30"
+ ],
+ "title": {
+  "en": "150 milliseconds"
+ },
+ "dek": {
+  "en": "Hoodi testnet results put mump2p at about 150 ms against about a second for Gossipsub, six more operators join, and the first HackNet fills a room at MIT."
+ },
+ "note": {
+  "en": [
+   "September gave Optimum the number it would repeat for a year: 150 milliseconds, the average time a block took to reach thirty mump2p nodes on Ethereum’s Hoodi testnet. Against roughly a second for Gossipsub, Optimum called it a six times win.",
+   "The comparison has caveats worth keeping in mind, and the blog was open about the main one: the Gossipsub figure came from a different source, ethPandaOps monitoring, and was its fastest end. Still, the result moved operators. Six joined the testnet this month."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "On 23 September Optimum reported about 150 ms average block propagation across 30 mump2p nodes on Hoodi, against about 1 second for Gossipsub, roughly 6 times faster.",
+   "Meria, Node Monster, H2O Nodes, RockX, Stakecito and NodeOps joined the testnet. Optimum said it hoped to launch on mainnet around the end of the year, with no token plans.",
+   "Six teams set up their own Flexnode networks at the first HackNet at MIT on 14 September. Muriel Médard became a Fellow of the Royal Academy of Engineering."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "network",
+   "title": {
+    "en": "Hoodi: about 150 ms, six times faster"
+   },
+   "body": {
+    "en": "On 23 September Optimum published its first results from Ethereum’s Hoodi testnet. Thirty mump2p nodes spread across the US, Europe and Asia each ran an Optimum Gateway beside a consensus client, and blocks reached all of them in about 150 ms on average, mostly between 130 and 170 ms. For Gossipsub it used the low end of ethPandaOps measurements, about 1 second, and called the gain 6.5 times. The two numbers come from different measurement setups, which flatters the comparison; later mainnet figures were 2 to 4 times."
+   },
+   "sources": [
+    [
+     "Optimum blog, 23 Sep 2025",
+     "https://www.getoptimum.xyz/blog/acceleration-mump2p-early-results-on-hoodi-testnet"
+    ],
+    [
+     "Optimum on X, results",
+     "https://x.com/get_optimum/status/1970536658270605597"
+    ],
+    [
+     "Optimum on X, setup",
+     "https://x.com/get_optimum/status/1970835716763779082"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "bars",
+    "items": [
+     {
+      "label": "Gossipsub",
+      "v": 1000,
+      "show": {
+       "n": 1000,
+       "unit": "ms"
+      }
+     },
+     {
+      "label": "mump2p",
+      "v": 150,
+      "show": {
+       "n": 150,
+       "unit": "ms"
+      },
+      "hot": true
+     }
+    ],
+    "max": 1150
+   }
+  },
+  {
+   "tag": "adoption",
+   "title": {
+    "en": "Six operators join in a month"
+   },
+   "body": {
+    "en": "The testnet kept growing. Meria joined on 11 September, Node Monster with about 580,000 staked ETH and H2O Nodes, which runs Lido Simple DVT validators, on 18 September, RockX with about 400,000 ETH on 25 September, Stakecito with about 200,000 delegators on 26 September and the infrastructure marketplace NodeOps on 29 September. Asked about timing, Optimum said it was looking to launch on Ethereum mainnet around the end of the year and had no plans for a token. Mainnet came in October 2026."
+   },
+   "sources": [
+    [
+     "Optimum on X, Node Monster",
+     "https://x.com/get_optimum/status/1968710577578217893"
+    ],
+    [
+     "Optimum on X, RockX",
+     "https://x.com/get_optimum/status/1971245341132419549"
+    ],
+    [
+     "Optimum on X, mainnet timing",
+     "https://x.com/get_optimum/status/1971629212156285160"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "waffle",
+    "total": 6,
+    "filled": 6,
+    "cols": 6
+   }
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "The first HackNet"
+   },
+   "body": {
+    "en": "On 14 September six teams came to MIT to set up their own Flexnode deployments and test OptimumP2P across different network shapes and loads. It followed ETHBoston on 12 September, where Médard spoke, and Solana Boston on 13 September. Optimum said more HackNets, in person and online, would follow. "
+   },
+   "sources": [
+    [
+     "Optimum on X, HackNet scenes",
+     "https://x.com/get_optimum/status/1968027450522403035"
+    ],
+    [
+     "Optimum on X, Boston week",
+     "https://x.com/get_optimum/status/1965038678147027449"
+    ]
+   ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "The first treasure hunt"
+   },
+   "body": {
+    "en": "On 16 September BlockchainJeff pinned an old scroll in the Discord: the first clue of Optimum’s first digital treasure hunt, themed on cracking the blockchain trilemma. More followed over ten days, a riddle on 17 September (the portal is not in the clash you see, but in the lines written underneath), shifted letter ciphers and a base64 string on 19 and 20 September, and a last hint on 25 September pointing at descriptors. It was the first of several hunts; today 68 members hold the Discord role Lord of the Treasure."
+   },
+   "sources": [
+    [
+     "Optimum on X, 16 Sep 2025",
+     "https://x.com/get_optimum/status/1967936682147344796"
+    ],
+    [
+     "Pinned clues in the Optimum Discord",
+     "https://discord.gg/getoptimum"
+    ]
+   ],
+   "art": {
+    "type": "pieces",
+    "k": 3,
+    "n": 6,
+    "lost": [
+     0,
+     4
+    ]
+   }
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "Seoul and Singapore"
+   },
+   "body": {
+    "en": "The team spent the end of the month in Asia. It met builders at Korea Blockchain Week, where Korean writer 0xProfessorJo published a short explainer on Optimum, and prepared for Token2049 in Singapore: a Proof of Drinks evening with Everstake on 1 October and a Network States side event where Médard spoke about zero knowledge and infrastructure. On 29 September she and Kent Lin also told the story of turning MIT research into a company."
+   },
+   "sources": [
+    [
+     "Optimum on X, Token2049 plans",
+     "https://x.com/get_optimum/status/1968663561548558736"
+    ],
+    [
+     "Optimum on X, KBW",
+     "https://x.com/get_optimum/status/1972925770072018964"
+    ],
+    [
+     "Optimum on X, research to company",
+     "https://x.com/get_optimum/status/1972309890367672768"
+    ]
+   ]
+  },
+  {
+   "tag": "media",
+   "title": {
+    "en": "Royal Academy of Engineering"
+   },
+   "body": {
+    "en": "On 24 September Optimum announced that Muriel Médard had been elected a Fellow of the Royal Academy of Engineering, which honours leading engineering researchers, innovators and entrepreneurs. It was the second of three major honours for her within a year, followed in December by news of the IEEE Hamming Medal."
+   },
+   "sources": [
+    [
+     "Optimum on X, 24 Sep 2025",
+     "https://x.com/get_optimum/status/1970902538766647695"
+    ]
+   ]
+  },
+  {
+   "tag": "dev",
+   "title": {
+    "en": "Seeing a validator setup"
+   },
+   "body": {
+    "en": "On 29 September Optimum posted a short video with its VP of Engineering Har Preet Singh on how a validator connects to mump2p: a gateway runs beside the consensus client and the validator keeps its usual connections. Kent Lin also published an article on Optimum’s flywheel, and Médard explained why Solana’s Alpenglow, promising 150 ms finality, still leaves room for faster propagation."
+   },
+   "sources": [
+    [
+     "mump2p validator implementation video",
+     "https://www.youtube.com/watch?v=xe1u2Ct6WNY"
+    ],
+    [
+     "Optimum on X, flywheel article",
+     "https://x.com/get_optimum/status/1965395076416504254"
+    ],
+    [
+     "Optimum on X, Alpenglow",
+     "https://x.com/get_optimum/status/1965527549938901341"
+    ]
+   ]
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2025-09",
+  "nodes": 40
+ },
+ "claims": [
+  {
+   "claim": {
+    "en": "About 150 ms block propagation on Hoodi, 6 times faster than Gossipsub"
+   },
+   "status": "company",
+   "note": {
+    "en": "Optimum’s 30 node setup against a separate ethPandaOps baseline of about 1 second. Mainnet results a year later were 2 to 4 times."
+   }
+  },
+  {
+   "claim": {
+    "en": "Mainnet around the end of 2025, no token plans"
+   },
+   "status": "company",
+   "note": {
+    "en": "Optimum on X, 26 September 2025. Mainnet launched on 20 October 2026."
+   }
+  }
+ ],
+ "video": {
+  "id": "xe1u2Ct6WNY",
+  "title": "mump2p Validator Implementation, with VP of Engineering Har Preet Singh",
+  "date": "2025-09-29",
+  "why": {
+   "en": "Two minutes that show how little a validator has to change to try it."
+  }
+ },
+ "builders": [
+  "runner"
+ ],
+ "eventItems": [
+  {
+   "id": "ethboston25",
+   "start": "2025-09-12",
+   "city": "Cambridge, MA",
+   "name": "ETHBoston",
+   "url": "https://x.com/get_optimum/status/1965889251339547016",
+   "kind": "conference",
+   "what": {
+    "en": "Muriel Médard on memory as the new scalability frontier, on the MIT campus."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1965038678147027449"
+    ]
+   ]
+  },
+  {
+   "id": "hacknet25",
+   "start": "2025-09-14",
+   "city": "Cambridge, MA",
+   "name": "Flexnode HackNet at MIT",
+   "url": "https://x.com/get_optimum/status/1958152550454333530",
+   "kind": "workshop",
+   "what": {
+    "en": "Six teams build and test their own Flexnode networks."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1968027450522403035"
+    ]
+   ]
+  }
+ ],
+ "reads": [
+  [
+   "Acceleration: mump2p early results on Hoodi testnet",
+   "Optimum blog",
+   "2025-09-23",
+   "https://www.getoptimum.xyz/blog/acceleration-mump2p-early-results-on-hoodi-testnet"
+  ],
+  [
+   "Decentralize to Scale",
+   "Optimum blog",
+   "2025-09-04",
+   "https://www.getoptimum.xyz/blog/decentralize-to-scale-infrastructure-for-an-onchain-digital-economy"
+  ]
+ ],
+ "world": [
+  {
+   "lang": "ko",
+   "title": "짧게 알아보는 옵티멈(Optimum)",
+   "who": "0xProfessorJo, shared by Optimum",
+   "date": "2025-09-30",
+   "url": "https://x.com/get_optimum/status/1972925770072018964"
+  }
+ ]
+}

@@ -1010,3 +1010,14 @@ h1, h2, h3 { font-weight: 650; letter-spacing: -0.025em; }
 .team-teaser small { color: var(--accent); font-weight: 600; font-size: 13px; }
 .team-teaser em { font-style: normal; font-size: 13px; color: var(--muted); line-height: 1.4; }
 @media (max-width: 860px) { .founder { grid-template-columns: 1fr; } .f-photo img { max-width: 200px; } .team-teaser { grid-template-columns: 1fr; } }
+
+/* back issues: one per month before the weekly issues */
+.bi-year { font: 600 22px/1.2 var(--sans); margin: 40px 0 4px; padding-top: 16px; border-top: 1px solid var(--line); }
+.bi-months { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 28px 24px; }
+.bi-months .a-title { font-size: 21px; }
+.bi-months .a-dek { font-size: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.bi-month { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; place-items: initial; padding: 18px 20px; gap: 2px; background: linear-gradient(135deg, var(--ink) 0%, color-mix(in srgb, var(--ink) 78%, var(--accent)) 100%); }
+.bi-month b { font: 600 52px/1 var(--serif); color: var(--bg); }
+.bi-month small { font: 500 15px var(--sans); color: color-mix(in srgb, var(--bg) 72%, transparent); }
+.back-note { margin: 10px 0 0; font-size: 14px; color: var(--muted); max-width: 64ch; }
+.spot-noimg { grid-template-columns: 1fr; }

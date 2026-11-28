@@ -1,0 +1,513 @@
+{
+ "kind": "weekly",
+ "id": "2026-07",
+ "back": true,
+ "status": "published",
+ "date": "2026-07-31",
+ "range": [
+  "2026-07-01",
+  "2026-07-31"
+ ],
+ "title": {
+  "en": "Is MEV a zero sum game?"
+ },
+ "dek": {
+  "en": "New research on value lost between slots, Muriel Médard at the Flashbots workshop at Stanford, blocmates calls Optimum the Autobahn for blockchain data, and an audit closes."
+ },
+ "note": {
+  "en": [
+   "July was quiet on the surface and busy underneath. Optimum published its most careful piece of MEV research yet, asking whether value a proposer misses in one slot is simply picked up in the next. In about one slot in ten, it found, it is not.",
+   "Outside the company, blocmates published a long guide that gave Optimum a phrase it adopted at once, the Autobahn for blockchain data, and reported testnet numbers that had grown far beyond the seven partners of a year earlier: more than 40 validators and 29% of staked ETH."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "Optimum’s study of 33,137 slots found that value missed in one slot and not recovered in the next equalled about a sixth of all accepted bid value.",
+   "Médard presented mump2p at the Flashbots MEV workshop at Stanford during SBC on 30 July. blocmates’ guide reported more than 40 testnet validators with 29% of staked ETH.",
+   "The second phase of ProbeLab’s security audit of the Optimum Gateway closed on 31 July. Four role calls named 61 Refined members."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "research",
+   "title": {
+    "en": "Cross slot MEV is not always zero sum"
+   },
+   "body": {
+    "en": "On 13 July Optimum asked: if a proposer picks a bid too early and misses value, does the next slot simply capture it? For each of 33,137 slots it compared the accepted bid, the best bid in the first four seconds and the difference. Over all slots, value lost and not captured in the following slot added up to about a sixth of total accepted bid value, and in about 10% of slots the next slot did not make up the loss. In one example, two relays offered much higher bids only about 300 ms after a bid was accepted. Optimum concluded that delaying bid selection can be the efficient choice, if blocks propagate fast enough."
+   },
+   "sources": [
+    [
+     "Optimum on X, 13 Jul 2026",
+     "https://x.com/get_optimum/status/2076701078406762891"
+    ],
+    [
+     "Optimum on X, results",
+     "https://x.com/get_optimum/status/2076701143649177741"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "waffle",
+    "total": 6,
+    "filled": 1,
+    "cols": 6
+   }
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "Flashbots at Stanford"
+   },
+   "body": {
+    "en": "On 30 July Médard presented mump2p at the Flashbots MEV workshop held during the Science of Blockchain Conference at Stanford, carrying the MEV research to the people who build the block auction. Earlier in the month Optimum published her video Why Ethereum Has a Data Ceiling, and How RLNC Breaks It."
+   },
+   "sources": [
+    [
+     "Optimum on X, Flashbots workshop",
+     "https://x.com/get_optimum/status/2078132718018425052"
+    ],
+    [
+     "Optimum on X, workshop week",
+     "https://x.com/get_optimum/status/2081835770743251235"
+    ],
+    [
+     "Why Ethereum has a data ceiling on YouTube",
+     "https://www.youtube.com/watch?v=XGxZxzxAe0g"
+    ]
+   ]
+  },
+  {
+   "tag": "media",
+   "title": {
+    "en": "The Autobahn for blockchain data"
+   },
+   "body": {
+    "en": "On 28 July blocmates published a 15 minute guide, What is Optimum? The Autobahn for Blockchain Data. It reported that the testnet had more than 40 large Ethereum validators representing 29% of staked ETH, about 23.7 billion dollars, average propagation 2.42 times faster than libp2p with 7.88 times lower variance and no lost messages, and expected launch very soon. Optimum shared it the same day and said it was nearly time to open up the Autobahn."
+   },
+   "sources": [
+    [
+     "blocmates, 28 Jul 2026",
+     "https://www.blocmates.com/articles/what-is-optimum-the-autobahn-for-blockchain-data"
+    ],
+    [
+     "Optimum on X, 28 Jul 2026",
+     "https://x.com/get_optimum/status/2082105501232308451"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "waffle",
+    "total": 100,
+    "filled": 29,
+    "cols": 10,
+    "big": {
+     "pct": 29
+    }
+   }
+  },
+  {
+   "tag": "dev",
+   "title": {
+    "en": "An audit closes"
+   },
+   "body": {
+    "en": "ProbeLab finished the second phase of its security audit of the Optimum Gateway, the piece validators run beside their consensus client, on 31 July at version 1.0.2. Across two phases it found no critical issues and one high severity finding in each; the report says all security findings were addressed in v1.0.2, with one monitoring improvement deferred. It also confirms that the gateway does not change how validators sign or attest and can be stopped without affecting them. The report was published on 18 August."
+   },
+   "sources": [
+    [
+     "ProbeLab audit report",
+     "https://cdn.probelab.io/media/documents/2026-08-ProbeLab-Security_Audit_Report_Optimum_Gateway.pdf"
+    ]
+   ],
+   "claim": "independent",
+   "art": {
+    "type": "versions",
+    "items": [
+     {
+      "v": "Phase 1",
+      "s": "up"
+     },
+     {
+      "v": "Phase 2",
+      "s": "up"
+     },
+     {
+      "v": "v1.0.2",
+      "s": "current"
+     }
+    ],
+    "date": "2026-07-31"
+   }
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "Four role calls, 61 names"
+   },
+   "body": {
+    "en": "Flash posted role calls on 7, 13, 21 and 27 July, naming 16, 17, 14 and 14 members Refined. Each of them is listed below."
+   },
+   "sources": [
+    [
+     "Optimum Discord, #role-announcements",
+     "https://discord.gg/getoptimum"
+    ],
+    [
+     "The role calls on Propagator",
+     "/classes/"
+    ]
+   ]
+  },
+  {
+   "tag": "context",
+   "title": {
+    "en": "Institutions and the decentralization trade off"
+   },
+   "body": {
+    "en": "On 23 July Optimum shared Kent Lin’s article on the state of institutional blockchain adoption, and on 31 July it restated its central claim in a line: not decentralization or scale, but decentralize to scale, with data propagation that does not slow down as the network grows. It also invited readers to try the network simulator for themselves."
+   },
+   "sources": [
+    [
+     "Optimum on X, Kent Lin article",
+     "https://x.com/get_optimum/status/2080334698929434797"
+    ],
+    [
+     "Optimum on X, decentralize to scale",
+     "https://x.com/get_optimum/status/2083267425852956690"
+    ],
+    [
+     "Network simulator",
+     "https://gmum.cc/simulation-mesh/"
+    ]
+   ]
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2026-07",
+  "nodes": 40
+ },
+ "claims": [
+  {
+   "claim": {
+    "en": "Missed value not recovered in the next slot equals about a sixth of accepted bid value"
+   },
+   "status": "company",
+   "note": {
+    "en": "Optimum’s analysis of 33,137 slots, 13 July 2026."
+   }
+  },
+  {
+   "claim": {
+    "en": "More than 40 testnet validators with 29% of staked ETH"
+   },
+   "status": "company",
+   "note": {
+    "en": "Reported by blocmates on 28 July 2026 from figures Optimum provided."
+   }
+  },
+  {
+   "claim": {
+    "en": "All gateway security findings addressed in v1.0.2"
+   },
+   "status": "independent",
+   "note": {
+    "en": "ProbeLab audit, completed 31 July 2026; one peer metric deferred."
+   }
+  }
+ ],
+ "video": {
+  "id": "XGxZxzxAe0g",
+  "title": "Why Ethereum Has a Data Ceiling, And How RLNC Breaks It",
+  "date": "2026-07-01",
+  "why": {
+   "en": "Médard’s clearest short argument for why networking caps what Ethereum can carry."
+  }
+ },
+ "roles": {
+  "items": [
+   {
+    "name": "Xander.io",
+    "role": "Refined"
+   },
+   {
+    "name": "dhi yaa",
+    "role": "Refined"
+   },
+   {
+    "name": "T RZ Tayeb | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Tushi | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Jasper The Great",
+    "role": "Refined"
+   },
+   {
+    "name": "Āzittt90 | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Keng Siro",
+    "role": "Refined"
+   },
+   {
+    "name": "𝗔𝗡𝗟𝗢𝗚",
+    "role": "Refined"
+   },
+   {
+    "name": "NXR",
+    "role": "Refined"
+   },
+   {
+    "name": "Süleyman",
+    "role": "Refined"
+   },
+   {
+    "name": "Bita",
+    "role": "Refined"
+   },
+   {
+    "name": "Tati",
+    "role": "Refined"
+   },
+   {
+    "name": "Marina 👾",
+    "role": "Refined"
+   },
+   {
+    "name": "fandinamokyev",
+    "role": "Refined"
+   },
+   {
+    "name": "LIGHT🚨  🚨",
+    "role": "Refined"
+   },
+   {
+    "name": "james557👁",
+    "role": "Refined"
+   },
+   {
+    "name": "Al amin|| Mum || BD",
+    "role": "Refined"
+   },
+   {
+    "name": "HIMEL",
+    "role": "Refined"
+   },
+   {
+    "name": "Miizan | Mum",
+    "role": "Refined"
+   },
+   {
+    "name": "𝑵𝒂𝒗𝒊𝒊",
+    "role": "Refined"
+   },
+   {
+    "name": "Syed🙌🏻OPTI🔥🔥",
+    "role": "Refined"
+   },
+   {
+    "name": ".Krtka",
+    "role": "Refined"
+   },
+   {
+    "name": "Gus. 0xrumora",
+    "role": "Refined"
+   },
+   {
+    "name": "Luka",
+    "role": "Refined"
+   },
+   {
+    "name": "ᗪᖇOᑭᔕᑎIᑭEᖇ | Mum",
+    "role": "Refined"
+   },
+   {
+    "name": "𝐄𝐥𝐢𝐧𝐚𝐗",
+    "role": "Refined"
+   },
+   {
+    "name": "Yulik",
+    "role": "Refined"
+   },
+   {
+    "name": "Elis🔥",
+    "role": "Refined"
+   },
+   {
+    "name": "MiReTu",
+    "role": "Refined"
+   },
+   {
+    "name": "Selin",
+    "role": "Refined"
+   },
+   {
+    "name": "Barrel",
+    "role": "Refined"
+   },
+   {
+    "name": "Drakon 🔥 24/7 🪁",
+    "role": "Refined"
+   },
+   {
+    "name": "77MC",
+    "role": "Refined"
+   },
+   {
+    "name": "Mr kenneth",
+    "role": "Refined"
+   },
+   {
+    "name": "Lil Niyo  ♊",
+    "role": "Refined"
+   },
+   {
+    "name": "Shtihmas",
+    "role": "Refined"
+   },
+   {
+    "name": "prmak",
+    "role": "Refined"
+   },
+   {
+    "name": "KhanhLinh98",
+    "role": "Refined"
+   },
+   {
+    "name": "𝑀𝑖𝑛ℎ 𝑇𝑖𝑒𝑛",
+    "role": "Refined"
+   },
+   {
+    "name": "Vương Quang Vinh",
+    "role": "Refined"
+   },
+   {
+    "name": "Sarcastic",
+    "role": "Refined"
+   },
+   {
+    "name": "rftd",
+    "role": "Refined"
+   },
+   {
+    "name": "FAIZ [ MUM ]",
+    "role": "Refined"
+   },
+   {
+    "name": "Manaz.btc🇸🇴",
+    "role": "Refined"
+   },
+   {
+    "name": "jelly1cloud",
+    "role": "Refined"
+   },
+   {
+    "name": "Kaka",
+    "role": "Refined"
+   },
+   {
+    "name": "𝙇𝙚𝙜𝙚𝙣𝙙",
+    "role": "Refined"
+   },
+   {
+    "name": "LAM",
+    "role": "Refined"
+   },
+   {
+    "name": "A S H I Q  !  MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "𝐇𝐚𝐦𝐳𝐚_𝐊𝐢𝐧𝐠 | 𝐌𝐔𝐌",
+    "role": "Refined"
+   },
+   {
+    "name": "omni3387 | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "𝙄𝙨𝙤𝘽𝙖𝙗𝙖𝙞",
+    "role": "Refined"
+   },
+   {
+    "name": "Surabhi",
+    "role": "Refined"
+   },
+   {
+    "name": "Areeba | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Baster",
+    "role": "Refined"
+   },
+   {
+    "name": "Bangbest ♾",
+    "role": "Refined"
+   },
+   {
+    "name": "em3ka🌱",
+    "role": "Refined"
+   },
+   {
+    "name": "! ! cuongquoc",
+    "role": "Refined"
+   },
+   {
+    "name": "Liqued",
+    "role": "Refined"
+   },
+   {
+    "name": "Tazik smerti",
+    "role": "Refined"
+   },
+   {
+    "name": "CipherAtlas",
+    "role": "Refined"
+   }
+  ],
+  "note": {
+   "en": "4 role calls in July, posted on 7, 13, 21 and 27 July by Flash in #role-announcements. Every member named has a page on the register."
+  },
+  "src": [
+   "Optimum Discord, #role-announcements",
+   "https://discord.gg/getoptimum"
+  ]
+ },
+ "builders": [
+  "runner"
+ ],
+ "eventItems": [
+  {
+   "id": "mevsbc26",
+   "start": "2026-07-30",
+   "city": "Stanford",
+   "name": "Flashbots MEV workshop at SBC",
+   "url": "https://x.com/get_optimum/status/2078132718018425052",
+   "kind": "workshop",
+   "what": {
+    "en": "Muriel Médard presents mump2p and Optimum’s MEV research."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/2081835770743251235"
+    ]
+   ]
+  }
+ ],
+ "reads": [
+  [
+   "What is Optimum? The Autobahn for Blockchain Data",
+   "blocmates",
+   "2026-07-28",
+   "https://www.blocmates.com/articles/what-is-optimum-the-autobahn-for-blockchain-data"
+  ]
+ ]
+}

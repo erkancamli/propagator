@@ -1,0 +1,217 @@
+{
+ "kind": "weekly",
+ "id": "2025-11",
+ "back": true,
+ "status": "published",
+ "date": "2025-11-30",
+ "range": [
+  "2025-11-01",
+  "2025-11-30"
+ ],
+ "title": {
+  "en": "Neon City"
+ },
+ "dek": {
+  "en": "A second treasure hunt runs through a cyberpunk city, five operators and Nethermind join, weekly community calls begin, and Optimum calls mump2p an Internet Protocol for blockchains."
+ },
+ "note": {
+  "en": [
+   "November was the community’s busiest month of 2025. A second treasure hunt took members through a neon city of ciphers for nine days, one clue was dropped live during a community call, and Optimum announced that the calls would now happen every Thursday.",
+   "On the technical side the testnet kept growing, Optimum started talking about how it defends against polluted data, and Muriel Médard found the line she would use for months: Optimum is building the Internet Protocol of Web3."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "The Neon City treasure hunt ran in the Discord from 11 to 20 November, with clues pinned by BlockchainJeff and one revealed live on the 13 November community call.",
+   "Blockscape, SenseiNode, ChainUp and Validatrium joined the mump2p testnet, and Optimum announced a partnership with Nethermind.",
+   "Optimum set a weekly community call every Thursday, held an X Space in French, and opened four roles including a chief protocol economist."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "community",
+   "title": {
+    "en": "The Neon City treasure hunt"
+   },
+   "body": {
+    "en": "On 11 November Optimum posted that rumours of a new code fragment echoed through the streets of the Neon City, and BlockchainJeff pinned a video in the Discord. Clue 1 came on 12 November, a special clue was promised for the next day’s community call, and clues 2 and 3, a new location and three password clues followed until 20 November: shifted letter ciphers glowing on screens, a hologram above an airship, the neon sign of a ramen shop. Every clue sat inside an image, which made the hunt as much about looking as decoding."
+   },
+   "sources": [
+    [
+     "Optimum on X, 11 Nov 2025",
+     "https://x.com/get_optimum/status/1988319803657122172"
+    ],
+    [
+     "Pinned clues in the Optimum Discord",
+     "https://discord.gg/getoptimum"
+    ]
+   ],
+   "art": {
+    "type": "pieces",
+    "k": 4,
+    "n": 7,
+    "lost": [
+     1,
+     5
+    ]
+   }
+  },
+  {
+   "tag": "adoption",
+   "title": {
+    "en": "Four operators and Nethermind"
+   },
+   "body": {
+    "en": "The testnet added Blockscape on 6 November, SenseiNode, a leading operator in Latin America, on 7 November, ChainUp, with more than 30,000 staked ETH, on 13 November and Validatrium, operating on more than 65 networks, on 24 November. On 25 November Optimum announced work with Nethermind, maker of a widely used Ethereum execution client, which joined an X Space on Ethereum scaling in December."
+   },
+   "sources": [
+    [
+     "Optimum on X, SenseiNode",
+     "https://x.com/get_optimum/status/1986846770937422236"
+    ],
+    [
+     "Optimum on X, ChainUp",
+     "https://x.com/get_optimum/status/1989002813356077504"
+    ],
+    [
+     "Optimum on X, Nethermind",
+     "https://x.com/get_optimum/status/1993380825610829862"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "waffle",
+    "total": 5,
+    "filled": 5,
+    "cols": 5
+   }
+  },
+  {
+   "tag": "research",
+   "title": {
+    "en": "The Internet Protocol of Web3"
+   },
+   "body": {
+    "en": "Optimum leaned on a new comparison this month. On 19 November it quoted Médard saying we are making the Web3 Internet Protocol, and on 26 November it spelled out the analogy: IP made the internet scale by giving every network a common way to move packets, and coded propagation could do the same for blockchains. A thread on 18 November answered a question about bad actors: mump2p includes a mechanism to detect polluted coded pieces, which Optimum called the Rugby Protocol."
+   },
+   "sources": [
+    [
+     "Optimum on X, 19 Nov 2025",
+     "https://x.com/get_optimum/status/1991229520368791992"
+    ],
+    [
+     "Optimum on X, 26 Nov 2025",
+     "https://x.com/get_optimum/status/1993666081198895412"
+    ],
+    [
+     "Optimum on X, Rugby Protocol",
+     "https://x.com/get_optimum/status/1990832448058351920"
+    ]
+   ],
+   "claim": "company"
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "Calls every Thursday"
+   },
+   "body": {
+    "en": "On 26 November Optimum reminded the community that it now hosts a call every Thursday in the Discord, at 10:00 UTC, for questions, updates and community news. The team also held its first X Space in French on 25 November, with Médard, Sajida Zouarhi and Meria on the French crypto scene. The calls became a fixed point of the week; the special treasure hunt clue of 13 November was dropped on one."
+   },
+   "sources": [
+    [
+     "Optimum on X, weekly calls",
+     "https://x.com/get_optimum/status/1993808857026756728"
+    ],
+    [
+     "Optimum on X, Space in French",
+     "https://x.com/get_optimum/status/1993034220344856899"
+    ]
+   ]
+  },
+  {
+   "tag": "context",
+   "title": {
+    "en": "Erasure coding goes mainstream"
+   },
+   "body": {
+    "en": "On 4 November Optimum responded to Vitalik Buterin’s writing on simplifying Ethereum, calling erasure coding the force multiplier for Ethereum’s scaling roadmap, and on 17 November it posted an erasure coding FAQ. Ethereum’s Fusaka upgrade, with PeerDAS, was set for 3 December, and Optimum used the run up to argue that coding, not just sharding, is what lets nodes move more data."
+   },
+   "sources": [
+    [
+     "Optimum on X, 4 Nov 2025",
+     "https://x.com/get_optimum/status/1985783116829524464"
+    ],
+    [
+     "Optimum on X, erasure coding FAQ",
+     "https://x.com/get_optimum/status/1990530249508204934"
+    ]
+   ]
+  },
+  {
+   "tag": "dev",
+   "title": {
+    "en": "Four openings"
+   },
+   "body": {
+    "en": "On 26 November, alongside an AMA with Kent Lin, Optimum listed four open roles: chief protocol economist, senior protocol engineer, senior DevOps engineer and APAC growth manager. The economist role was filled in February 2026 by Slobodan Sudaric-Hefner. On 28 November Optimum also shared Médard’s talk at Cosmoverse on making blockchains faster at scale."
+   },
+   "sources": [
+    [
+     "Optimum on X, hiring",
+     "https://x.com/get_optimum/status/1993765197539102820"
+    ],
+    [
+     "Optimum on X, Cosmoverse talk",
+     "https://x.com/get_optimum/status/1994444300805894333"
+    ]
+   ]
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2025-11",
+  "nodes": 40
+ },
+ "claims": [
+  {
+   "claim": {
+    "en": "mump2p detects polluted coded pieces"
+   },
+   "status": "company",
+   "note": {
+    "en": "Optimum’s answer on X, 18 November 2025, naming the mechanism the Rugby Protocol; no public audit of it at the time."
+   }
+  }
+ ],
+ "builders": [
+  "runner"
+ ],
+ "eventItems": [
+  {
+   "id": "fr-space-1125",
+   "start": "2025-11-25",
+   "city": "Online",
+   "name": "X Space in French",
+   "url": "https://x.com/get_optimum/status/1993034220344856899",
+   "kind": "ama",
+   "what": {
+    "en": "Médard, Sajida Zouarhi and Meria on the French crypto landscape."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1993349411750158572"
+    ]
+   ]
+  }
+ ],
+ "takePart": [
+  {
+   "text": {
+    "en": "Join the Thursday community call in the Optimum Discord."
+   },
+   "url": "https://discord.gg/getoptimum"
+  }
+ ]
+}

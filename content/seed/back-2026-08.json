@@ -1,0 +1,516 @@
+{
+ "kind": "weekly",
+ "id": "2026-08",
+ "back": true,
+ "status": "published",
+ "date": "2026-08-31",
+ "range": [
+  "2026-08-01",
+  "2026-08-31"
+ ],
+ "title": {
+  "en": "Free for validators"
+ },
+ "dek": {
+  "en": "Optimum makes beacon block propagation free and the gateway open source, Lido operators start a month of tests, Four Pillars and ProbeLab publish, and the first Optimized member is named."
+ },
+ "note": {
+  "en": [
+   "August settled the question of who pays. Validators do not: Optimum said access to faster beacon blocks and attestations is free and will stay free, and the gateway they run is open source. The money, it said, will come from traders and market makers who need speed for their own business.",
+   "It was also a month of outside eyes. Lido’s node operators were invited to test mump2p for a month and reported back in public, Four Pillars published a long research report, and ProbeLab’s security audit of the gateway went online."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "On 10 August Optimum said beacon block and attestation access is free for validators and will stay free; the Optimum Gateway is free and open source, with an API key from Optimum.",
+   "Optimum asked Lido’s curated node operators to test mump2p on Hoodi for a month. HashKey Cloud reported about 200 ms faster attestation propagation; Blockdaemon and others reported gains.",
+   "Four Pillars published Optimum: Rethinking the Blockchain Network Layer. Optimum joined the Ethereum Korea Consortium, and the role call of 17 August named the first Optimized member."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "launch",
+   "title": {
+    "en": "Free and faster beacon blocks"
+   },
+   "body": {
+    "en": "On 10 August Optimum set out how mump2p would reach mainnet. Beacon block and attestation access for validators is free and will remain free. The Optimum Gateway, which validators run beside their consensus client, is free and open source; operators connect with an API key issued by Optimum, and self serve keys through an Optimum Console were promised for the following month. ether.fi’s operators had been sent onboarding information, Lido’s were asked to start on Hoodi. Optimum said it would charge for latency sensitive products aimed at traders, market makers and infrastructure providers."
+   },
+   "sources": [
+    [
+     "Optimum blog, 10 Aug 2026",
+     "https://www.getoptimum.xyz/blog/free-and-faster-ethereum-beacon-block-propagation"
+    ],
+    [
+     "Optimum Gateway on GitHub",
+     "https://github.com/getoptimum/optimum-gateway"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "stats",
+    "items": [
+     {
+      "v": {
+       "n": 0,
+       "unit": "USD"
+      },
+      "dir": "down"
+     }
+    ]
+   }
+  },
+  {
+   "tag": "adoption",
+   "title": {
+    "en": "Lido operators test it in public"
+   },
+   "body": {
+    "en": "Also on 10 August Optimum posted a request on Lido’s research forum for curated module operators to run mump2p on Hoodi for a month. Replies came quickly: InfStones described a smooth private testnet, HashKey Cloud measured about 200 ms lower average attestation propagation after an hour of setup, Blockdaemon saw better head, target and source votes, Ebunker and Stakely reported reduced latency and no incidents, and FP Validated published a tool to check attestations. The final report would come in October."
+   },
+   "sources": [
+    [
+     "Lido research forum, 10 Aug 2026",
+     "https://research.lido.fi/t/perch-request-for-node-operators-to-run-and-test-optimum-mump2p/11786"
+    ],
+    [
+     "Optimum on X, FP Validated",
+     "https://x.com/get_optimum/status/2084681995741995255"
+    ]
+   ],
+   "claim": "mixed"
+  },
+  {
+   "tag": "research",
+   "title": {
+    "en": "Four Pillars and ProbeLab publish"
+   },
+   "body": {
+    "en": "On 18 August Four Pillars researcher c4lvin published Optimum: Rethinking the Blockchain Network Layer, a long report on how mump2p works, the 2.42 times average speedup in early tests and the open questions, from Flexnode rewards to how much adoption is needed. The report discloses that it was sponsored by Optimum. The same day ProbeLab published its security audit of the gateway, which found all security findings addressed in version 1.0.2."
+   },
+   "sources": [
+    [
+     "Four Pillars, 18 Aug 2026",
+     "https://research.4pillars.io/en/research/optimum-rethinking-the-blockchain-network-layer"
+    ],
+    [
+     "ProbeLab audit report",
+     "https://cdn.probelab.io/media/documents/2026-08-ProbeLab-Security_Audit_Report_Optimum_Gateway.pdf"
+    ],
+    [
+     "Optimum on X, audit",
+     "https://x.com/get_optimum/status/2090123629145337933"
+    ]
+   ],
+   "claim": "mixed"
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "The first Optimized"
+   },
+   "body": {
+    "en": "The role call of 17 August named the first Optimized member on the register, the rung above Refined for active members who post and help, together with a Chronicler and ten Refined members. Over the month Flash posted five role calls with 67 names: on 3, 10, 17, 25 and 31 August."
+   },
+   "sources": [
+    [
+     "Optimum Discord, #role-announcements",
+     "https://discord.gg/getoptimum"
+    ],
+    [
+     "The 17 August role call",
+     "/class/2026-08-17/"
+    ]
+   ],
+   "art": {
+    "type": "versions",
+    "items": [
+     {
+      "v": "Refined",
+      "s": "up"
+     },
+     {
+      "v": "Optimized",
+      "s": "current"
+     }
+    ],
+    "date": "2026-08-17"
+   }
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "Asia tour, part one"
+   },
+   "body": {
+    "en": "Optimum joined the Ethereum Korea Consortium on 20 August, citing the growth potential of the Korean market. Later in the month Kent Lin, Muriel Médard and APAC growth lead David Song travelled to Singapore and Hong Kong, including the Nanyang Blockchain Conference."
+   },
+   "sources": [
+    [
+     "Optimum on X, Ethereum Korea",
+     "https://x.com/get_optimum/status/2090239160208764986"
+    ],
+    [
+     "Optimum on X, APAC tour",
+     "https://x.com/get_optimum/status/2089392492626280941"
+    ]
+   ]
+  },
+  {
+   "tag": "adoption",
+   "title": {
+    "en": "Finoa and FP Validated"
+   },
+   "body": {
+    "en": "FP Validated, the validator arm of Four Pillars, began testing mump2p on 4 August, and Finoa Consensus Services, a German operator focused on reliability and rewards, joined as a partner on 31 August."
+   },
+   "sources": [
+    [
+     "Optimum on X, FP Validated",
+     "https://x.com/get_optimum/status/2084681995741995255"
+    ],
+    [
+     "Optimum on X, Finoa",
+     "https://x.com/get_optimum/status/2094450916095361404"
+    ]
+   ],
+   "claim": "company"
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2026-08",
+  "nodes": 40
+ },
+ "claims": [
+  {
+   "claim": {
+    "en": "Validator access is free and will stay free"
+   },
+   "status": "company",
+   "note": {
+    "en": "Optimum blog, 10 August 2026. Optimum plans to charge traders and infrastructure providers instead."
+   }
+  },
+  {
+   "claim": {
+    "en": "About 200 ms lower attestation propagation"
+   },
+   "status": "independent",
+   "note": {
+    "en": "HashKey Cloud’s own measurement on the Lido forum, 11 August 2026."
+   }
+  },
+  {
+   "claim": {
+    "en": "2.42 times faster average propagation"
+   },
+   "status": "company",
+   "note": {
+    "en": "Early test figure reported by Four Pillars in a report sponsored by Optimum."
+   }
+  }
+ ],
+ "roles": {
+  "items": [
+   {
+    "name": "Mmorgs || dreaming",
+    "role": "Refined"
+   },
+   {
+    "name": "Hun-Jun-Suk",
+    "role": "Refined"
+   },
+   {
+    "name": "Aish",
+    "role": "Refined"
+   },
+   {
+    "name": "彡𝐋𝐢𝐬𝐚♡",
+    "role": "Refined"
+   },
+   {
+    "name": "Jia",
+    "role": "Refined"
+   },
+   {
+    "name": "DoLuong",
+    "role": "Refined"
+   },
+   {
+    "name": "iiyemi",
+    "role": "Refined"
+   },
+   {
+    "name": "TOR00_1",
+    "role": "Refined"
+   },
+   {
+    "name": "Hawk | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "SABINA 🆔|",
+    "role": "Refined"
+   },
+   {
+    "name": "Loveress✨",
+    "role": "Refined"
+   },
+   {
+    "name": "Shabalee",
+    "role": "Refined"
+   },
+   {
+    "name": "𝐊𝐡𝐮𝐬𝐛𝐨𝐨",
+    "role": "Refined"
+   },
+   {
+    "name": "Byakuya | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "𝐼𝒶𝓂𝐿𝓊𝓂𝓂𝓎𝒥𝒶𝓎",
+    "role": "Refined"
+   },
+   {
+    "name": "🎀s¡",
+    "role": "Refined"
+   },
+   {
+    "name": "ByronDrift",
+    "role": "Refined"
+   },
+   {
+    "name": "samstar71 | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Sumi | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Ꭺ Ⴎ Ꭱ Ꮖ",
+    "role": "Refined"
+   },
+   {
+    "name": "𝓜𝓲𝓷𝓪  𝓶𝓾𝓶",
+    "role": "Refined"
+   },
+   {
+    "name": "Sobez",
+    "role": "Refined"
+   },
+   {
+    "name": ".the_M",
+    "role": "Refined"
+   },
+   {
+    "name": "❚█═𝗦𝗘𝗞𝗛𝗢𝗡═█❚",
+    "role": "Refined"
+   },
+   {
+    "name": "𝐑𝐨𝐦𝐚𝐧_𝐬𝐰𝟎𝟗",
+    "role": "Refined"
+   },
+   {
+    "name": "Fay",
+    "role": "Refined"
+   },
+   {
+    "name": "Daaha / OPTI",
+    "role": "Refined"
+   },
+   {
+    "name": "SIDDIQ ANSARI",
+    "role": "Refined"
+   },
+   {
+    "name": "x💀x",
+    "role": "Refined"
+   },
+   {
+    "name": "Duong_Sunflower🌅🐉",
+    "role": "Refined"
+   },
+   {
+    "name": "Em3rald | Mum",
+    "role": "Optimized"
+   },
+   {
+    "name": "Osita",
+    "role": "Chronicler"
+   },
+   {
+    "name": "Harsh!",
+    "role": "Refined"
+   },
+   {
+    "name": "Cryptoqueen👸",
+    "role": "Refined"
+   },
+   {
+    "name": "BLUEBERRY 🫐 | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "WeLoSu",
+    "role": "Refined"
+   },
+   {
+    "name": "大卫卡-jones",
+    "role": "Refined"
+   },
+   {
+    "name": "bidogold.eth",
+    "role": "Refined"
+   },
+   {
+    "name": "Jsp",
+    "role": "Refined"
+   },
+   {
+    "name": "Mabest",
+    "role": "Refined"
+   },
+   {
+    "name": "NEGI",
+    "role": "Refined"
+   },
+   {
+    "name": "vidang",
+    "role": "Refined"
+   },
+   {
+    "name": "Twinkle",
+    "role": "Refined"
+   },
+   {
+    "name": "𝗔𝗥𝗬𝗔𝗡",
+    "role": "Refined"
+   },
+   {
+    "name": "Skylar🪁",
+    "role": "Refined"
+   },
+   {
+    "name": "Chathura🇱🇰",
+    "role": "Refined"
+   },
+   {
+    "name": "SpecialForces",
+    "role": "Refined"
+   },
+   {
+    "name": "𝗡𝗶𝗰𝗸𝘆 🐆",
+    "role": "Refined"
+   },
+   {
+    "name": "hannie",
+    "role": "Refined"
+   },
+   {
+    "name": "NiYi",
+    "role": "Refined"
+   },
+   {
+    "name": "Dimlak  ⚡",
+    "role": "Refined"
+   },
+   {
+    "name": "ASHIK | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Mollah | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "vie123",
+    "role": "Refined"
+   },
+   {
+    "name": "Williams smith 𓃰",
+    "role": "Refined"
+   },
+   {
+    "name": "2026ﺭﺭ",
+    "role": "Refined"
+   },
+   {
+    "name": "Fifth",
+    "role": "Refined"
+   },
+   {
+    "name": "0xFAlpha",
+    "role": "Refined"
+   },
+   {
+    "name": "Siaa | gMum",
+    "role": "Refined"
+   },
+   {
+    "name": "IDREES | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "TRUNG",
+    "role": "Refined"
+   },
+   {
+    "name": "Bio",
+    "role": "Refined"
+   },
+   {
+    "name": "Julia457",
+    "role": "Refined"
+   },
+   {
+    "name": "Anju",
+    "role": "Refined"
+   },
+   {
+    "name": "𓆩♛𓆪 𝗛𝗼𝗿𝗿𝗶𝘆𝗮𝘀𝗵𝗮𝗵 𓆩♛",
+    "role": "Refined"
+   },
+   {
+    "name": "Cryptic Ream",
+    "role": "Refined"
+   },
+   {
+    "name": "OLA YOOMOMOTA",
+    "role": "Refined"
+   }
+  ],
+  "note": {
+   "en": "5 role calls in August, posted on 3, 10, 17, 25 and 31 August by Flash in #role-announcements. Every member named has a page on the register."
+  },
+  "src": [
+   "Optimum Discord, #role-announcements",
+   "https://discord.gg/getoptimum"
+  ]
+ },
+ "builders": [
+  "runner"
+ ],
+ "reads": [
+  [
+   "Optimum: Rethinking the Blockchain Network Layer",
+   "Four Pillars",
+   "2026-08-18",
+   "https://research.4pillars.io/en/research/optimum-rethinking-the-blockchain-network-layer"
+  ],
+  [
+   "Free and faster Ethereum beacon block propagation",
+   "Optimum blog",
+   "2026-08-10",
+   "https://www.getoptimum.xyz/blog/free-and-faster-ethereum-beacon-block-propagation"
+  ],
+  [
+   "Request for node operators to test mump2p",
+   "Lido research forum",
+   "2026-08-10",
+   "https://research.lido.fi/t/perch-request-for-node-operators-to-run-and-test-optimum-mump2p/11786"
+  ]
+ ]
+}

@@ -1,0 +1,235 @@
+{
+ "kind": "weekly",
+ "id": "2025-12",
+ "back": true,
+ "status": "published",
+ "date": "2025-12-31",
+ "range": [
+  "2025-12-01",
+  "2025-12-31"
+ ],
+ "title": {
+  "en": "The Hamming Medal"
+ },
+ "dek": {
+  "en": "Muriel Médard wins one of engineering’s highest honours, Fusaka ships PeerDAS, Optimum looks at Solana, and the community is invited to become regional ambassadors."
+ },
+ "note": {
+  "en": [
+   "The year ended with the kind of news a startup cannot buy. On 11 December Optimum announced that Muriel Médard would receive the 2026 IEEE Richard W. Hamming Medal for contributions to coding for reliable communications and networking, the field Optimum is built on.",
+   "Mainnet, which Optimum had hoped to reach by the end of the year, did not come. What came instead was groundwork: the Fusaka upgrade on Ethereum, a look at Solana, a call for regional ambassadors and a third treasure hunt over the holidays."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "Optimum announced on 11 December that Médard will receive the 2026 IEEE Richard W. Hamming Medal, one of the highest honours in information sciences.",
+   "Ethereum’s Fusaka upgrade went live on 3 December with PeerDAS, and Optimum and Nethermind discussed what comes next for scaling in an X Space.",
+   "Optimum began recruiting regional ambassadors to translate and create content, and the third shard treasure hunt ran from 23 December."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "media",
+   "title": {
+    "en": "The IEEE Hamming Medal"
+   },
+   "body": {
+    "en": "On 11 December Optimum announced that its co-founder and CEO had been named recipient of the 2026 IEEE Richard W. Hamming Medal, awarded for exceptional contributions to information sciences, systems and technology. The citation honours her contributions to coding for reliable communications and networking. Network coding has been my life’s work, Médard said. The medal was presented at the IEEE Honors Ceremony in April 2026."
+   },
+   "sources": [
+    [
+     "Optimum blog, 11 Dec 2025",
+     "https://www.getoptimum.xyz/blog/optimum-ceo-muriel-medard-receives-prestigious-ieee-richard-w-hamming-medal"
+    ],
+    [
+     "MIT Network Coding group",
+     "https://ncrcg.mit.edu/2026-ieee-richard-w-hamming-medal-recipient"
+    ],
+    [
+     "Optimum on X, 11 Dec 2025",
+     "https://x.com/get_optimum/status/1999166855878189475"
+    ]
+   ]
+  },
+  {
+   "tag": "context",
+   "title": {
+    "en": "Fusaka and PeerDAS go live"
+   },
+   "body": {
+    "en": "Ethereum’s Fusaka upgrade went live on 3 December. Its centrepiece, PeerDAS, lets nodes check that blob data is available by sampling pieces instead of downloading every blob. Optimum called it a real scaling milestone and pointed out the catch: PeerDAS encodes blobs with redundancy, so a proposer has twice as much data to send out. In an X Space with Nethermind on 19 December the two teams discussed how to reach a ten times higher gas limit and said networking limits start to bite around 10 MB blocks."
+   },
+   "sources": [
+    [
+     "Optimum on X, Fusaka is live",
+     "https://x.com/get_optimum/status/1996338783428751541"
+    ],
+    [
+     "Optimum on X, Nethermind Space summary",
+     "https://x.com/get_optimum/status/2005763623835365864"
+    ]
+   ]
+  },
+  {
+   "tag": "research",
+   "title": {
+    "en": "Why Solana needs faster propagation"
+   },
+   "body": {
+    "en": "On 9 December Swarnabha Sinha published a look at Solana’s data path. Solana’s slots last about 400 ms, its Turbine protocol fans blocks out to about 200 peers in pieces sized for a 1,232 byte packet, and the chain’s speed depends on how fast blocks reach every validator, not just how fast a leader makes them. The post argued RLNC based propagation could be the next step. Médard and Kent Lin spent the following week at Abu Dhabi Finance Week and Solana Breakpoint."
+   },
+   "sources": [
+    [
+     "Optimum blog, 9 Dec 2025",
+     "https://www.getoptimum.xyz/blog/why-solana-needs-faster-data-propagation"
+    ],
+    [
+     "Optimum on X, Breakpoint",
+     "https://x.com/get_optimum/status/1997662791423959368"
+    ]
+   ],
+   "claim": "company"
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "Regional ambassadors wanted"
+   },
+   "body": {
+    "en": "On 30 December Optimum said publicly what the Discord already knew: it was recruiting regional ambassadors to translate and create content in their own languages, and still looking for one in Latin America. Applications went through a form, with questions to BlockchainJeff. By March 2026 a role call credited the Mumbassadors, the community’s ambassadors, with choosing who was upgraded; today Jultoshi, Pegasus, TheBlockBoy and samurai.itan hold that role."
+   },
+   "sources": [
+    [
+     "Optimum on X, 30 Dec 2025",
+     "https://x.com/get_optimum/status/2006072420428571002"
+    ]
+   ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "The third shard"
+   },
+   "body": {
+    "en": "The holiday treasure hunt continued the story of the code fragments. On 23 December BlockchainJeff pinned the first clue for the third shard, a cipher on a brass plate in a steam age station, and on 31 December a second clue on the front of a locomotive. Members spent New Year’s Eve decoding."
+   },
+   "sources": [
+    [
+     "Pinned clues in the Optimum Discord",
+     "https://discord.gg/getoptimum"
+    ]
+   ],
+   "art": {
+    "type": "pieces",
+    "k": 3,
+    "n": 6,
+    "lost": [
+     2
+    ]
+   }
+  },
+  {
+   "tag": "adoption",
+   "title": {
+    "en": "RhinoStake joins, Stable launches"
+   },
+   "body": {
+    "en": "RhinoStake joined the mump2p testnet on 5 December. On 8 December Optimum congratulated Stable, a payments chain, on its mainnet launch and said the two teams were working together; payments at global scale need speed, Optimum wrote."
+   },
+   "sources": [
+    [
+     "Optimum on X, RhinoStake",
+     "https://x.com/get_optimum/status/1996995101747564823"
+    ],
+    [
+     "Optimum on X, Stable",
+     "https://x.com/get_optimum/status/1998076119547773037"
+    ]
+   ],
+   "claim": "company"
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2025-12",
+  "nodes": 40
+ },
+ "claims": [
+  {
+   "claim": {
+    "en": "Mainnet around the end of 2025"
+   },
+   "status": "company",
+   "note": {
+    "en": "Said by Optimum in September 2025. It did not happen; mainnet launched on 20 October 2026."
+   }
+  }
+ ],
+ "builders": [
+  "runner"
+ ],
+ "eventItems": [
+  {
+   "id": "breakpoint25",
+   "start": "2025-12-08",
+   "city": "Abu Dhabi",
+   "name": "Abu Dhabi Finance Week and Solana Breakpoint",
+   "url": "https://x.com/get_optimum/status/1997662791423959368",
+   "kind": "conference",
+   "what": {
+    "en": "Muriel Médard and Kent Lin meet the Solana ecosystem."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1997662791423959368"
+    ]
+   ],
+   "end": "2025-12-13"
+  },
+  {
+   "id": "nethermind-1219",
+   "start": "2025-12-19",
+   "city": "Online",
+   "name": "X Space with Nethermind",
+   "url": "https://x.com/get_optimum/status/1999548828102308192",
+   "kind": "ama",
+   "what": {
+    "en": "Post Fusaka observations and the path to 10 times the gas limit."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/2005763635692593501"
+    ]
+   ]
+  }
+ ],
+ "reads": [
+  [
+   "Why Solana needs faster data propagation",
+   "Optimum blog",
+   "2025-12-09",
+   "https://www.getoptimum.xyz/blog/why-solana-needs-faster-data-propagation"
+  ],
+  [
+   "Optimum CEO Muriel Médard receives the IEEE Richard W. Hamming Medal",
+   "Optimum blog",
+   "2025-12-11",
+   "https://www.getoptimum.xyz/blog/optimum-ceo-muriel-medard-receives-prestigious-ieee-richard-w-hamming-medal"
+  ]
+ ],
+ "quote": {
+  "text": "Network coding has been my life’s work.",
+  "who": "Muriel Médard, 11 December 2025",
+  "url": "https://www.getoptimum.xyz/blog/optimum-ceo-muriel-medard-receives-prestigious-ieee-richard-w-hamming-medal"
+ },
+ "takePart": [
+  {
+   "text": {
+    "en": "Speak another language? Ask about the regional ambassador programme in the Discord."
+   },
+   "url": "https://discord.gg/getoptimum"
+  }
+ ]
+}

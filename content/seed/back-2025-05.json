@@ -1,0 +1,249 @@
+{
+ "kind": "weekly",
+ "id": "2025-05",
+ "back": true,
+ "status": "published",
+ "date": "2025-05-31",
+ "range": [
+  "2025-05-01",
+  "2025-05-31"
+ ],
+ "title": {
+  "en": "Battle of the codes"
+ },
+ "dek": {
+  "en": "The first community call, two contests that turn members into explainers, a Consensus main stage, and the first look at Optimum P2P beating Gossipsub."
+ },
+ "note": {
+  "en": [
+   "May was the month the community started doing the explaining. Optimum ran a meme contest and then a writing contest on why random linear network coding beats Reed Solomon and fountain codes, and the best entries were better introductions than some press coverage.",
+   "At the end of the month came the first numbers: test runs in which Optimum P2P delivered a block sized message with more than 50% less latency than Gossipsub. They were Optimum’s own tests, but they were the first time the pitch had a measurement behind it."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "Optimum held its first community call on 2 May and named the winners of its first meme contest and its RLNC explainer contest.",
+   "Muriel Médard spoke on the main stage at Consensus in Toronto on 16 May, and all three co-founders went to Solana’s conference a week later.",
+   "On 28 May Optimum showed its first test results: more than 50% lower latency than Gossipsub for an average block sized message."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "community",
+   "title": {
+    "en": "The first community call, and the first memes"
+   },
+   "body": {
+    "en": "On 2 May the team held its first community call in the Discord, open to members with the OG role, with Muriel Médard, Kent Lin, Eli Laipson, rxndy and Chandler Otterbein. The same day Optimum posted its favourites from a meme contest that had kicked off the server, with hundreds of entries, and named tongs999, rtk17025, SatoshiFlacco and GG1ena as winners."
+   },
+   "sources": [
+    [
+     "Optimum on X, community call",
+     "https://x.com/get_optimum/status/1918304554481053895"
+    ],
+    [
+     "Optimum on X, meme contest winners",
+     "https://x.com/get_optimum/status/1918332958941069818"
+    ]
+   ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "Six winners explain RLNC"
+   },
+   "body": {
+    "en": "On 7 May Optimum launched its second community contest: explain why RLNC outperforms Reed Solomon and fountain codes, in any format, by 21 May. It shared a Médard video, a thread and the Battle of the Codes blog post as homework. On 27 May it named six winners, Onuridaci, agnesismus, 0xskr_, apeboy4life, _Dreyville and 0xmagicianec, whose threads, blog posts and memes explained erasure coding for people who had never heard the term."
+   },
+   "sources": [
+    [
+     "Optimum on X, contest launch",
+     "https://x.com/get_optimum/status/1920253951502659672"
+    ],
+    [
+     "Optimum on X, winners",
+     "https://x.com/get_optimum/status/1927351359671533695"
+    ]
+   ],
+   "art": {
+    "type": "waffle",
+    "total": 6,
+    "filled": 6,
+    "cols": 3
+   }
+  },
+  {
+   "tag": "research",
+   "title": {
+    "en": "Why RLNC, in numbers"
+   },
+   "body": {
+    "en": "The writing contest rode on a research push. A thread on 6 May set out the thesis that RLNC is the most scalable way for nodes to propagate data, and an X Space on 8 May put three of Optimum’s coding experts on the question. On 16 May the blog published Battle of the Codes Part II on how much faster RLNC can be. Optimum’s argument is that with RLNC any coded piece is useful, pieces can be remixed along the way, and nodes can forward before they decode."
+   },
+   "sources": [
+    [
+     "Optimum on X, thesis thread",
+     "https://x.com/get_optimum/status/1919777722441859493"
+    ],
+    [
+     "Optimum blog, Battle of the Codes Part II",
+     "https://www.getoptimum.xyz/blog/battle-of-the-codes-pt-ii-rlnc-speedup"
+    ]
+   ],
+   "claim": "company"
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "From the MIT lab to the Consensus main stage"
+   },
+   "body": {
+    "en": "On 16 May Médard gave the talk The World Computer’s Memory Layer on the main stage at Consensus 2025 in Toronto and joined CoinDesk for a live conversation. A week later all three co-founders, Médard, Kent Lin and Kishori Konwar, went to Solana’s conference to meet builders and validators working on Solana scalability. Médard also commented on Ethereum’s Pectra upgrade for Decrypt."
+   },
+   "sources": [
+    [
+     "Optimum on X, Consensus talk",
+     "https://x.com/get_optimum/status/1923001671946469605"
+    ],
+    [
+     "Optimum on X, Solana conference",
+     "https://x.com/get_optimum/status/1922672072406523985"
+    ],
+    [
+     "Decrypt on Pectra",
+     "https://decrypt.co/318275/ethereum-rolls-out-pectra-most-ambitious-upgrade-yet"
+    ]
+   ]
+  },
+  {
+   "tag": "launch",
+   "title": {
+    "en": "First look: half the latency of Gossipsub"
+   },
+   "body": {
+    "en": "On 28 May Optimum published its first look at Optimum P2P in action. In test runs against Gossipsub, Ethereum’s standard gossip protocol, it said Optimum P2P delivered an average block sized message with more than 50% lower latency. The post did not give the network size or how many runs it averaged; fuller results came in June."
+   },
+   "sources": [
+    [
+     "Optimum on X, 28 May 2025",
+     "https://x.com/get_optimum/status/1927804105507946957"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "bars",
+    "items": [
+     {
+      "label": "Gossipsub",
+      "v": 100,
+      "show": {
+       "pct": 100
+      }
+     },
+     {
+      "label": "Optimum P2P",
+      "v": 49,
+      "show": {
+       "pct": 49
+      },
+      "hot": true
+     }
+    ],
+    "max": 110
+   }
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "Hiring a community manager"
+   },
+   "body": {
+    "en": "On 30 May Optimum posted an opening for a community manager with a record of growing crypto communities and running structured programmes and campaigns. The role was filled in July. On 16 May the team also mentioned for the first time the Flexnodes it was building, light nodes meant to run on cheap devices so that members outside rich markets could take part."
+   },
+   "sources": [
+    [
+     "Optimum on X, hiring",
+     "https://x.com/get_optimum/status/1928550512292671586"
+    ],
+    [
+     "Optimum on X, Flexnodes mention",
+     "https://x.com/get_optimum/status/1923517792281821482"
+    ]
+   ]
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2025-05",
+  "nodes": 40
+ },
+ "claims": [
+  {
+   "claim": {
+    "en": "Over 50% lower latency than Gossipsub for an average block sized message"
+   },
+   "status": "company",
+   "note": {
+    "en": "Optimum’s own test runs, 28 May 2025. Network size and sample were not published with the claim."
+   }
+  }
+ ],
+ "eventItems": [
+  {
+   "id": "consensus25",
+   "start": "2025-05-16",
+   "city": "Toronto",
+   "name": "Consensus 2025",
+   "url": "https://x.com/get_optimum/status/1923001671946469605",
+   "kind": "conference",
+   "what": {
+    "en": "Muriel Médard on the main stage: The World Computer’s Memory Layer, plus a live conversation with CoinDesk."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1923458892216086622"
+    ]
+   ]
+  },
+  {
+   "id": "comm-0502",
+   "start": "2025-05-02",
+   "city": "Online",
+   "name": "First Optimum community call",
+   "url": "https://x.com/get_optimum/status/1918304554481053895",
+   "kind": "ama",
+   "what": {
+    "en": "The team meets the Discord for the first time: Q&A and the best memes."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1916884340912668682"
+    ]
+   ]
+  }
+ ],
+ "reads": [
+  [
+   "Battle of the Codes Pt II: RLNC speedup",
+   "Optimum blog",
+   "2025-05-16",
+   "https://www.getoptimum.xyz/blog/battle-of-the-codes-pt-ii-rlnc-speedup"
+  ],
+  [
+   "Ethereum rolls out Pectra, with comment from Muriel Médard",
+   "Decrypt",
+   "2025-05-07",
+   "https://decrypt.co/318275/ethereum-rolls-out-pectra-most-ambitious-upgrade-yet"
+  ]
+ ],
+ "takePart": [
+  {
+   "text": {
+    "en": "Join the Discord: contests like these still run there."
+   },
+   "url": "https://discord.gg/getoptimum"
+  }
+ ]
+}

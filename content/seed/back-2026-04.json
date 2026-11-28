@@ -1,0 +1,464 @@
+{
+ "kind": "weekly",
+ "id": "2026-04",
+ "back": true,
+ "status": "published",
+ "date": "2026-04-30",
+ "range": [
+  "2026-04-01",
+  "2026-04-30"
+ ],
+ "title": {
+  "en": "The medal, the simulator and Seoul"
+ },
+ "dek": {
+  "en": "Muriel Médard receives the Hamming Medal, Optimum launches a mesh network simulator, takes CODED to Seoul, and the fourth treasure hunt races through a city at night."
+ },
+ "note": {
+  "en": [
+   "April was a month of things you could try for yourself. Optimum put a mesh network simulator online so anyone could watch uncoded gossip, Reed Solomon and RLNC race, and the Discord got a new treasure hunt with Flash posting clues for the first time.",
+   "It was also a month of recognition. On 24 April Muriel Médard received the IEEE Richard W. Hamming Medal at the IEEE Honors Ceremony, five months after it was announced."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "Médard received the IEEE Richard W. Hamming Medal at the 2026 IEEE Honors Ceremony.",
+   "Optimum launched a mesh network simulator comparing uncoded propagation, Reed Solomon and RLNC, and a study of 48,231 slots on latency and rewards.",
+   "Kent Lin spoke at BUIDL Asia in Seoul, where Optimum hosted CODED. Four role calls named 48 Refined members, and the fourth treasure hunt ran from 9 April."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "media",
+   "title": {
+    "en": "The Hamming Medal is presented"
+   },
+   "body": {
+    "en": "On 24 April Muriel Médard received the IEEE Richard W. Hamming Medal at the 2026 IEEE Honors Ceremony. Optimum noted that many earlier recipients created foundational pieces of the internet. The same month she spoke at the MIT Bitcoin Expo on blockchain scaling with Austin Federa on 11 April."
+   },
+   "sources": [
+    [
+     "Optimum on X, 30 Apr 2026",
+     "https://x.com/get_optimum/status/2049952841696239870"
+    ],
+    [
+     "MIT News, March 2026",
+     "https://news.mit.edu/2026/mit-engineering-faculty-receive-awards-0310"
+    ],
+    [
+     "Optimum on X, MIT Bitcoin Expo",
+     "https://x.com/get_optimum/status/2043056530912862341"
+    ]
+   ]
+  },
+  {
+   "tag": "dev",
+   "title": {
+    "en": "A simulator anyone can run"
+   },
+   "body": {
+    "en": "On 14 April Optimum launched a mesh network simulator at gmum.cc that lets anyone compare uncoded propagation, Reed Solomon and RLNC on the same network. Its claim: RLNC is not slightly better than Reed Solomon, it is not even close. Médard recorded a walkthrough on 28 April, and an earlier thread on 1 April explained the fatal flaw Optimum sees in end to end codes: the cost of handling losses grows with the size of the network."
+   },
+   "sources": [
+    [
+     "Optimum on X, simulator",
+     "https://x.com/get_optimum/status/2044111369553969466"
+    ],
+    [
+     "Mesh network simulator",
+     "https://gmum.cc/simulation-mesh/"
+    ],
+    [
+     "Simulation video on YouTube",
+     "https://www.youtube.com/watch?v=2dal03NwuOQ"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "network",
+    "seed": "b2604-mesh",
+    "nodes": 30
+   }
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "CODED Seoul and BUIDL Asia"
+   },
+   "body": {
+    "en": "Kent Lin and APAC growth lead David Song spent the week of 15 April in Seoul. Optimum hosted another CODED side event on 15 April with Four Pillars, INF CryptoLab and Blockdaemon among its partners, and on 17 April Lin gave the talk Building the First Universal Data Acceleration Network at BUIDL Asia. The team also joined the ETH Capital summit."
+   },
+   "sources": [
+    [
+     "Optimum on X, Seoul recap",
+     "https://x.com/get_optimum/status/2046972983663825114"
+    ],
+    [
+     "Optimum on X, BUIDL Asia",
+     "https://x.com/get_optimum/status/2043740051369275903"
+    ]
+   ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "Treasure hunt four"
+   },
+   "body": {
+    "en": "On 9 April BlockchainJeff pinned the first clue of a new treasure hunt: a cipher hidden in a drifting sports car under neon signs. Flash posted the next clues on 14 and 16 April, and the first solvers went into a raffle. The hunt added more names to the Lord of the Treasure role, held today by 68 members."
+   },
+   "sources": [
+    [
+     "Pinned clues in the Optimum Discord",
+     "https://discord.gg/getoptimum"
+    ]
+   ],
+   "art": {
+    "type": "pieces",
+    "k": 4,
+    "n": 6,
+    "lost": [
+     3
+    ]
+   }
+  },
+  {
+   "tag": "research",
+   "title": {
+    "en": "Latency is money, in 48,231 slots"
+   },
+   "body": {
+    "en": "On 20 April Optimum published a study of 48,231 Ethereum slots linking propagation delay to what validators earn, part of its wider effort to put a price on mump2p’s benefits. On 27 April a thread noted that Ethereum handled about 200 million transactions in the first quarter, an all time high and nearly double a year earlier, driven by stablecoin transfers. On 10 April Optimum also launched a new website."
+   },
+   "sources": [
+    [
+     "Optimum on X, 48,231 slots",
+     "https://x.com/get_optimum/status/2046289146814292108"
+    ],
+    [
+     "Optimum on X, Q1 transactions",
+     "https://x.com/get_optimum/status/2048863970497613839"
+    ],
+    [
+     "Optimum on X, new website",
+     "https://x.com/get_optimum/status/2042640570896781809"
+    ]
+   ],
+   "claim": "company"
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "The cost of tail latency at EthCC"
+   },
+   "body": {
+    "en": "On 2 April chief product officer Sajida Zouarhi presented The Cost of Uncertainty: Tail Latency in Ethereum’s PBS Hot Path at EthCC in Cannes, opening with an example of how a late message changes outcomes for both builders and proposers. On 6 April Optimum also published who spoke at DeCo and what they are working on."
+   },
+   "sources": [
+    [
+     "Optimum on X, EthCC talk",
+     "https://x.com/get_optimum/status/2039665098252570943"
+    ],
+    [
+     "Optimum on X, talk clip",
+     "https://x.com/get_optimum/status/2042332622165328061"
+    ],
+    [
+     "Optimum on X, DeCo speakers",
+     "https://x.com/get_optimum/status/2041214084675465264"
+    ]
+   ]
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2026-04",
+  "nodes": 40
+ },
+ "claims": [
+  {
+   "claim": {
+    "en": "RLNC is far ahead of Reed Solomon on a mesh network"
+   },
+   "status": "company",
+   "note": {
+    "en": "Optimum’s own simulator, open to anyone at gmum.cc since 14 April 2026."
+   }
+  }
+ ],
+ "video": {
+  "id": "2dal03NwuOQ",
+  "title": "Watch RLNC Outperform Traditional Protocols in This Mesh Network Decoding Simulation",
+  "date": "2026-04-28",
+  "why": {
+   "en": "Médard narrates the simulator you can then run yourself."
+  }
+ },
+ "roles": {
+  "items": [
+   {
+    "name": "Konopqq",
+    "role": "Refined"
+   },
+   {
+    "name": "Namiost |",
+    "role": "Refined"
+   },
+   {
+    "name": "T U N G",
+    "role": "Refined"
+   },
+   {
+    "name": "Young Ji / Gmum",
+    "role": "Refined"
+   },
+   {
+    "name": "HanumD🌸||MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Luminary_DC",
+    "role": "Refined"
+   },
+   {
+    "name": "𝐌𝐎𝐍𝐓𝐄𝐆𝐎",
+    "role": "Refined"
+   },
+   {
+    "name": "Mesrega",
+    "role": "Refined"
+   },
+   {
+    "name": "Dukesznn",
+    "role": "Refined"
+   },
+   {
+    "name": "Atewe",
+    "role": "Refined"
+   },
+   {
+    "name": "NASGIPITI ARISE 🙌",
+    "role": "Refined"
+   },
+   {
+    "name": "Richman",
+    "role": "Refined"
+   },
+   {
+    "name": "iamigorekk",
+    "role": "Refined"
+   },
+   {
+    "name": "Pappito",
+    "role": "Refined"
+   },
+   {
+    "name": "sorokavorofka",
+    "role": "Refined"
+   },
+   {
+    "name": "kotov./",
+    "role": "Refined"
+   },
+   {
+    "name": "Tynar",
+    "role": "Refined"
+   },
+   {
+    "name": "Rifat | Mum",
+    "role": "Refined"
+   },
+   {
+    "name": "𝗡𝗶𝗸𝗵𝗶𝗹 || ¹ˢᵗ 𝗠𝗨𝗠 ⧉<∞)⧉",
+    "role": "Refined"
+   },
+   {
+    "name": ".yuhuu",
+    "role": "Refined"
+   },
+   {
+    "name": "0xaye",
+    "role": "Refined"
+   },
+   {
+    "name": "Misha1985",
+    "role": "Refined"
+   },
+   {
+    "name": "SKS",
+    "role": "Refined"
+   },
+   {
+    "name": "Jahid",
+    "role": "Refined"
+   },
+   {
+    "name": "Hasinur | MUM | BD",
+    "role": "Refined"
+   },
+   {
+    "name": "DICTATOR | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Kafarik",
+    "role": "Refined"
+   },
+   {
+    "name": "HenryHenry",
+    "role": "Refined"
+   },
+   {
+    "name": "Rimuro🥋",
+    "role": "Refined"
+   },
+   {
+    "name": "Fanz",
+    "role": "Refined"
+   },
+   {
+    "name": "Lee Dwipangga | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Savvy",
+    "role": "Refined"
+   },
+   {
+    "name": "superman",
+    "role": "Refined"
+   },
+   {
+    "name": "izuchatel",
+    "role": "Refined"
+   },
+   {
+    "name": "Crypto Father",
+    "role": "Refined"
+   },
+   {
+    "name": "Phú",
+    "role": "Refined"
+   },
+   {
+    "name": "Alex",
+    "role": "Refined"
+   },
+   {
+    "name": "Aleksander",
+    "role": "Refined"
+   },
+   {
+    "name": "anf1m",
+    "role": "Refined"
+   },
+   {
+    "name": "denys.h",
+    "role": "Refined"
+   },
+   {
+    "name": "Shinobi |  WALUH",
+    "role": "Refined"
+   },
+   {
+    "name": "Guynextdooooor",
+    "role": "Refined"
+   },
+   {
+    "name": "Melvin😈",
+    "role": "Refined"
+   },
+   {
+    "name": "Holu | Mum",
+    "role": "Refined"
+   },
+   {
+    "name": "𝑆𝔞𝔪𝔦𝔢𝐶𝔥𝔞𝔯𝔩",
+    "role": "Refined"
+   },
+   {
+    "name": "BIG-V",
+    "role": "Refined"
+   },
+   {
+    "name": "JT",
+    "role": "Refined"
+   },
+   {
+    "name": "Jaymieolamide",
+    "role": "Refined"
+   }
+  ],
+  "note": {
+   "en": "4 role calls in April, posted on 6, 13, 20 and 28 April by Flash in #role-announcements. Every member named has a page on the register."
+  },
+  "src": [
+   "Optimum Discord, #role-announcements",
+   "https://discord.gg/getoptimum"
+  ]
+ },
+ "builders": [
+  "runner"
+ ],
+ "eventItems": [
+  {
+   "id": "coded-seoul",
+   "start": "2026-04-15",
+   "city": "Seoul",
+   "name": "CODED Seoul",
+   "url": "https://x.com/get_optimum/status/2041240352506744863",
+   "kind": "meetup",
+   "what": {
+    "en": "Optimum’s side event at BUIDL Asia, with Four Pillars, INF CryptoLab and Blockdaemon."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/2046973020460437557"
+    ]
+   ]
+  },
+  {
+   "id": "buidlasia26",
+   "start": "2026-04-17",
+   "city": "Seoul",
+   "name": "BUIDL Asia",
+   "url": "https://x.com/get_optimum/status/2044980930717393002",
+   "kind": "conference",
+   "what": {
+    "en": "Kent Lin: Building the First Universal Data Acceleration Network."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/2046973007546233203"
+    ]
+   ]
+  },
+  {
+   "id": "ieee-honors26",
+   "start": "2026-04-24",
+   "city": "New York",
+   "name": "IEEE Honors Ceremony",
+   "url": "https://ncrcg.mit.edu/2026-ieee-richard-w-hamming-medal-recipient",
+   "kind": "conference",
+   "what": {
+    "en": "Muriel Médard receives the IEEE Richard W. Hamming Medal."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/2049952841696239870"
+    ]
+   ]
+  }
+ ],
+ "takePart": [
+  {
+   "text": {
+    "en": "Try the mesh network simulator and compare the three methods yourself."
+   },
+   "url": "https://gmum.cc/simulation-mesh/"
+  }
+ ]
+}

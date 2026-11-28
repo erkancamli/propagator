@@ -113,7 +113,7 @@ test('seed issues are valid', () => {
 
 test('editor drafts weekly, only admin publishes; drafts stay hidden', async () => {
   const store = memStore();
-  const w = { ...SEED.weekly[0], id: '090', date: '2026-12-30', status: 'published' };
+  const w = { ...SEED.weekly.find((x) => !x.back), id: '090', date: '2026-12-30', status: 'published' };
   let r = await api(req('/api/admin/issue', { method: 'PUT', headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN }, body: JSON.stringify(w) }), { store, env });
   assert.equal(r.status, 200); assert.equal((await r.json()).status, 'draft');
   assert.equal((await site(req('/weekly/090/'), { store })).status, 404);
@@ -129,7 +129,7 @@ test('editor drafts weekly, only admin publishes; drafts stay hidden', async () 
 
 test('approval link asks for the admin token in a form, never needs it in the URL', async () => {
   const store = memStore();
-  const w = { ...SEED.weekly[0], id: '091', date: '2027-01-06', title: { en: 'Secret draft title' } };
+  const w = { ...SEED.weekly.find((x) => !x.back), id: '091', date: '2027-01-06', title: { en: 'Secret draft title' } };
   await api(req('/api/admin/issue', { method: 'PUT', headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN }, body: JSON.stringify(w) }), { store, env });
   let r = await api(req('/api/admin/publish?kind=weekly&id=091'), { store, env });
   assert.equal(r.status, 200);

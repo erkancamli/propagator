@@ -1,0 +1,268 @@
+{
+ "kind": "weekly",
+ "id": "2025-07",
+ "back": true,
+ "status": "published",
+ "date": "2025-07-31",
+ "range": [
+  "2025-07-01",
+  "2025-07-31"
+ ],
+ "title": {
+  "en": "A week in Cannes"
+ },
+ "dek": {
+  "en": "EthCC keynotes and a libp2p workshop, a community manager arrives, Optimum backs shorter Ethereum slots, and the community designs its own stickers."
+ },
+ "note": {
+  "en": [
+   "July started on the French Riviera and ended with Ethereum’s tenth birthday. In between, Optimum made a case that would define its next year: shorter slots and bigger blocks are both possible if blocks travel faster.",
+   "It was also the month the community got a manager. BlockchainJeff arrived on 30 July, and seven months later it was his name on the first role calls this register records."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "At EthCC in Cannes Muriel Médard gave a keynote, spoke at ETHGlobal’s Pragma, and Optimum joined a libp2p workshop and a Founders Night with the Ethereum Foundation.",
+   "Optimum said it fully supports EIP-7782, the proposal to cut Ethereum slots from 12 to 6 seconds, and argued faster propagation lets it happen without smaller blocks.",
+   "BlockchainJeff joined as community manager on 30 July. The community also chose winners of the app pitch contest and designed the Discord’s stickers."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "event",
+   "title": {
+    "en": "Five events in four days"
+   },
+   "body": {
+    "en": "Optimum’s EthCC week ran from 30 June to 3 July. Médard’s keynote, High Performance Memory for the World Computer, opened it on the Redford stage. On 1 July the team joined the libp2p day workshop, on 3 July Médard spoke at ETHGlobal’s Pragma, and evenings went to a Proof of Drinks party with testnet partner Everstake and a Founders Night with the Ethereum Foundation. On 3 July Optimum also launched the product page for its first product at getoptimum.xyz/mump2p."
+   },
+   "sources": [
+    [
+     "Optimum on X, Cannes recap",
+     "https://x.com/get_optimum/status/1942608473575022921"
+    ],
+    [
+     "Optimum on X, keynote video",
+     "https://x.com/get_optimum/status/1940457551457665303"
+    ],
+    [
+     "Optimum on X, mump2p page",
+     "https://x.com/get_optimum/status/1940807402804465955"
+    ]
+   ]
+  },
+  {
+   "tag": "research",
+   "title": {
+    "en": "Six second slots without smaller blocks"
+   },
+   "body": {
+    "en": "On 17 July Optimum weighed in on EIP-7782, the proposal to cut Ethereum’s slot time from 12 to 6 seconds while lowering the gas limit per block. Using queueing theory, it argued that halving both makes transactions feel faster but does not raise throughput. Its own position: it fully supports shorter slots, and faster block propagation could deliver them at any block size. On 31 July a blog post by Médard, Kishori Konwar and Nicolas Nicolaou made the wider case that RLNC loosens the blockchain trilemma."
+   },
+   "sources": [
+    [
+     "Optimum on X, EIP-7782 thread",
+     "https://x.com/get_optimum/status/1945883399266410863"
+    ],
+    [
+     "Optimum on X, trilemma thread",
+     "https://x.com/get_optimum/status/1950953492451033115"
+    ],
+    [
+     "Optimum blog, Unlocking the Blockchain Trilemma",
+     "https://www.getoptimum.xyz/blog/unlocking-the-blockchain-trilemma"
+    ]
+   ],
+   "art": {
+    "type": "bars",
+    "items": [
+     {
+      "label": "Today",
+      "v": 12,
+      "show": {
+       "n": 12,
+       "unit": "s"
+      }
+     },
+     {
+      "label": "EIP-7782",
+      "v": 6,
+      "show": {
+       "n": 6,
+       "unit": "s"
+      },
+      "hot": true
+     }
+    ],
+    "max": 14
+   }
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "A community manager arrives"
+   },
+   "body": {
+    "en": "On 30 July Optimum handed its X account to its new community manager for a minute. BlockchainJeff introduced himself with eight years of building Web3 communities for Tezos, Token.com and Cudos. He went on to run the weekly community calls and, from March 2026, posted the first role calls in #role-announcements."
+   },
+   "sources": [
+    [
+     "Optimum on X, 30 Jul 2025",
+     "https://x.com/get_optimum/status/1950582537304334732"
+    ],
+    [
+     "BlockchainJeff’s introduction",
+     "https://x.com/get_optimum/status/1950583313699385767"
+    ]
+   ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "Winners of the app pitch contest"
+   },
+   "body": {
+    "en": "On 4 July Optimum named the three winners of its contest on apps that would benefit from faster chains, chosen from what it said were hundreds of entries: merbie40 on trading on pump.fun, meison_mswen on onchain gaming with Pirate Nation as the example, and 0xmagicanec on what Farcaster would feel like with low latency. Luminary_DC00 on Nina’s music streaming and OxbfnoHome on Render’s compute network received honourable mentions. A sticker design contest followed on 9 July, and the three winning stickers went into the Discord on 25 July."
+   },
+   "sources": [
+    [
+     "Optimum on X, pitch contest winners",
+     "https://x.com/get_optimum/status/1941123586347217059"
+    ],
+    [
+     "Optimum on X, sticker contest",
+     "https://x.com/get_optimum/status/1942995601123348750"
+    ],
+    [
+     "Optimum on X, sticker winners",
+     "https://x.com/get_optimum/status/1948806879389565191"
+    ]
+   ]
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "Mathematicians and a validator"
+   },
+   "body": {
+    "en": "On 10 July Médard presented Optimum and RLNC at a conference of the Society for Industrial and Applied Mathematics. On 25 July Kiln’s aimxhaisse joined an X Space about the testnet and why the largest operators care about propagation. Optimum also announced that Médard would be the first speaker of ETHBoston on 12 September on the MIT campus."
+   },
+   "sources": [
+    [
+     "Optimum on X, SIAM",
+     "https://x.com/get_optimum/status/1943703845508702424"
+    ],
+    [
+     "Optimum on X, Space with Kiln",
+     "https://x.com/get_optimum/status/1946283783554216352"
+    ],
+    [
+     "Optimum on X, ETHBoston",
+     "https://x.com/get_optimum/status/1949868881813884930"
+    ]
+   ]
+  },
+  {
+   "tag": "context",
+   "title": {
+    "en": "More gas, more data to move"
+   },
+   "body": {
+    "en": "On 21 July Ethereum recorded its highest daily gas use, about 149.7 billion. Optimum’s point was simple: more gas used means more data validators must propagate in the same twelve seconds. On 29 July it set out a working thesis on staking, pointing to staked ETH funds and treasury companies as reasons more ETH would be staked, and more operators would care about rewards."
+   },
+   "sources": [
+    [
+     "Optimum on X, gas record",
+     "https://x.com/get_optimum/status/1947771712864719073"
+    ],
+    [
+     "Optimum on X, staking thesis",
+     "https://x.com/get_optimum/status/1950219787893952534"
+    ]
+   ]
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2025-07",
+  "nodes": 40
+ },
+ "claims": [
+  {
+   "claim": {
+    "en": "Faster propagation makes 6 second slots possible without cutting block size"
+   },
+   "status": "company",
+   "note": {
+    "en": "Optimum’s argument from queueing theory, 17 July 2025. EIP-7782 itself does not depend on Optimum."
+   }
+  }
+ ],
+ "eventItems": [
+  {
+   "id": "pragma25",
+   "start": "2025-07-03",
+   "city": "Cannes",
+   "name": "ETHGlobal Pragma",
+   "url": "https://x.com/get_optimum/status/1935803091909235143",
+   "kind": "conference",
+   "what": {
+    "en": "Muriel Médard on RLNC and an Ethereum memory layer."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1942608519850779106"
+    ]
+   ]
+  },
+  {
+   "id": "libp2pday25",
+   "start": "2025-07-01",
+   "city": "Cannes",
+   "name": "libp2p day workshop",
+   "url": "https://x.com/get_optimum/status/1940101355412365575",
+   "kind": "workshop",
+   "what": {
+    "en": "A morning on decentralized networking with the libp2p community."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1942608507641159863"
+    ]
+   ]
+  },
+  {
+   "id": "siam25",
+   "start": "2025-07-10",
+   "city": "Online",
+   "name": "SIAM conference talk",
+   "url": "https://x.com/get_optimum/status/1943703845508702424",
+   "kind": "conference",
+   "what": {
+    "en": "Médard presents RLNC to applied mathematicians."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1943703845508702424"
+    ]
+   ]
+  }
+ ],
+ "reads": [
+  [
+   "Unlocking the Blockchain Trilemma",
+   "Optimum blog",
+   "2025-07-30",
+   "https://www.getoptimum.xyz/blog/unlocking-the-blockchain-trilemma"
+  ],
+  [
+   "mump2p: Unlocking next gen performance for tomorrow’s killer apps",
+   "Optimum blog",
+   "2025-07-10",
+   "https://www.getoptimum.xyz/blog/mump2p-unlocking-next-gen-performance-for-tomorrows-killer-apps"
+  ]
+ ]
+}

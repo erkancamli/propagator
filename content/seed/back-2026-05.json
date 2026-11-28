@@ -1,0 +1,446 @@
+{
+ "kind": "weekly",
+ "id": "2026-05",
+ "back": true,
+ "status": "published",
+ "date": "2026-05-31",
+ "range": [
+  "2026-05-01",
+  "2026-05-31"
+ ],
+ "title": {
+  "en": "Speed is money"
+ },
+ "dek": {
+  "en": "Optimum turns its research into a pitch to stakers, publishes a paper on the cost of uncertainty in Ethereum’s block auction, goes to Consensus in Miami, and the community gets its first Chronicler."
+ },
+ "note": {
+  "en": [
+   "May was the month Optimum learned to talk to stakers. The company that once pitched a memory layer for any chain now opened with yields: almost a third of all ETH is staked, every basis point adds up, and faster propagation, it argued, is a basis point you can buy.",
+   "In the Discord something new happened too. The role call of 11 May named the first Chronicler, a role for creative members who make art and content, next to fourteen new Refined members."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "Optimum published a series of videos on how faster propagation raises staking returns, and a paper by chief product officer Sajida Zouarhi on the cost of uncertainty in Ethereum’s proposer builder pipeline.",
+   "Kent Lin, Muriel Médard and Chandler Otterbein went to Consensus 2026 in Miami, and Optimum gave $1,000 to UNICEF for Mother’s Day.",
+   "Four role calls named 49 members, among them the register’s first Chronicler on 11 May."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "research",
+   "title": {
+    "en": "The cost of uncertainty"
+   },
+   "body": {
+    "en": "On 19 May Sajida Zouarhi published The Cost of Uncertainty in Ethereum’s PBS Hot Path. Her argument is that unpredictable propagation does more than add delay: builders and proposers hedge against it, which misprices blockspace. With 150 ms more time, she estimated, average bid value would have been 16% higher in the week studied, and head vote accuracy could reach 99.1%. The post also cited mump2p benchmarks on up to 90 nodes: a median propagation of about 66 ms, a 95th percentile of about 179 ms and roughly 7 times lower variance than GossipSub."
+   },
+   "sources": [
+    [
+     "Optimum blog, 19 May 2026",
+     "https://www.getoptimum.xyz/blog/the-cost-of-uncertainty-in-ethereums-pbs-hot-path"
+    ],
+    [
+     "Optimum on X, 19 May 2026",
+     "https://x.com/get_optimum/status/2056776700407767195"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "bars",
+    "items": [
+     {
+      "label": "p50",
+      "v": 66,
+      "show": {
+       "n": 66,
+       "unit": "ms"
+      },
+      "hot": true
+     },
+     {
+      "label": "p95",
+      "v": 179,
+      "show": {
+       "n": 179,
+       "unit": "ms"
+      }
+     }
+    ],
+    "max": 200
+   }
+  },
+  {
+   "tag": "media",
+   "title": {
+    "en": "Videos for stakers"
+   },
+   "body": {
+    "en": "Optimum’s YouTube channel turned to staking economics. A 20 minute video on 7 May with Kent Lin and Sajida Zouarhi explained where staking yield comes from and how faster propagation adds to it, followed on 11 May by how Optimum gives validators an edge and on 29 May by why the top node operators were testing mump2p. On 19 May Lin told the story of dropping out of Harvard Business School to co-found Optimum. Optimum pointed out that a record 31% of the ETH supply was staked."
+   },
+   "sources": [
+    [
+     "Optimum on X, staking video",
+     "https://x.com/get_optimum/status/2052431134978609287"
+    ],
+    [
+     "Optimum on X, Harvard story",
+     "https://x.com/get_optimum/status/2056803386675343607"
+    ],
+    [
+     "Optimum on X, 31% staked",
+     "https://x.com/get_optimum/status/2060404704509862150"
+    ]
+   ]
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "Consensus 2026 in Miami"
+   },
+   "body": {
+    "en": "Kent Lin, Muriel Médard and Chandler Otterbein were in Miami for Consensus 2026 in early May, where Optimum also pitched in a demo track. On 12 May Optimum published Lin’s April talk from BUIDL Asia, with testnet data and a look at its business model."
+   },
+   "sources": [
+    [
+     "Optimum on X, Consensus 2026",
+     "https://x.com/get_optimum/status/2050284014725173324"
+    ],
+    [
+     "Optimum on X, demo track",
+     "https://x.com/get_optimum/status/2052440698637758506"
+    ],
+    [
+     "Optimum on X, BUIDL Asia talk",
+     "https://x.com/get_optimum/status/2054304390530682958"
+    ]
+   ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "The first Chronicler"
+   },
+   "body": {
+    "en": "The role call of 11 May named the first Chronicler on the register next to fourteen new Refined members. Chronicler sits beside the main ladder and goes to creative members who make art and content. Over the month Flash posted four role calls with 49 names in all."
+   },
+   "sources": [
+    [
+     "Optimum Discord, #role-announcements",
+     "https://discord.gg/getoptimum"
+    ],
+    [
+     "The 11 May role call",
+     "/class/2026-05-11/"
+    ]
+   ],
+   "art": {
+    "type": "waffle",
+    "total": 49,
+    "filled": 1,
+    "cols": 10,
+    "big": {
+     "n": 1
+    }
+   }
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "MUM’s Day"
+   },
+   "body": {
+    "en": "For Mother’s Day weekend Optimum promised $1,000 to UNICEF if the community spread its post, and on 11 May thanked everyone who helped and confirmed the donation. A play on the community’s mum greeting, it was the first charity campaign on the account."
+   },
+   "sources": [
+    [
+     "Optimum on X, 8 May 2026",
+     "https://x.com/get_optimum/status/2052834559092527214"
+    ],
+    [
+     "Optimum on X, thank you",
+     "https://x.com/get_optimum/status/2053871749201273315"
+    ]
+   ]
+  },
+  {
+   "tag": "research",
+   "title": {
+    "en": "Post quantum security, demystified"
+   },
+   "body": {
+    "en": "On 18 May Optimum posted a short animation on how a coding based approach could protect blockchain data against quantum computers: quantum computing is math, and so is the defence. On 12 May it also argued that faster propagation helps decentralization, since nodes in less connected regions are the ones that miss deadlines, pointing to a Four Pillars piece on running nodes there."
+   },
+   "sources": [
+    [
+     "Optimum on X, PQ animation",
+     "https://x.com/get_optimum/status/2056432758600392978"
+    ],
+    [
+     "Optimum on X, decentralization",
+     "https://x.com/get_optimum/status/2054233384747249729"
+    ]
+   ]
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2026-05",
+  "nodes": 40
+ },
+ "claims": [
+  {
+   "claim": {
+    "en": "150 ms more time would have raised average bid value by 16%"
+   },
+   "status": "company",
+   "note": {
+    "en": "Sajida Zouarhi’s analysis of one week of relay bids, 19 May 2026."
+   }
+  },
+  {
+   "claim": {
+    "en": "mump2p: median 66 ms, 95th percentile 179 ms, about 7 times lower variance"
+   },
+   "status": "company",
+   "note": {
+    "en": "Benchmarks on up to 90 nodes cited in the same post."
+   }
+  }
+ ],
+ "video": {
+  "id": "fgeXDbORuz0",
+  "title": "Maximize ETH Staking Returns: Latency Optimization in the $100B Validator Market",
+  "date": "2026-05-07",
+  "why": {
+   "en": "Kent Lin and Sajida Zouarhi on where staking yield comes from and how speed adds to it."
+  }
+ },
+ "roles": {
+  "items": [
+   {
+    "name": "Saurav Anand || MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "HEYFAB | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Kachi",
+    "role": "Refined"
+   },
+   {
+    "name": "Nicky_NaTaYa",
+    "role": "Refined"
+   },
+   {
+    "name": "L0nw0lf",
+    "role": "Refined"
+   },
+   {
+    "name": "Voltaj",
+    "role": "Refined"
+   },
+   {
+    "name": "Phương Thành",
+    "role": "Refined"
+   },
+   {
+    "name": "Pawan",
+    "role": "Refined"
+   },
+   {
+    "name": "0x_Độ không có nặng thì vẫn Đô💪",
+    "role": "Refined"
+   },
+   {
+    "name": "ImpermanentPi",
+    "role": "Refined"
+   },
+   {
+    "name": "Marina 👾",
+    "role": "Chronicler"
+   },
+   {
+    "name": "Chinazajoan😍🙃",
+    "role": "Refined"
+   },
+   {
+    "name": "𝐑𝐀𝐕𝐈𝐍𝐃𝐑𝐀𝟖𝐒||𝐌𝐔𝐌",
+    "role": "Refined"
+   },
+   {
+    "name": "Ianfield",
+    "role": "Refined"
+   },
+   {
+    "name": "𝗥𝗔𝗝𝗔𝗧 | 𝗠𝗨𝗠 𝗟𝗢𝗩𝗘𝗥",
+    "role": "Refined"
+   },
+   {
+    "name": "Meta",
+    "role": "Refined"
+   },
+   {
+    "name": "Gozan",
+    "role": "Refined"
+   },
+   {
+    "name": "Yacuk",
+    "role": "Refined"
+   },
+   {
+    "name": "Maksimus",
+    "role": "Refined"
+   },
+   {
+    "name": "Duckchain",
+    "role": "Refined"
+   },
+   {
+    "name": "tembi4kiNN",
+    "role": "Refined"
+   },
+   {
+    "name": "fiji",
+    "role": "Refined"
+   },
+   {
+    "name": "Neotextus",
+    "role": "Refined"
+   },
+   {
+    "name": "Rooh",
+    "role": "Refined"
+   },
+   {
+    "name": "Li_air",
+    "role": "Refined"
+   },
+   {
+    "name": "DANI AL",
+    "role": "Refined"
+   },
+   {
+    "name": "A S H | mum",
+    "role": "Refined"
+   },
+   {
+    "name": "𝐃𝐎𝐍 | 𝐌𝐔𝐌",
+    "role": "Refined"
+   },
+   {
+    "name": "jakaria (❖,❖)",
+    "role": "Refined"
+   },
+   {
+    "name": "AleezaArfan🇵🇰",
+    "role": "Refined"
+   },
+   {
+    "name": "TinkyViki",
+    "role": "Refined"
+   },
+   {
+    "name": "Tetiana",
+    "role": "Refined"
+   },
+   {
+    "name": "OLAWALE",
+    "role": "Refined"
+   },
+   {
+    "name": "nasty BENZO",
+    "role": "Refined"
+   },
+   {
+    "name": "Osita",
+    "role": "Refined"
+   },
+   {
+    "name": "𝙺𝙷𝙰𝙻𝙴𝙳 || 𝙼𝚄𝙼",
+    "role": "Refined"
+   },
+   {
+    "name": "TURAF",
+    "role": "Refined"
+   },
+   {
+    "name": "PhuongEo82",
+    "role": "Refined"
+   },
+   {
+    "name": "ecamli",
+    "role": "Refined"
+   },
+   {
+    "name": "ANTOR !!!  MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "! Pinku Neel MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Abhishek",
+    "role": "Refined"
+   },
+   {
+    "name": "Skyzee | MumMAXI",
+    "role": "Refined"
+   },
+   {
+    "name": "! H. Nat Die (kamalz) (❖,❖)",
+    "role": "Refined"
+   },
+   {
+    "name": "𝗗̇𝗲̣𝘅̇𝗯̣𝗹̇𝗼̣𝗰̇𝗸̣𝗲̇𝗿",
+    "role": "Refined"
+   },
+   {
+    "name": "𝘿𝙝𝙞𝙡𝙡𝙤𝙉 𝙎𝙖𝘼𝘽",
+    "role": "Refined"
+   },
+   {
+    "name": "Sagar",
+    "role": "Refined"
+   },
+   {
+    "name": "KUNDAN | MUM",
+    "role": "Refined"
+   },
+   {
+    "name": "Guruji ⛓",
+    "role": "Refined"
+   }
+  ],
+  "note": {
+   "en": "4 role calls in May, posted on 4, 11, 18 and 25 May by Flash in #role-announcements. Every member named has a page on the register."
+  },
+  "src": [
+   "Optimum Discord, #role-announcements",
+   "https://discord.gg/getoptimum"
+  ]
+ },
+ "builders": [
+  "runner"
+ ],
+ "reads": [
+  [
+   "The cost of uncertainty in Ethereum’s PBS hot path",
+   "Optimum blog",
+   "2026-05-19",
+   "https://www.getoptimum.xyz/blog/the-cost-of-uncertainty-in-ethereums-pbs-hot-path"
+  ]
+ ],
+ "takePart": [
+  {
+   "text": {
+    "en": "Named in a role call? Your card is ready. Add your picture and share it."
+   },
+   "url": "/members/"
+  }
+ ]
+}

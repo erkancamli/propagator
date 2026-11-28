@@ -1,0 +1,269 @@
+{
+ "kind": "weekly",
+ "id": "2025-06",
+ "back": true,
+ "status": "published",
+ "date": "2025-06-30",
+ "range": [
+  "2025-06-01",
+  "2025-06-30"
+ ],
+ "title": {
+  "en": "Seven validators, 15% of the stake"
+ },
+ "dek": {
+  "en": "Optimum names its private testnet partners, publishes its first A/B tests against Gossipsub, and turns its pitch toward Ethereum validators."
+ },
+ "note": {
+  "en": [
+   "June is when Optimum found its first customer. Not a chain, as the early pitch suggested, but the people who run Ethereum’s validators: seven of the largest node operators joined a private testnet, together responsible for about 15% of all staked ETH.",
+   "The vocabulary changed with it. Less memory layer, more block propagation, attestations and rewards. The community contest of the month asked which apps would gain most from faster chains, a sign that the team wanted people thinking about what speed is for."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "On 24 June Optimum named seven private testnet partners: Kiln, P2P.org, Everstake, Blockdaemon, InfStones, Luganodes and Ebunker, about 15% of Ethereum stake.",
+   "Its first published A/B tests claimed 10 times lower latency than Gossipsub under heavy traffic, messages up to 10 MB where Gossipsub failed at 4 MB, and no lost messages.",
+   "Gossipsub core contributor Steven Allen joined an X Space, and Kent Lin wrote about the apps that need fast chains. The community contest asked members to pitch them."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "adoption",
+   "title": {
+    "en": "Seven node operators join the private testnet"
+   },
+   "body": {
+    "en": "On 24 June Optimum introduced the partners of its OptimumP2P private testnet: Kiln, P2P.org, Everstake, Blockdaemon, InfStones, Luganodes and Ebunker. Optimum put their combined share at 15% of all staked ETH; Decrypt, citing Rated, said at least 14%. Kiln alone runs more than 50,000 Ethereum validators and about 5% of the stake. Kiln’s Thomas de Phuoc said improving data propagation matters as much as execution or consensus for scaling Ethereum. Optimum said a rollout on Ethereum’s Hoodi testnet would follow that summer."
+   },
+   "sources": [
+    [
+     "Optimum on X, 24 Jun 2025",
+     "https://x.com/get_optimum/status/1937514575831965785"
+    ],
+    [
+     "Chainwire press release",
+     "https://chainwire.org/2025/06/24/optimum-debuts-optimump2p-testnet-with-support-from-ethereums-largest-node-operators/"
+    ],
+    [
+     "Decrypt, 24 Jun 2025",
+     "https://decrypt.co/326655/major-validators-testnet-ethereum-bottleneck"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "waffle",
+    "total": 100,
+    "filled": 15,
+    "cols": 10,
+    "big": {
+     "pct": 15
+    }
+   }
+  },
+  {
+   "tag": "research",
+   "title": {
+    "en": "The first A/B tests against Gossipsub"
+   },
+   "body": {
+    "en": "Optimum published how OptimumP2P works on 6 June and its first comparison with Gossipsub on 12 June, with a demo video on a globally distributed set of nodes. The testnet release summed up the results: about 10 times lower latency under high traffic, stable delivery of messages up to 10 MB where Gossipsub failed at 4 MB, and no message loss under stress. A later post gave one concrete data point: a 4 MB message reached 36 nodes in about 1,113 ms against about 1,577 ms for Gossipsub on the same network."
+   },
+   "sources": [
+    [
+     "Optimum blog, Introducing OptimumP2P",
+     "https://www.getoptimum.xyz/blog/introducing-optimump2p-implementation-and-benefits"
+    ],
+    [
+     "Optimum blog, OptimumP2P and Gossipsub",
+     "https://www.getoptimum.xyz/blog/comparing-the-performance-of-optimump2p-and-gossipsub"
+    ],
+    [
+     "Optimum on X, demo video",
+     "https://x.com/get_optimum/status/1933194913728073932"
+    ]
+   ],
+   "claim": "company",
+   "art": {
+    "type": "bars",
+    "items": [
+     {
+      "label": "Gossipsub",
+      "v": 1577,
+      "show": {
+       "n": 1577,
+       "unit": "ms"
+      }
+     },
+     {
+      "label": "OptimumP2P",
+      "v": 1113,
+      "show": {
+       "n": 1113,
+       "unit": "ms"
+      },
+      "hot": true
+     }
+    ],
+    "max": 1800
+   }
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "A Space with Gossipsub’s own engineer"
+   },
+   "body": {
+    "en": "On 19 June Optimum hosted Steven Allen, a core contributor to libp2p and Gossipsub, to talk about the history of Ethereum gossip and where its limits are. Inviting the maintainer of the protocol you want to replace is unusual, and Allen’s account of Gossipsub’s performance ceiling became one of Optimum’s most quoted recordings."
+   },
+   "sources": [
+    [
+     "Optimum on X, Space announcement",
+     "https://x.com/get_optimum/status/1934626681433763941"
+    ],
+    [
+     "Optimum on X, recording",
+     "https://x.com/get_optimum/status/1939733689145135352"
+    ]
+   ]
+  },
+  {
+   "tag": "context",
+   "title": {
+    "en": "Which apps need fast chains?"
+   },
+   "body": {
+    "en": "On 17 June Kent Lin published an article on the apps that need high throughput and low latency at once: central limit order books and AMMs in DeFi, and job coordination across DePIN networks. Optimum followed with its third community contest, asking members to pitch the app that would gain most, with merch and prize money for the three best. A thread on 18 June explained the network effect: a block goes out to committees of 128 to 256 validators, so the more of them run fast propagation, the faster everyone gets it."
+   },
+   "sources": [
+    [
+     "Optimum on X, Kent Lin article",
+     "https://x.com/get_optimum/status/1935042022379004356"
+    ],
+    [
+     "Optimum on X, contest",
+     "https://x.com/get_optimum/status/1935699611865559101"
+    ],
+    [
+     "Optimum on X, network effect",
+     "https://x.com/get_optimum/status/1935439118949040298"
+    ]
+   ]
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "Cannes plans"
+   },
+   "body": {
+    "en": "By the end of the month the team had a full EthCC schedule: Médard’s keynote on the Redford stage on 30 June, a Proof of Drinks evening with Everstake, a libp2p workshop, a breakfast and a talk at ETHGlobal’s Pragma on 3 July. Médard gave the keynote, High Performance Memory for the World Computer, as planned on 30 June."
+   },
+   "sources": [
+    [
+     "Optimum on X, EthCC schedule",
+     "https://x.com/get_optimum/status/1938674823351378091"
+    ],
+    [
+     "EthCC archive",
+     "https://ethcc.io/archives/the-missing-layer-high-performance-memory-for-the-world-computer"
+    ]
+   ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "Hiring a product lead"
+   },
+   "body": {
+    "en": "On 6 June Optimum opened a remote product lead role, asking for a deep understanding of infrastructure stacks and transaction flows. The team was still small and lean; most of what the public saw came from the co-founders, a handful of engineers and the marketing team assembled in the spring."
+   },
+   "sources": [
+    [
+     "Optimum on X, 6 Jun 2025",
+     "https://x.com/get_optimum/status/1930995851973083624"
+    ]
+   ]
+  }
+ ],
+ "cover": {
+  "type": "network",
+  "seed": "cover-2025-06",
+  "nodes": 40
+ },
+ "claims": [
+  {
+   "claim": {
+    "en": "Testnet partners hold 15% of Ethereum stake"
+   },
+   "status": "mixed",
+   "note": {
+    "en": "Optimum’s figure. Decrypt, citing Rated Labs, put it at at least 14%."
+   }
+  },
+  {
+   "claim": {
+    "en": "10 times lower latency than Gossipsub under high traffic"
+   },
+   "status": "company",
+   "note": {
+    "en": "Early A/B tests by Optimum, summarised in the 24 June release; conditions and node counts vary between posts."
+   }
+  },
+  {
+   "claim": {
+    "en": "Gossipsub fails at 4 MB messages, OptimumP2P handles 10 MB"
+   },
+   "status": "company",
+   "note": {
+    "en": "From the same release; not independently reproduced at the time."
+   }
+  }
+ ],
+ "video": {
+  "id": "bvV5prJ6FRc",
+  "title": "OptimumP2P: Turbocharged Data Propagation for Blockchain, Kent Lin explains",
+  "date": "2025-06-24",
+  "why": {
+   "en": "Three minutes from the testnet announcement day on what the product does for a validator."
+  }
+ },
+ "eventItems": [
+  {
+   "id": "ethcc8",
+   "start": "2025-06-30",
+   "city": "Cannes",
+   "name": "EthCC 8",
+   "url": "https://ethcc.io/archives/the-missing-layer-high-performance-memory-for-the-world-computer",
+   "kind": "conference",
+   "what": {
+    "en": "Muriel Médard’s keynote on the Redford stage, the start of a week of side events."
+   },
+   "src": [
+    [
+     "Optimum on X",
+     "https://x.com/get_optimum/status/1939642686480515382"
+    ]
+   ],
+   "end": "2025-07-03"
+  }
+ ],
+ "reads": [
+  [
+   "Major validators join testnet to tackle Ethereum’s overlooked bottleneck",
+   "Decrypt",
+   "2025-06-24",
+   "https://decrypt.co/326655/major-validators-testnet-ethereum-bottleneck"
+  ],
+  [
+   "Comparing the performance of OptimumP2P and Gossipsub",
+   "Optimum blog",
+   "2025-06-12",
+   "https://www.getoptimum.xyz/blog/comparing-the-performance-of-optimump2p-and-gossipsub"
+  ]
+ ],
+ "quote": {
+  "text": "making people gossip algebraic equations, not plain old gossip",
+  "who": "Muriel Médard to Decrypt, 24 June 2025",
+  "url": "https://decrypt.co/326655/major-validators-testnet-ethereum-bottleneck"
+ }
+}
