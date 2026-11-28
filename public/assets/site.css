@@ -1060,3 +1060,15 @@ main { width: 100%; max-width: calc(var(--max) + 2 * var(--gut)); margin: 0 auto
 .gw-fixes dd { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
 @media (max-width: 700px) { .gw-fixes { grid-template-columns: 1fr; } .gw-steps > li { padding-left: 48px; } }
 .timeline a { text-decoration-color: var(--line-2); }
+
+/* this week: every name of the latest role call at once, as small metal cards */
+.week .car-btns, .week .car-track { display: none !important; }
+.week .lt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(122px, 1fr)); gap: 8px; overflow: visible; margin: 0; padding: 2px 0 4px; scroll-snap-type: none; }
+.week .lt-grid li { flex: none; }
+.week .lt-card { min-height: 84px; padding: 9px 10px; border-radius: 11px; gap: 2px; }
+.week .lt-top .av { --s: 26px !important; width: 26px !important; height: 26px !important; font-size: 11px !important; }
+.week .lt-no { font-size: 10px; }
+.week .lt-name { margin-top: 6px; font-size: 13px; min-height: 0; -webkit-line-clamp: 2; }
+.week .lt-role { font-size: 10px; }
+.week .lt-card:hover { transform: translateY(-2px); }
+@media (max-width: 760px) { .week .lt-grid { margin: 0; padding: 2px 0 4px; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); } }
