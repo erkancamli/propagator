@@ -43,7 +43,7 @@ test('retired pages redirect to where their content lives now', async () => {
   const html = await (await site(req('/archive/'), { store })).text();
   assert.match(html, /Month one on mainnet/); assert.match(html, /\d+ stories/); assert.match(html, /aria-current="page"[^>]*><svg[\s\S]*?<\/svg><span>Newsletter<\/span>/);
   const nav = html.match(/<nav class="side-nav">[\s\S]*?<\/nav>/)[0];
-  assert.equal((nav.match(/<a /g) || []).length, 10, 'ten items in the side menu');
+  assert.equal((nav.match(/<a /g) || []).length, 11, 'eleven items in the side menu');
   assert.match(html, /<div class="side-foot">[\s\S]*\/submit\/[\s\S]*\/about\/[\s\S]*feed\.xml/, 'submit, about and RSS at the foot of the menu');
   assert.match(html, /<dialog class="find"/, 'search everywhere');
   const builders = await (await site(req('/builders/'), { store })).text();

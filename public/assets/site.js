@@ -469,6 +469,14 @@
     document.querySelectorAll('.gifs li').forEach(function (li) { li.hidden = Boolean(c.dataset.g) && li.dataset.by !== c.dataset.g; });
   }); });
 
+  // ---- community calls: filter by topic ----
+  var cchips = document.querySelectorAll('.chip[data-ct]');
+  cchips.forEach(function (c) { c.addEventListener('click', function () {
+    cchips.forEach(function (x) { x.setAttribute('aria-pressed', String(x === c)); });
+    document.querySelectorAll('.call').forEach(function (a) { a.hidden = Boolean(c.dataset.ct) && (' ' + a.dataset.tags + ' ').indexOf(' ' + c.dataset.ct + ' ') < 0; });
+    document.querySelectorAll('.call-year').forEach(function (y) { y.hidden = !y.querySelector('.call:not([hidden])'); });
+  }); });
+
   // ---- the gateway checklist: ticks stay in this browser ----
   document.querySelectorAll('.gw-check input[data-k]').forEach(function (c) {
     try { c.checked = localStorage.getItem('pg-' + c.dataset.k) === '1'; } catch (e) {}
