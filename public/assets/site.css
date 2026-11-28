@@ -57,7 +57,7 @@ main { max-width: var(--max); margin: 0 auto; padding: 0 var(--gut) 64px; }
 .pmark .pmark-b { fill: var(--accent); }
 .brand-name { font-weight: 700; font-size: 19px; letter-spacing: -0.03em; }
 .brand-tag { font-size: 13px; color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.nav { display: flex; gap: 2px; margin-left: auto; }
+.nav { display: flex; align-items: center; gap: 2px; margin-left: auto; }
 .nav a { white-space: nowrap; text-decoration: none; font-size: 15px; color: var(--muted); padding: 6px 10px; border-radius: 8px; }
 .nav a:hover { color: var(--ink); background: var(--surface); }
 .nav a[aria-current="page"] { color: var(--ink); background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
@@ -1030,3 +1030,16 @@ h1, h2, h3 { font-weight: 650; letter-spacing: -0.025em; }
 .mbadges li { display: flex; flex-direction: column; gap: 2px; padding: 8px 12px; border-radius: 12px; box-shadow: 0 0 0 1px var(--line); background: var(--surface); }
 .mbadges b { font-size: 14px; }
 .mbadges span { font-size: 13px; color: var(--muted); }
+
+/* More menu: People, About, Send something in, RSS */
+.nav-x { display: none; }
+.more { position: relative; margin: 0; }
+.more summary { list-style: none; cursor: pointer; white-space: nowrap; font-size: 15px; color: var(--muted); padding: 6px 10px; border-radius: 8px; display: flex; align-items: center; gap: 4px; }
+.more summary::-webkit-details-marker { display: none; }
+.more summary::after { content: ''; width: 6px; height: 6px; border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: translateY(-2px) rotate(45deg); margin-left: 4px; }
+.more summary:hover, .more[open] summary, .more summary.on { color: var(--ink); background: var(--surface); }
+.more ul { position: absolute; right: 0; top: calc(100% + 6px); z-index: 20; list-style: none; margin: 0; padding: 6px; min-width: 210px; background: var(--surface); border-radius: 12px; box-shadow: 0 0 0 1px var(--line), 0 16px 40px -16px rgba(22, 24, 26, .35); }
+.more li a { display: block; padding: 8px 12px; border-radius: 8px; font-size: 15px; color: var(--ink); background: none; box-shadow: none; }
+.more li a:hover { background: var(--bg); }
+@media (min-width: 861px) and (max-width: 1080px) { .more summary { padding: 6px 7px; font-size: 14.5px; } }
+@media (max-width: 860px) { .more { display: none; } .nav-x { display: inline-block; } .js .top.menu-open .nav .nav-x { display: block; } }

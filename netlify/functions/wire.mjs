@@ -45,7 +45,7 @@ export const collectors = {
   },
   async jobs(prev, env, store) {
     const d = await get('https://api.ashbyhq.com/posting-api/job-board/optimum', { type: 'json' });
-    const jobs = (d.jobs || []).map((j) => ({ title: j.title, where: [j.location, j.employmentType].filter(Boolean).join(', '), date: (j.publishedAt || '').slice(0, 10), url: j.jobUrl }));
+    const jobs = (d.jobs || []).map((j) => ({ title: j.title, where: [j.location, String(j.employmentType || '').replace(/([a-z])([A-Z])/g, '$1 $2').replace(/ ([A-Z])/g, (x, c) => ' ' + c.toLowerCase()) || null].filter(Boolean).join(', '), date: (j.publishedAt || '').slice(0, 10), url: j.jobUrl }));
     if (store) await store.setJSON('jobs/list', jobs);
     return jobs.map((j) => ({ id: 'job:' + j.url, type: 'job', source: 'Optimum careers', title: j.title, url: j.url, at: j.date || null, data: j }));
   },
