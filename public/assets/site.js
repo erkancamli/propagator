@@ -357,4 +357,11 @@
     document.addEventListener('click', function (e) { if (!form.contains(e.target)) close(); });
     hq.addEventListener('blur', function () { setTimeout(close, 150); });
   })();
+
+  // the menu on small screens
+  var mb = document.querySelector('.menu-btn'), top = document.querySelector('.top');
+  if (mb) {
+    mb.addEventListener('click', function () { var open = mb.getAttribute('aria-expanded') !== 'true'; mb.setAttribute('aria-expanded', String(open)); top.classList.toggle('menu-open', open); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && top.classList.contains('menu-open')) { mb.click(); mb.focus(); } });
+  }
 })();

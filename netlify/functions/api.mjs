@@ -21,11 +21,12 @@
 //   GET  /api/discord/callback                        Discord returns here; back to the card with ?claim=<result>
 //   GET  /api/claims                                  claimed cards: { slug: { v, photo, og } }
 //   GET  /api/members                                 every member in brief, for search as you type
+//   GET  /api/rolecalls                               role calls added through the paste page (public data)
 import { getStore } from '@netlify/blobs';
 import { purgeCache } from '@netlify/functions';
 import crypto from 'node:crypto';
 import { getPulse, putIssue, getIssue, listIssues } from '../../lib/data.mjs';
-import { sendConfirm, sendWeekly, mailReady } from '../../lib/mail.mjs';
+import { sendConfirm, sendWeekly, mailReady, notifyEditor } from '../../lib/mail.mjs';
 import { register, parseAnnouncement, ROLE } from '../../lib/register.mjs';
 import { discordReady, makeState, readState, idHash, getClaims, nameMatches, authorizeUrl, discordProfile, fetchAvatar, imageType } from '../../lib/claim.mjs';
 import { CODES } from '../../lib/i18n.mjs';
@@ -96,6 +97,7 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
     rate.n++; await store.setJSON(ipKey, rate);
     const item = { id: now.toString(36) + crypto.randomBytes(3).toString('hex'), at: new Date(now).toISOString(), kind: KINDS.includes(b.kind) ? b.kind : 'other', url: link.href, name: clip(b.name, 80), note: clip(b.note, 800), lang: /^[a-z]{2,3}$/.test(b.lang || '') ? b.lang : 'en', done: false };
     await store.setJSON('inbox/' + item.id, item);
+    await notifyEditor(env, item).catch((e) => console.log('notify', String(e)));
     return json({ ok: true });
   }
 
@@ -142,6 +144,10 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
   if (path === '/api/members' && req.method === 'GET') {
     const reg = await register(store);
     return json(reg.members.map((m) => ({ s: m.slug, n: m.name, a: m.names.join(' '), r: m.role, no: m.no, p: m.photo || undefined })), 200, { 'cache-control': 'public, max-age=300', 'netlify-cache-tag': 'pages' });
+  }
+  // role calls added through the paste page, so the weekly run can keep them in the repository too
+  if (path === '/api/rolecalls' && req.method === 'GET') {
+    return json((await store.get('rolecalls/list', { type: 'json' }).catch(() => null)) || [], 200, { 'cache-control': 'public, max-age=60' });
   }
   if (path === '/api/claims' && req.method === 'GET') {
     const c = await getClaims(store);

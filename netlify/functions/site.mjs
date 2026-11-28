@@ -7,7 +7,7 @@ import { register } from '../../lib/register.mjs';
 import { LANGS, CODES } from '../../lib/i18n.mjs';
 import { discordReady, imageType } from '../../lib/claim.mjs';
 
-const ROUTES = ['/', '/members/', '/classes/', '/builders/', '/archive/', '/learn/', '/people/', '/about/', '/submit/'];
+const ROUTES = ['/', '/members/', '/classes/', '/builders/', '/stats/', '/archive/', '/learn/', '/people/', '/about/', '/submit/'];
 // pages that were folded into others when Propagator became a weekly magazine with a community page
 const MOVED = { '/weekly/': '/archive/', '/daily/': '/archive/', '/community/': '/builders/', '/events/': '/builders/', '/videos/': '/learn/', '/pulse/': '/learn/' };
 
@@ -56,8 +56,9 @@ export async function handle(req, { store, now = Date.now(), preview = false, en
     return html(R.registerHome(lang, reg, { weekly, today }));
   }
   if (path === '/members/') return html(R.membersPage(lang, await register(store)));
+  if (path === '/stats/') { const reg = await register(store); return html(R.statsPage(lang, reg, { claims: reg.members.filter((x) => x.claimed).length })); }
   if (path === '/classes/') return html(R.classesPage(lang, await register(store)));
-  if ((m0 = path.match(/^\/m\/([\w-]{1,60})\/$/))) { const reg = await register(store); const mem = reg.bySlug.get(m0[1]); return mem ? html(R.memberPage(lang, reg, mem, { discord: discordReady(env) })) : html(R.notFound(lang), 404); }
+  if ((m0 = path.match(/^\/m\/([\w-]{1,60})\/$/))) { const reg = await register(store); const mem = reg.bySlug.get(m0[1]); const issues = mem ? (await Promise.all((await listIssues(store, 'weekly')).map((x) => getIssue(store, 'weekly', x.id)))).filter(Boolean) : []; return mem ? html(R.memberPage(lang, reg, mem, { discord: discordReady(env), issues, today })) : html(R.notFound(lang), 404); }
   if ((m0 = path.match(/^\/class\/([\w-]{1,40})\/$/))) { const reg = await register(store); return reg.calls.some((c) => c.id === m0[1]) ? html(R.classPage(lang, reg, m0[1])) : html(R.notFound(lang), 404); }
   let m;
   const moved = MOVED[path] || (/^\/daily\/[\w-]{1,20}\/$/.test(path) ? '/archive/' : null);
