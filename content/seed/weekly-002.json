@@ -1,81 +1,535 @@
 {
-  "kind": "weekly",
-  "id": "002",
-  "status": "published",
-  "date": "2026-11-28",
-  "range": ["2026-11-21", "2026-11-28"],
-  "title": { "en": "Speed for traders" },
-  "dek": { "en": "Optimum points mump2p at latency sensitive traders, the network holds steady, the community starts a regional battle and five new projects arrive." },
-  "note": { "en": [
-    "Optimum spent this week talking to a new audience. After a month of pitching faster blocks to validators, the company started teasing Optimum for Traders and took it to Binance Blockchain Week in Bangkok.",
-    "The network itself had a quiet week: the same share of blocks sped up, the same stake behind the gateways. The noise came from the community, with a regional battle on Discord and five new projects in seven days."
-  ] },
-  "tldr": { "en": [
-    "Optimum is preparing Optimum for Traders, a product for traders who care about milliseconds. It is hiring a business development lead for it and showed it at Binance Blockchain Week.",
-    "Over the week to 28 November, 92.1% of blocks reached Optimum's gateways first, by 232 ms. The stake behind them held at about 3.43 million ETH.",
-    "The Optimum Regional Battle pits five regions against each other for 15 TurboCards, and the community shipped five new projects, from a card quiz to a live tournament."
-  ] },
-  "stories": [
-    { "tag": "launch",
-      "title": { "en": "Optimum for Traders is on the way" },
-      "body": { "en": "On 20 November Optimum posted that it was working on something for traders who care about latency. By 24 November it had a name, Optimum for Traders, and the company told people at Binance Blockchain Week to ask Kent Lin and David Song about it. Its case, posted on 26 November, is that onchain stocks, options protocols and agent driven trading have brought latency sensitive traders into DeFi, and that whoever sees the price first trades with an advantage. Optimum has not said what the product does or when it ships. A job opening for a business development lead on the trading side asks for someone with strong connections among those traders." },
-      "claim": "company",
-      "sources": [["Optimum on X, 20 Nov 2026", "https://x.com/get_optimum/status/2123845583136076045"], ["Optimum on X, 24 Nov 2026", "https://x.com/get_optimum/status/2125246824923676737"], ["Optimum on X, 26 Nov 2026", "https://x.com/get_optimum/status/2125941392266629248"], ["Business Development Lead (Trading)", "https://jobs.ashbyhq.com/optimum"]],
-      "art": { "type": "network", "seed": "s1-traders", "nodes": 26 } },
-    { "tag": "network",
-      "title": { "en": "A steady week on mainnet" },
-      "body": { "en": "Across 50,278 slots from 21 to 28 November, 92.1% of blocks reached Optimum's gateways before public observers running the standard network, by a median of 232 ms. The spread between the first and the slowest arrival was 184.3 ms on mump2p against 394 ms without it, 2.14 times tighter. All of this compares Optimum's own gateways with public Xatu observers, and both the gateway count and the observer count dropped a little this week. Stake behind the gateways stood at 3.43 million ETH, 0.5% below a week earlier and still about 2.4 times launch day." },
-      "claim": "company",
-      "sources": [["Optimum Hub", "https://hub.getoptimum.xyz"], ["Propagator weekly numbers", "https://propagator.news/weekly/002/#numbers"]],
-      "art": { "type": "bars", "items": [{ "date": "2026-10-21", "v": 1.42, "show": { "n": 1.42, "d": 2, "unit": "M ETH" } }, { "date": "2026-11-21", "v": 3.44, "show": { "n": 3.44, "d": 2, "unit": "M ETH" } }, { "date": "2026-11-28", "v": 3.43, "show": { "n": 3.43, "d": 2, "unit": "M ETH" }, "hot": true }], "max": 4 } },
-    { "tag": "research",
-      "title": { "en": "Head votes: 99.68% against a network average of 98.86%" },
-      "body": { "en": "On 25 November Optimum said that over the previous seven days, node operators running mump2p voted for the correct head of the chain 99.68% of the time, against an Ethereum average of 98.86%. A wrong head vote costs a validator rewards, so the gap matters to operators. The figure is Optimum's own and the post does not say how the comparison group was chosen; operators who adopt new infrastructure early may already run above average." },
-      "claim": "company",
-      "sources": [["Optimum on X, 25 Nov 2026", "https://x.com/get_optimum/status/2125586554676723761"]] },
-    { "tag": "media",
-      "title": { "en": "crypto.news on the 53% narrower spread" },
-      "body": { "en": "On 23 November crypto.news reported that mump2p cut the spread of block arrival times by 53%, from 388.8 ms to 181.8 ms, a figure it credits to DefiLlama Research. The piece is careful about what that means: the arrivals become more even across nodes, average delivery time does not halve. Most of its other numbers come from Optimum or from studies tied to Optimum, including an 8.4% rise in builder bids that it calls a model, not a measurement. It also cites the 36 node test on Lido's research forum, which found earlier arrivals on three of six clients and no statistically significant difference." },
-      "claim": "mixed",
-      "sources": [["crypto.news, 23 Nov 2026", "https://crypto.news/optimum-ethereum-block-propagation-spread-53-percent/"], ["DefiLlama Research, 19 Nov 2026", "https://defillama.com/research/spotlight/optimum-mump2p-block-propagation"]] },
-    { "tag": "community",
-      "title": { "en": "The Optimum Regional Battle" },
-      "body": { "en": "Flash, now the community manager, announced the Optimum Regional Battle in the Discord this week. Regional communities compete on activity over two rounds, and the five most active regions share 15 TurboCards: five for first place, then four, three, two and one. Members from Vietnam, the Philippines, India and elsewhere have been rallying their regions on X under #optimumregionalbattle." },
-      "sources": [["Optimum Discord announcements", "https://discord.gg/getoptimum"], ["Aleksander100 on X, 27 Nov 2026", "https://x.com/aleksander_100/status/2126265226978836786"]] },
-    { "tag": "community",
-      "title": { "en": "Five new projects in a week" },
-      "body": { "en": "Opti Card by Capzz turns eight questions into a shareable card, and it is this week's featured project. Mmorgs turned six of his Optimum drawings into the characters of Infinity Run. Lie, named Refined on 23 November, built Link Lab, a puzzle about getting a signal through a network. Zunaira published Optimum Network Lab, a nine module course with quizzes and a simulator. And Capzz pointed us to Aethlos, his live head to head tournament, now on its fifth bracket." },
-      "sources": [["Community projects", "https://propagator.news/builders/"], ["Capzz on X, Aethlos", "https://x.com/Capzzlord/status/2109607933654769759"]] },
-    { "tag": "event",
-      "title": { "en": "Optimum at Binance Blockchain Week" },
-      "body": { "en": "Binance Blockchain Week runs on 28 and 29 November at the Queen Sirikit National Convention Centre in Bangkok. Optimum is not on the official programme, but it asked anyone there to find Kent Lin and David Song, and to ask them about Optimum for Traders." },
-      "sources": [["Optimum on X, 27 Nov 2026", "https://x.com/get_optimum/status/2126183492010877195"], ["Venture Square, event dates", "https://www.venturesquare.net/?p=1107204"]] }
+ "kind": "weekly",
+ "id": "002",
+ "status": "published",
+ "date": "2026-11-28",
+ "range": [
+  "2026-11-21",
+  "2026-11-28"
+ ],
+ "title": {
+  "en": "Speed for traders"
+ },
+ "dek": {
+  "en": "Optimum points mump2p at latency sensitive traders, the network holds steady, the community starts a regional battle and five new projects arrive."
+ },
+ "note": {
+  "en": [
+   "Optimum spent this week talking to a new audience. After a month of pitching faster blocks to validators, the company started teasing Optimum for Traders and took it to Binance Blockchain Week in Bangkok.",
+   "The network itself had a quiet week: the same share of blocks sped up, the same stake behind the gateways. The noise came from the community, with a regional battle on Discord and five new projects in seven days."
+  ]
+ },
+ "tldr": {
+  "en": [
+   "Optimum is preparing Optimum for Traders, a product for traders who care about milliseconds. It is hiring a business development lead for it and showed it at Binance Blockchain Week.",
+   "Over the week to 28 November, 92.1% of blocks reached Optimum's gateways first, by 232 ms. The stake behind them held at about 3.43 million ETH.",
+   "The Optimum Regional Battle pits five regions against each other for 15 TurboCards, and the community shipped five new projects, from a card quiz to a live tournament."
+  ]
+ },
+ "stories": [
+  {
+   "tag": "launch",
+   "title": {
+    "en": "Optimum for Traders is on the way"
+   },
+   "body": {
+    "en": "On 20 November Optimum posted that it was working on something for traders who care about latency. By 24 November it had a name, Optimum for Traders, and the company told people at Binance Blockchain Week to ask Kent Lin and David Song about it. Its case, posted on 26 November, is that onchain stocks, options protocols and agent driven trading have brought latency sensitive traders into DeFi, and that whoever sees the price first trades with an advantage. Optimum has not said what the product does or when it ships. A job opening for a business development lead on the trading side asks for someone with strong connections among those traders."
+   },
+   "claim": "company",
+   "sources": [
+    [
+     "Optimum on X, 20 Nov 2026",
+     "https://x.com/get_optimum/status/2123845583136076045"
+    ],
+    [
+     "Optimum on X, 24 Nov 2026",
+     "https://x.com/get_optimum/status/2125246824923676737"
+    ],
+    [
+     "Optimum on X, 26 Nov 2026",
+     "https://x.com/get_optimum/status/2125941392266629248"
+    ],
+    [
+     "Business Development Lead (Trading)",
+     "https://jobs.ashbyhq.com/optimum"
+    ]
+   ],
+   "art": {
+    "type": "network",
+    "seed": "s1-traders",
+    "nodes": 26
+   }
+  },
+  {
+   "tag": "network",
+   "title": {
+    "en": "A steady week on mainnet"
+   },
+   "body": {
+    "en": "Across 50,278 slots from 21 to 28 November, 92.1% of blocks reached Optimum's gateways before public observers running the standard network, by a median of 232 ms. The spread between the first and the slowest arrival was 184.3 ms on mump2p against 394 ms without it, 2.14 times tighter. All of this compares Optimum's own gateways with public Xatu observers, and both the gateway count and the observer count dropped a little this week. Stake behind the gateways stood at 3.43 million ETH, 0.5% below a week earlier and still about 2.4 times launch day."
+   },
+   "claim": "company",
+   "sources": [
+    [
+     "Optimum Hub",
+     "https://hub.getoptimum.xyz"
+    ],
+    [
+     "Propagator weekly numbers",
+     "https://propagator.news/weekly/002/#numbers"
+    ]
+   ],
+   "art": {
+    "type": "bars",
+    "items": [
+     {
+      "date": "2026-10-21",
+      "v": 1.42,
+      "show": {
+       "n": 1.42,
+       "d": 2,
+       "unit": "M ETH"
+      }
+     },
+     {
+      "date": "2026-11-21",
+      "v": 3.44,
+      "show": {
+       "n": 3.44,
+       "d": 2,
+       "unit": "M ETH"
+      }
+     },
+     {
+      "date": "2026-11-28",
+      "v": 3.43,
+      "show": {
+       "n": 3.43,
+       "d": 2,
+       "unit": "M ETH"
+      },
+      "hot": true
+     }
+    ],
+    "max": 4
+   }
+  },
+  {
+   "tag": "research",
+   "title": {
+    "en": "Head votes: 99.68% against a network average of 98.86%"
+   },
+   "body": {
+    "en": "On 25 November Optimum said that over the previous seven days, node operators running mump2p voted for the correct head of the chain 99.68% of the time, against an Ethereum average of 98.86%. A wrong head vote costs a validator rewards, so the gap matters to operators. The figure is Optimum's own and the post does not say how the comparison group was chosen; operators who adopt new infrastructure early may already run above average."
+   },
+   "claim": "company",
+   "sources": [
+    [
+     "Optimum on X, 25 Nov 2026",
+     "https://x.com/get_optimum/status/2125586554676723761"
+    ]
+   ]
+  },
+  {
+   "tag": "media",
+   "title": {
+    "en": "crypto.news on the 53% narrower spread"
+   },
+   "body": {
+    "en": "On 23 November crypto.news reported that mump2p cut the spread of block arrival times by 53%, from 388.8 ms to 181.8 ms, a figure it credits to DefiLlama Research. The piece is careful about what that means: the arrivals become more even across nodes, average delivery time does not halve. Most of its other numbers come from Optimum or from studies tied to Optimum, including an 8.4% rise in builder bids that it calls a model, not a measurement. It also cites the 36 node test on Lido's research forum, which found earlier arrivals on three of six clients and no statistically significant difference."
+   },
+   "claim": "mixed",
+   "sources": [
+    [
+     "crypto.news, 23 Nov 2026",
+     "https://crypto.news/optimum-ethereum-block-propagation-spread-53-percent/"
+    ],
+    [
+     "DefiLlama Research, 19 Nov 2026",
+     "https://defillama.com/research/spotlight/optimum-mump2p-block-propagation"
+    ]
+   ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "The Optimum Regional Battle"
+   },
+   "body": {
+    "en": "Flash, who took over as the community’s main contact when BlockchainJeff left Optimum in early November, announced the Optimum Regional Battle in the Discord on 25 November. Regional communities compete on activity in two rounds, 30 November to 7 December and 14 to 21 December. To count, members hold the Observer role, stay active in their regional chat (the general chat counts too) and post two tweets about the battle or Optimum in #community-tweets. In each round the five most active regions share 15 TurboCards, five for first place down to one for fifth, handed out during each region’s Mumbassador AMA. By the end of the week members from Vietnam, Türkiye, Indonesia, Nigeria, India and Pakistan were rallying their regions on X under #optimumregionalbattle."
+   },
+   "sources": [
+    [
+     "Optimum Discord, #announcements, 25 Nov 2026",
+     "https://discord.com/channels/1354818163879182519/1356459117362807004"
+    ],
+    [
+     "yubbos on X, how to qualify",
+     "https://x.com/yubbos/status/2125946207704916367"
+    ],
+    [
+     "Aleksander100 on X, 27 Nov 2026",
+     "https://x.com/aleksander_100/status/2126265226978836786"
+    ]
+   ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "A week of community nights"
+   },
+   "body": {
+    "en": "The regions kept their own calendars full. On Saturday 21 November Vietnam, Türkiye and Pakistan held a joint karaoke night on the Vietnamese voice stage, hosted by jany268 and Pegasus; it had started a week earlier with Vietnam and Türkiye alone, and on 28 November Bangladesh joins for a fourth country, at 16:00 in Türkiye, 18:00 in Pakistan, 19:00 in Bangladesh and 20:00 in Vietnam. The Vietnamese community held its weekly AMA on 22 November, the regional AMA run by samurai.itan and the Russian and Ukrainian AMA run by vssema both met on 26 November, and Indonesia played its 31st community event, a Roblox night hosted by travisqk and shinjiihhh, on 25 November. Nigerian members recapped a week of quizzes hosted by yubbos, luchotemp and Capzz and a Saturday poker table, and diikzzyy__ released a new Teacher Opti 3D animation explaining the Regional Battle."
+   },
+   "sources": [
+    [
+     "luongdo11 on X, karaoke tonight",
+     "https://x.com/luongdo449466/status/2126596090237731217"
+    ],
+    [
+     "futurehunter01 on X, 21 Nov karaoke",
+     "https://x.com/futurehunter01/status/2124019988977901924"
+    ],
+    [
+     "Pegasus on X, Vietnam AMA",
+     "https://x.com/ada_pegasus/status/2124574615603474454"
+    ],
+    [
+     "samurai.itan on X, regional AMA",
+     "https://x.com/samurai_itan/status/2125637735230644417"
+    ],
+    [
+     "vssema on X, RU and UA AMA",
+     "https://x.com/vssema11/status/2125618297655742869"
+    ],
+    [
+     "travisqk on X, Roblox #31",
+     "https://x.com/travisqk/status/2125561832597574093"
+    ],
+    [
+     "Dukesznn on X, Nigeria week",
+     "https://x.com/Dukesznn_eth/status/2124385162163093739"
+    ],
+    [
+     "diikzzyy__ on X, Teacher Opti",
+     "https://x.com/diikzzyy__/status/2125945625057562921"
+    ]
+   ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "Five new projects in a week"
+   },
+   "body": {
+    "en": "Opti Card by Capzz turns eight questions into a shareable card, and it is this week's featured project. Mmorgs turned six of his Optimum drawings into the characters of Infinity Run. Lie, named Refined on 23 November, built Link Lab, a puzzle about getting a signal through a network. Zunaira published Optimum Network Lab, a nine module course with quizzes and a simulator. And Capzz pointed us to Aethlos, his live head to head tournament, now on its fifth bracket."
+   },
+   "sources": [
+    [
+     "Community projects",
+     "https://propagator.news/builders/"
+    ],
+    [
+     "Capzz on X, Aethlos",
+     "https://x.com/Capzzlord/status/2109607933654769759"
+    ]
+   ]
+  },
+  {
+   "tag": "event",
+   "title": {
+    "en": "Optimum at Binance Blockchain Week"
+   },
+   "body": {
+    "en": "Binance Blockchain Week runs on 28 and 29 November at the Queen Sirikit National Convention Centre in Bangkok. Optimum is not on the official programme, but it asked anyone there to find Kent Lin and David Song, and to ask them about Optimum for Traders."
+   },
+   "sources": [
+    [
+     "Optimum on X, 27 Nov 2026",
+     "https://x.com/get_optimum/status/2126183492010877195"
+    ],
+    [
+     "Venture Square, event dates",
+     "https://www.venturesquare.net/?p=1107204"
+    ]
+   ]
+  }
+ ],
+ "pulse": {
+  "window": [
+   "2026-11-21",
+   "2026-11-28"
   ],
-  "pulse": { "window": ["2026-11-21", "2026-11-28"], "slots": 50278, "spread": { "mump": 184.3, "lib": 394, "factor": 2.14 }, "lead": 232, "accel": 92.1, "over4": { "mump": 35, "lib": 103, "factor": 2.9 }, "stake": { "now": 3425162, "weekAgo": 3442769, "launch": 1419082 }, "observers": { "gateways": 332, "xatu": 181 }, "discord": { "members": 40942, "online": 2312 } },
-  "spotlight": { "name": "Opti Card", "by": "Capzz", "handle": "Capzzlord", "url": "https://opti-card.vercel.app", "image": "/assets/shots/opticard.webp",
-    "title": { "en": "Which Optimum are you?" },
-    "body": { "en": "Opti Card asks eight questions, half about you and half about the community, and answers with a card: your type, your rank, your region and your face. It takes about two minutes and needs no sign in. The cards spread across X within days, which is the best argument for it: people post them. Capzz also runs Aethlos, a live quiz tournament for the community." } },
-  "roles": { "items": [{ "name": "Skylark", "role": "Refined" }, { "name": "ArifLangka", "role": "Refined" }, { "name": "Web3hustle", "role": "Refined" }, { "name": "𝐿𝑖𝑎𝑙𝑖𝑎", "role": "Refined" }, { "name": "nabori", "role": "Refined" }, { "name": "Mina", "role": "Refined" }, { "name": "ScorpLailai.锦鲤", "role": "Refined" }, { "name": "! TheTezcan", "role": "Refined" }, { "name": "UMAIMA EMAN 👑", "role": "Refined" }, { "name": "SUSU 💖 MUMP2P", "role": "Refined" }, { "name": "Olivia Rue 🤍", "role": "Refined" }],
-    "note": { "en": "Flash posted this week's upgrades in the Optimum Discord on 23 November: eleven new Refined members. Every one of them now has a page and a card on the register." },
-    "src": ["Flash in the Optimum Discord, 23 Nov 2026", "https://propagator.news/class/2026-11-23/"] },
-  "builders": ["opticard", "infinityrun", "linklab", "networklab", "aethlos"],
-  "claims": [
-    { "claim": { "en": "Blocks arrive first 92.1% of the time" }, "status": "company", "note": { "en": "Optimum's gateways against public Xatu observers, 21 to 28 November, 50,278 slots." } },
-    { "claim": { "en": "Head votes are 99.68% correct, against 98.86% on average" }, "status": "company", "note": { "en": "Optimum's post of 25 November, seven days; how the comparison group was picked is not stated." } },
-    { "claim": { "en": "Block arrival spread falls 53%" }, "status": "independent", "note": { "en": "DefiLlama Research, 4 to 11 November, from Hub and Xatu data, as reported by crypto.news." } },
-    { "claim": { "en": "Blocks arrive earlier on every client" }, "status": "mixed", "note": { "en": "A 36 node test on Lido's research forum found earlier arrivals on three of six clients and no significant difference overall." } }
+  "slots": 50278,
+  "spread": {
+   "mump": 184.3,
+   "lib": 394,
+   "factor": 2.14
+  },
+  "lead": 232,
+  "accel": 92.1,
+  "over4": {
+   "mump": 35,
+   "lib": 103,
+   "factor": 2.9
+  },
+  "stake": {
+   "now": 3425162,
+   "weekAgo": 3442769,
+   "launch": 1419082
+  },
+  "observers": {
+   "gateways": 332,
+   "xatu": 181
+  },
+  "discord": {
+   "members": 40942,
+   "online": 2312
+  }
+ },
+ "spotlight": {
+  "name": "Opti Card",
+  "by": "Capzz",
+  "handle": "Capzzlord",
+  "url": "https://opti-card.vercel.app",
+  "image": "/assets/shots/opticard.webp",
+  "title": {
+   "en": "Which Optimum are you?"
+  },
+  "body": {
+   "en": "Opti Card asks eight questions, half about you and half about the community, and answers with a card: your type, your rank, your region and your face. It takes about two minutes and needs no sign in. The cards spread across X within days, which is the best argument for it: people post them. Capzz also runs Aethlos, a live quiz tournament for the community."
+  }
+ },
+ "roles": {
+  "items": [
+   {
+    "name": "Skylark",
+    "role": "Refined"
+   },
+   {
+    "name": "ArifLangka",
+    "role": "Refined"
+   },
+   {
+    "name": "Web3hustle",
+    "role": "Refined"
+   },
+   {
+    "name": "𝐿𝑖𝑎𝑙𝑖𝑎",
+    "role": "Refined"
+   },
+   {
+    "name": "nabori",
+    "role": "Refined"
+   },
+   {
+    "name": "Mina",
+    "role": "Refined"
+   },
+   {
+    "name": "ScorpLailai.锦鲤",
+    "role": "Refined"
+   },
+   {
+    "name": "! TheTezcan",
+    "role": "Refined"
+   },
+   {
+    "name": "UMAIMA EMAN 👑",
+    "role": "Refined"
+   },
+   {
+    "name": "SUSU 💖 MUMP2P",
+    "role": "Refined"
+   },
+   {
+    "name": "Olivia Rue 🤍",
+    "role": "Refined"
+   }
   ],
-  "reads": [
-    ["Optimum's mump2p cuts Ethereum block propagation spread by 53%", "crypto.news", "2026-11-23", "https://crypto.news/optimum-ethereum-block-propagation-spread-53-percent/"],
-    ["Optimum and the economics of faster block propagation", "DefiLlama Research", "2026-11-19", "https://defillama.com/research/spotlight/optimum-mump2p-block-propagation"]
+  "note": {
+   "en": "Flash posted this week's upgrades in the Optimum Discord on 23 November: eleven new Refined members. Every one of them now has a page and a card on the register."
+  },
+  "src": [
+   "Flash in the Optimum Discord, 23 Nov 2026",
+   "https://propagator.news/class/2026-11-23/"
+  ]
+ },
+ "builders": [
+  "opticard",
+  "infinityrun",
+  "linklab",
+  "networklab",
+  "aethlos"
+ ],
+ "claims": [
+  {
+   "claim": {
+    "en": "Blocks arrive first 92.1% of the time"
+   },
+   "status": "company",
+   "note": {
+    "en": "Optimum's gateways against public Xatu observers, 21 to 28 November, 50,278 slots."
+   }
+  },
+  {
+   "claim": {
+    "en": "Head votes are 99.68% correct, against 98.86% on average"
+   },
+   "status": "company",
+   "note": {
+    "en": "Optimum's post of 25 November, seven days; how the comparison group was picked is not stated."
+   }
+  },
+  {
+   "claim": {
+    "en": "Block arrival spread falls 53%"
+   },
+   "status": "independent",
+   "note": {
+    "en": "DefiLlama Research, 4 to 11 November, from Hub and Xatu data, as reported by crypto.news."
+   }
+  },
+  {
+   "claim": {
+    "en": "Blocks arrive earlier on every client"
+   },
+   "status": "mixed",
+   "note": {
+    "en": "A 36 node test on Lido's research forum found earlier arrivals on three of six clients and no significant difference overall."
+   }
+  }
+ ],
+ "reads": [
+  [
+   "Optimum's mump2p cuts Ethereum block propagation spread by 53%",
+   "crypto.news",
+   "2026-11-23",
+   "https://crypto.news/optimum-ethereum-block-propagation-spread-53-percent/"
   ],
-  "takePart": [
-    { "text": { "en": "Join the Regional Battle: be active in your region's channels on the Optimum Discord." }, "url": "https://discord.gg/getoptimum" },
-    { "text": { "en": "Named in a role call? Your card is ready. Add your picture and share it." }, "url": "/members/" },
-    { "text": { "en": "Built something about Optimum? Send it in and it joins the community projects." }, "url": "/submit/" }
-  ],
-  "jobs": [{ "title": "Business Development Lead (Trading)", "where": "Remote, full time", "date": "2026-11-19", "url": "https://jobs.ashbyhq.com/optimum" }],
-  "events": ["bbw26"],
-  "og": true,
-  "cover": { "type": "network", "seed": "cover-002", "nodes": 64 }
+  [
+   "Optimum and the economics of faster block propagation",
+   "DefiLlama Research",
+   "2026-11-19",
+   "https://defillama.com/research/spotlight/optimum-mump2p-block-propagation"
+  ]
+ ],
+ "takePart": [
+  {
+   "text": {
+    "en": "Sing tonight: the four country karaoke night starts at 16:00 Türkiye time on the Optimum Discord."
+   },
+   "url": "https://x.com/luongdo449466/status/2126596090237731217"
+  },
+  {
+   "text": {
+    "en": "Join the Regional Battle from 30 November: take the Observer role, be active in your region’s chat and post two tweets in #community-tweets."
+   },
+   "url": "https://discord.gg/getoptimum"
+  },
+  {
+   "text": {
+    "en": "Named in a role call? Your card is ready. Add your picture and share it."
+   },
+   "url": "/members/"
+  },
+  {
+   "text": {
+    "en": "Built something about Optimum? Send it in and it joins the community projects."
+   },
+   "url": "/submit/"
+  }
+ ],
+ "jobs": [
+  {
+   "title": "Business Development Lead (Trading)",
+   "where": "Remote, full time",
+   "date": "2026-11-19",
+   "url": "https://jobs.ashbyhq.com/optimum"
+  }
+ ],
+ "events": [
+  "bbw26"
+ ],
+ "og": true,
+ "cover": {
+  "type": "network",
+  "seed": "cover-002",
+  "nodes": 64
+ },
+ "eventItems": [
+  {
+   "id": "karaoke-1128",
+   "start": "2026-11-28",
+   "city": "Online",
+   "name": "Vietnam x Türkiye x Pakistan x Bangladesh Karaoke Night",
+   "url": "https://x.com/luongdo449466/status/2126596090237731217",
+   "kind": "meetup",
+   "what": {
+    "en": "Four regional communities, one stage in the Discord: any song, any language. 16:00 Türkiye, 18:00 Pakistan, 19:00 Bangladesh, 20:00 Vietnam."
+   },
+   "src": [
+    [
+     "luongdo11 on X",
+     "https://x.com/luongdo449466/status/2126596090237731217"
+    ]
+   ]
+  },
+  {
+   "id": "ama-1126",
+   "start": "2026-11-26",
+   "city": "Online",
+   "name": "Regional AMAs",
+   "url": "https://x.com/samurai_itan/status/2125637735230644417",
+   "kind": "ama",
+   "what": {
+    "en": "Weekly regional AMAs at 18:00 UTC: samurai.itan on what mump2p means for validators, vssema in Russian and Ukrainian on the latest results and Optimum for Traders."
+   },
+   "src": [
+    [
+     "samurai.itan on X",
+     "https://x.com/samurai_itan/status/2125637735230644417"
+    ],
+    [
+     "vssema on X",
+     "https://x.com/vssema11/status/2125618297655742869"
+    ]
+   ]
+  },
+  {
+   "id": "roblox-1125",
+   "start": "2026-11-25",
+   "city": "Online",
+   "name": "Indonesian Event #31: Roblox",
+   "url": "https://x.com/travisqk/status/2125561832597574093",
+   "kind": "meetup",
+   "what": {
+    "en": "The Indonesian community’s weekly game night in the Optimum Discord."
+   },
+   "src": [
+    [
+     "travisqk on X",
+     "https://x.com/travisqk/status/2125561832597574093"
+    ]
+   ]
+  },
+  {
+   "id": "rb-round1",
+   "start": "2026-11-30",
+   "end": "2026-12-07",
+   "city": "Discord",
+   "name": "Optimum Regional Battle, round 1",
+   "url": "https://discord.com/channels/1354818163879182519/1356459117362807004",
+   "kind": "meetup",
+   "what": {
+    "en": "15 TurboCards per round for the five most active regional communities, five for first place down to one for fifth. Round 2 runs 14 to 21 December."
+   },
+   "src": [
+    [
+     "Optimum Discord, #announcements",
+     "https://discord.com/channels/1354818163879182519/1356459117362807004"
+    ]
+   ]
+  }
+ ]
 }
