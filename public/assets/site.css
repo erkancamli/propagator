@@ -244,7 +244,7 @@ main { width: 100%; max-width: calc(var(--max) + 2 * var(--gut)); margin: 0 auto
 .rhero > * { min-width: 0; }
 .rhero h1 { font-size: var(--t-2xl); line-height: 1.0; letter-spacing: -0.048em; font-weight: 680; max-width: 12ch; }
 .rhero .dek { max-width: 46ch; margin-top: 18px; }
-.rsearch { position: relative; display: flex; align-items: center; gap: 8px; margin: 28px 0 0; max-width: 540px; padding: 6px 6px 6px 46px; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2), var(--shadow); transition: box-shadow .2s; }
+.rsearch { position: relative; z-index: 10; display: flex; align-items: center; gap: 8px; margin: 28px 0 0; max-width: 540px; padding: 6px 6px 6px 46px; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2), var(--shadow); transition: box-shadow .2s; }
 .rsearch:focus-within { box-shadow: inset 0 0 0 1.5px var(--accent), 0 0 0 5px var(--accent-soft), var(--shadow); }
 .rsearch svg { position: absolute; left: 16px; width: 19px; height: 19px; fill: none; stroke: var(--soft); stroke-width: 1.8; stroke-linecap: round; }
 .rsearch input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink); font: 400 16.5px var(--sans); padding: 11px 0; }
@@ -284,6 +284,7 @@ main { width: 100%; max-width: calc(var(--max) + 2 * var(--gut)); margin: 0 auto
   .stage { height: 290px; margin: 8px -8px 0; }
   .fan .cred { width: 250px; }
   .fan .cred:nth-child(1) { left: 2%; top: 4%; } .fan .cred:nth-child(2) { left: 9%; top: 30%; } .fan .cred:nth-child(3) { left: 16%; top: 56%; }
+  .stage-cap { display: none; }
   .rsearch { flex-wrap: wrap; padding: 6px; }
   .rsearch svg { top: 21px; }
   .rsearch input { flex-basis: calc(100% - 44px); margin-left: 40px; }
@@ -1000,3 +1001,5 @@ main { width: 100%; max-width: calc(var(--max) + 2 * var(--gut)); margin: 0 auto
 @media (max-width: 430px) { .q-m { display: none; } .q-list a { grid-template-columns: 34px minmax(0, 1fr); } }
 @media (min-width: 901px) { :root[data-side="rail"] .side:not(:hover):not(:focus-within) li a { width: 48px; } }
 .side li a { overflow: hidden; }
+.rsearch input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+.rstats { display: grid; grid-template-columns: repeat(3, minmax(0, max-content)); }
