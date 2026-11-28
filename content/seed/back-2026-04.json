@@ -168,6 +168,25 @@
      "https://x.com/get_optimum/status/2041214084675465264"
     ]
    ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "From the Discord: the final hunt and a new look"
+   },
+   "body": {
+    "en": "The final round of the treasure hunt began on 8 April with a twist: clues were unlocked by climbing the Latency Lords leaderboard, top 100 for the first phase, then top 50. On 13 April Optimum changed course after players found too many ways to cheat the game, despite fixes by 0xAbbas, and began releasing clues to everyone. The hunt ended on 23 April, with ten 100 dollar prizes drawn on the call of 30 April. On 8 April Optimum also unveiled a refreshed visual identity and opened a new sticker quest to match it."
+   },
+   "sources": [
+    [
+     "Optimum Discord, #announcements",
+     "https://discord.com/channels/1354818163879182519/1356459117362807004"
+    ],
+    [
+     "Optimum Discord, #treasure-hunt",
+     "https://discord.com/channels/1354818163879182519/1417489729674285117"
+    ]
+   ]
   }
  ],
  "cover": {

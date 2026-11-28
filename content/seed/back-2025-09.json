@@ -130,7 +130,7 @@
     "en": "The first treasure hunt"
    },
    "body": {
-    "en": "On 16 September BlockchainJeff pinned an old scroll in the Discord: the first clue of Optimum’s first digital treasure hunt, themed on cracking the blockchain trilemma. More followed over ten days, a riddle on 17 September (the portal is not in the clash you see, but in the lines written underneath), shifted letter ciphers and a base64 string on 19 and 20 September, and a last hint on 25 September pointing at descriptors. It was the first of several hunts; today 68 members hold the Discord role Lord of the Treasure."
+    "en": "On 16 September BlockchainJeff pinned an old scroll in the Discord: the first clue of Optimum’s first digital treasure hunt, themed on cracking the blockchain trilemma. More followed over ten days, a riddle on 17 September (the portal is not in the clash you see, but in the lines written underneath), shifted letter ciphers and a base64 string on 19 and 20 September, and a last hint on 25 September pointing at descriptors. Ten random finders were promised 100 USDT each, drawn live in the Discord. It was the first of four hunts; today 68 members hold the Discord role Lord of the Treasure."
    },
    "sources": [
     [
@@ -210,6 +210,21 @@
     [
      "Optimum on X, Alpenglow",
      "https://x.com/get_optimum/status/1965527549938901341"
+    ]
+   ]
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "From the Discord: a tournament, languages and a Telegram"
+   },
+   "body": {
+    "en": "September was the busiest month yet in the server. Language channels opened on 5 September, among them Russian, Nigerian, Bengali, Indonesian, Hindi, Mandarin, Filipino, Ukrainian and Turkish. From 9 to 16 September a tournament on Perseus’s Optimum Runner drew 781 players and more than 53,000 games, and prizes went to the top five: Juan, Osmosith, penny, aliendrooo and web3. The OG Reawakening ended on 16 September with more than 2,500 members receiving the new Real OG role. Optimum opened a Telegram channel on 23 September, ran a trivia night with ZetaChain on 29 September and added a BattleTabs channel."
+   },
+   "sources": [
+    [
+     "Optimum Discord, #announcements",
+     "https://discord.com/channels/1354818163879182519/1356459117362807004"
     ]
    ]
   }

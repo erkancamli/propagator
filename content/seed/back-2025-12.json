@@ -96,7 +96,7 @@
     "en": "Regional ambassadors wanted"
    },
    "body": {
-    "en": "On 30 December Optimum said publicly what the Discord already knew: it was recruiting regional ambassadors to translate and create content in their own languages, and still looking for one in Latin America. Applications went through a form, with questions to BlockchainJeff. By March 2026 a role call credited the Mumbassadors, the community’s ambassadors, with choosing who was upgraded; today Jultoshi, Pegasus, TheBlockBoy and samurai.itan hold that role."
+    "en": "On 30 December Optimum repeated on X what the Discord had announced on 14 November: it was recruiting regional ambassadors to translate and create content in their own languages, and still looking for one in Latin America. Applications went through a form, with questions to BlockchainJeff. By March 2026 a role call credited the Mumbassadors, the community’s ambassadors, with choosing who was upgraded; today Jultoshi, Pegasus, TheBlockBoy and samurai.itan hold that role."
    },
    "sources": [
     [
@@ -147,6 +147,29 @@
     ]
    ],
    "claim": "company"
+  },
+  {
+   "tag": "community",
+   "title": {
+    "en": "From the Discord: 144 finders, karaoke and an ice apocalypse"
+   },
+   "body": {
+    "en": "The Neon City hunt ended on 1 December with 144 members finding the second shard, and ten drawn winners again won 100 dollars each. On 23 December the server held a karaoke night with community voting; Wittydude1 won with 51 votes ahead of Cutie Quinn and Chê, with cash prizes and a Voice of an Angel role for the best singers. The third hunt, Welcome to the Ice Apocalypse, began the same day and was set to run three weeks. Optimum also advertised for a short form video editor, and Médard argued in crypto.news that Web3 has not yet had its TCP/IP moment."
+   },
+   "sources": [
+    [
+     "Optimum Discord, #announcements",
+     "https://discord.com/channels/1354818163879182519/1356459117362807004"
+    ],
+    [
+     "Optimum Discord, #treasure-hunt",
+     "https://discord.com/channels/1354818163879182519/1417489729674285117"
+    ],
+    [
+     "crypto.news op-ed, 18 Dec 2025",
+     "https://crypto.news/web3s-real-tcp-ip-moment-hasnt-happened-yet-opinion/"
+    ]
+   ]
   }
  ],
  "cover": {
