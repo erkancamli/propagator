@@ -494,6 +494,15 @@
     });
   });
 
+  // ---- copy buttons that carry their own text (brand kit) ----
+  document.querySelectorAll('.copy-x[data-copy]').forEach(function (b) {
+    var label = b.textContent;
+    b.addEventListener('click', function () {
+      if (!navigator.clipboard || !navigator.clipboard.writeText) return;
+      navigator.clipboard.writeText(b.dataset.copy).then(function () { b.textContent = b.dataset.copied; b.classList.add('done'); setTimeout(function () { b.textContent = label; b.classList.remove('done'); }, 1600); }, function () {});
+    });
+  });
+
   // ---- the credential: tilt, foil and glare follow the pointer ----
   if (fine && !reduce) document.querySelectorAll('[data-card]').forEach(function (card) {
     var raf = 0, ev = null;
