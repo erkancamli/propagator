@@ -1,0 +1,322 @@
+{
+ "note": "Events for the band on the home page. Times are UTC. every: 7 repeats weekly from start. Use mins for length or end for a fixed end. Each h and where carries all ten languages.",
+ "events": [
+  {
+   "id": "ua-ama",
+   "kind": "ama",
+   "every": 7,
+   "start": "2026-11-19T18:00Z",
+   "mins": 60,
+   "h": {
+    "en": "Weekly regional AMA",
+    "tr": "Haftalık bölge AMA’sı",
+    "vi": "AMA khu vực hằng tuần",
+    "id": "AMA regional mingguan",
+    "ru": "Еженедельное региональное AMA",
+    "uk": "Щотижневе регіональне AMA",
+    "ko": "주간 지역 AMA",
+    "hi": "साप्ताहिक क्षेत्रीय AMA",
+    "zh": "每周地区 AMA",
+    "ja": "週例の地域AMA"
+   },
+   "where": {
+    "en": "Hosted by Mumbassador samurai.itan, in the Discord",
+    "tr": "Discord'da, sunan Mumbassador samurai.itan",
+    "vi": "Trên Discord, dẫn dắt bởi Mumbassador samurai.itan",
+    "id": "Di Discord, dipandu Mumbassador samurai.itan",
+    "ru": "В Discord, ведёт Mumbassador samurai.itan",
+    "uk": "У Discord, веде Mumbassador samurai.itan",
+    "ko": "Discord에서, 진행 Mumbassador samurai.itan",
+    "hi": "Discord में, होस्ट Mumbassador samurai.itan",
+    "zh": "在 Discord，主持人 Mumbassador samurai.itan",
+    "ja": "Discordにて、司会はMumbassadorのsamurai.itan"
+   },
+   "url": "https://x.com/samurai_itan/status/2125637735230644417"
+  },
+  {
+   "id": "vn-ama",
+   "kind": "ama",
+   "every": 7,
+   "start": "2026-11-15T08:00Z",
+   "mins": 90,
+   "h": {
+    "en": "Vietnam community weekly AMA",
+    "tr": "Vietnam topluluğunun haftalık AMA’sı",
+    "vi": "AMA hằng tuần của cộng đồng Việt Nam",
+    "id": "AMA mingguan komunitas Vietnam",
+    "ru": "Еженедельное AMA вьетнамского сообщества",
+    "uk": "Щотижневе AMA вʼєтнамської спільноти",
+    "ko": "베트남 커뮤니티 주간 AMA",
+    "hi": "वियतनाम कम्युनिटी का साप्ताहिक AMA",
+    "zh": "越南社区每周 AMA",
+    "ja": "ベトナムコミュニティの週例AMA"
+   },
+   "where": {
+    "en": "Vietnamese Voice stage, hosted by Pegasus",
+    "tr": "Vietnamese Voice sahnesi, sunan Pegasus",
+    "vi": "Sân khấu Vietnamese Voice, dẫn dắt bởi Pegasus",
+    "id": "Panggung Vietnamese Voice, dipandu Pegasus",
+    "ru": "Сцена Vietnamese Voice, ведущий Pegasus",
+    "uk": "Сцена Vietnamese Voice, веде Pegasus",
+    "ko": "Vietnamese Voice 무대, 진행 Pegasus",
+    "hi": "Vietnamese Voice मंच, होस्ट Pegasus",
+    "zh": "Vietnamese Voice 舞台，主持人 Pegasus",
+    "ja": "Vietnamese Voiceステージ、司会はPegasus"
+   },
+   "url": "https://x.com/PhucvinhN1965/status/2126573421320605997"
+  },
+  {
+   "id": "quiz",
+   "kind": "quiz",
+   "every": 7,
+   "start": "2026-11-14T00:00Z",
+   "mins": 1439,
+   "allDay": true,
+   "h": {
+    "en": "Weekly regional quiz",
+    "tr": "Haftalık bölge bilgi yarışması",
+    "vi": "Đố vui khu vực hằng tuần",
+    "id": "Kuis regional mingguan",
+    "ru": "Еженедельная региональная викторина",
+    "uk": "Щотижнева регіональна вікторина",
+    "ko": "주간 지역 퀴즈",
+    "hi": "साप्ताहिक क्षेत्रीय क्विज़",
+    "zh": "每周地区问答",
+    "ja": "週例の地域クイズ"
+   },
+   "where": {
+    "en": "Every Saturday in the regional channels",
+    "tr": "Her cumartesi bölge kanallarında",
+    "vi": "Mỗi thứ Bảy trong các kênh khu vực",
+    "id": "Setiap Sabtu di kanal regional",
+    "ru": "Каждую субботу в региональных каналах",
+    "uk": "Щосуботи в регіональних каналах",
+    "ko": "매주 토요일 지역 채널에서",
+    "hi": "हर शनिवार क्षेत्रीय चैनलों में",
+    "zh": "每周六在地区频道",
+    "ja": "毎週土曜、地域チャンネルで"
+   },
+   "url": "https://x.com/MysteryVerge/status/2121544975074890102"
+  },
+  {
+   "id": "ua-games",
+   "kind": "game",
+   "every": 7,
+   "start": "2026-11-27T18:00Z",
+   "mins": 90,
+   "h": {
+    "en": "Weekly game night: LOL Beans",
+    "tr": "Haftalık oyun gecesi: LOL Beans",
+    "vi": "Đêm game hằng tuần: LOL Beans",
+    "id": "Malam game mingguan: LOL Beans",
+    "ru": "Еженедельный игровой вечер: LOL Beans",
+    "uk": "Щотижневий ігровий вечір: LOL Beans",
+    "ko": "주간 게임의 밤: LOL Beans",
+    "hi": "साप्ताहिक गेम नाइट: LOL Beans",
+    "zh": "每周游戏之夜：LOL Beans",
+    "ja": "毎週のゲームナイト：LOL Beans"
+   },
+   "where": {
+    "en": "Ukrainian community, hosted by Roman_sw09 and denys.h",
+    "tr": "Ukrayna topluluğu, sunanlar Roman_sw09 ve denys.h",
+    "vi": "Cộng đồng Ukraina, dẫn dắt bởi Roman_sw09 và denys.h",
+    "id": "Komunitas Ukraina, dipandu Roman_sw09 dan denys.h",
+    "ru": "Украинское сообщество, ведущие Roman_sw09 и denys.h",
+    "uk": "Українська спільнота, ведучі Roman_sw09 і denys.h",
+    "ko": "우크라이나 커뮤니티, 진행 Roman_sw09, denys.h",
+    "hi": "यूक्रेनी कम्युनिटी, होस्ट Roman_sw09 और denys.h",
+    "zh": "乌克兰社区，主持人 Roman_sw09 和 denys.h",
+    "ja": "ウクライナコミュニティ、司会はRoman_sw09とdenys.h"
+   },
+   "url": "https://discord.com/channels/1354818163879182519/1413515509172928552"
+  },
+  {
+   "id": "id-games",
+   "kind": "game",
+   "every": 7,
+   "start": "2026-11-25T00:00Z",
+   "mins": 1439,
+   "allDay": true,
+   "h": {
+    "en": "Indonesian community game night",
+    "tr": "Endonezya topluluğunun oyun gecesi",
+    "vi": "Đêm game của cộng đồng Indonesia",
+    "id": "Malam game komunitas Indonesia",
+    "ru": "Игровой вечер индонезийского сообщества",
+    "uk": "Ігровий вечір індонезійської спільноти",
+    "ko": "인도네시아 커뮤니티 게임의 밤",
+    "hi": "इंडोनेशियाई कम्युनिटी की गेम नाइट",
+    "zh": "印尼社区游戏之夜",
+    "ja": "インドネシアコミュニティのゲームナイト"
+   },
+   "where": {
+    "en": "In the Indonesian voice channel, Roblox on 25 November",
+    "tr": "Endonezya ses kanalında, 25 Kasım’da Roblox",
+    "vi": "Trong kênh thoại Indonesia, Roblox ngày 25 tháng 11",
+    "id": "Di voice indonesia, Roblox pada 25 November",
+    "ru": "В индонезийском голосовом канале, 25 ноября Roblox",
+    "uk": "В індонезійському голосовому каналі, 25 листопада Roblox",
+    "ko": "인도네시아 음성 채널에서, 11월 25일은 Roblox",
+    "hi": "इंडोनेशियाई वॉइस चैनल में, 25 नवंबर को Roblox",
+    "zh": "在印尼语音频道，11 月 25 日玩 Roblox",
+    "ja": "インドネシアのボイスチャンネルで、11月25日はRoblox"
+   },
+   "url": "https://discord.com/channels/1354818163879182519/1413513944592551967"
+  },
+  {
+   "id": "karaoke-1121",
+   "kind": "karaoke",
+   "start": "2026-11-21T13:00Z",
+   "mins": 120,
+   "h": {
+    "en": "Karaoke Night: Vietnam, Türkiye and Pakistan",
+    "tr": "Karaoke Gecesi: Vietnam, Türkiye ve Pakistan",
+    "vi": "Đêm Karaoke: Việt Nam, Thổ Nhĩ Kỳ và Pakistan",
+    "id": "Malam Karaoke: Vietnam, Turki, dan Pakistan",
+    "ru": "Вечер караоке: Вьетнам, Турция и Пакистан",
+    "uk": "Вечір караоке: Вʼєтнам, Туреччина і Пакистан",
+    "ko": "노래방의 밤: 베트남, 튀르키예, 파키스탄",
+    "hi": "कराओके नाइट: वियतनाम, तुर्की और पाकिस्तान",
+    "zh": "卡拉 OK 之夜：越南、土耳其和巴基斯坦",
+    "ja": "カラオケナイト：ベトナム、トルコ、パキスタン"
+   },
+   "where": {
+    "en": "Vietnamese Voice stage, hosted by Cutie Quinn",
+    "tr": "Vietnamese Voice sahnesi, sunan Cutie Quinn",
+    "vi": "Sân khấu Vietnamese Voice, dẫn dắt bởi Cutie Quinn",
+    "id": "Panggung Vietnamese Voice, dipandu Cutie Quinn",
+    "ru": "Сцена Vietnamese Voice, ведущая Cutie Quinn",
+    "uk": "Сцена Vietnamese Voice, веде Cutie Quinn",
+    "ko": "Vietnamese Voice 무대, 진행 Cutie Quinn",
+    "hi": "Vietnamese Voice मंच, होस्ट Cutie Quinn",
+    "zh": "Vietnamese Voice 舞台，主持人 Cutie Quinn",
+    "ja": "Vietnamese Voiceステージ、司会はCutie Quinn"
+   },
+   "url": "https://x.com/PhucvinhN1965/status/2123688888917196904"
+  },
+  {
+   "id": "karaoke-1128",
+   "kind": "karaoke",
+   "start": "2026-11-28T13:00Z",
+   "mins": 120,
+   "h": {
+    "en": "Karaoke Night: Vietnam, Türkiye, Pakistan and Bangladesh on one stage",
+    "tr": "Karaoke Gecesi: Vietnam, Türkiye, Pakistan ve Bangladeş aynı sahnede",
+    "vi": "Đêm Karaoke: Việt Nam, Thổ Nhĩ Kỳ, Pakistan và Bangladesh chung một sân khấu",
+    "id": "Malam Karaoke: Vietnam, Turki, Pakistan, dan Bangladesh di satu panggung",
+    "ru": "Вечер караоке: Вьетнам, Турция, Пакистан и Бангладеш на одной сцене",
+    "uk": "Вечір караоке: Вʼєтнам, Туреччина, Пакистан і Бангладеш на одній сцені",
+    "ko": "노래방의 밤: 베트남, 튀르키예, 파키스탄, 방글라데시가 한 무대에",
+    "hi": "कराओके नाइट: वियतनाम, तुर्की, पाकिस्तान और बांग्लादेश एक मंच पर",
+    "zh": "卡拉 OK 之夜：越南、土耳其、巴基斯坦和孟加拉国同台",
+    "ja": "カラオケナイト：ベトナム、トルコ、パキスタン、バングラデシュがひとつのステージに"
+   },
+   "where": {
+    "en": "Vietnamese Voice stage, hosted by Cutie Quinn",
+    "tr": "Vietnamese Voice sahnesi, sunan Cutie Quinn",
+    "vi": "Sân khấu Vietnamese Voice, dẫn dắt bởi Cutie Quinn",
+    "id": "Panggung Vietnamese Voice, dipandu Cutie Quinn",
+    "ru": "Сцена Vietnamese Voice, ведущая Cutie Quinn",
+    "uk": "Сцена Vietnamese Voice, веде Cutie Quinn",
+    "ko": "Vietnamese Voice 무대, 진행 Cutie Quinn",
+    "hi": "Vietnamese Voice मंच, होस्ट Cutie Quinn",
+    "zh": "Vietnamese Voice 舞台，主持人 Cutie Quinn",
+    "ja": "Vietnamese Voiceステージ、司会はCutie Quinn"
+   },
+   "url": "https://x.com/PhucvinhN1965/status/2126573421320605997"
+  },
+  {
+   "id": "bbw-1128",
+   "kind": "event",
+   "start": "2026-11-28T01:00Z",
+   "end": "2026-11-29T16:00Z",
+   "h": {
+    "en": "Kent Lin and David Song at Binance Blockchain Week, Bangkok",
+    "tr": "Kent Lin ve David Song Bangkok'ta Binance Blockchain Week'te",
+    "vi": "Kent Lin và David Song tại Binance Blockchain Week, Bangkok",
+    "id": "Kent Lin dan David Song di Binance Blockchain Week, Bangkok",
+    "ru": "Kent Lin и David Song на Binance Blockchain Week в Бангкоке",
+    "uk": "Kent Lin і David Song на Binance Blockchain Week у Бангкоку",
+    "ko": "방콕 Binance Blockchain Week의 Kent Lin과 David Song",
+    "hi": "बैंकॉक के Binance Blockchain Week में Kent Lin और David Song",
+    "zh": "Kent Lin 和 David Song 在曼谷 Binance Blockchain Week",
+    "ja": "バンコクのBinance Blockchain WeekにKent LinとDavid Song"
+   },
+   "where": {
+    "en": "Ask them about Optimum for Traders",
+    "tr": "Onlara Optimum for Traders hakkında sor",
+    "vi": "Hãy hỏi họ về Optimum for Traders",
+    "id": "Tanyakan kepada mereka soal Optimum for Traders",
+    "ru": "Спросите их про Optimum for Traders",
+    "uk": "Спитайте їх про Optimum for Traders",
+    "ko": "Optimum for Traders에 대해 물어보세요",
+    "hi": "उनसे Optimum for Traders के बारे में पूछें",
+    "zh": "向他们了解 Optimum for Traders",
+    "ja": "Optimum for Tradersについて聞いてみよう"
+   },
+   "url": "https://x.com/get_optimum/status/2125246824923676737"
+  },
+  {
+   "id": "battle-r1",
+   "kind": "battle",
+   "start": "2026-11-30T00:00Z",
+   "end": "2026-12-07T23:59Z",
+   "h": {
+    "en": "Regional Battle, round 1",
+    "tr": "Bölgeler Yarışı, 1. tur",
+    "vi": "Đấu khu vực, vòng 1",
+    "id": "Regional Battle, ronde 1",
+    "ru": "Битва регионов, раунд 1",
+    "uk": "Битва регіонів, раунд 1",
+    "ko": "지역 대항전 1라운드",
+    "hi": "क्षेत्रीय मुक़ाबला, पहला दौर",
+    "zh": "地区大战第一轮",
+    "ja": "地域対抗戦 第1ラウンド"
+   },
+   "where": {
+    "en": "The 5 most active regions win TurboCards, 5 for first place",
+    "tr": "En etkin 5 bölge TurboCards kazanıyor, birinciye 5 tane",
+    "vi": "5 khu vực sôi nổi nhất nhận TurboCards, hạng nhất được 5 thẻ",
+    "id": "5 wilayah paling aktif memenangkan TurboCards, juara pertama dapat 5",
+    "ru": "5 самых активных регионов получают TurboCards, за первое место 5",
+    "uk": "5 найактивніших регіонів отримують TurboCards, за перше місце 5",
+    "ko": "가장 활발한 5개 지역이 TurboCards를 받으며 1위는 5장",
+    "hi": "सबसे सक्रिय 5 क्षेत्र TurboCards जीतते हैं, पहले को 5",
+    "zh": "最活跃的 5 个地区赢取 TurboCards，第一名 5 张",
+    "ja": "最も活発な5地域がTurboCardsを獲得、1位は5枚"
+   },
+   "url": "https://discord.com/channels/1354818163879182519/1356459117362807004"
+  },
+  {
+   "id": "battle-r2",
+   "kind": "battle",
+   "start": "2026-12-14T00:00Z",
+   "end": "2026-12-21T23:59Z",
+   "h": {
+    "en": "Regional Battle, round 2",
+    "tr": "Bölgeler Yarışı, 2. tur",
+    "vi": "Đấu khu vực, vòng 2",
+    "id": "Regional Battle, ronde 2",
+    "ru": "Битва регионов, раунд 2",
+    "uk": "Битва регіонів, раунд 2",
+    "ko": "지역 대항전 2라운드",
+    "hi": "क्षेत्रीय मुक़ाबला, दूसरा दौर",
+    "zh": "地区大战第二轮",
+    "ja": "地域対抗戦 第2ラウンド"
+   },
+   "where": {
+    "en": "A second chance for every region to climb",
+    "tr": "Her bölgeye yükselmek için ikinci bir şans",
+    "vi": "Cơ hội thứ hai để mọi khu vực vươn lên",
+    "id": "Kesempatan kedua bagi setiap wilayah untuk naik",
+    "ru": "Второй шанс для каждого региона подняться",
+    "uk": "Другий шанс для кожного регіону піднятися",
+    "ko": "모든 지역에 주어지는 두 번째 기회",
+    "hi": "हर क्षेत्र को ऊपर चढ़ने का दूसरा मौक़ा",
+    "zh": "每个地区再冲一次的机会",
+    "ja": "どの地域にも巻き返しの2度目のチャンス"
+   },
+   "url": "https://discord.com/channels/1354818163879182519/1356459117362807004"
+  }
+ ]
+}

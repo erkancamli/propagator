@@ -288,3 +288,19 @@ test('every community project has its fields and screenshots, and every weekly p
   }
   for (const f of FEATURED) assert.ok(BUILDERS.some((b) => b.id === f.id) && f.from && f.why?.en, 'weekly pick ' + f.id);
 });
+
+test('band events are well formed and in every language', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const { events } = JSON.parse(await readFile(new URL('../content/band.json', import.meta.url), 'utf8'));
+  const langs = ['en', 'tr', 'vi', 'id', 'ru', 'uk', 'ko', 'hi', 'zh', 'ja'];
+  const ids = new Set();
+  for (const e of events) {
+    assert.ok(e.id && !ids.has(e.id), 'unique id ' + e.id); ids.add(e.id);
+    assert.ok(['karaoke', 'ama', 'battle', 'event', 'call', 'quiz', 'game'].includes(e.kind), 'kind of ' + e.id);
+    assert.ok(!Number.isNaN(Date.parse(e.start)) && /Z$/.test(e.start), 'UTC start for ' + e.id);
+    assert.ok(e.end ? !Number.isNaN(Date.parse(e.end)) : e.mins > 0, 'length of ' + e.id);
+    assert.ok(/^https:\/\//.test(e.url), 'source link for ' + e.id);
+    for (const f of ['h', 'where']) for (const l of langs) assert.ok(e[f]?.[l], `${f}.${l} for ${e.id}`);
+    for (const l of langs) assert.ok(!/[—–]/.test(e.h[l] + e.where[l]), 'no long dashes in ' + e.id);
+  }
+});

@@ -22,6 +22,8 @@ for (const f of (await readdir('content/seed')).sort()) {
   const x = JSON.parse(await readFile('content/seed/' + f, 'utf8'));
   seed[x.kind].push(x);
 }
+// the band of community events on the home page
+seed.band = JSON.parse(await readFile('content/band.json', 'utf8')).events;
 // role calls from #role-announcements, one file per announcement
 seed.rolecalls = [];
 for (const f of (await readdir('content/roles')).filter((f) => f.endsWith('.json')).sort()) seed.rolecalls.push(JSON.parse(await readFile('content/roles/' + f, 'utf8')));
