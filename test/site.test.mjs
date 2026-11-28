@@ -113,37 +113,37 @@ test('seed issues are valid', () => {
 
 test('editor drafts weekly, only admin publishes; drafts stay hidden', async () => {
   const store = memStore();
-  const w = { ...SEED.weekly[0], id: '002', date: '2026-11-27', status: 'published' };
+  const w = { ...SEED.weekly[0], id: '090', date: '2026-12-30', status: 'published' };
   let r = await api(req('/api/admin/issue', { method: 'PUT', headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN }, body: JSON.stringify(w) }), { store, env });
   assert.equal(r.status, 200); assert.equal((await r.json()).status, 'draft');
-  assert.equal((await site(req('/weekly/002/'), { store })).status, 404);
-  assert.equal((await site(req('/preview/weekly/002/'), { store, preview: true })).status, 200);
-  r = await api(req('/api/admin/publish', { method: 'POST', headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN }, body: JSON.stringify({ kind: 'weekly', id: '002' }) }), { store, env });
+  assert.equal((await site(req('/weekly/090/'), { store })).status, 404);
+  assert.equal((await site(req('/preview/weekly/090/'), { store, preview: true })).status, 200);
+  r = await api(req('/api/admin/publish', { method: 'POST', headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN }, body: JSON.stringify({ kind: 'weekly', id: '090' }) }), { store, env });
   assert.equal(r.status, 403);
-  r = await api(req('/api/admin/publish', { method: 'POST', headers: { authorization: 'Bearer ' + env.ADMIN_TOKEN }, body: JSON.stringify({ kind: 'weekly', id: '002' }) }), { store, env });
+  r = await api(req('/api/admin/publish', { method: 'POST', headers: { authorization: 'Bearer ' + env.ADMIN_TOKEN }, body: JSON.stringify({ kind: 'weekly', id: '090' }) }), { store, env });
   assert.equal(r.status, 200);
-  assert.equal((await site(req('/weekly/002/'), { store })).status, 200);
+  assert.equal((await site(req('/weekly/090/'), { store })).status, 200);
   const home = await (await site(req('/'), { store })).text();
-  assert.match(home, /Issue 002/);
+  assert.match(home, /Issue 090/);
 });
 
 test('approval link asks for the admin token in a form, never needs it in the URL', async () => {
   const store = memStore();
-  const w = { ...SEED.weekly[0], id: '003', date: '2026-12-04', title: { en: 'Secret draft title' } };
+  const w = { ...SEED.weekly[0], id: '091', date: '2027-01-06', title: { en: 'Secret draft title' } };
   await api(req('/api/admin/issue', { method: 'PUT', headers: { authorization: 'Bearer ' + env.EDITOR_TOKEN }, body: JSON.stringify(w) }), { store, env });
-  let r = await api(req('/api/admin/publish?kind=weekly&id=003'), { store, env });
+  let r = await api(req('/api/admin/publish?kind=weekly&id=091'), { store, env });
   assert.equal(r.status, 200);
   let html = await r.text();
   assert.match(html, /type="password" name="token"/);
   assert.ok(!html.includes('Secret draft title'), 'no draft content before auth');
-  const form = (token) => req('/api/admin/publish', { method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ kind: 'weekly', id: '003', token }).toString() });
+  const form = (token) => req('/api/admin/publish', { method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ kind: 'weekly', id: '091', token }).toString() });
   r = await api(form(env.EDITOR_TOKEN), { store, env });
   assert.equal(r.status, 401);
-  assert.equal((await site(req('/weekly/003/'), { store })).status, 404, 'wrong token publishes nothing');
+  assert.equal((await site(req('/weekly/091/'), { store })).status, 404, 'wrong token publishes nothing');
   r = await api(form(env.ADMIN_TOKEN), { store, env });
   assert.equal(r.status, 303);
-  assert.equal(r.headers.get('location'), '/weekly/003/');
-  r = await site(req('/weekly/003/'), { store });
+  assert.equal(r.headers.get('location'), '/weekly/091/');
+  r = await site(req('/weekly/091/'), { store });
   assert.equal(r.status, 200);
 });
 
