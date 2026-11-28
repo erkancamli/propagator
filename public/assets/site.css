@@ -1043,3 +1043,8 @@ h1, h2, h3 { font-weight: 650; letter-spacing: -0.025em; }
 .more li a:hover { background: var(--bg); }
 @media (min-width: 861px) and (max-width: 1080px) { .more summary { padding: 6px 7px; font-size: 14.5px; } }
 @media (max-width: 860px) { .more { display: none; } .nav-x { display: inline-block; } .js .top.menu-open .nav .nav-x { display: block; } }
+.badge-list { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.badge-list li a, .badge-list li span { display: inline-block; padding: 5px 11px; border-radius: 999px; font-size: 14px; box-shadow: inset 0 0 0 1px var(--line); background: var(--surface); }
+.badge-list li a { color: var(--ink); text-decoration: none; box-shadow: inset 0 0 0 1px var(--accent); }
+.badge-list li a:hover { background: var(--bg); }
+.badge-list li span { color: var(--muted); }

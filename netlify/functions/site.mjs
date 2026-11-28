@@ -75,7 +75,7 @@ export async function handle(req, { store, now = Date.now(), preview = false, en
   }
   if (path === '/learn/') return html(R.learnPage(lang));
   if (path === '/builders/') return html(R.buildersPage(lang, today, await register(store)));
-  if (path === '/people/') return html(R.peoplePage(lang, (await store.get('jobs/list', { type: 'json' }).catch(() => null)) || (await latestWeekly())?.jobs));
+  if (path === '/people/') return html(R.peoplePage(lang, (await store.get('jobs/list', { type: 'json' }).catch(() => null)) || (await latestWeekly())?.jobs, await register(store)));
   if (path === '/about/') return html(R.aboutPage(lang));
   if ((m = path.match(/^\/subscribed\/(confirmed|left|bad)\/$/))) return html({ ...R.subscribedPage(lang, m[1]), noindex: true });
   if (path === '/submit/') return html(R.submitPage(lang));
