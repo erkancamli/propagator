@@ -982,3 +982,31 @@ h1, h2, h3 { font-weight: 650; letter-spacing: -0.025em; }
 .rs-more { margin: var(--s-3) 0 0; font-size: var(--t-s); }
 .rs-more a { color: var(--ink); font-weight: 600; text-underline-offset: 4px; }
 @media (min-width: 861px) and (max-width: 1080px) { .nav a { padding: 6px 7px; font-size: 14.5px; } }
+
+/* the people behind Optimum */
+.founders { display: grid; gap: var(--s-6); }
+.founder { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: var(--s-5); align-items: start; padding-top: var(--s-5); border-top: 1px solid var(--line); }
+.founder:first-child { border-top: 0; padding-top: 0; }
+.f-photo img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 18px; background: var(--surface); }
+.founder h3 { font-size: var(--t-xl); letter-spacing: -0.03em; margin: 0; }
+.founder .role { margin: 4px 0 var(--s-2); color: var(--accent); font-weight: 600; }
+.f-bio { font-size: var(--t-m); line-height: 1.6; color: var(--muted); max-width: 62ch; margin: 0 0 var(--s-3); }
+.founder h4 { margin: var(--s-4) 0 var(--s-2); font-size: var(--t-s); font-weight: 650; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+.h-n { font-weight: 500; color: var(--soft); }
+.career, .honours { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; max-width: 720px; }
+.career li, .honours li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: var(--t-s); line-height: 1.5; }
+.c-y, .h-y { font: 600 13px var(--mono); color: var(--soft); padding-top: 2px; font-variant-numeric: tabular-nums; }
+.c-dot::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--line-2); margin-left: 4px; vertical-align: middle; }
+.honours li:first-child span:last-child { font-weight: 650; }
+.founder .plinks { margin-top: var(--s-3); }
+.adv-rich .honours { margin-top: 8px; }
+.adv-rich .honours li { grid-template-columns: 46px minmax(0, 1fr); padding: 6px 0; font-size: 14px; }
+.team-teaser { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-3); }
+.team-teaser a { display: flex; gap: 14px; align-items: center; padding: 14px; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); text-decoration: none; color: var(--ink); height: 100%; }
+.team-teaser a:hover { box-shadow: inset 0 0 0 1px var(--line-2), var(--shadow); }
+.team-teaser img { width: 72px; height: 72px; border-radius: 14px; object-fit: cover; flex: none; }
+.team-teaser span { display: grid; gap: 2px; min-width: 0; }
+.team-teaser b { font-size: 16.5px; }
+.team-teaser small { color: var(--accent); font-weight: 600; font-size: 13px; }
+.team-teaser em { font-style: normal; font-size: 13px; color: var(--muted); line-height: 1.4; }
+@media (max-width: 860px) { .founder { grid-template-columns: 1fr; } .f-photo img { max-width: 200px; } .team-teaser { grid-template-columns: 1fr; } }
