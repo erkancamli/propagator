@@ -56,7 +56,7 @@ export async function handle(req, { store, now = Date.now(), preview = false, en
   const latestWeekly = async () => { const w = await listIssues(store, 'weekly'); return w[0] && getIssue(store, 'weekly', w[0].id); };
   if (path === '/') {
     const [reg, weekly] = await Promise.all([register(store), latestWeekly()]);
-    return html(R.registerHome(lang, reg, { weekly, today }));
+    return html(R.registerHome(lang, reg, { weekly, today, now }));
   }
   if (path === '/members/') return html(R.membersPage(lang, await register(store)));
   if (path === '/stats/') { const reg = await register(store); return html(R.statsPage(lang, reg, { claims: reg.members.filter((x) => x.claimed).length })); }
