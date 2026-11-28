@@ -479,10 +479,10 @@
     var same = function (a, b) { a = new Date(a); b = new Date(b); return a.toDateString() === b.toDateString(); };
     band.querySelectorAll('.bi').forEach(function (li) {
       var s = Date.parse(li.dataset.start), e = Date.parse(li.dataset.end), st = li.querySelector('.bi-state'), w = li.querySelector('.bi-when');
-      if (e < now) { li.remove(); return; }
-      if (!li.dataset.long) w.textContent = day(s) + ' ' + hm(s);
-      if (s <= now) { li.classList.add(li.dataset.long ? 'is-on' : 'is-live'); st.textContent = li.dataset.long ? d.on : d.live; st.hidden = false; if (li.dataset.long) w.textContent = d.until.replace('{0}', day(e)); }
-      else if (same(s, now)) { st.textContent = d.today; st.hidden = false; w.textContent = hm(s); }
+      if (e < now) { li.classList.add('is-past'); st.textContent = d.done; st.hidden = false; if (!li.dataset.long && !li.dataset.allday) w.textContent = day(s) + ' ' + hm(s); return; }
+      if (!li.dataset.long && !li.dataset.allday) w.textContent = day(s) + ' ' + hm(s);
+      if (s <= now) { li.classList.add(li.dataset.long || li.dataset.allday ? 'is-on' : 'is-live'); st.textContent = li.dataset.allday ? d.today : li.dataset.long ? d.on : d.live; st.hidden = false; if (li.dataset.long) w.textContent = d.until.replace('{0}', day(e)); }
+      else if (same(s, now)) { st.textContent = d.today; st.hidden = false; if (!li.dataset.allday) w.textContent = hm(s); }
     });
     var run = band.querySelector('.band-run'); if (!run || !run.children.length) { band.remove(); return; }
     band.style.setProperty('--band-dur', Math.max(30, Math.round(run.scrollWidth / 45)) + 's');
