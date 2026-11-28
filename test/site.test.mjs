@@ -55,14 +55,15 @@ test('retired pages redirect to where their content lives now', async () => {
 
 test('register: the Discord role calls from the Discord archive, people matched across weeks', async () => {
   const reg = await register(null);
-  assert.equal(reg.stats.calls, 38); assert.equal(reg.stats.upgrades, 487); assert.equal(reg.stats.members, 478);
-  assert.deepEqual([reg.byRole.Optimized, reg.byRole.Chronicler], [2, 5]);
+  // new weeks are added by scripts/rolecall.mjs, so the archive as of 23 Nov 2026 is a floor, not a fixed count
+  assert.ok(reg.stats.calls >= 38 && reg.stats.upgrades >= 487 && reg.stats.members >= 478, 'the archive is all there');
+  assert.ok(reg.byRole.Optimized >= 2 && reg.byRole.Chronicler >= 5);
   const h = reg.bySlug.get('hanumd');
   assert.deepEqual(h.events.map((e) => e.role), ['Refined', 'Optimized'], 'a promotion lands on one page');
   assert.ok(reg.bySlug.get('hassan') && reg.bySlug.get('hassan-2'), 'two namesakes named Refined stay two people');
   assert.equal(reg.firsts.Chronicler.slug, 'marina'); assert.equal(reg.firsts.Optimized.slug, 'em3rald');
   const nos = reg.members.map((m) => m.no).sort((a, b) => a - b);
-  assert.deepEqual(nos, Array.from({ length: 478 }, (_, i) => i + 1), 'register numbers are 1..n without gaps');
+  assert.deepEqual(nos, Array.from({ length: reg.members.length }, (_, i) => i + 1), 'register numbers are 1..n without gaps');
 });
 
 test('the announcement parser reads every archived post exactly like the seed', async () => {
