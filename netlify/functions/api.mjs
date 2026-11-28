@@ -216,14 +216,16 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
   }
 
   if (!path.startsWith('/api/admin/')) return json({ error: 'not found' }, 404);
-  if (!isEditor && path !== '/api/admin/publish' && !(path === '/api/admin/rolecall' && req.method !== 'PUT')) return json({ error: 'unauthorized' }, 401); // the approval page handles its own auth
+  if (!isEditor && path !== '/api/admin/publish' && !(path === '/api/admin/rolecall' && req.method !== 'PUT') && !(path === '/api/admin/paste' && (req.method === 'GET' || (req.headers.get('content-type') || '').includes('form')))) return json({ error: 'unauthorized' }, 401); // the approval page handles its own auth
 
 
   if (path === '/api/admin/subscribers' && req.method === 'GET') {
     if (!isAdmin) return json({ error: 'only the admin can see subscribers' }, 403);
     const { blobs } = await store.list({ prefix: 'sub/' });
     const subs = (await Promise.all(blobs.map((b) => store.get(b.key, { type: 'json' })))).filter(Boolean);
-    if (url.searchParams.get('format') === 'csv') return new Response('email,lang,status,since\n' + subs.map((s) => [s.email, s.lang, s.status, s.at].join(',')).join('\n'), { headers: { 'content-type': 'text/csv; charset=utf-8', 'cache-control': 'no-store' } });
+    // a cell that starts with = + - @ would run as a formula in a spreadsheet, so it is quoted as text
+    const cell = (v) => { const t = String(v ?? '').replace(/"/g, '""'); return /^[=+\-@\t\r]/.test(t) ? `"'${t}"` : /[,"\n]/.test(t) ? `"${t}"` : t; };
+    if (url.searchParams.get('format') === 'csv') return new Response('email,lang,status,since\n' + subs.map((s) => [s.email, s.lang, s.status, s.at].map(cell).join(',')).join('\n'), { headers: { 'content-type': 'text/csv; charset=utf-8', 'cache-control': 'no-store' } });
     const count = {}; for (const s of subs) { count[s.status] ||= {}; count[s.status][s.lang] = (count[s.status][s.lang] || 0) + 1; }
     return json({ total: subs.length, mail: mailReady(env), count });
   }
@@ -252,10 +254,12 @@ export async function handle(req, { store, env, ip = '', now = Date.now(), purge
   }
   // Paste box for Discord announcements and role lists: the editor picks them up from the wire.
   if (path === '/api/admin/paste' && req.method === 'GET') {
-    return new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Paste to the wire</title><style>body{font:16px system-ui;max-width:680px;margin:6vh auto;padding:0 16px;background:#16181a;color:#f0f2f4}textarea,select,input{width:100%;font:15px system-ui;padding:10px;border-radius:10px;border:1px solid #3a4146;background:#1e2124;color:#f0f2f4;box-sizing:border-box;margin:6px 0 14px}button{font:600 16px system-ui;padding:12px 20px;border-radius:10px;border:0;background:#b87cff;color:#16181a;cursor:pointer}</style><h1>Paste to the wire</h1><form method="post" action="/api/admin/paste?token=${encodeURIComponent(bearer)}"><label>What is it<select name="kind"><option value="discord">Discord announcement</option><option value="roles">Role distribution</option><option value="event">Event</option><option value="note">Other note</option></select></label><label>Text (paste as is)<textarea name="text" rows="14" required></textarea></label><label>Link (optional)<input name="url" type="url" placeholder="https://discord.com/channels/..."></label><button>Add to the wire</button></form>`, { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
+    return new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Paste to the wire</title><style>body{font:16px system-ui;max-width:680px;margin:6vh auto;padding:0 16px;background:#16181a;color:#f0f2f4}textarea,select,input{width:100%;font:15px system-ui;padding:10px;border-radius:10px;border:1px solid #3a4146;background:#1e2124;color:#f0f2f4;box-sizing:border-box;margin:6px 0 14px}button{font:600 16px system-ui;padding:12px 20px;border-radius:10px;border:0;background:#b87cff;color:#16181a;cursor:pointer}</style><h1>Paste to the wire</h1><form method="post" action="/api/admin/paste"><label>What is it<select name="kind"><option value="discord">Discord announcement</option><option value="roles">Role distribution</option><option value="event">Event</option><option value="note">Other note</option></select></label><label>Text (paste as is)<textarea name="text" rows="14" required></textarea></label><label>Link (optional)<input name="url" type="url" placeholder="https://discord.com/channels/..."></label><label>Editor token<input type="password" name="token" autocomplete="current-password" required></label><button>Add to the wire</button></form>`, { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store', 'referrer-policy': 'no-referrer', 'x-frame-options': 'DENY' } });
   }
   if (path === '/api/admin/paste' && req.method === 'POST') {
     const b = await body();
+    const tokenOk = isEditor || [env.EDITOR_TOKEN, env.ADMIN_TOKEN].some((t) => t && typeof b?.token === 'string' && safeEq(b.token, t));
+    if (!tokenOk) return json({ error: 'unauthorized' }, 401);
     const text = String(b?.text || '').replace(/\r/g, '').replace(/[\u0000-\u0009\u000b-\u001f]/g, ' ').slice(0, 8000).trim();
     if (!text) return json({ error: 'text is required' }, 400);
     const kind = ['discord', 'roles', 'event', 'note'].includes(b.kind) ? b.kind : 'note';

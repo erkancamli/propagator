@@ -6,12 +6,14 @@ import { listIssues, getIssue } from '../../lib/data.mjs';
 import { register } from '../../lib/register.mjs';
 import { LANGS, CODES } from '../../lib/i18n.mjs';
 import { discordReady, imageType } from '../../lib/claim.mjs';
+import crypto from 'node:crypto';
 
 const ROUTES = ['/', '/members/', '/classes/', '/builders/', '/stats/', '/archive/', '/learn/', '/people/', '/about/', '/submit/'];
 // pages that were folded into others when Propagator became a weekly magazine with a community page
 const MOVED = { '/weekly/': '/archive/', '/daily/': '/archive/', '/community/': '/builders/', '/events/': '/builders/', '/videos/': '/learn/', '/pulse/': '/learn/' };
 
-const SECURITY = { 'x-content-type-options': 'nosniff', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-frame-options': 'SAMEORIGIN', 'permissions-policy': 'camera=(), microphone=(), geolocation=()', 'content-security-policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://i.ytimg.com https://pbs.twimg.com; frame-src https://www.youtube-nocookie.com; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'" };
+const SECURITY = { 'x-content-type-options': 'nosniff', 'referrer-policy': 'strict-origin-when-cross-origin', 'x-frame-options': 'SAMEORIGIN', 'permissions-policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()', 'cross-origin-opener-policy': 'same-origin', 'strict-transport-security': 'max-age=63072000; includeSubDomains', 'content-security-policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://i.ytimg.com https://pbs.twimg.com; frame-src https://www.youtube-nocookie.com; connect-src 'self'; object-src 'none'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" };
+const sameSecret = (a, b) => { const x = Buffer.from(String(a)), y = Buffer.from(String(b)); return x.length === y.length && x.length > 0 && crypto.timingSafeEqual(x, y); };
 
 export async function handle(req, { store, now = Date.now(), preview = false, env = {} }) {
   const url = new URL(req.url);
@@ -23,7 +25,8 @@ export async function handle(req, { store, now = Date.now(), preview = false, en
   if (pre && pre[1] !== 'en' && CODES.includes(pre[1])) { lang = pre[1]; path = pre[2]; }
   const today = new Date(now).toISOString().slice(0, 10);
   const html = (page, status = 200, cache = 'public, max-age=0, must-revalidate') => new Response(R.layout({ lang, path, assets: ASSETS, ...page }), {
-    status, headers: { ...SECURITY, 'content-type': 'text/html; charset=utf-8', 'cache-control': cache, 'netlify-cdn-cache-control': status === 200 && !page.noindex ? 'public, s-maxage=300, stale-while-revalidate=86400' : 'no-store', 'netlify-cache-tag': 'pages' },
+    // drafts opened with the editor's token: never cached anywhere, and the token never leaves in a referrer
+    status, headers: { ...SECURITY, ...(page.noindex ? { 'referrer-policy': 'no-referrer' } : {}), 'content-type': 'text/html; charset=utf-8', 'cache-control': page.noindex ? 'private, no-store' : cache, 'netlify-cdn-cache-control': status === 200 && !page.noindex ? 'public, s-maxage=300, stale-while-revalidate=86400' : 'no-store', 'netlify-cache-tag': 'pages' },
   });
   const text = (body, type) => new Response(body, { headers: { 'content-type': type, 'cache-control': 'public, max-age=0, must-revalidate', 'netlify-cdn-cache-control': 'public, s-maxage=600, stale-while-revalidate=86400', 'netlify-cache-tag': 'pages' } });
 
@@ -86,7 +89,7 @@ export default async (req) => {
   const store = getStore({ name: 'propagator', consistency: 'strong' });
   const url = new URL(req.url);
   const token = url.searchParams.get('token') || '';
-  const preview = /^(\/[a-z]{2,3})?\/preview\//.test(url.pathname) && Boolean(process.env.EDITOR_TOKEN) && [process.env.EDITOR_TOKEN, process.env.ADMIN_TOKEN].includes(token);
+  const preview = /^(\/[a-z]{2,3})?\/preview\//.test(url.pathname) && Boolean(process.env.EDITOR_TOKEN) && [process.env.EDITOR_TOKEN, process.env.ADMIN_TOKEN].some((t) => t && sameSecret(t, token));
   return handle(req, { store, preview, env: process.env });
 };
 
