@@ -41,7 +41,7 @@ test('retired pages redirect to where their content lives now', async () => {
     assert.equal(r.status, 301, p); assert.equal(r.headers.get('location'), to, p);
   }
   const html = await (await site(req('/archive/'), { store })).text();
-  assert.match(html, /Month one on mainnet/); assert.match(html, /\d+ stories/); assert.match(html, /aria-current="page">Issues/);
+  assert.match(html, /Month one on mainnet/); assert.match(html, /\d+ stories/); assert.match(html, /aria-current="page">Newsletter/);
   const nav = html.match(/<nav class="nav"[\s\S]*?<\/nav>/)[0];
   assert.equal((nav.replace(/<details class="more">[\s\S]*?<\/details>/, '').match(/<a (?!class="nav-x")/g) || []).length, 6, 'six menu items');
   assert.match(nav, /<details class="more">/, 'a More menu for the footer pages');
