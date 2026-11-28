@@ -1003,3 +1003,60 @@ main { width: 100%; max-width: calc(var(--max) + 2 * var(--gut)); margin: 0 auto
 .side li a { overflow: hidden; }
 .rsearch input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
 .rstats { display: grid; grid-template-columns: repeat(3, minmax(0, max-content)); }
+
+/* ---------- run a gateway ---------- */
+.hero-gw h1 { max-width: 13ch; }
+.gw-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 32px 0 0; padding: 20px 0; border-radius: var(--r-xl); background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); max-width: 860px; }
+.gw-facts div { display: flex; flex-direction: column; padding: 0 22px; border-left: 1px solid var(--line); }
+.gw-facts div:first-child { border-left: 0; }
+.gw-facts dd { order: 1; margin: 0; font: 650 26px/1.1 var(--sans); letter-spacing: -0.03em; }
+.gw-facts dt { order: 2; margin-top: 6px; font-size: var(--t-xs); color: var(--muted); line-height: 1.4; }
+@media (max-width: 640px) { .gw-facts { grid-template-columns: 1fr; gap: 14px; } .gw-facts div { border-left: 0; } }
+.gw-note { display: grid; gap: 4px; margin: 6px 0 0; padding: 16px 18px; border-radius: var(--r-l); background: var(--accent-soft); font-size: 15px; line-height: 1.55; }
+.gw-note b { font-weight: 650; }
+.gw-paths { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.gw-path { position: relative; overflow: hidden; padding: 22px; border-radius: var(--r-xl); background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+.gw-path::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--m-optimized); }
+.gw-stream::before { background: var(--m-chronicler); }
+.gw-path h3 { font-size: 19px; margin-bottom: 8px; }
+.gw-path p { color: var(--muted); font-size: 15.5px; }
+.gw-path .gw-who { margin: 0; font-size: 14px; }
+.gw-who b { color: var(--ink); margin-right: 4px; }
+@media (max-width: 700px) { .gw-paths { grid-template-columns: 1fr; } }
+.gw-check, .gw-notes { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 8px; }
+.gw-check label { position: relative; display: block; padding: 12px 14px 12px 46px; border-radius: 12px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); font-size: 15.5px; line-height: 1.5; cursor: pointer; transition: box-shadow .15s, background .2s; }
+.gw-check label:hover { box-shadow: inset 0 0 0 1px var(--line-2); }
+.gw-check input { position: absolute; left: 14px; top: 14px; width: 20px; height: 20px; margin: 0; appearance: none; -webkit-appearance: none; border-radius: 6px; box-shadow: inset 0 0 0 1.5px var(--line-2); background: var(--surface); cursor: pointer; transition: background .2s, box-shadow .2s; }
+.gw-check input:checked { background: var(--accent); box-shadow: none; }
+.gw-check input:checked::after { content: ''; position: absolute; left: 7px; top: 3px; width: 5px; height: 10px; border: solid var(--on-accent); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.gw-check input:checked + span { color: var(--muted); }
+.gw-check input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.gw-notes li { position: relative; padding: 0 0 0 22px; font-size: 15.5px; line-height: 1.55; color: var(--ink-2); }
+.gw-notes li::before { content: ''; position: absolute; left: 4px; top: .62em; width: 7px; height: 7px; border-radius: 2px; background: var(--accent); }
+.gw-steps { list-style: none; counter-reset: s; margin: 0; padding: 0; display: grid; gap: 0; }
+.gw-steps > li { counter-increment: s; position: relative; padding: 4px 0 26px 56px; }
+.gw-steps > li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font: 650 15px var(--sans); color: var(--bg); background: var(--ink); box-shadow: 0 0 0 5px var(--bg); z-index: 1; }
+.gw-steps > li::after { content: ''; position: absolute; left: 17px; top: 36px; bottom: 0; width: 2px; background: linear-gradient(var(--line-2), var(--line)); }
+.gw-steps > li:last-child::after { display: none; }
+.gw-steps h3 { font-size: 19px; margin: 6px 0 6px; }
+.gw-steps p { color: var(--muted); max-width: 66ch; }
+.gw-sub { font-size: 14.5px; color: var(--muted); margin: 10px 0 8px; }
+.code { position: relative; margin: 8px 0 12px; border-radius: 14px; background: #101316; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06), var(--shadow); }
+.code pre { margin: 0; padding: 16px 18px; overflow-x: auto; font: 500 13.5px/1.65 var(--mono); color: #e4e9ee; tab-size: 2; }
+.code pre:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 14px; }
+.copy { position: absolute; top: 8px; right: 8px; z-index: 1; min-height: 32px; padding: 0 12px; border-radius: 9px; border: 0; background: rgba(255, 255, 255, .08); color: #e4e9ee; font: 600 12.5px var(--sans); cursor: pointer; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); transition: background .15s; }
+.copy:hover { background: rgba(255, 255, 255, .16); }
+.copy.done { background: var(--accent); color: #fff; }
+.gw-table { overflow-x: auto; border-radius: var(--r-l); box-shadow: inset 0 0 0 1px var(--line); background: var(--surface); }
+.gw-table table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.gw-table th, .gw-table td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.gw-table tr:last-child td { border-bottom: 0; }
+.gw-table th { font-size: 13px; color: var(--soft); font-weight: 600; }
+.gw-table td:first-child { font-weight: 600; white-space: nowrap; }
+.gw-table code, .gw-fixes code { font: 500 13px var(--mono); padding: 2px 6px; border-radius: 6px; background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); white-space: nowrap; }
+.gw-fixes { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.gw-fixes div { padding: 14px 16px; border-radius: 14px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+.gw-fixes dt { font-weight: 650; margin-bottom: 4px; }
+.gw-fixes dd { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
+@media (max-width: 700px) { .gw-fixes { grid-template-columns: 1fr; } .gw-steps > li { padding-left: 48px; } }
+.timeline a { text-decoration-color: var(--line-2); }

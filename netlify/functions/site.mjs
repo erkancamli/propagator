@@ -8,7 +8,7 @@ import { LANGS, CODES } from '../../lib/i18n.mjs';
 import { discordReady, imageType } from '../../lib/claim.mjs';
 import crypto from 'node:crypto';
 
-const ROUTES = ['/', '/members/', '/classes/', '/builders/', '/stats/', '/archive/', '/learn/', '/people/', '/about/', '/submit/'];
+const ROUTES = ['/', '/members/', '/classes/', '/builders/', '/stats/', '/archive/', '/learn/', '/gateway/', '/people/', '/about/', '/submit/'];
 // pages that were folded into others when Propagator became a weekly magazine with a community page
 const MOVED = { '/weekly/': '/archive/', '/daily/': '/archive/', '/community/': '/builders/', '/events/': '/builders/', '/videos/': '/learn/', '/pulse/': '/learn/' };
 
@@ -77,6 +77,7 @@ export async function handle(req, { store, now = Date.now(), preview = false, en
     return html({ ...R.weeklyPage(lang, issue, { prev: list[i + 1], next: i > 0 ? list[i - 1] : null }), noindex: isPreview });
   }
   if (path === '/learn/') return html(R.learnPage(lang));
+  if (path === '/gateway/') return html(R.gatewayPage(lang));
   if (path === '/builders/') return html(R.buildersPage(lang, today, await register(store)));
   if (path === '/people/') return html(R.peoplePage(lang, (await store.get('jobs/list', { type: 'json' }).catch(() => null)) || (await latestWeekly())?.jobs));
   if (path === '/about/') return html(R.aboutPage(lang));

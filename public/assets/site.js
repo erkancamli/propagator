@@ -462,6 +462,23 @@
     list.addEventListener('mousemove', function (e) { var li = e.target.closest('[role=option]'); if (li) { var i = items.indexOf(li); if (i !== active) mark(i); } });
   })();
 
+  // ---- the gateway checklist: ticks stay in this browser ----
+  document.querySelectorAll('.gw-check input[data-k]').forEach(function (c) {
+    try { c.checked = localStorage.getItem('pg-' + c.dataset.k) === '1'; } catch (e) {}
+    c.addEventListener('change', function () { try { localStorage.setItem('pg-' + c.dataset.k, c.checked ? '1' : '0'); } catch (e) {} });
+  });
+
+  // ---- copy buttons on code blocks ----
+  document.querySelectorAll('.code .copy').forEach(function (b) {
+    var label = b.textContent;
+    b.addEventListener('click', function () {
+      var t = b.parentNode.querySelector('code').textContent;
+      var done = function () { b.textContent = b.dataset.copied; b.classList.add('done'); setTimeout(function () { b.textContent = label; b.classList.remove('done'); }, 1600); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, function () {});
+      else { var r = document.createRange(); r.selectNodeContents(b.parentNode.querySelector('code')); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); }
+    });
+  });
+
   // ---- the credential: tilt, foil and glare follow the pointer ----
   if (fine && !reduce) document.querySelectorAll('[data-card]').forEach(function (card) {
     var raf = 0, ev = null;
